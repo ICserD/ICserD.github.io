@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>My New Post</title>
+      <link href="/2023/10/15/My-New-Post/"/>
+      <url>/2023/10/15/My-New-Post/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/10/15/hello-world/"/>
+      <url>/2023/10/15/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HAL库的驱动框架</title>
+      <link href="/2023/10/15/11.HAL%E5%BA%93%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/"/>
+      <url>/2023/10/15/11.HAL%E5%BA%93%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HAL库驱动框架"><a href="#HAL库驱动框架" class="headerlink" title="HAL库驱动框架"></a>HAL库驱动框架</h1><h2 id="外设初始化"><a href="#外设初始化" class="headerlink" title="外设初始化"></a>外设初始化</h2><h3 id="对外设的封装"><a href="#对外设的封装" class="headerlink" title="对外设的封装"></a>对外设的封装</h3><h4 id="xx-HandleTypeDef-xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等"><a href="#xx-HandleTypeDef-xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等" class="headerlink" title="xx_HandleTypeDef (xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等)"></a>xx_HandleTypeDef (xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等)</h4><ul><li>Instance成员(xx_TypeDef类型)，一般是指向外设的基地址，访问相关外设的资源</li><li>Init成员(xx_InitTypeDef类型)，用于初始化外设，配置外设如何去工作</li><li>Hdma*成员(DMA_HandleTypeDef类型，可能一个句柄结构有多个)</li><li>其他资源<ul><li>LOCK锁(HAL_LockTypeDef类型)    用于防止资源竞争，保护外设工作过程</li><li>STATUS状态(HAL_xx_StateTypeDef类型)    指示句柄结构体状态，可以用这个检查一下外设状态</li><li>……</li></ul></li></ul><h3 id="对外设初始化使用方法"><a href="#对外设初始化使用方法" class="headerlink" title="对外设初始化使用方法"></a>对外设初始化使用方法</h3><ul><li><p>HAL_xx_Init,  参数一般为xx外设的句柄结构体</p><p>对句柄结构体下的init成员的相关参数配置到寄存器之前，它会先调用hal_xx_mspinit函数，将相关底层资源初始化完成，比如时钟、使用到的引脚、中断的使能等等。</p></li><li><p>HAL_xx_MspInit, 参数一般为xx外设的句柄结构体 (再HAL库中，这个函数是一个回调函数，用于初始化相关资源，是个弱定义，可以由用户重新定义)</p></li><li><p>其他，具体的外设初始化，我们要参考相关.c驱动文件，去参考学习“How to use this driver”</p></li></ul><h3 id="外设的使用逻辑"><a href="#外设的使用逻辑" class="headerlink" title="外设的使用逻辑"></a>外设的使用逻辑</h3><h4 id="阻塞轮询-Polling"><a href="#阻塞轮询-Polling" class="headerlink" title="阻塞轮询(Polling)"></a>阻塞轮询(Polling)</h4><ul><li>xx_start</li><li>xx_read&#x2F;write</li><li>……等等函数。&#x3D;&#x3D;特征：传入参数需要一个Timeout参数&#x3D;&#x3D;</li></ul><h4 id="中断-It"><a href="#中断-It" class="headerlink" title="中断(It)"></a>中断(It)</h4><ul><li>xx_start_it<ul><li>HAL_XX_IRQHandler(xx外设中断处理函数，在中断入口函数中调用，参数一般为句柄结构中的参数。在该函数中，一般会检测外设状态寄存器的标志，根据不同的状态回调不同的回调函数)  ——&gt;  各种HAL_XX_xxCallback函数</li></ul></li><li>xx_read&#x2F;write_it</li><li>xx_xx_it…等等中断启动函数；&#x3D;&#x3D;特征：函数名以IT结尾。&#x3D;&#x3D;</li></ul><h4 id="DMA-可以再CPU不完全监控的情况下进行数据的操作"><a href="#DMA-可以再CPU不完全监控的情况下进行数据的操作" class="headerlink" title="DMA(可以再CPU不完全监控的情况下进行数据的操作)"></a>DMA(可以再CPU不完全监控的情况下进行数据的操作)</h4><ul><li>xx_start_dma<ul><li>DMA功能</li></ul></li><li>xx_read&#x2F;write_dma</li><li>xx_xx_dma…等等DMA启动函数；&#x3D;&#x3D;特征：函数名以DMA结尾&#x3D;&#x3D;</li></ul><h4 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h4><ul><li>标志查询&#x2F;清除、中断功能使能&#x2F;失能、时钟使能&#x2F;失能<ul><li>_HAL_xx_ENABLE_IT</li><li>_HAL_xx_GET_FLAG</li><li>……等等</li></ul></li></ul><h4 id="对HAL库驱动全面了解、查看"><a href="#对HAL库驱动全面了解、查看" class="headerlink" title="对HAL库驱动全面了解、查看"></a>对HAL库驱动全面了解、查看</h4><p>去HAL库的驱动包的   ##### How to use this driver ##### 了解</p><p>对于任意一个外设驱动，都会有相应的注释</p><p>&#x3D;&#x3D;强推看注释&#x3D;&#x3D;</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li><p>外设初始化</p><ul><li>定义并填充xxx外设句柄结构体</li><li>如果遵循HAL库规范，通过HAL_xxx_MspInit()函数，实现外设底层资源的初始化，包括但不限于GPIO、时钟、DMA、中断等资源的初始化</li><li>调用HAL库的对应的外设初始化函数，形如：HAL_xxx_Init()</li><li>初始化完成，开始使用外设</li></ul></li><li><p>使用外设，使用方法具体看对应外设的HAL库驱动包中的说明：</p><p><code>#####How to use this driver#####</code></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> microcontroller </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> note </tag>
+            
+            <tag> microcontroller </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MPU6050传感器</title>
+      <link href="/2023/10/15/19.MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+      <url>/2023/10/15/19.MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MPU6050传感器"><a href="#MPU6050传感器" class="headerlink" title="MPU6050传感器"></a>MPU6050传感器</h1><h2 id="姿态检测"><a href="#姿态检测" class="headerlink" title="姿态检测"></a>姿态检测</h2><p>抽象来说，姿态就是“载体坐标系”和“地理坐标系”之间的转换关系。</p><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p><strong>常用的坐标系</strong></p><ul><li><p>地球坐标系</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230113234542491.png" alt="image-20230113234542491"></p></li><li><p>地理坐标系</p></li><li><p>载体坐标系</p><p>以运载体的质心为原点，一般根据运载体自身结构方向构成坐标系，如Z轴上由原点指向载体顶部，Y轴指向载体头部，X轴沿载体两侧方向。上面说基于飞机建立的坐标系就是一种载体坐标系，可类比到汽车、船舰、人体、动物或手机等各种物体。</p><p><strong>重要的几个角</strong></p><p>这几个角涉及到坐标转换</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230115213019160.png" alt="image-20230115213019160"></p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230115213152492.png" alt="image-20230115213152492"></p></li></ul><h3 id="MPU6050传感器-1"><a href="#MPU6050传感器-1" class="headerlink" title="MPU6050传感器"></a>MPU6050传感器</h3><p>采用MEMS（微机系统）结合机械系统的方式，可以求出实时的偏航角、俯仰角、横滚角的角速度，然后通过对时间的积分可以求出偏离的角度从而确定物体的姿态。</p><h4 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a><strong>误差分析</strong></h4><p><strong>累计误差</strong></p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230115220033292.png" alt="image-20230115220033292"></p><h4 id="减少误差、克服缺陷的方案"><a href="#减少误差、克服缺陷的方案" class="headerlink" title="减少误差、克服缺陷的方案"></a><strong>减少误差、克服缺陷的方案</strong></h4><ul><li>加速度传感器（无法测算出偏航角的误差、不区分重力加速度和外力加速度，当受到外部冲击时会有很大的精度误差）</li><li>磁场检测传感器（电子罗盘，在磁场环境不稳定的区域会有误差）</li><li>GPS检测（只适用于大范围移动）</li></ul><p><strong>姿态融合，滤波算法（多传感器采样，利用不同传感器在不同情况的优点使用一定的算法提高某种传感器采样数据的权重，来提高姿态检测的精确性）</strong></p><p><strong>姿态角也叫欧拉角</strong></p><p><strong>四元数</strong></p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230115222808182.png" alt="image-20230115222808182"></p><p><strong>拓展：惯性导航（一般是军用设施）</strong></p><p>惯性导航不需要连接GPS等卫星导航，只需要知道起始坐标（开始时在地球的哪一个位置），每次的移动的运动都能够被累加计算出来，得到新的坐标，这样就知道物体的实时位置而不需要联网或者GPS</p><h2 id="传感器工作原理"><a href="#传感器工作原理" class="headerlink" title="传感器工作原理"></a>传感器工作原理</h2><p>在电子技术中，传感器一般是指把物理量转化为电信号的装置。</p><p>传感器的原理</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230116214557779.png" alt="image-20230116214557779"></p><p>比如温度传感器，可以把温度量转化成电压信号量输出，且温度值与电压值成比例关系，我们只要使用ADC测量出电压值，并根据转换关系即可求得实际温度值。</p><h3 id="传感器参数"><a href="#传感器参数" class="headerlink" title="传感器参数"></a>传感器参数</h3><p>线性误差：传感器测量值与真实物理量之间的拟合度误差</p><p>分辨率：传感器能够检测到的最小物理量的单位</p><p>采样频率：单位时间内的采样次数</p><h3 id="物理量的表示方法"><a href="#物理量的表示方法" class="headerlink" title="物理量的表示方法"></a>物理量的表示方法</h3><p>大部分传感器的输出都是与电压成比例关系的，电压值一般采用ADC来测量，而ADC一般有固定的位数，如8位的ADC、12位的ADC等等，ADC的位数会影响测量的分辨率吧以及量程。</p><p>假设用一个2位的ADC来测量长度，2位的ADC最多可以表示4个数字，分别是0、1、2、3、4；那么假如分辨率位20cm，量程就是60cm；分辨率为10cm，量程就是30cm。</p><p><strong>所以，对于特定位数的ADC，量程和分辨率不可兼得（我们往往需要更大的量程和最小的精度，但是从上面的例子可以明显看出量程和分辨率是成正比例关系的）</strong></p><p>在实际应用钟，常常直接使用ADC<strong>每位</strong>表征的物理量的值来表示分辨率，如<strong>每位</strong>代表20cm，我们称它的分辨率为1LBS&#x2F;20cm，它等效于5位表示1米：5LSB&#x2F;m。<strong>其中的LSB（least significant bit），意为ADC的最低有效位</strong>。</p><p>使用采集得到的ADC数值除以分辨率，即可求得物理量。例如使用分辨率为5LBS&#x2F;m，线性误差为0.1m的传感器进行长度测量，其ADC采样数据为20时，可计算得到传感器测量值为20&#x2F;5&#x3D;4m，而该物体长度的实际值在3.9m-4.1之m间。</p><p>例如在ADC电压采集的例程中，我们使用的STM32F103C8T6的板子是有12位的ADC，那么我们测量量程为3.3v的电压时，分辨率（也就是LSB）为3.3&#x2F;4096，结果是LSB&#x3D;0.0008056640625；如果哦我们ADC测到的数据为2048，那么我们就用2048*LSB&#x3D;1.65；</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230116222444665.png" alt="image-20230116222444665"></p><h2 id="MPU6050传感器介绍"><a href="#MPU6050传感器介绍" class="headerlink" title="MPU6050传感器介绍"></a>MPU6050传感器介绍</h2><p>MPU6050是一个六轴的传感器模块，能同时检测三轴加速度、三轴陀螺仪（三轴角速度）的运动以及温 度数据。 利用MPU6050芯片内部的DMP模块（Digital Motion Processor数字运算处理器），可以对传感数据进 行滤波、融合处理，它直接通过I2C协议接口向主控制器输出姿态解算后的姿态数据，降低主控制器的运 算量。其姿态解算率最高可达200Hz，非常适合用于对姿态控制实时要求较高的领域。常见应用于手机 计步器、只能手环、四轴传感器以及计步器等的姿态检测。</p><p><strong>一般MPU6050芯片上会有方向的标注，我们在安装芯片时我们应该尽可能使得芯片与载体坐标系重合， 减少误差。</strong></p><h3 id="MPU6050的一些特性参数"><a href="#MPU6050的一些特性参数" class="headerlink" title="MPU6050的一些特性参数"></a>MPU6050的一些特性参数</h3><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230122122002343.png" alt="image-20230122122002343"></p><h4 id="小结："><a href="#小结：" class="headerlink" title="小结："></a><strong>小结：</strong></h4><p> 从表中，我们了解到传感器的加速度以及陀螺仪的采样频率分别为1000Hz和8000Hz，它们是指加速度 以及角速度数据的采样频率，我们可以使用STM32控制器把这些数据读取出来然后进行姿态融合解算， 以求出传感器当前的姿态（俯仰角、偏航角、横滚角）。 </p><p>而如果我们直接使用传感器内部的DMP单元进行解算，可以直接对采样的加速度以及角速度进行姿态解 算，解算得到的结果再输出给STM32控制器，即STM32无需自己计算，可以直接获得偏航角等姿态数 据，该DMP每秒可以输出200次姿态数据（输出频率为200Hz）。 </p><p><strong>如果你是专门研究算法的话，你觉得你自己的解算姿态角的算法比官方的库的算法要好，那我们可以不 使用DMP模块而用自己的算法来进行解算。</strong> </p><p><strong>小tips</strong> </p><p>本传感器采用I2C协议，原本只需要GCC、GND、SCL、SDA即可进行通讯使用，那么为什么还有8个引 脚呢？</p><p>因为MPU6050是6轴传感器（三个角速度以及三个加速度），有时我们需要计算9轴的数据，需要外接 芯片对三个方向的磁场进行数据采样，多出来的几个引脚的用处就在于此，其实很少用到，仅作了解。</p><h2 id="MPU6050引脚介绍"><a href="#MPU6050引脚介绍" class="headerlink" title="MPU6050引脚介绍"></a>MPU6050引脚介绍</h2><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230122122123683.png" alt="image-20230122122123683"></p><h2 id="MPU6050实验——获取原始数据"><a href="#MPU6050实验——获取原始数据" class="headerlink" title="MPU6050实验——获取原始数据"></a>MPU6050实验——获取原始数据</h2><h3 id="MPU6050传感器与控制器的连接"><a href="#MPU6050传感器与控制器的连接" class="headerlink" title="MPU6050传感器与控制器的连接"></a>MPU6050传感器与控制器的连接</h3><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230123201741275.png" alt="image-20230123201741275"></p><h2 id="HAL库实操"><a href="#HAL库实操" class="headerlink" title="HAL库实操"></a>HAL库实操</h2><h3 id="疑问："><a href="#疑问：" class="headerlink" title="疑问："></a>疑问：</h3><ol><li><p>配置地址的大小的时候怎么写？</p></li><li><p>记录采样数据的时候为什么可以这样？？</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20230223130253383.png" alt="image-20230223130253383"></p></li><li><p>为什么串口重定向时用</p><p>(uint8_t *)&amp;ch</p></li><li><p>出现的问题：</p><p>在写自己的函数库的时候，包含了头文件#include “stm32f1xx_hal_conf.h”用于调度寄存器映射，但是会报错undefine</p><p>于是改为&#x2F;#include “stm32f1xx_hal.h”不会报错</p></li><li><p>检测不到ID，不确定ID地址是不是0x68&lt;&lt;1</p><p>(已解决，原因是设备地址是：0xD0)</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> microcontroller </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> note </tag>
+            
+            <tag> microcontroller </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>STM32中断的使用</title>
+      <link href="/2023/10/15/8.STM32%E4%B8%AD%E6%96%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B7%A5%E7%A8%8B/"/>
+      <url>/2023/10/15/8.STM32%E4%B8%AD%E6%96%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B7%A5%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="STM32中断的使用-工程讲解"><a href="#STM32中断的使用-工程讲解" class="headerlink" title="STM32中断的使用(工程讲解)"></a>STM32中断的使用(工程讲解)</h1><p><code>使用EXTI外部中断的工程实例</code></p><h2 id="CubeMax配置"><a href="#CubeMax配置" class="headerlink" title="CubeMax配置"></a>CubeMax配置</h2><ol><li><h3 id="配置时钟"><a href="#配置时钟" class="headerlink" title="配置时钟"></a>配置时钟</h3></li><li><p>配置SYS的debug，选择Serial Wire</p><ul><li><p>若不勾选，程序只能下载一遍</p></li><li><p>若未勾选然后已经下载了程序</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019163209562.png" alt="image-20221019163209562"></p></li></ul></li><li><p>配置GPIO引脚</p><ul><li>任意引脚，选择GPIO_EXTI</li></ul><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019163358656.png" alt="image-20221019163358656"></p><p>图中的GPIO_EXTI2对应着GPIO2线的外部中断，可以在数据手册中的External interrupt&#x2F;even line mapping中找到相关描述</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019163655650.png" alt="image-20221019163655650"></p><ul><li><p>配置GPIO模式，可选择上升沿触发或者下降沿触发或上下边沿都检测(rising&#x2F;falling edge trigger detection)</p><p>可选择事件模式(event)或者中断模式(external interrupt)</p><p>事件模式：只产生事件</p><p>中断模式：既产生事件又产生中断</p></li></ul></li><li><p>配置NVIC(向量中断控制器)</p><ul><li>如图，如果设置了GPIO_EXTI2，那么我们要使能向量中断控制器去操纵这个引脚，所以需要在NVIC勾选相应的中断。</li></ul><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019164634750.png" alt="image-20221019164634750"></p><ul><li><p>然后在此界面设置优先级分组(详细请看中断概述中的NVIC章节)</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019164803817.png" alt="image-20221019164803817"></p><p><code>样例中勾选了Sort by ..., 以及选择了4bits for... 意思是选择优先级分组，并且将该中断的优先级分组全部位数用于表示抢占优先级，没有子优先级</code></p></li><li><p>然后点击line2，设置其抢占优先级和子优先级</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019165049399.png" alt="image-20221019165049399"></p></li></ul></li><li><p>然后配置Project Manager(工程路径最好不要有中文)</p></li></ol><h2 id="中断触发流程"><a href="#中断触发流程" class="headerlink" title="中断触发流程"></a>中断触发流程</h2><p>中断触发——&gt;中断向量表(在其中找对应的偏移)——&gt;找到对应的入口地址——&gt;跳转到中断服务函数(我们最终会执行的函数)</p><p><strong>这些大量的handle储存了不同的中断服务函数</strong></p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019170708165.png" alt="image-20221019170708165"></p><p><em><strong>如果没有定义好中断服务函数，那么触发中断后就会跳转到默认的中断服务函数(弱定义)进入死循环</strong></em></p><h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol><li><p>我们在编写中断服务函数时最好先写个条件语句判断是否产生相应的中断。</p></li><li><p>判断玩之后记得清除中断标志位，否则会一直触发中断。(实际上，EXTI会将中断挂起，若不清除中断标志则会一直产生中断)</p><p><img src="https://cfn.jsdeliver.net/gh/ICserD/myblog_img@main/img/image-20221019171426885.png" alt="image-20221019171426885"></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> microcontroller </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> note </tag>
+            
+            <tag> microcontroller </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
