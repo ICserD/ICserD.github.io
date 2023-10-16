@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>I2C | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="I2C I2C通信协议简介 I2C简单介绍 另外，CubeMx上面也有类I2C协议，SMBus-Alert-mode，这是一种类I2C协议  I2C物理层特点  它是一个支持多设备的总线。“总线”指的是多个设备共用的信号线。在一个I2C通讯总线中，可连接多个I2C通讯设备，支持多个通讯主机以及多个通讯从机。 一个I2C总线只使用两条总线线路，一条双向串行数据线(SDA)，一条串行时钟线(SCL).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I2C">
+<meta property="og:url" content="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="I2C I2C通信协议简介 I2C简单介绍 另外，CubeMx上面也有类I2C协议，SMBus-Alert-mode，这是一种类I2C协议  I2C物理层特点  它是一个支持多设备的总线。“总线”指的是多个设备共用的信号线。在一个I2C通讯总线中，可连接多个I2C通讯设备，支持多个通讯主机以及多个通讯从机。 一个I2C总线只使用两条总线线路，一条双向串行数据线(SDA)，一条串行时钟线(SCL).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-10-16T03:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-16T03:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="microcontroller">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'I2C',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-16 11:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">I2C</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-16T03:00:00.000Z" title="发表于 2023-10-16 11:00:00">2023-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-16T03:00:00.000Z" title="更新于 2023-10-16 11:00:00">2023-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/microcontroller/">microcontroller</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="I2C"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>I2C</h1>
+<h2 id="I2C通信协议简介">I2C通信协议简介</h2>
+<h3 id="I2C简单介绍">I2C简单介绍</h3>
+<p>另外，CubeMx上面也有类I2C协议，SMBus-Alert-mode，这是一种类I2C协议</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118230608357.png" alt="image-20221118230608357"></p>
+<h3 id="I2C物理层特点">I2C物理层特点</h3>
+<ul>
+<li>它是一个支持多设备的总线。“总线”指的是多个设备共用的信号线。在一个I2C通讯总线中，可连接多个I2C通讯设备，支持多个通讯主机以及多个通讯从机。</li>
+<li>一个I2C总线只使用两条总线线路，一条双向串行数据线(SDA)，一条串行时钟线(SCL).数据线即用来表示数据，<strong>时钟线用于数据收发同步。</strong></li>
+<li>每个连接到总线的设备都有一个独立的地址，主机可以利用这个地址进行不同设备之间的访问。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118231151865.png" alt="image-20221118231151865"></p>
+<p>了解I2C<strong>物理层的电路设计</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118231654400.png" alt="image-20221118231654400"></p>
+<h3 id="I2C的协议层">I2C的协议层</h3>
+<p><strong>I2C的协议定义了通讯的起始和停止信号、数据有效性、响应、仲裁、时钟同步和地址广播等环节。</strong></p>
+<p>我们的目的是了解协议的核心内容，然后学会通过STM32配置出合适的协议来实现具体的功能。</p>
+<ol>
+<li>
+<h4 id="I2C的基本读写过程">I2C的基本读写过程</h4>
+<h5 id="主机写数据到从机"><strong>主机写数据到从机</strong></h5>
+<p><strong>注意结合下图来理解这个过程，图中阴影位表示主机发送的数据，无阴影位是从机相应的数据</strong></p>
+<ul>
+<li>
+<p>首先传输一个起始信号S，然后在其实信号后面紧接着传输从机地址的信号SLAVE_ADDRESS，确定通讯数据传输目标；</p>
+</li>
+<li>
+<p>在传输目标之后就是一个读写信号位：W/R，通过这个信号位指定这个传输的信号是用来读还是用来写的；（‘0’对应着写，‘1’对应着读）</p>
+</li>
+<li>
+<p>如果从机接收到主机传输的数据之后（确认主机传输的地址是该从机地址），从机就会向主机发送一个响应信号：ACK(应答)/UACK(非应答)，如果从机收到了与它地址相匹配的内容的话，就会响应ACK表示“我收到了”。</p>
+</li>
+<li>
+<p>如果从机没有响应主机是否收到信息，那么主机就会等待应答，直到达到最大响应时间，主机就会认为数据没有发送成功。</p>
+</li>
+<li>
+<p>如果从机发出了响应并响应ACK收到信息，那么主机认为存在这样的从机，并且数据发送成功。于是主机就会开始对从机发送数据信息。于是主机和从机就开始了通信，这时主机从机就会占用总线通信。</p>
+</li>
+<li>
+<p>按照这样的格式，主机和从机就可以不断通讯。</p>
+</li>
+<li>
+<p>在这个协议的末尾是一个P位，停止位，表示数据传输完毕。</p>
+<p><strong>这就是一个简单的主机写数据到从机的过程。</strong></p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118232057351.png" alt="image-20221118232057351"></p>
+<h5 id="主机由从机中读数据"><strong>主机由从机中读数据</strong></h5>
+<ul>
+<li>和主机写数据到从机的过程基本一致。</li>
+<li>区别在于：
+<ul>
+<li>主机向从机发送的标志位位写（W）</li>
+<li>当从机响应之后，从机向主机传输数据（而不是主机向从机传输数据）</li>
+<li>数据传输完成之后，主机向从机进行响应是否收到</li>
+<li>就这样不断地进行传输，直到主机不想再读数据了，主机就不响应从机。于是从机没有得到响应之后就会停止数据的传输。于是数据传输就结束了。</li>
+</ul>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118234802031.png" alt="image-20221118234802031"></p>
+<h5 id="通讯的复合过程"><strong>通讯的复合过程</strong></h5>
+<p>通常，我们的通讯过程不是单向的读或者单向的写。通常是一个复合的过程。</p>
+<p>复合的过程和前面的内容相似，只是读和写的任意交替组合。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118235055139.png" alt="image-20221118235055139"></p>
+</li>
+<li>
+<h4 id="通讯的起始信号和停止信号">通讯的起始信号和停止信号</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118235151343.png" alt="image-20221118235151343"></p>
+<p>由第一点我们可以知道，通讯的起始状态对应着时钟线高电平而数据传输线低电平。<strong>这意味着数据传输线的起始状态是高电平，当它遇到高电平的时钟线SCL时就会由高电平变低电平，于是通讯起始。</strong></p>
+<p>停止信号原理相似。</p>
+</li>
+<li>
+<h4 id="I2C数据有效性">I2C数据有效性</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221118235741952.png" alt="image-20221118235741952"></p>
+</li>
+<li>
+<h4 id="地址以及数据的方向">地址以及数据的方向</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221119000043512.png" alt="image-20221119000043512"></p>
+<p>主机会主动地产生一个起始信号以及将从机设备的地址发送到SDA信号线上。</p>
+<p>设备地址的位数也决定了这个总线上可以挂载的设备的数量。</p>
+</li>
+<li>
+<h4 id="响应位">响应位</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221119082544976.png" alt="image-20221119082544976"></p>
+</li>
+</ol>
+<h3 id="如何使用STM32产生I2C协议信号？">如何使用STM32产生I2C协议信号？</h3>
+<ul>
+<li>
+<h4 id="软件模拟协议：">软件模拟协议：</h4>
+<p>使用CPU直接控制通信引脚电平，产生符合通讯协议标准的逻辑。（模拟I2C）</p>
+</li>
+<li>
+<h4 id="硬件实现协议：">硬件实现协议：</h4>
+<p>由STM32的I2C片上外设专门负责实现I2C通信协议，只要配置好该外设，它就会自动根据协议要求产生通信信号，收发数据并缓存起来，CPU只要检测这个外设的状态和访问数据寄存器，就可以完成数据的收发。</p>
+<p>这种由硬件外设处理I2C协议的方式减轻了CPU的工作负担，并且使得软件设计更为简单。</p>
+<p>STM32的I2C 外设可以用做通讯的主机以及从机，支持100Kbit/s和400kbit/s的速率，支持7位、10位设备地址，支持DMA数据传输，并且具有数据校验功能。</p>
+</li>
+</ul>
+<p><strong>一般我们都使用硬件外设实现I2C，软件模拟协议在设计时经常会遇到时序冲突的问题，十分麻烦。一般在I2C不够用的时候才模拟I2C协议。</strong></p>
+<h4 id="STM32的I2C框图对比">STM32的I2C框图对比</h4>
+<p><strong>F103的框图</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221119085418933.png" alt="image-20221119085418933"></p>
+<p>对于框图的理解，我们只需要重点把握住输入和输出即可很好地理解这个逻辑。</p>
+<p>两个关键点，时钟总线（SCL）和数据总线（SDA）</p>
+<ul>
+<li>时钟总线产生时钟控制，时钟控制的实现又是由各种寄存器实现的。对于时钟控制，我们只需要使能时钟和失能时钟即可，具体的时钟产生以及控制由对应的硬件完成。</li>
+<li>数据总线与数据控制相连，数据控制由数据移位寄存器实现，数据移位寄存器通过数据寄存器来实现数据的接收和发送</li>
+</ul>
+<h3 id="实验工程讲解">实验工程讲解</h3>
+<ol>
+<li>
+<p>配置基本的时钟、DEBUG、时钟树等等。</p>
+</li>
+<li>
+<p>选择I2C1</p>
+<ul>
+<li>
+<p>配置参数</p>
+<p>参数配置中有两个配置</p>
+<ul>
+<li>
+<p>主机特性</p>
+<p>我们可以选择快速模式</p>
+<p>时钟速率会根据I2C的速度模式进行改变</p>
+<p>然后我们可以配置Duty Cycle，就是配置占空比，一般选择16/9</p>
+</li>
+<li>
+<p>从机特性</p>
+</li>
+</ul>
+</li>
+<li>
+<p>NVIC中断配置</p>
+<p>将错误中断和事件中断开启，如果需要用到中断</p>
+</li>
+<li>
+<p>DMA配置</p>
+<p>和DMA章节讲解的配置一致，如果要用到，请查看之前的文章</p>
+</li>
+<li>
+<p><strong>GPIO设置（重点）</strong></p>
+<p>我们知道I2C是由两条总线的，所以它对外的接口至少也有两个，一个时钟线接口、一个数据线接口。</p>
+<p>需要用到什么引脚，在配置I2C的时候已经会在CubeMX上面显示出来，当然，我们也可以从原理图中找到I2C器件或者从数据手册/参考手册中找到I2C的部分，查看引脚映射图找到I2C对应的引脚。</p>
+<ul>
+<li>我们可以看到，配置GPIO时，CubeMX已经自动帮我们把引脚模式配置好了，复用功能以及开漏模式。</li>
+</ul>
+</li>
+<li>
+<p>配置好基本设置后即可生成工程代码。</p>
+</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/">http://example.com/2023/10/16/【STM32HAL库开发】18-IIC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/note/">note</a><a class="post-meta__tags" href="/tags/microcontroller/">microcontroller</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MPU6050传感器</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ADC</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">I2C</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#I2C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">I2C通信协议简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#I2C%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">I2C简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I2C%E7%89%A9%E7%90%86%E5%B1%82%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">I2C物理层特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I2C%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%B1%82"><span class="toc-number">1.1.3.</span> <span class="toc-text">I2C的协议层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#I2C%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">I2C的基本读写过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%86%99%E6%95%B0%E6%8D%AE%E5%88%B0%E4%BB%8E%E6%9C%BA"><span class="toc-number">1.1.3.1.1.</span> <span class="toc-text">主机写数据到从机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E7%94%B1%E4%BB%8E%E6%9C%BA%E4%B8%AD%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.3.1.2.</span> <span class="toc-text">主机由从机中读数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF%E7%9A%84%E5%A4%8D%E5%90%88%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.3.1.3.</span> <span class="toc-text">通讯的复合过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF%E7%9A%84%E8%B5%B7%E5%A7%8B%E4%BF%A1%E5%8F%B7%E5%92%8C%E5%81%9C%E6%AD%A2%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">通讯的起始信号和停止信号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I2C%E6%95%B0%E6%8D%AE%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">I2C数据有效性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E5%90%91"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">地址以及数据的方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E4%BD%8D"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">响应位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8STM32%E4%BA%A7%E7%94%9FI2C%E5%8D%8F%E8%AE%AE%E4%BF%A1%E5%8F%B7%EF%BC%9F"><span class="toc-number">1.1.4.</span> <span class="toc-text">如何使用STM32产生I2C协议信号？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%A8%A1%E6%8B%9F%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">软件模拟协议：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">硬件实现协议：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32%E7%9A%84I2C%E6%A1%86%E5%9B%BE%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">STM32的I2C框图对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%B7%A5%E7%A8%8B%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.1.5.</span> <span class="toc-text">实验工程讲解</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%910-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/" title="机器学习概述">机器学习概述</a><time datetime="2023-10-16T07:00:00.000Z" title="发表于 2023-10-16 15:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%911-%E4%BB%A3%E4%BB%B7%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="代价损失函数">代价损失函数</a><time datetime="2023-10-16T07:00:00.000Z" title="发表于 2023-10-16 15:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><time datetime="2023-10-16T04:00:00.000Z" title="发表于 2023-10-16 12:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><time datetime="2023-10-16T03:00:00.000Z" title="发表于 2023-10-16 11:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><time datetime="2023-10-16T02:00:00.000Z" title="发表于 2023-10-16 10:00:00">2023-10-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

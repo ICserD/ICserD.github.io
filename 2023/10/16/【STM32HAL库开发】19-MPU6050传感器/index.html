@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MPU6050传感器 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MPU6050传感器 姿态检测 抽象来说，姿态就是“载体坐标系”和“地理坐标系”之间的转换关系。  坐标系 常用的坐标系   地球坐标系    地理坐标系   载体坐标系 以运载体的质心为原点，一般根据运载体自身结构方向构成坐标系，如Z轴上由原点指向载体顶部，Y轴指向载体头部，X轴沿载体两侧方向。上面说基于飞机建立的坐标系就是一种载体坐标系，可类比到汽车、船舰、人体、动物或手机等各种物体。 重要的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MPU6050传感器">
+<meta property="og:url" content="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="MPU6050传感器 姿态检测 抽象来说，姿态就是“载体坐标系”和“地理坐标系”之间的转换关系。  坐标系 常用的坐标系   地球坐标系    地理坐标系   载体坐标系 以运载体的质心为原点，一般根据运载体自身结构方向构成坐标系，如Z轴上由原点指向载体顶部，Y轴指向载体头部，X轴沿载体两侧方向。上面说基于飞机建立的坐标系就是一种载体坐标系，可类比到汽车、船舰、人体、动物或手机等各种物体。 重要的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-10-16T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-16T04:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="单片机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MPU6050传感器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-16 12:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MPU6050传感器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-16T04:00:00.000Z" title="发表于 2023-10-16 12:00:00">2023-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-16T04:00:00.000Z" title="更新于 2023-10-16 12:00:00">2023-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MPU6050传感器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>MPU6050传感器</h1>
+<h2 id="姿态检测">姿态检测</h2>
+<p>抽象来说，姿态就是“载体坐标系”和“地理坐标系”之间的转换关系。</p>
+<h3 id=""></h3>
+<h3 id="坐标系">坐标系</h3>
+<p><strong>常用的坐标系</strong></p>
+<ul>
+<li>
+<p>地球坐标系</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230113234542491.png" alt="image-20230113234542491"></p>
+</li>
+<li>
+<p>地理坐标系</p>
+</li>
+<li>
+<p>载体坐标系</p>
+<p>以运载体的质心为原点，一般根据运载体自身结构方向构成坐标系，如Z轴上由原点指向载体顶部，Y轴指向载体头部，X轴沿载体两侧方向。上面说基于飞机建立的坐标系就是一种载体坐标系，可类比到汽车、船舰、人体、动物或手机等各种物体。</p>
+<p><strong>重要的几个角</strong></p>
+<p>这几个角涉及到坐标转换</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230115213019160.png" alt="image-20230115213019160"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230115213152492.png" alt="image-20230115213152492"></p>
+</li>
+</ul>
+<h3 id="MPU6050传感器">MPU6050传感器</h3>
+<p>采用MEMS（微机系统）结合机械系统的方式，可以求出实时的偏航角、俯仰角、横滚角的角速度，然后通过对时间的积分可以求出偏离的角度从而确定物体的姿态。</p>
+<h4 id="误差分析"><strong>误差分析</strong></h4>
+<p><strong>累计误差</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230115220033292.png" alt="image-20230115220033292"></p>
+<h4 id="减少误差、克服缺陷的方案"><strong>减少误差、克服缺陷的方案</strong></h4>
+<ul>
+<li>加速度传感器（无法测算出偏航角的误差、不区分重力加速度和外力加速度，当受到外部冲击时会有很大的精度误差）</li>
+<li>磁场检测传感器（电子罗盘，在磁场环境不稳定的区域会有误差）</li>
+<li>GPS检测（只适用于大范围移动）</li>
+</ul>
+<p><strong>姿态融合，滤波算法（多传感器采样，利用不同传感器在不同情况的优点使用一定的算法提高某种传感器采样数据的权重，来提高姿态检测的精确性）</strong></p>
+<p><strong>姿态角也叫欧拉角</strong></p>
+<p><strong>四元数</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230115222808182.png" alt="image-20230115222808182"></p>
+<p><strong>拓展：惯性导航（一般是军用设施）</strong></p>
+<p>惯性导航不需要连接GPS等卫星导航，只需要知道起始坐标（开始时在地球的哪一个位置），每次的移动的运动都能够被累加计算出来，得到新的坐标，这样就知道物体的实时位置而不需要联网或者GPS</p>
+<h2 id="传感器工作原理">传感器工作原理</h2>
+<p>在电子技术中，传感器一般是指把物理量转化为电信号的装置。</p>
+<p>传感器的原理</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230116214557779.png" alt="image-20230116214557779"></p>
+<p>比如温度传感器，可以把温度量转化成电压信号量输出，且温度值与电压值成比例关系，我们只要使用ADC测量出电压值，并根据转换关系即可求得实际温度值。</p>
+<h3 id="传感器参数">传感器参数</h3>
+<p>线性误差：传感器测量值与真实物理量之间的拟合度误差</p>
+<p>分辨率：传感器能够检测到的最小物理量的单位</p>
+<p>采样频率：单位时间内的采样次数</p>
+<h3 id="物理量的表示方法">物理量的表示方法</h3>
+<p>大部分传感器的输出都是与电压成比例关系的，电压值一般采用ADC来测量，而ADC一般有固定的位数，如8位的ADC、12位的ADC等等，ADC的位数会影响测量的分辨率吧以及量程。</p>
+<p>假设用一个2位的ADC来测量长度，2位的ADC最多可以表示4个数字，分别是0、1、2、3、4；那么假如分辨率位20cm，量程就是60cm；分辨率为10cm，量程就是30cm。</p>
+<p><strong>所以，对于特定位数的ADC，量程和分辨率不可兼得（我们往往需要更大的量程和最小的精度，但是从上面的例子可以明显看出量程和分辨率是成正比例关系的）</strong></p>
+<p>在实际应用钟，常常直接使用ADC<strong>每位</strong>表征的物理量的值来表示分辨率，如<strong>每位</strong>代表20cm，我们称它的分辨率为1LBS/20cm，它等效于5位表示1米：5LSB/m。<strong>其中的LSB（least significant bit），意为ADC的最低有效位</strong>。</p>
+<p>使用采集得到的ADC数值除以分辨率，即可求得物理量。例如使用分辨率为5LBS/m，线性误差为0.1m的传感器进行长度测量，其ADC采样数据为20时，可计算得到传感器测量值为20/5=4m，而该物体长度的实际值在3.9m-4.1之m间。</p>
+<p>例如在ADC电压采集的例程中，我们使用的STM32F103C8T6的板子是有12位的ADC，那么我们测量量程为3.3v的电压时，分辨率（也就是LSB）为3.3/4096，结果是LSB=0.0008056640625；如果哦我们ADC测到的数据为2048，那么我们就用2048*LSB=1.65；</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230116222444665.png" alt="image-20230116222444665"></p>
+<h2 id="MPU6050传感器介绍">MPU6050传感器介绍</h2>
+<p>MPU6050是一个六轴的传感器模块，能同时检测三轴加速度、三轴陀螺仪（三轴角速度）的运动以及温 度数据。 利用MPU6050芯片内部的DMP模块（Digital Motion Processor数字运算处理器），可以对传感数据进 行滤波、融合处理，它直接通过I2C协议接口向主控制器输出姿态解算后的姿态数据，降低主控制器的运 算量。其姿态解算率最高可达200Hz，非常适合用于对姿态控制实时要求较高的领域。常见应用于手机 计步器、只能手环、四轴传感器以及计步器等的姿态检测。</p>
+<p><strong>一般MPU6050芯片上会有方向的标注，我们在安装芯片时我们应该尽可能使得芯片与载体坐标系重合， 减少误差。</strong></p>
+<h3 id="MPU6050的一些特性参数">MPU6050的一些特性参数</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230122122002343.png" alt="image-20230122122002343"></p>
+<h4 id="小结："><strong>小结：</strong></h4>
+<p>从表中，我们了解到传感器的加速度以及陀螺仪的采样频率分别为1000Hz和8000Hz，它们是指加速度 以及角速度数据的采样频率，我们可以使用STM32控制器把这些数据读取出来然后进行姿态融合解算， 以求出传感器当前的姿态（俯仰角、偏航角、横滚角）。</p>
+<p>而如果我们直接使用传感器内部的DMP单元进行解算，可以直接对采样的加速度以及角速度进行姿态解 算，解算得到的结果再输出给STM32控制器，即STM32无需自己计算，可以直接获得偏航角等姿态数 据，该DMP每秒可以输出200次姿态数据（输出频率为200Hz）。</p>
+<p><strong>如果你是专门研究算法的话，你觉得你自己的解算姿态角的算法比官方的库的算法要好，那我们可以不 使用DMP模块而用自己的算法来进行解算。</strong></p>
+<p><strong>小tips</strong></p>
+<p>本传感器采用I2C协议，原本只需要GCC、GND、SCL、SDA即可进行通讯使用，那么为什么还有8个引 脚呢？</p>
+<p>因为MPU6050是6轴传感器（三个角速度以及三个加速度），有时我们需要计算9轴的数据，需要外接 芯片对三个方向的磁场进行数据采样，多出来的几个引脚的用处就在于此，其实很少用到，仅作了解。</p>
+<h2 id="MPU6050引脚介绍">MPU6050引脚介绍</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230122122123683.png" alt="image-20230122122123683"></p>
+<h2 id="MPU6050实验——获取原始数据">MPU6050实验——获取原始数据</h2>
+<h3 id="MPU6050传感器与控制器的连接">MPU6050传感器与控制器的连接</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230123201741275.png" alt="image-20230123201741275"></p>
+<h2 id="HAL库实操">HAL库实操</h2>
+<h3 id="疑问：">疑问：</h3>
+<ol>
+<li>
+<p>配置地址的大小的时候怎么写？</p>
+</li>
+<li>
+<p>记录采样数据的时候为什么可以这样？？</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230223130253383.png" alt="image-20230223130253383"></p>
+</li>
+<li>
+<p>为什么串口重定向时用</p>
+<p>(uint8_t *)&amp;ch</p>
+</li>
+<li>
+<p>出现的问题：</p>
+<p>在写自己的函数库的时候，包含了头文件#include &quot;stm32f1xx_hal_conf.h&quot;用于调度寄存器映射，但是会报错undefine</p>
+<p>于是改为/#include &quot;stm32f1xx_hal.h&quot;不会报错</p>
+</li>
+<li>
+<p>检测不到ID，不确定ID地址是不是0x68&lt;&lt;1</p>
+<p>(已解决，原因是设备地址是：0xD0)</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/">http://example.com/2023/10/16/【STM32HAL库开发】19-MPU6050传感器/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/16/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%911-%E4%BB%A3%E4%BB%B7%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="代价损失函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">代价损失函数</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">I2C</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/01/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%911-KEIL5%E5%9F%BA%E6%9C%AC%E4%BA%86%E8%A7%A3/" title="KEIL5基本了解——新建工程模板"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-01</div><div class="title">KEIL5基本了解——新建工程模板</div></div></a></div><div><a href="/2023/10/10/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9110-PWM%E4%B8%93%E9%A2%98%E7%90%86%E8%A7%A3/" title="PWM专题理解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-10</div><div class="title">PWM专题理解</div></div></a></div><div><a href="/2023/10/11/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9111-HAL%E5%BA%93%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" title="HAL库的驱动框架"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">HAL库的驱动框架</div></div></a></div><div><a href="/2023/10/12/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9112-Debug%E5%8A%9F%E8%83%BD/" title="Debug功能及其方法简述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-12</div><div class="title">Debug功能及其方法简述</div></div></a></div><div><a href="/2023/10/13/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9113-%E9%A9%B1%E5%8A%A8%E8%9C%82%E9%B8%A3%E5%99%A8%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90/" title="驱动蜂鸣器播放音乐"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-13</div><div class="title">驱动蜂鸣器播放音乐</div></div></a></div><div><a href="/2023/10/14/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9114-%E4%B8%B2%E5%8F%A3%E9%80%9A%E8%AE%AF/" title="通讯"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">通讯</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">MPU6050传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B"><span class="toc-number">1.1.</span> <span class="toc-text">姿态检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text">坐标系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">MPU6050传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">误差分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E8%AF%AF%E5%B7%AE%E3%80%81%E5%85%8B%E6%9C%8D%E7%BC%BA%E9%99%B7%E7%9A%84%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">减少误差、克服缺陷的方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">传感器工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">传感器参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E9%87%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">物理量的表示方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.3.</span> <span class="toc-text">MPU6050传感器介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MPU6050%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">MPU6050的一些特性参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">小结：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPU6050%E5%BC%95%E8%84%9A%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.</span> <span class="toc-text">MPU6050引脚介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPU6050%E5%AE%9E%E9%AA%8C%E2%80%94%E2%80%94%E8%8E%B7%E5%8F%96%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE"><span class="toc-number">1.5.</span> <span class="toc-text">MPU6050实验——获取原始数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8%E4%B8%8E%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.5.1.</span> <span class="toc-text">MPU6050传感器与控制器的连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HAL%E5%BA%93%E5%AE%9E%E6%93%8D"><span class="toc-number">1.6.</span> <span class="toc-text">HAL库实操</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%96%91%E9%97%AE%EF%BC%9A"><span class="toc-number">1.6.1.</span> <span class="toc-text">疑问：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%910-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/" title="机器学习概述">机器学习概述</a><time datetime="2023-10-16T07:00:00.000Z" title="发表于 2023-10-16 15:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%911-%E4%BB%A3%E4%BB%B7%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="代价损失函数">代价损失函数</a><time datetime="2023-10-16T07:00:00.000Z" title="发表于 2023-10-16 15:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><time datetime="2023-10-16T04:00:00.000Z" title="发表于 2023-10-16 12:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><time datetime="2023-10-16T03:00:00.000Z" title="发表于 2023-10-16 11:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><time datetime="2023-10-16T02:00:00.000Z" title="发表于 2023-10-16 10:00:00">2023-10-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
