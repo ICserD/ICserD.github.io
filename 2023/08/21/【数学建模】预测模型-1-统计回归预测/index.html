@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>回归分析 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="回归分析简介在统计学中，回归分析（regression analysis）指的是确定两种或者两种以上变量间相互依赖关系的定量关系的一种统计分析方法。回归分析根据涉及到的变量的多少，分为一元回归分析和多元回归分析；按照因变量的多少，可分为简单回归分析和多重回归分析；按照自变量和因变量的关系类型，可以分为线性回归分析和非线性回归分析。 在大数据分析中，回归分析是一种预测性的建模技术，它研究的是因变量（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回归分析">
+<meta property="og:url" content="http://example.com/2023/08/21/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B-1-%E7%BB%9F%E8%AE%A1%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="回归分析简介在统计学中，回归分析（regression analysis）指的是确定两种或者两种以上变量间相互依赖关系的定量关系的一种统计分析方法。回归分析根据涉及到的变量的多少，分为一元回归分析和多元回归分析；按照因变量的多少，可分为简单回归分析和多重回归分析；按照自变量和因变量的关系类型，可以分为线性回归分析和非线性回归分析。 在大数据分析中，回归分析是一种预测性的建模技术，它研究的是因变量（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-08-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-20T16:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/08/21/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B-1-%E7%BB%9F%E8%AE%A1%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '回归分析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-21 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">回归分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-20T16:00:00.000Z" title="发表于 2023-08-21 00:00:00">2023-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-20T16:00:00.000Z" title="更新于 2023-08-21 00:00:00">2023-08-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="回归分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="回归分析"><a href="#回归分析" class="headerlink" title="回归分析"></a>回归分析</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在统计学中，回归分析（regression analysis）指的是确定两种或者两种以上变量间相互依赖关系的定量关系的一种统计分析方法。回归分析根据涉及到的变量的多少，分为<strong>一元回归分析和多元回归分析</strong>；按照因变量的多少，可分为<strong>简单回归分析和多重回归分析</strong>；按照自变量和因变量的关系类型，可以分为<strong>线性回归分析和非线性回归分析</strong>。</p>
+<p>在大数据分析中，回归分析是一种预测性的建模技术，它研究的是因变量（目标）和自变量（预测器）之间的关系。这种技术通常用于<strong>预测分析、时间序列分析以及发现变量之间的因果关系</strong>。</p>
+<h3 id="回归分析的步骤"><a href="#回归分析的步骤" class="headerlink" title="回归分析的步骤"></a>回归分析的步骤</h3><ol>
+<li>确定回归方程的解释变量和被解释变量</li>
+<li>确定回归模型，建立回归方程</li>
+<li>对回归方程进行各种验证</li>
+<li>利用回归方程进行预测</li>
+</ol>
+<h2 id="一元线性回归模型"><a href="#一元线性回归模型" class="headerlink" title="一元线性回归模型"></a>一元线性回归模型</h2><p>如果<strong>只有一个自变量x，并且因变量Y和自变量X之间的数量变化关系呈近似线性关系</strong>，就可以建立一元线性回归方程，根据自变量X的值预测Y的值，这就是一元线性回归预测。</p>
+<p>如果因变量Y和自变量X之间呈线性相关，那就是说，对于自变量X的某一值 xi ，因变量Y对应的取值 yi 不是唯一确定的，而是有很多的可能取值，它们分布在一条直线的上下，这是因为Y还受除自变量以外的其他因素的影响。这些因素的影响大小和方向都是不确定的，通常用一个随机变量(记为ε)来表示，也称为随机扰动项。于是，Y和X之间的依存关系可表示为：<br>$$<br>y_i&#x3D;\alpha+\beta x_i+\epsilon_i<br>\\alpha\ — \ 截距、\beta \ —\ 斜率、\epsilon \ — \ 误差项，反映除了x,y以外的随机因素对y的影响<br>$$</p>
+<h3 id="一元线性回归方程"><a href="#一元线性回归方程" class="headerlink" title="一元线性回归方程"></a>一元线性回归方程</h3><p>描述因变量y的期望值如何依赖于自变量x的方程称为回归方程：<br>$$<br>E(y_i)&#x3D;\alpha+\beta x_i<br>$$</p>
+<ul>
+<li>如果回归方程参数已知，对于一个给定的x的值，利用回归方程就能计算出y的期望值</li>
+<li>用样本统计代替回归方程中的位置参数，就得得到估计回归方程，也称为回归直线</li>
+</ul>
+<h4 id="参数的最小二乘估计"><a href="#参数的最小二乘估计" class="headerlink" title="参数的最小二乘估计"></a>参数的最小二乘估计</h4><p>对于回归直线，<strong>关键在于求解参数</strong>，常用高斯提出的最小二乘法，它是使得因变量的<strong>观察值y与估计值之间的离差平方和达到最小</strong>来求解。<br>$$<br>Q&#x3D;\sum(y-\hat{y})^2&#x3D;\sum(y-\hat\beta_0-\hat\beta_1x)^2<br>$$<br>经过对(3)式展开，对Q求极小值点（对其求偏导数($\beta_0和\beta_1$)），最终求解得到<strong>参数的求解公式</strong>：<br>$$<br>\hat\beta_1&#x3D;\frac{n\sum xy-\sum x\sum y}{n\sum x^2-(\sum x)^2}\<br>\hat\beta_0&#x3D;\overline y-\hat\beta_1\overline x<br>$$</p>
+<h4 id="利用回归直线进行估计和预测"><a href="#利用回归直线进行估计和预测" class="headerlink" title="利用回归直线进行估计和预测"></a>利用回归直线进行估计和预测</h4><ul>
+<li>点估计：利用估计的回归方程，对于x的某个特定值求出y的一个估计值</li>
+<li>区间估计：利用估计得到回归方程，对于x的一个特定值，求出y的一个估计值的区间</li>
+</ul>
+<h4 id="估计标准误差的计算"><a href="#估计标准误差的计算" class="headerlink" title="估计标准误差的计算"></a>估计标准误差的计算</h4><p>为了<strong>度量回归方程的可靠性</strong>，通常计算估计的标准误差。它度量观察值回绕着回归直线的变化程度或分散程度。估计平均误差：<br>$$<br>S_y&#x3D;\sqrt{\frac{\sum(y-\hat y)^2}{n-2}}<br>$$</p>
+<ul>
+<li>自由度为：n-2    （有两个不能改变的参数，有两个参数是用于生成估计方程的，因此不能使用）</li>
+<li>估计标准差越大，则数据点围绕回归直线的分散程度越大，回归方程的代表性越小。</li>
+<li>估计标准误差越小，则数据点围绕回归直线的分散程度越小，回归方程的代表性越大，即可靠性高。</li>
+</ul>
+<h3 id="回归直线的拟合信度"><a href="#回归直线的拟合信度" class="headerlink" title="回归直线的拟合信度"></a>回归直线的拟合信度</h3><h4 id="置信区间估计-※"><a href="#置信区间估计-※" class="headerlink" title="置信区间估计(※)"></a>置信区间估计(※)</h4><p>置信区间估计是针对<strong>真实总体参数可能落在其中的一定范围内</strong>进行估计的过程。<strong>比如“95%的置信区间”意味着我们有95%的置信水平认为真实参数值位于该区间内。</strong><br>$$<br>\hat y_0\pm t_{\frac{\alpha}{2}}s_e\sqrt{\frac{1}{n}+\frac{(x_0-\overline x)^2}{\sum(x-\overline x)^2}}<br>$$</p>
+<p><strong>在1—α置信水平下预测区间</strong></p>
+<p>1-α置信水平下预测区间是指在回归分析中，对于给定的自变量值，预测因变量的取值范围的估计。具体来说，对于给定的自变量值，预测区间包含了我们对因变量取值的不确定性，并给出了一个区间，<strong>我们有1-α的置信水平认为真实值位于该区间内</strong>。<br>$$<br>\hat y_0\pm t_{\frac{\alpha}{2}}s_e\sqrt{1+\frac{1}{n}+\frac{(x_0-\overline x)^2}{\sum(x-\overline x)^2}}<br>$$<br><strong>影响区间宽度的因素</strong></p>
+<ul>
+<li><p>置信水平（1-α），区间宽度随着置信水平的增大而增大。</p>
+</li>
+<li><p>数据的离散程度Se，区间宽度随离散程度的增大而增大。</p>
+</li>
+<li><p>样本容量，区间宽度随样本容量的增大而减小。</p>
+</li>
+<li><p>X0与X均值之间的差异，随差异程度的增大而增大。</p>
+</li>
+</ul>
+<h3 id="回归直线的拟合优度"><a href="#回归直线的拟合优度" class="headerlink" title="回归直线的拟合优度"></a>回归直线的拟合优度</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ol>
+<li>离差：每个观测值与平均值之间的差异</li>
+<li>变差：每个观测值与回归直线的差异</li>
+</ol>
+<p>回归直线与各个观测点的接近程度称为回归直线对数据的拟合优度。</p>
+<h4 id="相关指标"><a href="#相关指标" class="headerlink" title="相关指标"></a>相关指标</h4><ul>
+<li>总平方和（SST）：$SST&#x3D;\sum(y-\overline y)^2$</li>
+<li>回归平方和（SSR）：$SSR&#x3D;\sum(\hat y-\overline y)^2$</li>
+<li>残差平方和（SSE）：$SSE&#x3D;\sum(y-\hat y)^2$</li>
+</ul>
+<p>总平方和可以分解为残差平方和、回归平方和两部分：SST&#x3D;SSE+SSR</p>
+<ul>
+<li>SST反映因变量的n个观察值与其均值的<strong>总离差</strong></li>
+<li>SSR反映了y的总变差中，由于x与y的线性关系引起的y变化的部分</li>
+<li>SSE反映了除了x对y的线性影响以外的其他因素对y变差的作用，<strong>是不能用回归直线解释的y的变差部分</strong></li>
+</ul>
+<h4 id="判定系数"><a href="#判定系数" class="headerlink" title="判定系数"></a>判定系数</h4><p><strong>回归平方和占总平方的比例</strong>，用$R^2$表示，其值在0到1之间，被称为<strong>决定系数</strong>，用于判定回归直线的拟合优度。</p>
+<ul>
+<li>$R^2&#x3D;0$：说明y的变化与x无关，x完全无助于解释y的变差</li>
+<li>$R^2&#x3D;1$：说明残差平方和为0（$y与\hat y相等$），拟合是完全的，y的变化只与x有关</li>
+</ul>
+<p>$$<br>R^2&#x3D;\frac{\sum(\hat y-\overline y)^2}{\sum(y-\overline y)^2}<br>$$</p>
+<h4 id="显著性检验"><a href="#显著性检验" class="headerlink" title="显著性检验"></a>显著性检验</h4><p>显著性检验的主要目的是检验估计方程是否真实或较好地反映x和y的关系。</p>
+<p>根据样本数据拟合回归方程时，实际上就已经假定变量x与y之间存在着线性关系，并假定误差项是一个服从正态分布的随机变量，且具有相同的方差。但这些假设是否成立需要检验，显著性检验包括两方面：</p>
+<ul>
+<li>线性关系检验</li>
+<li>回归系数检验</li>
+</ul>
+<p><strong>线性关系检验</strong></p>
+<p>线性关系检验是<strong>检验自变量x和因变量y之间的线性关系是否显著</strong>，或者说，它们之间能否用一个线性模型来表示。将<strong>均方回归（MSR）同均方残差（MSE）加以比较</strong>，应用F检验来分析二者之间的差别是否显著。</p>
+<ul>
+<li>均方回归：回归平方和SSR除以相应的自由度（自变量个数k）</li>
+<li>均方残差：残差平方和SSE除以相应的自由度（n-k-1）</li>
+</ul>
+<p>H0：$\beta1&#x3D;0$所有回归系数与0无显著差异，y与全体x的线性关系不显著</p>
+<p>计算检验统计量F：<br>$$<br>F&#x3D;\frac{SSR&#x2F;1}{SSE&#x2F;n-2}&#x3D;\frac{MSR}{MSE}\sim F(1,n-1)<br>$$</p>
+<h4 id="回归系数检验"><a href="#回归系数检验" class="headerlink" title="回归系数检验"></a>回归系数检验</h4><p>在回归分析中，我们估计了<strong>每个自变量的回归系数，表示自变量单位变化对因变量的影响</strong>。然而，这些估计值可能受到随机误差的影响，因此我们需要进行假设检验来确定这些估计值是否显著不等于零。   </p>
+<p>回归系数检验通常基于 t 检验或 F 检验。通过计算 t 统计量或 F 统计量，我们可以得出结论，<strong>判断回归系数是否显著不为零。如果回归系数显著不为零，我们可以认为自变量对因变量有显著影响；如果回归系数不显著，我们则无法得出自变量对因变量的显著影响结论。</strong>  </p>
+<p>回归系数显著性检验的目的是通过检验回归系数β的值与0是否有显著性差异，来判断Y与X之间是否有显著性线性关系。若β&#x3D;0，则总体回归方程中不含X项（即Y不随X变动而变动），因此变量Y与X之间不存在线性关系；若β≠0，说明变量Y与X之间存在显著的线性关系。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230903081413397.png" alt="image-20230903081413397" style="zoom:67%;" />
+
+<p>计算检验的统计量：<br>$$<br>t&#x3D;\frac{\hat\beta_1-\beta_1}{s_{\hat\beta_1}}\sim t(n-2)<br>$$</p>
+<h4 id="两个检验的区别"><a href="#两个检验的区别" class="headerlink" title="两个检验的区别"></a>两个检验的区别</h4><p>线性关系的检验是检验自变量和因变量是否可以用线性来表达。</p>
+<p>回归系数检验的作用是评估<strong>回归模型</strong>中的<strong>自变量对因变量的影响是否显著</strong>。它帮助我们确定哪些自变量对因变量有统计上显著的影响，以及它们的影响方向和大小。</p>
+<ul>
+<li>在一元线性回归中，自变量只有一个，线性关系检验与回归系数检验是等价的</li>
+<li>多元回归分析中，这两种检验的意义是不同的。线性关系检验只能用来检验总体回归关系的显著性，而回归系数检验可以对各个回归系数分别进行检验</li>
+</ul>
+<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>经常遇到某一现象的发展变化取决于几个影响因素的情况，也就是一个因变量和几个自变量有依存关系的情况，这时需用多元线性回归分析。</p>
+<ul>
+<li>多元线性回归分析预测法：通过对两及其以上的自变量与一个因变量的相关性分析，建立预测模型进行预测和控制的方法</li>
+</ul>
+<p><strong>多元线性回归预测模型一般式：</strong><br>$$<br>y&#x3D;A+B_1x_1+B_2x_2+…+B_nx_n+\epsilon<br>$$</p>
+<h4 id="调整的多重判定系数"><a href="#调整的多重判定系数" class="headerlink" title="调整的多重判定系数"></a>调整的多重判定系数</h4><p>用样本容量n和自变量个数k去修正$R^2$得到：<br>$$<br>R_{\alpha}^2&#x3D;1-(1-R^2)\times\frac{n-1}{n-k-1}<br>$$<br><strong>避免增加自变量而高估$R^2$</strong></p>
+<blockquote>
+<p>多元线性回归的其他分析，比如置信度区间分析、回归系数检验、显著性检验等等，都与一元线性回归类似，这里不再赘述。</p>
+</blockquote>
+<h2 id="曲线线性回归分析"><a href="#曲线线性回归分析" class="headerlink" title="曲线线性回归分析"></a>曲线线性回归分析</h2><p>直线关系是两变量间最简单的一种关系，曲线回归分析的基本任务是通过两个相关变量x与y的实际观测数据建立曲线回归方程，以揭示x与y间的曲线联系的形式。</p>
+<p>曲线分析最困难和首要工作时确定自变量与因变量的曲线关系的类型，曲线回归分析的基本过程：</p>
+<ol>
+<li>将x或y进行变量转换</li>
+<li>对新变量进行直线回归分析、建立直线回归方程并进行显著性检验和区间估计</li>
+<li>将新变量还原为原变量，由新变量的直线回归方程</li>
+</ol>
+<p>由于曲线回归模型种类繁多，所以没有通用的回归方程可直接使用。但是对于某些特殊的回归模型，可以通过变量代换、取对数等方法对其线性化，然后使用标准方程求解参数，再将参数带回原方程就是所求。</p>
+<h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>回归模型中两个或两个以上自变量彼此相关的现象。</p>
+<p>多重共线性带来的问题：</p>
+<ul>
+<li>回归系数估计值不稳定性增强</li>
+<li>回归系数假设检验结果不显著等</li>
+</ul>
+<h4 id="多重共线性检验的主要方法"><a href="#多重共线性检验的主要方法" class="headerlink" title="多重共线性检验的主要方法"></a>多重共线性检验的主要方法</h4><ul>
+<li>容忍度</li>
+<li>方差膨胀因子（VIF）</li>
+</ul>
+<p><strong>容忍度</strong><br>$$<br>Tol_i&#x3D;1-R_i^2<br>$$<br>Ri是<strong>解释变量xi与方程中其他解释变量间的负相关系数</strong>。容忍度在0-1之间，越接近0，表示多重共线性越强。</p>
+<p><strong>方差膨胀因子</strong></p>
+<p>方差膨胀因子是容忍度的倒数：<br>$$<br>VIF_i&#x3D;\frac{1}{1-R_i^2}<br>$$<br>VIF越大，<strong>特别是&gt;&#x3D;10，</strong>说明解释变量xi与其他解释变量有严重的多重共线性；</p>
+<p>而VIF越接近1，表明解释变量xi和其他变量的多重共线性越弱。</p>
+<h2 id="Python工具包介绍"><a href="#Python工具包介绍" class="headerlink" title="Python工具包介绍"></a>Python工具包介绍</h2><h3 id="Statsmodels"><a href="#Statsmodels" class="headerlink" title="Statsmodels"></a>Statsmodels</h3><p>用于做统计分析，提供用于提供<strong>用于估计许多不同统计模型</strong>以及<strong>进行统计测试和统计数据探索</strong>的类和函数。 每个估算器都有一个广泛的结果统计列表。 对照现有的统计数据包对结果进行测试，以确保它们是正确的。</p>
+<h4 id="一元线性回归"><a href="#一元线性回归" class="headerlink" title="一元线性回归"></a>一元线性回归</h4><p>statsmodels.OLS 是 statsmodels.regression.linear_model 的函数，有 4个参数 (endog, exog, missing, hasconst)。</p>
+<p>第一个参数 endog 是回归模型中的因变量 y(t), 是1-d array 数据类型。</p>
+<p>第二个输入 exog 是自变量 x0(t),x1(t),…,xm(t)，是(m+1)-d array 数据类型。<br>　　需要注意的是，statsmodels.OLS 的回归模型没有常数项，其形式为：<br>　　y &#x3D; B<em>X + e &#x3D; β0</em>x0 + β1*x1 + e, x0 &#x3D; [1,…1]<br>　　而之前导入的数据 (yTest，x1) 并不包含 x0，因此需要在 x1 左侧增加一列截距列 x0&#x3D;[1,…1]，将自变量矩阵转换为 X &#x3D; (x0, x1)。函数 sm.add_constant() 实现的就是这个功能。<br>　　参数 missing 用于数据检查, hasconst 用于检查常量，一般情况不需要。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"><span class="keyword">from</span> statsmodels.sandbox.regression.predstd <span class="keyword">import</span> wls_prediction_std</span><br><span class="line"><span class="comment"># 一元线性回归</span></span><br><span class="line"><span class="comment"># 1.产生样本测试数据</span></span><br><span class="line">nsample = <span class="number">100</span>  <span class="comment"># 样本容量</span></span><br><span class="line">x1 = np.linspace(<span class="number">0</span>, <span class="number">10</span>, nsample)  <span class="comment"># 产生步长为10的，0到100的线性随机数</span></span><br><span class="line">yTrue = <span class="number">2.36</span> + <span class="number">1.58</span> * x1  <span class="comment"># 模拟真实的直线</span></span><br><span class="line">e = np.random.normal(size=nsample)  <span class="comment"># 产生正态分布的误差</span></span><br><span class="line">ySample = yTrue + e  <span class="comment"># 产生模型数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.进行线性回归拟合</span></span><br><span class="line">X = sm.add_constant(x1)  <span class="comment"># 添加截距列</span></span><br><span class="line">model = sm.OLS(ySample, X)  <span class="comment"># 建立最小二乘模型</span></span><br><span class="line">results = model.fit()  <span class="comment"># 返回拟合结果</span></span><br><span class="line">yFit = results.fittedvalues  <span class="comment"># 获取拟合y值</span></span><br><span class="line">prstd, ivLow, ivUp = wls_prediction_std(results)  <span class="comment"># 返回标准差和置信区间</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.数据展示</span></span><br><span class="line"><span class="built_in">print</span>(results.summary())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nOLS model: Y = b0 + b1*x&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Parameters: &quot;</span>, results.params)  <span class="comment"># 输出拟合的系数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.画图：原始数据点、拟合曲线、置信区间</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line">ax.plot(x1, ySample, <span class="string">&#x27;o&#x27;</span>, label=<span class="string">&quot;data&quot;</span>)  <span class="comment"># 原始数据</span></span><br><span class="line">ax.plot(X, yFit, <span class="string">&#x27;r-&#x27;</span>, label=<span class="string">&quot;OLS&quot;</span>)  <span class="comment"># 拟合曲线</span></span><br><span class="line">ax.plot(x1, ivLow, <span class="string">&#x27;--&#x27;</span>, color=<span class="string">&#x27;orange&#x27;</span>, label=<span class="string">&#x27;lowConf&#x27;</span>)  <span class="comment"># 95%置信区间下限</span></span><br><span class="line">ax.plot(x1, ivUp, <span class="string">&#x27;--&#x27;</span>, color=<span class="string">&#x27;orange&#x27;</span>, label=<span class="string">&#x27;upConf&#x27;</span>)  <span class="comment"># 95%置信区间上限</span></span><br><span class="line">ax.legend(loc=<span class="string">&#x27;best&#x27;</span>)  <span class="comment"># 显示图例</span></span><br><span class="line">plt.title(<span class="string">&quot;OLS liner regression&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 高阶回归</span></span><br><span class="line"><span class="comment"># y = 5 + 2X + 3X^2</span></span><br><span class="line">nsample = <span class="number">50</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, nsample)</span><br><span class="line">X = np.column_stack((x, x**<span class="number">2</span>))</span><br><span class="line">X = sm.add_constant(X)  <span class="comment"># 至此，X第一列为1，第二列为X，第三列为X^2</span></span><br><span class="line"><span class="comment"># 构造beta</span></span><br><span class="line">beta = np.array([<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment"># 误差，正态分布</span></span><br><span class="line">e = np.random.normal(size=nsample)</span><br><span class="line"><span class="comment"># 产生y的真实值</span></span><br><span class="line">y = np.dot(X, beta)+e</span><br><span class="line"><span class="comment"># 最小二乘法</span></span><br><span class="line">model = sm.OLS(y, X)</span><br><span class="line">results = model.fit()</span><br><span class="line">results.params</span><br><span class="line"><span class="built_in">print</span>(results.summary())</span><br><span class="line"><span class="comment"># 画图展示结果</span></span><br><span class="line">y_fitted = results.fittedvalues</span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">ax.plot(x, y, <span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">ax.plot(x, y_fitted, <span class="string">&#x27;r--&#x27;</span>, label=<span class="string">&#x27;OLS&#x27;</span>)</span><br><span class="line">ax.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>Statsmodels进行线性回归分析的输出结果非常丰富，results.summary()返回了回归分析的摘要。</p>
+<p>摘要内容页非常丰富，这里着重讨论一些结果，在summary中间段落。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">==============================================================================</span><br><span class="line">                 coef    std err          t      P&gt;|t|      [<span class="number">0.025</span>      <span class="number">0.975</span>]</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">const          <span class="number">2.4669</span>      <span class="number">0.186</span>     <span class="number">13.230</span>      <span class="number">0.000</span>       <span class="number">2.097</span>       <span class="number">2.837</span></span><br><span class="line">x1             <span class="number">1.5883</span>      <span class="number">0.032</span>     <span class="number">49.304</span>      <span class="number">0.000</span>       <span class="number">1.524</span>       <span class="number">1.652</span></span><br><span class="line">==============================================================================</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>coef：回归系数，即模型参数$\beta_0,\beta_1$…的估计值</li>
+<li>std err：标准差，方差的算数平方和，反映样本数据值与回归模型估计值之间的平均差异程度</li>
+<li>t：t统计量，等于回归系数除以标准差，<strong>用于对每个回归系数分别进行显著性检验</strong>，如果某个自变量x的影响不明显，意味着可以从模型中剔除这个变量</li>
+<li>$P&gt;\abs{t}$：t检验的P值(Prob(t-Stastic))，反映每个自变量与因变量的<strong>相关性假设的显著性</strong>，如果 p&lt;0.05，可以理解为在0.05的显著性水平下变量xi与y存在回归关系，具有显著性</li>
+<li>**[0.025,0.975]**：回归系数的置信区间（Confidence interval）的下限、上限，某个回归系数的置信区间以 95%的置信度包含该回归系数 。注意并不是指样本数据落在这一区间的概率为 95%</li>
+<li><strong>R-squared</strong>：R方判定系数（Coefficient of determination），表示所有自变量对因变量的联合的影响程度，用于度量回归方程拟合度的好坏，越接近于 1说明拟合程度越好</li>
+<li><strong>F-statistic</strong>：F 统计量（F-Statistic），用于对整体回归方程进行显著性检验，检验所有自变量在整体上对因变量的影响是否显著</li>
+</ul>
+<h4 id="高阶回归-一元高阶回归，2阶以上"><a href="#高阶回归-一元高阶回归，2阶以上" class="headerlink" title="高阶回归(一元高阶回归，2阶以上)"></a>高阶回归(一元高阶回归，2阶以上)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 高阶回归</span></span><br><span class="line"><span class="comment"># y = 5 + 2X + 3X^2</span></span><br><span class="line">nsample = <span class="number">50</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, nsample)</span><br><span class="line">X = np.column_stack((x, x**<span class="number">2</span>))</span><br><span class="line">X = sm.add_constant(X)  <span class="comment"># 至此，X第一列为1，第二列为X，第三列为X^2</span></span><br><span class="line"><span class="comment"># 构造beta</span></span><br><span class="line">beta = np.array([<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment"># 误差。正态分布</span></span><br><span class="line">e = np.random.normal(size=nsample)</span><br><span class="line"><span class="comment"># 产生y的真实值</span></span><br><span class="line">y = np.dot(X, beta)+e</span><br><span class="line"><span class="comment"># 最小二乘法</span></span><br><span class="line">model = sm.OLS(y, X)</span><br><span class="line">results = model.fit()</span><br><span class="line">results.params</span><br><span class="line">results.summary()</span><br><span class="line"><span class="comment"># 画图展示结果</span></span><br><span class="line">y_fitted = results.fittedvalues</span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">ax.plot(x, y, <span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">ax.plot(x, y_fitted, <span class="string">&#x27;r--&#x27;</span>, label=<span class="string">&#x27;OLS&#x27;</span>)</span><br><span class="line">ax.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="附录：回归结果的详细说明"><a href="#附录：回归结果的详细说明" class="headerlink" title="附录：回归结果的详细说明"></a>附录：回归结果的详细说明</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Dep.Variable: y 因变量</span><br><span class="line">Model：OLS 最小二乘模型</span><br><span class="line">Method: Least Squares 最小二乘</span><br><span class="line">No. Observations: 样本数据的数量</span><br><span class="line">Df Residuals：残差自由度(degree of freedom of residuals)</span><br><span class="line">Df Model：模型自由度(degree of freedom of model)</span><br><span class="line">Covariance Type：nonrobust 协方差阵的稳健性</span><br><span class="line">R-squared：R 判定系数</span><br><span class="line">Adj. R-squared: 修正的判定系数</span><br><span class="line">F-statistic： 统计检验 F 统计量</span><br><span class="line">Prob (F-statistic): F检验的 P值</span><br><span class="line">Log likelihood: 对数似然</span><br><span class="line"></span><br><span class="line">coef：自变量和常数项的系数，b1,b2,...bm,b0</span><br><span class="line">std err：系数估计的标准误差</span><br><span class="line">t：统计检验 t 统计量</span><br><span class="line">P&gt;|t|：t 检验的 P值</span><br><span class="line">[0.025, 0.975]：估计参数的 95%置信区间的下限和上限</span><br><span class="line">Omnibus：基于峰度和偏度进行数据正态性的检验</span><br><span class="line">Prob(Omnibus)：基于峰度和偏度进行数据正态性的检验概率</span><br><span class="line">Durbin-Watson：检验残差中是否存在自相关</span><br><span class="line">Skewness：偏度，反映数据分布的非对称程度</span><br><span class="line">Kurtosis：峰度，反映数据分布陡峭或平滑程度</span><br><span class="line">Jarque-Bera(JB)：基于峰度和偏度对数据正态性的检验</span><br><span class="line">Prob(JB)：Jarque-Bera(JB)检验的 P值。</span><br><span class="line">Cond. No.：检验变量之间是否存在精确相关关系或高度相关关系。</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/08/21/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B-1-%E7%BB%9F%E8%AE%A1%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B/">http://example.com/2023/08/21/【数学建模】预测模型-1-统计回归预测/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/22/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B-2-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%A2%84%E6%B5%8B/" title="马尔可夫预测(未更新)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">马尔可夫预测(未更新)</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/20/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E9%80%9A%E7%94%A8%E6%8A%80%E8%83%BD-3-%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4/" title="数据降维"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据降维</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/08/01/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-1-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="线性规划模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="title">线性规划模型</div></div></a></div><div><a href="/2023/08/02/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-2-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92(%E7%BA%BF%E6%80%A7)/" title="整数规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-02</div><div class="title">整数规划</div></div></a></div><div><a href="/2023/08/03/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-3-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="非线性规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-03</div><div class="title">非线性规划</div></div></a></div><div><a href="/2023/08/04/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-4-0-1%E8%A7%84%E5%88%92/" title="0-1规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-04</div><div class="title">0-1规划</div></div></a></div><div><a href="/2023/08/05/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-5-%E5%9B%BA%E5%AE%9A%E8%B4%B9%E7%94%A8%E9%97%AE%E9%A2%98/" title="固定费用问题(未更新)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-05</div><div class="title">固定费用问题(未更新)</div></div></a></div><div><a href="/2023/08/06/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-6-%E5%9B%BE%E8%AE%BA%E4%BB%A5%E5%8F%8A%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" title="图论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-06</div><div class="title">图论</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">回归分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.1.</span> <span class="toc-text">回归分析的步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">一元线性回归模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%96%B9%E7%A8%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">一元线性回归方程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">参数的最小二乘估计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%9B%9E%E5%BD%92%E7%9B%B4%E7%BA%BF%E8%BF%9B%E8%A1%8C%E4%BC%B0%E8%AE%A1%E5%92%8C%E9%A2%84%E6%B5%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">利用回归直线进行估计和预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%B0%E8%AE%A1%E6%A0%87%E5%87%86%E8%AF%AF%E5%B7%AE%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">估计标准误差的计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E7%9B%B4%E7%BA%BF%E7%9A%84%E6%8B%9F%E5%90%88%E4%BF%A1%E5%BA%A6"><span class="toc-number">1.2.2.</span> <span class="toc-text">回归直线的拟合信度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1-%E2%80%BB"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">置信区间估计(※)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E7%9B%B4%E7%BA%BF%E7%9A%84%E6%8B%9F%E5%90%88%E4%BC%98%E5%BA%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">回归直线的拟合优度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">相关指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E7%B3%BB%E6%95%B0"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">判定系数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">显著性检验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0%E6%A3%80%E9%AA%8C"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">回归系数检验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%A3%80%E9%AA%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.3.6.</span> <span class="toc-text">两个检验的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.3.</span> <span class="toc-text">多元线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E7%9A%84%E5%A4%9A%E9%87%8D%E5%88%A4%E5%AE%9A%E7%B3%BB%E6%95%B0"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">调整的多重判定系数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B2%E7%BA%BF%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text">曲线线性回归分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E5%85%B1%E7%BA%BF%E6%80%A7"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">多重共线性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E5%85%B1%E7%BA%BF%E6%80%A7%E6%A3%80%E9%AA%8C%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">多重共线性检验的主要方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%B7%A5%E5%85%B7%E5%8C%85%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.5.</span> <span class="toc-text">Python工具包介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Statsmodels"><span class="toc-number">1.5.1.</span> <span class="toc-text">Statsmodels</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">一元线性回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E5%9B%9E%E5%BD%92-%E4%B8%80%E5%85%83%E9%AB%98%E9%98%B6%E5%9B%9E%E5%BD%92%EF%BC%8C2%E9%98%B6%E4%BB%A5%E4%B8%8A"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">高阶回归(一元高阶回归，2阶以上)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E5%9B%9E%E5%BD%92%E7%BB%93%E6%9E%9C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">附录：回归结果的详细说明</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/19/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><time datetime="2023-10-18T16:00:00.000Z" title="发表于 2023-10-19 00:00:00">2023-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><time datetime="2023-10-17T16:00:00.000Z" title="发表于 2023-10-18 00:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><time datetime="2023-10-16T16:00:00.000Z" title="发表于 2023-10-17 00:00:00">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9116-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%99%A8%E4%BB%8B%E7%BB%8D/" title="常见的存储器介绍">常见的存储器介绍</a><time datetime="2023-10-15T16:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/15/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9115-DMA%E9%80%9A%E4%BF%A1/" title="DMA-直接存储器访问控制器">DMA-直接存储器访问控制器</a><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

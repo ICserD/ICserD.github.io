@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python数据处理生态 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python数据处理生态处理excel文档处理excel文档的相关库 xlrd库、xlwt库 xlrd用于读取office2010以前的.xls文件 xlwt用于创建和修改.xls文件  openpyxl库 读写office2010以后的.xlsx文件   openpyxl库的使用对于excel工作表，行列号都是从1开始算的。  读取xlsx表 创建xlsx表 修改xlsx表  读取excel文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据处理生态">
+<meta property="og:url" content="http://example.com/2023/07/12/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9112-python%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%94%9F%E6%80%81/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="Python数据处理生态处理excel文档处理excel文档的相关库 xlrd库、xlwt库 xlrd用于读取office2010以前的.xls文件 xlwt用于创建和修改.xls文件  openpyxl库 读写office2010以后的.xlsx文件   openpyxl库的使用对于excel工作表，行列号都是从1开始算的。  读取xlsx表 创建xlsx表 修改xlsx表  读取excel文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-07-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-11T16:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/07/12/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9112-python%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%94%9F%E6%80%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python数据处理生态',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-12 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python数据处理生态</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-11T16:00:00.000Z" title="发表于 2023-07-12 00:00:00">2023-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-11T16:00:00.000Z" title="更新于 2023-07-12 00:00:00">2023-07-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python数据处理生态"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Python数据处理生态"><a href="#Python数据处理生态" class="headerlink" title="Python数据处理生态"></a>Python数据处理生态</h1><h2 id="处理excel文档"><a href="#处理excel文档" class="headerlink" title="处理excel文档"></a>处理excel文档</h2><h3 id="处理excel文档的相关库"><a href="#处理excel文档的相关库" class="headerlink" title="处理excel文档的相关库"></a>处理excel文档的相关库</h3><ol>
+<li><p>xlrd库、xlwt库</p>
+<p>xlrd用于读取office2010以前的.xls文件</p>
+<p>xlwt用于创建和修改.xls文件</p>
+</li>
+<li><p>openpyxl库</p>
+<p>读写office2010以后的.xlsx文件</p>
+</li>
+</ol>
+<h2 id="openpyxl库的使用"><a href="#openpyxl库的使用" class="headerlink" title="openpyxl库的使用"></a>openpyxl库的使用</h2><p>对于excel工作表，行列号都是从1开始算的。</p>
+<ul>
+<li>读取xlsx表</li>
+<li>创建xlsx表</li>
+<li>修改xlsx表</li>
+</ul>
+<h3 id="读取excel文件内容"><a href="#读取excel文件内容" class="headerlink" title="读取excel文件内容"></a>读取excel文件内容</h3><h4 id="获取excel文档book"><a href="#获取excel文档book" class="headerlink" title="获取excel文档book"></a>获取excel文档book</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openpyxl <span class="keyword">as</span> pxl</span><br><span class="line">book = pxl.load_workbook(<span class="string">&quot;/home/codePath&quot;</span>) <span class="comment">#book就是整个excel文件</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="工作表相关操作sheet"><a href="#工作表相关操作sheet" class="headerlink" title="工作表相关操作sheet"></a>工作表相关操作sheet</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sheet=book.active <span class="comment">#取活跃的工作表</span></span><br><span class="line">sheet=book[<span class="string">&quot;price&quot;</span>]<span class="comment">#取名字为price的工作表</span></span><br><span class="line">sheetlst=book.worksheets <span class="comment">#worksheets是工作表构成的列表</span></span><br><span class="line"><span class="comment">#相关属性</span></span><br><span class="line"><span class="built_in">print</span>(sheet.title)<span class="comment">#打印出工作表的表头</span></span><br><span class="line"><span class="built_in">print</span>(sheet.min_row,sheet.max_row)<span class="comment">#输出最小、最大有效行号</span></span><br><span class="line"><span class="built_in">print</span>(sheet.min_column,sheet.max_column)<span class="comment">#输出最小、最大有效列号</span></span><br><span class="line">rows=sheet.rows<span class="comment">#工作表的每一行组成的列表</span></span><br><span class="line">column=sheet.columns<span class="comment">#工作表的每一列组成的列表</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="单元格的相关操作cell"><a href="#单元格的相关操作cell" class="headerlink" title="单元格的相关操作cell"></a>单元格的相关操作cell</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#相关属性</span></span><br><span class="line"><span class="built_in">type</span>(cell.value)<span class="comment">#打印出单元格的数据类型（必须是下四种之一）：int、float、str、datetime.datetime</span></span><br><span class="line">cell.coordinat <span class="comment">#单元格的坐标，例如‘A2’，‘E2’</span></span><br><span class="line">cell.col_idx<span class="comment">#单元格列号 column_index</span></span><br><span class="line">cell.number_format<span class="comment">#数的显示格式，“General”,&quot;0.00%&quot;,&quot;0.00E+00&quot;等</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="读取行、列、单元格的相关操作"><a href="#读取行、列、单元格的相关操作" class="headerlink" title="读取行、列、单元格的相关操作"></a>读取行、列、单元格的相关操作</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727214335475.png" alt="image-20230727214335475"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727214707417.png" alt="image-20230727214707417"></p>
+<h4 id="读取公式的计算结果"><a href="#读取公式的计算结果" class="headerlink" title="读取公式的计算结果"></a>读取公式的计算结果</h4><p>有时excel表格中某些单元格内容是公式，我们有可能只需要计算完公式之后的结果，或者只需要公式。</p>
+<p>如果我们只需要计算结果，则可以在读书excel表格时加入相关参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openpyxl</span><br><span class="line">book=openpyxl.load_workbook(<span class="string">&quot;/home/path&quot;</span>,data_only=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建excel文档"><a href="#创建excel文档" class="headerlink" title="创建excel文档"></a>创建excel文档</h3><h4 id="创建文档及其框架的相关操作"><a href="#创建文档及其框架的相关操作" class="headerlink" title="创建文档及其框架的相关操作"></a>创建文档及其框架的相关操作</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727220943747.png" alt="image-20230727220943747"></p>
+<h4 id="excel文档内容相关操作"><a href="#excel文档内容相关操作" class="headerlink" title="excel文档内容相关操作"></a>excel文档内容相关操作</h4><p>单元格显示格式、单元格值的类型、设置单元格宽度、新建工作表及命名、删除单元格</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727221621598.png" alt="image-20230727221621598"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727221929531.png" alt="image-20230727221929531"></p>
+<h3 id="openpyxl指定单元格样式"><a href="#openpyxl指定单元格样式" class="headerlink" title="openpyxl指定单元格样式"></a>openpyxl指定单元格样式</h3><p>设置单元格边线类型、粗细，为单元格填充底色，指定单元格字体、斜体，设置单元格内内容的位置（如：水平居中，垂直居中等等）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727223238087.png" alt="image-20230727223238087"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230727223307199.png" alt="image-20230727223307199"></p>
+<hr>
+<h2 id="jieba库"><a href="#jieba库" class="headerlink" title="jieba库"></a>jieba库</h2><p>详细用法可以移步到github上的jieb库：<a target="_blank" rel="noopener" href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
+<h3 id="jieba库中文分词"><a href="#jieba库中文分词" class="headerlink" title="jieba库中文分词"></a>jieba库中文分词</h3><p><strong>代码示例：</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230728082013503.png" alt="image-20230728082013503"></p>
+<p>可以读取文件为jieba词典库扩充，然后再进行分词，这里为txt文件</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230728082119230.png" alt="image-20230728082119230"></p>
+<h3 id="分词算法"><a href="#分词算法" class="headerlink" title="分词算法"></a>分词算法</h3><h4 id="ti-dif算法"><a href="#ti-dif算法" class="headerlink" title="ti-dif算法"></a>ti-dif算法</h4><p>ti-idf是一种统计方法，用以评估一个字词对于一个文件集或者一个语料库中的其中一份文件的重要程度。它是一种用于信息检索和文本挖掘的常用的加权技术。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230728091222810.png" alt="image-20230728091222810"></p>
+<h4 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h4><p>tf是词语在某篇文档中出现的评论</p>
+<p>词语在文档中出现的频率越高越大</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230728091315816.png" alt="image-20230728091315816"></p>
+<p>itf</p>
+<p>词语出现的文档数越多越小</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230728091407835.png" alt="image-20230728091407835"></p>
+<p>tf-idf的值与词语频率成正比增大，但是会随着它在更多文档中出现而下降。</p>
+<p>效果：突出重要词语、抑制次要词语</p>
+<p>缺点：</p>
+<ol>
+<li>频率小单词越重要</li>
+<li>单词频率大越无用</li>
+<li>不能体现上下文信息</li>
+</ol>
+<hr>
+<h2 id="datatime库处理日期和时间"><a href="#datatime库处理日期和时间" class="headerlink" title="datatime库处理日期和时间"></a>datatime库处理日期和时间</h2><h2 id="Pillow库处理图像"><a href="#Pillow库处理图像" class="headerlink" title="Pillow库处理图像"></a>Pillow库处理图像</h2><h3 id="图像的相关常识"><a href="#图像的相关常识" class="headerlink" title="图像的相关常识"></a>图像的相关常识</h3><h4 id="图像的模式"><a href="#图像的模式" class="headerlink" title="图像的模式"></a>图像的模式</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803212002871.png" alt="image-20230803212002871"></p>
+<h4 id="图像的缩放"><a href="#图像的缩放" class="headerlink" title="图像的缩放"></a>图像的缩放</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803212510672.png" alt="image-20230803212510672"></p>
+<h4 id="图像的旋转、翻转以及滤镜效果"><a href="#图像的旋转、翻转以及滤镜效果" class="headerlink" title="图像的旋转、翻转以及滤镜效果"></a>图像的旋转、翻转以及滤镜效果</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803212745727.png" alt="image-20230803212745727"></p>
+<h4 id="图像的裁剪"><a href="#图像的裁剪" class="headerlink" title="图像的裁剪"></a>图像的裁剪</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803213239349.png" alt="image-20230803213239349"></p>
+<h4 id="图像的素描画"><a href="#图像的素描画" class="headerlink" title="图像的素描画"></a>图像的素描画</h4><p>基本原理：把<strong>轮廓（颜色发生剧烈变化的地方）</strong>画出来，飞轮廓部分都变成白色。 </p>
+<p>算法思路：</p>
+<ol>
+<li>将彩色图片转化为黑白图片</li>
+<li>遍历图片像素如果有相邻的像素深浅发生明显变化，那么这两个像素之间必然有一个像素是属于轮廓</li>
+<li>深浅相差多少才算是明显变化呢？这个可以自己来调试。</li>
+</ol>
+<p>代码示例：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803213912188.png" alt="image-20230803213912188"></p>
+<h4 id="给图像添加水印"><a href="#给图像添加水印" class="headerlink" title="给图像添加水印"></a>给图像添加水印</h4><p>原理：paste时可以用“掩膜”之后定img的每个像素粘贴过去的透明度。如果透明度为0则完全透明，如果透明度为255则完全掩盖原来的像素。mask参数即为掩膜，是个模式为“L”的图片对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imgSrc=paste(img,(x,y),mask=msk)</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码示例：</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803214507273.png" alt="image-20230803214507273"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/home/icserm/.config/Typora/typora-user-images/image-20230803215513178.png" alt="image-20230803215513178"></p>
+<h3 id="通过图片获取额外信息"><a href="#通过图片获取额外信息" class="headerlink" title="通过图片获取额外信息"></a>通过图片获取额外信息</h3><h4 id="图片的exif信息"><a href="#图片的exif信息" class="headerlink" title="图片的exif信息"></a>图片的exif信息</h4><p>当我们拍摄一张照片后，照片会有其exif信息，手机拍摄的照片以原图在网络上传播，可能会泄露个人隐私。</p>
+<p>照片的exif信息涵盖了：照片拍摄的经纬度（地点信息）、拍照设备、曝光实践、IOS、光圈等、拍摄实践等…</p>
+<p><strong>Python的Pillow库可以获取照片的exif信息。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/07/12/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9112-python%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%94%9F%E6%80%81/">http://example.com/2023/07/12/【Python基础】12-python数据处理生态/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/13/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9113-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%B1%95%E7%A4%BA/" title="数据分析和展示"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据分析和展示</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/11/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9111-Python%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" title="文件读写"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">文件读写</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/01/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%911-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97/" title="python的算数运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-01</div><div class="title">python的算数运算</div></div></a></div><div><a href="/2023/07/10/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9110-%E5%85%B3%E4%BA%8EPython%E7%9A%84%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%97%AE%E9%A2%98/" title="有关python运算的时间复杂度"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-10</div><div class="title">有关python运算的时间复杂度</div></div></a></div><div><a href="/2023/07/11/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9111-Python%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" title="文件读写"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-11</div><div class="title">文件读写</div></div></a></div><div><a href="/2023/07/13/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9113-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%B1%95%E7%A4%BA/" title="数据分析和展示"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-13</div><div class="title">数据分析和展示</div></div></a></div><div><a href="/2023/07/02/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%912-python%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/" title="python的基本逻辑结构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-02</div><div class="title">python的基本逻辑结构</div></div></a></div><div><a href="/2023/07/03/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%913-%E5%87%BD%E6%95%B0/" title="函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">函数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%94%9F%E6%80%81"><span class="toc-number">1.</span> <span class="toc-text">Python数据处理生态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86excel%E6%96%87%E6%A1%A3"><span class="toc-number">1.1.</span> <span class="toc-text">处理excel文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86excel%E6%96%87%E6%A1%A3%E7%9A%84%E7%9B%B8%E5%85%B3%E5%BA%93"><span class="toc-number">1.1.1.</span> <span class="toc-text">处理excel文档的相关库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#openpyxl%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">openpyxl库的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96excel%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">读取excel文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96excel%E6%96%87%E6%A1%A3book"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">获取excel文档book</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%A1%A8%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9Csheet"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">工作表相关操作sheet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9Ccell"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">单元格的相关操作cell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E8%A1%8C%E3%80%81%E5%88%97%E3%80%81%E5%8D%95%E5%85%83%E6%A0%BC%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">读取行、列、单元格的相关操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">读取公式的计算结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAexcel%E6%96%87%E6%A1%A3"><span class="toc-number">1.2.2.</span> <span class="toc-text">创建excel文档</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E6%A1%A3%E5%8F%8A%E5%85%B6%E6%A1%86%E6%9E%B6%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">创建文档及其框架的相关操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#excel%E6%96%87%E6%A1%A3%E5%86%85%E5%AE%B9%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">excel文档内容相关操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#openpyxl%E6%8C%87%E5%AE%9A%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">openpyxl指定单元格样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jieba%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">jieba库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jieba%E5%BA%93%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D"><span class="toc-number">1.3.1.</span> <span class="toc-text">jieba库中文分词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">分词算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ti-dif%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">ti-dif算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">算法原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#datatime%E5%BA%93%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.4.</span> <span class="toc-text">datatime库处理日期和时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pillow%E5%BA%93%E5%A4%84%E7%90%86%E5%9B%BE%E5%83%8F"><span class="toc-number">1.5.</span> <span class="toc-text">Pillow库处理图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">图像的相关常识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">图像的模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E7%BC%A9%E6%94%BE"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">图像的缩放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%97%8B%E8%BD%AC%E3%80%81%E7%BF%BB%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%BB%A4%E9%95%9C%E6%95%88%E6%9E%9C"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">图像的旋转、翻转以及滤镜效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A3%81%E5%89%AA"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">图像的裁剪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E7%B4%A0%E6%8F%8F%E7%94%BB"><span class="toc-number">1.5.1.5.</span> <span class="toc-text">图像的素描画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99%E5%9B%BE%E5%83%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0"><span class="toc-number">1.5.1.6.</span> <span class="toc-text">给图像添加水印</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%9B%BE%E7%89%87%E8%8E%B7%E5%8F%96%E9%A2%9D%E5%A4%96%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.2.</span> <span class="toc-text">通过图片获取额外信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84exif%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">图片的exif信息</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/19/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><time datetime="2023-10-18T16:00:00.000Z" title="发表于 2023-10-19 00:00:00">2023-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><time datetime="2023-10-17T16:00:00.000Z" title="发表于 2023-10-18 00:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><time datetime="2023-10-16T16:00:00.000Z" title="发表于 2023-10-17 00:00:00">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9116-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%99%A8%E4%BB%8B%E7%BB%8D/" title="常见的存储器介绍">常见的存储器介绍</a><time datetime="2023-10-15T16:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/15/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9115-DMA%E9%80%9A%E4%BF%A1/" title="DMA-直接存储器访问控制器">DMA-直接存储器访问控制器</a><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

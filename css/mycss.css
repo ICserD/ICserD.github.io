@@ -1,7 +1,7 @@
 /* 文章页背景 */
 .layout_post>#post {
     /* 以下代表透明度为0.5 可以自行修改*/
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .6);
 }
 
 /* 所有页面背景 */
@@ -12,5 +12,30 @@
 .layout_post>#post,
 .read-mode .layout_post>#post {
     /* 以下代表透明度为0.5 */
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .6);
+}
+
+/*侧边栏页面*/
+#aside-content>.card-widget {
+    background: rgba(255, 255, 255, .6);
+}
+
+#aside-content>.sticky_layout>.card-widget {
+    background: rgba(255, 255, 255, .6);
+}
+
+/*文章页面*/
+.layout>#post {
+    background: rgba(255, 255, 255, .6);
+}
+
+/*分类页面*/
+.layout>#page {
+
+    background: rgba(255, 255, 255, .6);
+}
+
+/*时间轴页面*/
+.layout>#archive {
+    background: rgba(255, 255, 255, .6);
 }

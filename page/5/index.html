@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="无为之心，做有为之事">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nullptr">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="无为之心，做有为之事">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:author" content="Icserm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nullptr',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-10-16 15:48:38'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">nullptr</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/03/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-3-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="非线性规划">非线性规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-02T16:00:00.000Z" title="发表于 2023-08-03 00:00:00">2023-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">非线性规划基本概念当线性问题的三要素：目标函数、限制条件、决策变量，任意一个被破坏成非线性的时候，此时线性的问题就变成了非线性的问题。
+概括来说，目标函数和约束条件包含非线性函数，就是非线性规划。
+非线性规划没有统一的通用方法、算法来解决，各种方法有特定的应用范围和适用条件。另一方面，非线性规划问题在实践中不能获得全局的最优解，只能得到局部最优解或者近似最优解。
+数学基础
+多元非线性函数求极值
+
+有等式约束的多元非线性函数求极值——拉格朗日乘子法
+
+有不等式约束的多远非线性函数求极值
+
+法一：引入松弛变量将不等式约束转换为等式约束；
+拉格朗日乘子法；
+
+法二：KKT条件法（拉格朗日+KKT的方法避免了引入松弛变量，是解决约束优化方法的通用方法）：
+
+
+
+
+
+基本形式
+二次规划的基本形式目标函数是一个二次函数那就是一个二次规划
+举例：
+
+Python解非线性规划问题Scipy库求解非线性规划问题scipy库对于各种函数以及算法的详细解释和用法文档https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.mini ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/02/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-2-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92(%E7%BA%BF%E6%80%A7)/" title="整数规划">整数规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T16:00:00.000Z" title="发表于 2023-08-02 00:00:00">2023-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">整数规划整数规划基本概念整数规划问题线性规划问题的最优解可能是小数或者分数。整数规划是指变量的取值只能是整数的规划。这在实际问题中很常见，例如车间人数、设备台数、行驶次数，这些变量显然必须取整数解。
+整数规划并不一定是线性规划问题的变量取整限制，对于二次规划、非线性规划问题也有变量取整限制而引出的整数规划。但在数学建模问题中所说的整数规划，通常是指整数线性规划。
+根据变量的不同情况，整数规划又分为：
+
+完全整数规划，全部变量都要求是整数
+混合整数规划，部分变量要求是整数
+0-1整数规划，变量的取值只能是0或者1
+混合0-1规划，部分变量的取值只能是0或1
+
+整数规划的求解方法分支定界法基本思想：把原问题（整数规划问题）转换为一个个线性规划问题来解决，并在求解这些线性规划问题的过程中不断追踪原问题的上界（最优可行解）和下界（最优线性松弛解）。
+分支界定法把全部可行解空间反复地分割为越来越小的子集，称为分支；并且对每个子集内的解集计算一个目标的上界，称为定界，每次分支后，对于超出已知可行解集目标值的那些子集不再进一步分枝，就可以删减很多子集，这称为剪枝。
+具体来说：设有最大化整数规划问题A ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-1-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="线性规划模型">线性规划模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T16:00:00.000Z" title="发表于 2023-08-01 00:00:00">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">线性规划模型要点线性规划的矩阵形式
+不等式组条件的矩阵化
+方程组条件的矩阵化
+每个变量自己的取值范围
+目标函数的向量化
+
+
+决策变量
+目标函数
+约束条件
+
+标准形式只要是通过程序解决线性规划问题，一定是求最小值。如果实际问题是求最大值，那么我们加个负号即可。
+
+如何理解线性规划的标准形式？
+
+问题是线性的最大值或者最小值
+约束条件本应该是小于等于，这是通用形式。（如果要改为等于，则要用其他方式转换）
+存在不等约束变换可以应用松弛变量
+规划问题的核心在于决策变量，目标函数和约束条件
+
+线性规划的求解的基本原理
+单纯形法
+基本思想：固定变量，不断变换基向量求方程组带入，看看是不是最优解，如果不适合就更新迭代现阶段的解。
+单纯形法实际上就是解方程组，特点是结果比较精确。
+
+蒙特卡洛法
+在可行域范围内生成大批量的随机数据点，观测这些数据在什么点位置取得最优。
+基本思想：大量的重复性试验，以频率估计概率。
+由于生成的点事随机的，所以必须要生成大批数据进行计算，然后求出来的也只是数值的近似最优解，更多适用于解非线性问题，因为线性问题是可以得到精确的解的。
+
+
+线性规划中引入松弛变量引入松弛变量可以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/16/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9116-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" title="python网络爬虫设计">python网络爬虫设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-15T16:00:00.000Z" title="发表于 2023-07-16 00:00:00">2023-07-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">网络爬虫设计爬虫的基本原理爬虫的用途
+在网上搜集数据(比如搜索引擎)
+模拟浏览器的快速操作(抢票、抢课、抢挂号…)注意：写爬虫抢票是违法的，自己用没事，卖出去就有事
+模拟浏览器操作，替代填表等重复操作
+
+最基本的爬虫数据获取型爬虫是最基本的爬虫。数据获取爬虫的本质是自动获取网页并抽取其中的内容。
+基本步骤
+手工找出合适的url
+用浏览器手工查看网址对于的网页，查看网页源码，找出包含想要的内容（文件名、链接）的字符串的模式
+程序中获取url对应的网页
+程序中用正则表达式或者BeautifulSoup库抽取网页中想要的内容
+
+代码示例——获取百度图片的搜索结果实现功能：给搜索引擎一个图片，自动爬虫获取图片，把收集到的前5幅图片获取出来。
+
+代码
+代码以讲义为主，不要以视频为主。如果以下代码出错，可以去讲义看看。
+
+
+stream&#x3D;True，代表获取获取的是二进制的资源
+
+
+requests.get获取网页代码示例
+fakeHeaders字符串的作用是伪装成一个浏览器，骗过服务器，获取网页信息。
+如果服务器识别到请求方不是浏览器，可能不会把网页数据返回。
+不过这里的示例代码比较幼稚 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/15/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9115-Python%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/" title="Python的数据库编程">Python的数据库编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-14T16:00:00.000Z" title="发表于 2023-07-15 00:00:00">2023-07-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">Python的数据库编程数据库的概念
+数据库可以用来存放大量数据，并且提供了方便快捷的检索手段
+便于快速找出符合某种条件的数据。比如：工作年限超过三年、工资超过10000元的北京户籍员工
+一个数据库可以是一个文件，比如：c:&#x2F;temp&#x2F;students.db
+
+数据库的结构
+数据库文件，存放数据库信息
+
+数据库表，数据库文件中有多张表，比如student.db文件包含“学生信息表”、“课程信息表”
+
+数据库记录，数据库表由记录构成，比如“学生信息表”里每一个记录代表一个学生信息
+
+数据库字段，数据库记录由字段构成，描述一个事物的多个属性。比如学生记录，可以由name、id、age等构成
+
+
+
+SQL数据库查询语句SQL简介：structure query language，结构化查询语言。用于进行数据库操作的标准语句。数据库有很多厂家，不同的数据库内部结构不一样，但是都有统一的语言。
+SQL命令SQL命令：用于进行数据库操作的标准语句
+常用的SQL命令
+CREATE TABLE		创建表
+INSERT   INTO         在表中插入记录
+UPDATE    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/14/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9114-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="正则表达式及其在Python中的应用">正则表达式及其在Python中的应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-13T16:00:00.000Z" title="发表于 2023-07-14 00:00:00">2023-07-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">正则表达式及其在Python中的应用re库python中的re库可以帮助分隔字符串，在词频统计等分析中常用到
+
+正则表达式
+正则表达式的基本概念正则表达式实际上是个字符串，是一种字符串模式（格式）。
+
+正则表达式中的功能字符字符
+“.”
+除了‘\n’以外的任意一个字符，包括汉字
+
+“*”
+量词，表示左边的字符可以出现0次或者任意多次
+
+“？”
+量词，表示左边的字符必须出现0次或者一次
+
+“+”
+量词，表示左边的字符必须出现1次或者更多次
+
+“{m}”
+量词，m是整数。表示左边的字符必须且只能出现m次
+
+“{m,n}”
+量词，m、n都是整数。表示左边的字符必须出现至少m次，最多n次
+
+
+
+字符组合字符组合跟字符不同，字符是单个有筛选意义的字符，字符组合是多个字符结合起来表示有筛选意义的字符组合。
+
+“\d”
+一个数字字符，等价于[0,9]
+
+“\D”
+一个非数字字符，等价于[^\d],[^0-9]
+
+“\s”
+一个空白字符，比如空格，\t\r\n等
+
+“\S”
+一个非空白字符
+
+“\w”
+一个单词字符：包括汉字或大小写英文字母、数字、下划线、或者其他语言文字
+
+“\W”
+一个非单词字符
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/13/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9113-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%B1%95%E7%A4%BA/" title="数据分析和展示">数据分析和展示</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-12T16:00:00.000Z" title="发表于 2023-07-13 00:00:00">2023-07-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">数据分析和展示numpy库
+多维数组库，创建多维度数组很方便，可以代替多维列表
+速度比多维列表快
+支持向量和矩阵的各种数学运算
+所有元素类型必须相同
+
+tips: pip install numpy 安装
+numpy创建数组的函数
+numpy创建数组示例
+numpy数组常用的属性和函数
+代码示例
+numpy元素实现增删实际上numpy数组一旦生成，元素就不能增删，而是通过返回一个新的数组来实现增删的效果。
+
+代码示例下面出现了axis参数，axis参数用于控制数组的拼接是发生在行上面还是发生在列上面。
+
+axis&#x3D;0（缺省值），拼接使得行增加（加在列下）
+axis&#x3D;1，拼接使得列增加（加在行上），行不变
+
+
+
+在numpy数组里面查找元素
+np.argwhere(a&#x3D;&#x3D;3)，查找a数组里面等于3的元素，返回该元组的行列值，pos是numpy的二维数组，而不是列表。Python的原生列表，每个元组都需要有逗号隔开！！
+a[a&gt;2]，抽取a中大于2的元素，形成一个一维数组
+
+
+numpy数组的数学运算加减乘除、开方、乘方
+特点：可以对数组进行直 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/12/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9112-python%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%94%9F%E6%80%81/" title="Python数据处理生态">Python数据处理生态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-11T16:00:00.000Z" title="发表于 2023-07-12 00:00:00">2023-07-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">Python数据处理生态处理excel文档处理excel文档的相关库
+xlrd库、xlwt库
+xlrd用于读取office2010以前的.xls文件
+xlwt用于创建和修改.xls文件
+
+openpyxl库
+读写office2010以后的.xlsx文件
+
+
+openpyxl库的使用对于excel工作表，行列号都是从1开始算的。
+
+读取xlsx表
+创建xlsx表
+修改xlsx表
+
+读取excel文件内容获取excel文档book12import openpyxl as pxlbook = pxl.load_workbook(&quot;/home/codePath&quot;) #book就是整个excel文件
+
+工作表相关操作sheet123456789sheet=book.active #取活跃的工作表sheet=book[&quot;price&quot;]#取名字为price的工作表sheetlst=book.worksheets #worksheets是工作表构成的列表#相关属性print(sheet.title)#打印出工作表的表头print(sheet.min_row,sh ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/11/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9111-Python%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" title="文件读写">文件读写</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T16:00:00.000Z" title="发表于 2023-07-11 00:00:00">2023-07-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">文件读写文本文件读写常见函数open打开文件后，f就在程序中代表这个文件。
+
+f.readlines读取文件的内容，内容存放在列表里面，列表的每个元素都是一个字符串，代表文件的一行
+
+
+写文件open会在目录创建文件（如果文件不存在），但是如果目录不存在，则会报错。因为open不能创建一个文件夹。
+
+读文件
+
+按行读入如果按行读入，读取到某一行为空串“”，则表示已经文件结束。因为即使是空行也会读取出换行符“\n”
+
+
+添加方式打开文件
+文本文件的编码基本概念二进制以什么组合方式表示文字或字母。
+
+Python程序的编码.py文件必须以utf-8格式才能运行。如果存成ansi格式（对应gbk编码），那么应该在文件开头写上#coding&#x3D;gbk
+指定编码打开文件
+文件的路径
+
+Python的文件夹操作
+删除文件夹的递归函数
+获取文件夹总大小的函数
+命令行参数
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/10/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9110-%E5%85%B3%E4%BA%8EPython%E7%9A%84%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%97%AE%E9%A2%98/" title="有关python运算的时间复杂度">有关python运算的时间复杂度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-09T16:00:00.000Z" title="发表于 2023-07-10 00:00:00">2023-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content">Python中in的复杂度对于a  in  b这个语句
+如果b是列表、字符串、元组，则时间复杂度为O(n)，与元素的个数有关。
+若b是字典或者集合，时间复杂度为O(1)。
+Python中一些操作的时间复杂度总结
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/19/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><time datetime="2023-10-18T16:00:00.000Z" title="发表于 2023-10-19 00:00:00">2023-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><time datetime="2023-10-17T16:00:00.000Z" title="发表于 2023-10-18 00:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><time datetime="2023-10-16T16:00:00.000Z" title="发表于 2023-10-17 00:00:00">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9116-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%99%A8%E4%BB%8B%E7%BB%8D/" title="常见的存储器介绍">常见的存储器介绍</a><time datetime="2023-10-15T16:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/15/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9115-DMA%E9%80%9A%E4%BF%A1/" title="DMA-直接存储器访问控制器">DMA-直接存储器访问控制器</a><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/microcontroller/"><span class="card-category-list-name">microcontroller</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">18</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><span class="card-category-list-name">数学建模</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"><span class="card-category-list-name">数据挖掘</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.23em; color: #999ea6">爬虫设计</a> <a href="/tags/microcontroller/" style="font-size: 1.1em; color: #999">microcontroller</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">单片机</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.43em; color: #99a6b9">数学建模</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">Python基础 - python数据库</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">Python基础 - 正则表达式</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.17em; color: #999c9f">爬虫设计 - 计算机网络基础</a> <a href="/tags/note/" style="font-size: 1.1em; color: #999">note</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">Python基础 - 爬虫设计</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.3em; color: #99a1ac">Python基础</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">24</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">16</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">7</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">66</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">65k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-10-16T07:48:37.910Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["一种新技术一旦开始流行，你要么坐上压路机，要么成为铺路石。","唯夫不争，故天下莫能与之争。"])
+  } else {
+    document.getElementById("subtitle").textContent = "一种新技术一旦开始流行，你要么坐上压路机，要么成为铺路石。"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
