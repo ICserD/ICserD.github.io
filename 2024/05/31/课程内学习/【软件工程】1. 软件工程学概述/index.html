@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>软件工程学概述 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="导言 软件工程学的概念： 软件工程即用工程、科学和数学的原则和方法研制、维护计算机软件的有关技术及方法，其优点是以较小的代价开发高质量的软件并有效地维护它。 软件工程学概述 软件 概念：软件是计算机系统中与硬件相互依存的另一部分，包括程序、数据及其相关文档的完整集合。软件&#x3D;程序+数据+文档  数据：程序能够适当处理信息的数据结构 程序：能够完成预定功能和性能的可执行指令序列 文档：开发、使用和维护">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程学概述">
+<meta property="og:url" content="http://example.com/2024/05/31/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%911.%20%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="导言 软件工程学的概念： 软件工程即用工程、科学和数学的原则和方法研制、维护计算机软件的有关技术及方法，其优点是以较小的代价开发高质量的软件并有效地维护它。 软件工程学概述 软件 概念：软件是计算机系统中与硬件相互依存的另一部分，包括程序、数据及其相关文档的完整集合。软件&#x3D;程序+数据+文档  数据：程序能够适当处理信息的数据结构 程序：能够完成预定功能和性能的可执行指令序列 文档：开发、使用和维护">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2024-05-31T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-31T16:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="课程学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2024/05/31/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%911.%20%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E6%A6%82%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '软件工程学概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-01 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">软件工程学概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-31T04:00:00.000Z" title="发表于 2024-05-31 12:00:00">2024-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-31T16:00:00.000Z" title="更新于 2024-06-01 00:00:00">2024-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="软件工程学概述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>导言</h1>
+<p>软件工程学的概念：<br>
+软件工程即用工程、科学和数学的原则和方法研制、维护计算机软件的有关技术及方法，其优点是以较小的代价开发高质量的软件并有效地维护它。</p>
+<h1>软件工程学概述</h1>
+<h2 id="软件">软件</h2>
+<p>概念：软件是计算机系统中与硬件相互依存的另一部分，包括程序、数据及其相关文档的完整集合。软件=程序+数据+文档</p>
+<ul>
+<li>数据：程序能够适当处理信息的数据结构</li>
+<li>程序：能够完成预定功能和性能的可执行指令序列</li>
+<li>文档：开发、使用和维护过程程序所需要的图文资料</li>
+</ul>
+<h2 id="软件危机（软件失效）">软件危机（软件失效）</h2>
+<p>软件危机、软件工程产生的原因？</p>
+<h3 id="概念">概念</h3>
+<p>软件危机指在计算机软件开发和维护过程中，所遇到的一系列严重的问题；</p>
+<h4 id="软件危机的典型表现">软件危机的典型表现</h4>
+<ol>
+<li>软件开发的预算和时间不可预测（不可控）</li>
+<li>软件质量得不到保证（不可用）</li>
+<li>维护非常困难（不可维护）</li>
+</ol>
+<h3 id="软件危机产生的原因">软件危机产生的原因</h3>
+<ol>
+<li>
+<p>与软件本身的特点有关</p>
+<ul>
+<li>软件规模庞大，程序复杂性随规模增加指数上升</li>
+<li>软件是一种逻辑实体，缺乏可见性，管理和控制困难</li>
+<li>软件无磨损性，软件维护意味着修改原来的设计，维护困难</li>
+</ul>
+</li>
+<li>
+<p>与软件开发和维护的方法不恰当有（主观原因）</p>
+<ul>
+<li>忽视需求</li>
+<li>轻视软件维护</li>
+<li>没有认识到程序只是软件的一部分</li>
+<li>没有认识到软件开始只是漫长的软件生命周期中一个比较次要的阶段</li>
+<li>越到后期引入变动付出的代价越高昂</li>
+</ul>
+</li>
+</ol>
+<h3 id="消除软件危机的途径">消除软件危机的途径</h3>
+<p>管理+技术</p>
+<ol>
+<li>更正软件就是程序的概念，对计算机软件应该有正确的认识</li>
+<li>认识到软件开发是分工不同的人员之间协同配合、共同完成的工程项目，不是个人独立的劳动</li>
+<li>推广和使用在实践中总结出来的软件开发的成功技术（理论）和方法（设计方法、设计原则、设计模式）</li>
+<li>积极开发和应用更好的软件工具</li>
+<li><strong>按照工程化的原则和方法组织软件开发工作是有效摆脱软件危机的一个主要方法</strong>，对软件进行建模，探索更好更有效的管理措施和手段对开发过程进行控制和管理</li>
+</ol>
+<p>概念：</p>
+<ol>
+<li>工程：将科学及数学原理运用于实际用途的应用手段，如：设计、制造、机器操纵、构架等。</li>
+</ol>
+<p>软件工程的出现就来源于软件危机</p>
+<h2 id="软件工程">软件工程</h2>
+<h3 id="定义">定义</h3>
+<p>目前普遍认可的对软件工程的定义：<br>
+软件工程是研究和应用以系统化、规范化的、可定量的过程化方法去<strong>开发和维护软件</strong>，以及如何把经过实践验证而证明正确的<strong>管理技术</strong>和当前能够得到的最好的<strong>技术方法</strong>结合起来</p>
+<p>软件工程包括两方面内容：</p>
+<ol>
+<li>技术</li>
+<li>管理</li>
+</ol>
+<h3 id="软件工程本质特征">软件工程本质特征</h3>
+<ul>
+<li>关注大型程序的构造</li>
+<li>中心课题是控制复杂性</li>
+<li>软件经常变化</li>
+<li>开发效率很重要</li>
+<li>开发人员的和谐协作是关键</li>
+<li>软件需要有效支持用户</li>
+<li>软件开发者替代其他领域人员创造产品</li>
+</ul>
+<h3 id="软件工程的基本原理">软件工程的基本原理</h3>
+<ul>
+<li>按软件生存期分阶段指定计划并认真实施</li>
+<li>坚持进行阶段评审</li>
+<li>坚持严格的产品控制</li>
+<li>使用现代程序设计技术</li>
+<li>用人少而精</li>
+<li>承认不断改进软件工程实践的必要性</li>
+</ul>
+<h3 id="软件工程方法学（重点）">软件工程方法学（重点）</h3>
+<p>软件工程方法学概念：在软件生命周期全过程中使用的一整套技术方法的集合称为方法学，也称为范型</p>
+<h4 id="三要素（重点）">三要素（重点）</h4>
+<ol>
+<li>过程：规定了完成各项任务的工作步骤，是为了获取高质量软件所需要完成的一系列任务框架</li>
+<li>方法：完成软件开发的各项任务的技术方法，为软件开发提供了“如何做”的技术</li>
+<li>工具：计算机辅助软件工具</li>
+</ol>
+<h4 id="软件工程方法学的分类（主要看前两种）">软件工程方法学的分类（主要看前两种）</h4>
+<ol>
+<li>结构化方法（生命周期方法学），又称为传统方法学
+<ul>
+<li>把软件生命周期划分为多个阶段，采用结构化技术完成各个阶段的任务</li>
+<li>每个阶段开始和结束有严格标准；（面对任意两个相邻阶段而言，前一阶段的结束标准就是后一阶段的开始标准）</li>
+<li>每一个阶段结束之前都必须进行正是严格的技术审查和管理复审<br>
+优点：<br>
+分解任务、分工合作，降低整个软件开发工程的复杂度<br>
+采用科学的管理技术和良好的技术方法对每个阶段成果都进行严格审查，保证了软件质量<br>
+缺点：<br>
+要尽早确定需求<br>
+对分析和设计人员要求较高</li>
+</ul>
+</li>
+<li>面向对象方法<br>
+模拟人类习惯的思维方式，使软件开发的方法与过程尽可能接近人们认识世界解决问题的方法与过程，从而使得问题空间与解空间在结构上尽可能一致<br>
+<strong>要点</strong>：</li>
+</ol>
+<ul>
+<li><strong>把对象作为</strong>融合了数据以及在数据上的操作行为的统一的<strong>软件构件</strong></li>
+<li>所有对象划分成类</li>
+<li>按照父类（基类）与子类（派生类）的关系，把若干相关类组成一个层次结构系统</li>
+<li>对象彼此间<strong>仅能</strong>通过发送消息相互联系，完成系统的功能和行为</li>
+</ul>
+<ol start="3">
+<li>面向构建方法</li>
+<li>敏捷方法</li>
+</ol>
+<p>面向对象方法与传统方法学的区别：</p>
+<ol>
+<li>传统方法学：强调自顶向下顺序完成软件开发各阶段任务</li>
+<li>面相对象方法学：时主动地多次反复迭代的演化过程</li>
+</ol>
+<h2 id="软件的生命周期">软件的生命周期</h2>
+<p>软件工程过程和生命周期？<br>
+生命周期模型？</p>
+<h3 id="概览图">概览图</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">1[&quot;`软</span><br><span class="line">件</span><br><span class="line">的</span><br><span class="line">生</span><br><span class="line">命</span><br><span class="line">周</span><br><span class="line">期`&quot;]</span><br><span class="line">1 --&gt; 软件定义 &amp; 软件开发 &amp; 软件维护</span><br><span class="line">软件定义 --&gt; 2[&quot;`问题定义：弄清楚用户要解决的什么问题`&quot;] &amp; 3[&quot;`可行性研究：上阶段确定问题是否可行`&quot;] &amp; 4[&quot;`需求分析：为解决这个问题，系统需要具备什么功能`&quot;]</span><br><span class="line">软件开发 --&gt; 5[&quot;`总体设计：设计软件结构，确定程序是由哪些模块组成以及模块间的关系`&quot;] &amp; 6[&quot;`详细设计：针对每个模块，设计详细的规格说明，确定算法和数据结构`&quot;] &amp; 7[&quot;`编码和单元测试：将详细设计内容用语言实现，并测试每个模块`&quot;] &amp; 8[&quot;系统测试：通过各种类型的测试使软件达到预定要求&quot;]</span><br><span class="line"></span><br><span class="line">软件维护 --&gt; 改正性维护 &amp; 适应性维护 &amp; 完善性维护 &amp; 预防性维护</span><br></pre></td></tr></table></figure>
+<h3 id="概念-2">概念</h3>
+<p>软件生命周期：软件孕育、诞生、成长、成熟、衰亡的生存过程；</p>
+<h3 id="软件生命周期的各个阶段">软件生命周期的各个阶段</h3>
+<h4 id="软件定义">软件定义</h4>
+<p>任务：</p>
+<ol>
+<li>确定软件开发工程必须完成的总目标</li>
+<li>确定工程的可行性</li>
+<li>导出实现工程目标应该采用的策略以及系统必须完成的功能</li>
+<li>估计完成该项目工程需要的资源和成本，并制定工程进度表</li>
+</ol>
+<h4 id="软件开发">软件开发</h4>
+<p>具体设计和实现前一个时期定义的软件，通常分为4个阶段：</p>
+<ol>
+<li>总体设计（概要设计）<br>
+根据需求分析，设计软件的体系结构；定义结构中的组成模块</li>
+<li>详细设计（模块设计）<br>
+对每个模块要完成的工作进行具体描述，确定算法和数据结构，编写设计说明书</li>
+<li>程序编写</li>
+<li>软件测试<br>
+包括单元测试和系统测试</li>
+</ol>
+<h4 id="软件维护">软件维护</h4>
+<p>使软件持戒的满足用户的需要；具体的维护包括：</p>
+<ol>
+<li>改正性维护：运行过程中发现了软件中的错误需要改正</li>
+<li>适应性维护：为了适应变化了的软件工作环境，需要做适当变换</li>
+<li>完善性维护：当用户有了新的要求时，应当及时改进软件以满足用户的需求</li>
+<li>预防性维护：修改软件为将来的维护活动作预先准备</li>
+</ol>
+<h2 id="软件过程">软件过程</h2>
+<h3 id="概念-3">概念</h3>
+<p>为了获得高质量软件所需要完成的一系列任务的框架，它规定了完成各项任务的工作步骤；<br>
+（过程是软件工程的三要素之一，通常用软件生命周期模型来描述）</p>
+<h3 id="软件生命周期模型">软件生命周期模型</h3>
+<p>概念：指软件项目从<strong>概念形成</strong>直至<strong>软件废弃</strong>为止，跨越整个生命周期的系统开发、运作和维护所实施的全部过程、活动和任务的<strong>结构框架</strong></p>
+<p>软件周期模型又称：软件开发模型/软件过程模型/软件工程范型</p>
+<p>常见的模型有：<strong>瀑布模型</strong>、<strong>快速原型模型</strong>、<strong>增量模型</strong>、<strong>迭代模型</strong>、<strong>螺旋模型</strong>、<strong>喷泉模型</strong>、<strong>RUP</strong>、<strong>敏捷过程</strong>等<br>
+<strong>常见的模型可以看看第一章PPT的P87页往后</strong></p>
+<h4 id="瀑布模型（文档驱动）">瀑布模型（文档驱动）</h4>
+<p>将软件生存周期的各项活动规定为依照固定顺序连接的若干阶段工作，最终得到软件产品</p>
+<h5 id="特点："><strong>特点</strong>：</h5>
+<ol>
+<li>阶段间具有顺序性和依赖性</li>
+<li>推迟实现：首先考虑逻辑模型</li>
+<li>质量保证：<br>
+每个阶段必须完成规定的文档，每个阶段结束前完成文档的审查</li>
+</ol>
+<h5 id="优点">优点</h5>
+<ol>
+<li>强迫开发人员采用规范的方法</li>
+<li>严格规定了每个阶段必须提交的文档</li>
+<li>要求每个阶段交出的所有产品都必须经过指令保证小组的仔细验证</li>
+</ol>
+<h5 id="缺点">缺点</h5>
+<ol>
+<li>在软件开发初期就要做出正确、全面、完整的需求分析对许多应用来说是极其困难的</li>
+<li>需求分析阶段，当需求确定后，无法及时验证需求是否正确、完整</li>
+<li>不支持产品的演化，缺乏灵活性，开发过程中难以发现错误，只有在最终产品中才能显示出来，产品难以维护</li>
+</ol>
+<h5 id="改进的瀑布模型">改进的瀑布模型</h5>
+<p>实际上就是在瀑布的每个阶段加上验证回溯的过程<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240601102148.png" alt="Pasted image 20240601102148"></p>
+<h4 id="快速原型模型">快速原型模型</h4>
+<p>快速建立可运行的程序，它完成的功能往往是最终产品的一个子集</p>
+<h5 id="优点-2">优点</h5>
+<ol>
+<li>开发的软件产品通常满足用户需求</li>
+<li>产品开发基本是现行过程</li>
+</ol>
+<h5 id="缺点-2">缺点</h5>
+<ol>
+<li>准确原型设计困难</li>
+<li>原型理解可能不同</li>
+<li>不利于开发人员创新</li>
+</ol>
+<h4 id="增量模型">增量模型</h4>
+<p>把软件产品作为一系列的增量构件来设计、编码、集成和测试。每个构件由多个相互作用的模块构成，并且能够完成特定的功能。<br>
+使用增量模型时，第一个阶段的增量构件往往实现软件的基本需求，提供最核心的功能；后面的增量构架逐渐添加系统的功能。</p>
+<p>概念：<br>
+先完成一个系统子集的开发，再按照通用的开发步骤增加功能（系统子集），如此递增下去知道满足全部系统需求</p>
+<h5 id="优点-3">优点</h5>
+<ol>
+<li>软时间内可提交完成部分功能</li>
+<li>逐渐增加产品功能，用户适应快</li>
+</ol>
+<h5 id="缺点-3">缺点</h5>
+<ol>
+<li>增量构建划分以及集成困难</li>
+<li>容易退化为边做边改模型</li>
+</ol>
+<h4 id="螺旋模型">螺旋模型</h4>
+<p>在每个阶段之前都增加了风险分析的<strong>快速原型模型</strong>。可以看作是增加了风险分析的快速原型模型。</p>
+<h5 id="优点-4">优点</h5>
+<ol>
+<li>利于把软件质量作为开发目标</li>
+<li>有利于软件重用</li>
+<li>减少测试</li>
+<li>维护和开发不分开</li>
+</ol>
+<h5 id="缺点-4">缺点</h5>
+<ol>
+<li>风险估计困难</li>
+</ol>
+<h4 id="喷泉模型">喷泉模型</h4>
+<p>典型的面向对象的软件过程模型，体现了<strong>迭代和无缝</strong>的特性。</p>
+<h3 id="选择模型时应该考虑的因素">选择模型时应该考虑的因素</h3>
+<ol>
+<li>软件自身的性质：规模、复杂度</li>
+<li>软件整体开发进度要求</li>
+<li>模型应能控制并消除软件开发风险</li>
+<li>模型应有可用的计算机辅助工具（如快速原型工具）的支持</li>
+<li>模型与软件开发人员的知识和技能应相匹配</li>
+<li>模型应有利于软件开发的管理和控制</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/05/31/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%911.%20%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E6%A6%82%E8%BF%B0/">http://example.com/2024/05/31/课程内学习/【软件工程】1. 软件工程学概述/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/01/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%912.%20%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6/" title="可行性研究"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">可行性研究</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="设备管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">设备管理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%911.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" title="操作系统概览"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-15</div><div class="title">操作系统概览</div></div></a></div><div><a href="/2024/03/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%912.%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="处理器管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-21</div><div class="title">处理器管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="内存管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">内存管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="文件系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">文件系统</div></div></a></div><div><a href="/2024/04/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="设备管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-29</div><div class="title">设备管理</div></div></a></div><div><a href="/2024/03/28/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="基本概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">基本概念</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">导言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">软件工程学概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%EF%BC%88%E8%BD%AF%E4%BB%B6%E5%A4%B1%E6%95%88%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">软件危机（软件失效）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E7%9A%84%E5%85%B8%E5%9E%8B%E8%A1%A8%E7%8E%B0"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">软件危机的典型表现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.2.2.</span> <span class="toc-text">软件危机产生的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E7%9A%84%E9%80%94%E5%BE%84"><span class="toc-number">2.2.3.</span> <span class="toc-text">消除软件危机的途径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">软件工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%9C%AC%E8%B4%A8%E7%89%B9%E5%BE%81"><span class="toc-number">2.3.2.</span> <span class="toc-text">软件工程本质特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.3.3.</span> <span class="toc-text">软件工程的基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%96%B9%E6%B3%95%E5%AD%A6%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">2.3.4.</span> <span class="toc-text">软件工程方法学（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E8%A6%81%E7%B4%A0%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">三要素（重点）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%96%B9%E6%B3%95%E5%AD%A6%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%88%E4%B8%BB%E8%A6%81%E7%9C%8B%E5%89%8D%E4%B8%A4%E7%A7%8D%EF%BC%89"><span class="toc-number">2.3.4.2.</span> <span class="toc-text">软件工程方法学的分类（主要看前两种）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">2.4.</span> <span class="toc-text">软件的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%A7%88%E5%9B%BE"><span class="toc-number">2.4.1.</span> <span class="toc-text">概览图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-2"><span class="toc-number">2.4.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%90%84%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">2.4.3.</span> <span class="toc-text">软件生命周期的各个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">软件定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">软件开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">软件维护</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">2.5.</span> <span class="toc-text">软件过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.</span> <span class="toc-text">软件生命周期模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%96%87%E6%A1%A3%E9%A9%B1%E5%8A%A8%EF%BC%89"><span class="toc-number">2.5.2.1.</span> <span class="toc-text">瀑布模型（文档驱动）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">2.5.2.1.1.</span> <span class="toc-text">特点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.5.2.1.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">2.5.2.1.3.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.1.4.</span> <span class="toc-text">改进的瀑布模型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.2.</span> <span class="toc-text">快速原型模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-2"><span class="toc-number">2.5.2.2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="toc-number">2.5.2.2.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.3.</span> <span class="toc-text">增量模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-3"><span class="toc-number">2.5.2.3.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-3"><span class="toc-number">2.5.2.3.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%9E%BA%E6%97%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.4.</span> <span class="toc-text">螺旋模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-4"><span class="toc-number">2.5.2.4.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-4"><span class="toc-number">2.5.2.4.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%96%B7%E6%B3%89%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.5.2.5.</span> <span class="toc-text">喷泉模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B%E6%97%B6%E5%BA%94%E8%AF%A5%E8%80%83%E8%99%91%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="toc-number">2.5.3.</span> <span class="toc-text">选择模型时应该考虑的因素</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

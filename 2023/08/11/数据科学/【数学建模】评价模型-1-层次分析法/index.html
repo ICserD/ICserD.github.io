@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>层次分析法 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="层次分析法 层次分析法是一种主观评价方法。通过相互比较确定各个准则相对于目标的权重，以及各个方案对于每一准则的权重，这些权重在人的思维过程中通常是定性的，而在层次分析法中要给出得到权重的定量方法。 如果要使用层次分析法，类似于下面的结构图要出现在论文里。  引例 评价类问题  层次分析法的基本框架 层次分析法的基本三要素  评价目标是什么？ 评价标准是什么？ 可选方案有哪些？  层次分析法步骤 确">
+<meta property="og:type" content="article">
+<meta property="og:title" content="层次分析法">
+<meta property="og:url" content="http://example.com/2023/08/11/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B-1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="层次分析法 层次分析法是一种主观评价方法。通过相互比较确定各个准则相对于目标的权重，以及各个方案对于每一准则的权重，这些权重在人的思维过程中通常是定性的，而在层次分析法中要给出得到权重的定量方法。 如果要使用层次分析法，类似于下面的结构图要出现在论文里。  引例 评价类问题  层次分析法的基本框架 层次分析法的基本三要素  评价目标是什么？ 评价标准是什么？ 可选方案有哪些？  层次分析法步骤 确">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/08/11/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B-1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '层次分析法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-11 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">层次分析法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-10T16:00:00.000Z" title="发表于 2023-08-11 00:00:00">2023-08-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-10T16:00:00.000Z" title="更新于 2023-08-11 00:00:00">2023-08-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="层次分析法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>层次分析法</h1>
+<p>层次分析法是一种主观评价方法。通过相互比较确定各个准则相对于目标的权重，以及各个方案对于每一准则的权重，这些权重在人的思维过程中通常是定性的，而在层次分析法中要给出得到权重的定量方法。</p>
+<p>如果要使用层次分析法，类似于下面的结构图要出现在论文里。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718211648471.png" alt="image-20230718211648471"></p>
+<h2 id="引例">引例</h2>
+<p><strong>评价类问题</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718203834717.png" alt="image-20230718203834717"></p>
+<h2 id="层次分析法的基本框架">层次分析法的基本框架</h2>
+<h3 id="层次分析法的基本三要素">层次分析法的基本三要素</h3>
+<ol>
+<li>评价目标是什么？</li>
+<li>评价标准是什么？</li>
+<li>可选方案有哪些？</li>
+</ol>
+<h2 id="层次分析法步骤">层次分析法步骤</h2>
+<h3 id="确定指标的重要性">确定指标的重要性</h3>
+<p>在确定指标权重时，有时有多个指标，同时考虑可能会导致考虑不周，可以先采用两两比较，在上一组比较的基础上进而推断当前两组的权重。</p>
+<p><strong>这里采用两两比较法确定权重</strong></p>
+<p>奇数用于表示确切的尺度，偶数用于表示介于两个确切评价之间的评价</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718203013275.png" alt="image-20230718203013275"></p>
+<center><a id="table1" >评价尺度表</a></center>
+<p>通过两两比较的评价得到<strong>4*4的评价矩阵</strong></p>
+<p>将该矩阵的第i行第j列元素记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">a_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">a_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>表示i相较于j的重要程度</li>
+<li>当i=j时，规定<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a_{ij}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></li>
+<li>当且仅当<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo separator="true">,</mo><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>×</mo><msub><mi>a</mi><mrow><mi>j</mi><mi>i</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a_{ij}&gt;0,a_{ij}\times a_{ji}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8252em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9305em;vertical-align:-0.2861em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ji</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，该矩阵称为正互反矩阵</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718203705840.png" alt="image-20230718203705840"></p>
+<h3 id="确定待选方案在某一指标下的得分">确定待选方案在某一指标下的得分</h3>
+<p>这一环节就是对各个备选方案进行打分，打分尺度按照上面的评价指标表。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718235609596.png" alt="image-20230718235609596"></p>
+<h3 id="层次分析法矩阵的一致性（用于检验评价矩阵是否矛盾）">层次分析法矩阵的一致性（用于检验评价矩阵是否矛盾）</h3>
+<p>观察下面矩阵的问题</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719000711423.png" alt="image-20230719000711423"></p>
+<h4 id="一致矩阵的性质">一致矩阵的性质</h4>
+<ul>
+<li>矩阵的秩为1，具有唯一的非0特征根</li>
+<li>矩阵的任意一列向量都是对于特征根n的特征向量</li>
+</ul>
+<p>所以只要两两行/列满足倍数关系，就是一致矩阵（主元列只有一个）</p>
+<p><strong>如果矩阵不满足上面的两个性质，则该矩阵是非一致性矩阵，在求权重时，非一致性矩阵和一致性矩阵有着不同的求解方法</strong></p>
+<h4 id="一致矩阵的作用">一致矩阵的作用</h4>
+<p>用于检查各个因素之间的比是否存在矛盾，所以在使用<strong>评价矩阵</strong>之前一定要检验其一致性</p>
+<p>一致矩阵的判断方法：</p>
+<ol>
+<li>一致矩阵的性质</li>
+<li>当评价矩阵不是一致矩阵时，算出其最大特征根x，x与n(矩阵的维数)的差越大，证明越不一致，越小则越一致。</li>
+</ol>
+<h4 id="一致性检验方法">一致性检验方法</h4>
+<p>下面的<strong>随机一致性指标表</strong>可以放入论文。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718213316162.png" alt="image-20230718213316162"></p>
+<p>这里CR&lt;0.1可以理解为<strong>比随机产生的评价矩阵好10倍</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230718225739963.png" alt="image-20230718225739963"></p>
+<h3 id="权重的计算">权重的计算</h3>
+<h4 id="一致性矩阵求权重">一致性矩阵求权重</h4>
+<p>直接对某一列进行归一化处理得到各个指标的权值，因为一致矩阵只有一个主元列，只需要求一列即可。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719001020407.png" alt="image-20230719001020407"></p>
+<h4 id="非一致性矩阵求权重">非一致性矩阵求权重</h4>
+<ol>
+<li>
+<p>算术平均法求权重</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719001339169.png" alt="image-20230719001339169"></p>
+<p>算数平均法求权重的论文表述：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719001423779.png" alt="image-20230719001423779"></p>
+</li>
+<li>
+<p><strong>特征值法求权重（更加常用，也更简单）</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719001550804.png" alt="image-20230719001550804"></p>
+</li>
+<li>
+<p>两种求权值方法的区别和联系</p>
+<p>在非一致性不大的情况下，两种方法差别不大。实际生活中的数据，一致性并非很强，一般建议用特征值法求权重，特征值法方便且常用。</p>
+<p>如果论文字数不够，也可以用这个来凑字数，两种方法都用，然后求平均值得到最终权重。</p>
+</li>
+</ol>
+<h4 id="确定最终各个方案的权重得分">确定最终各个方案的权重得分</h4>
+<ol>
+<li>
+<p>根据所得的各个指标下的评价矩阵求其权重，得到各个指标下各个目的地的权重得分；</p>
+</li>
+<li>
+<p>根据各个指标的评价矩阵求其权重，得到各个指标的权重得分；</p>
+</li>
+<li>
+<p>各个目的地的最终得分：</p>
+<p>比如目的地1的得分=指标1下目的地1的权重*指标1的权重+指标2下目的地1的权重*指标2的权重…</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719002648044.png" alt="image-20230719002648044"></p>
+<p><strong>上面这个表格我们也要写在论文里，最后两列CI和CR也要列出来。其中CR是常量，去找对应矩阵维数的表就行，CI是计算出来的矩阵一致性指标</strong></p>
+</li>
+</ol>
+<h4 id="层次总排序的一致性检验">层次总排序的一致性检验</h4>
+<p>得到最终的得分表后，也要对最后的得分表进行一致性检验。</p>
+<p>方法：CR=每一行指标的权重*CI(一致性评价指标系数)求和/每一行的指标权重*RI(随机性评价指标系数)求和</p>
+<p>​			如果得到的CR&lt;0.1，则通过一致性检验。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230719003206657.png" alt="image-20230719003206657"></p>
+<h2 id="层次分析法总结">层次分析法总结</h2>
+<ol>
+<li>
+<p>层次分析法解决的是评价类问题</p>
+</li>
+<li>
+<p>画出层级结构图（目标层、准则层、方案层）  （<strong>层级结构图需要放在论文里</strong>）</p>
+</li>
+<li>
+<p><strong>确定评价指标</strong>，构造评价矩阵（<strong>评价尺度表需要放在论文里</strong>）</p>
+<p>确定评价指标可以去做问卷、访问专家、学术论文上面找已经成熟的指标体系…</p>
+</li>
+<li>
+<p>依照评价指标对各个方案进行打分（<strong>一致性指标系数CI求解的公式过程、随机性指标系数RI常量表、一致性比例CR求解的公式过程都需要放在论文里</strong>）</p>
+</li>
+<li>
+<p>求出权重、填表、求出最后得分（<strong>最终的得分表需要放在论文里</strong>）</p>
+</li>
+<li>
+<p>层次总排序一致性检验（<strong>最后的一致性检验公式也要放在论文里</strong>）</p>
+</li>
+<li>
+<p>可以搜一搜相关层次分析的高引论文，看别人如何组织、如何写。</p>
+</li>
+</ol>
+<h2 id="相关画图工具">相关画图工具</h2>
+<ul>
+<li>processon网站</li>
+<li>亿图</li>
+<li>wps也可以画那个结构图</li>
+</ul>
+<h2 id="整理">整理</h2>
+<ol>
+<li>
+<p>适用情况：</p>
+<p>较为模糊的问题</p>
+<p>难以完全定量</p>
+</li>
+<li>
+<p>基本步骤</p>
+<ul>
+<li>
+<p>建立递阶层次结构（目标层、准则层、方案层）==解释说明用==</p>
+</li>
+<li>
+<p>构造出各层次中的所有判断矩阵==根据重要性指标表来构造判断矩阵==</p>
+</li>
+<li>
+<p>一致性检验==检验判断矩阵在一定误差范围内是否合理，不合理的话对矩阵进行调整==</p>
+<p>计算一致性指标CI</p>
+<p>查RI</p>
+<p>计算一致性比例CR并判断矩阵是否合理</p>
+</li>
+<li>
+<p>求权重后进行评价==根据判断矩阵求权重==</p>
+<p>算术平均值法</p>
+<p>几何平均值法</p>
+<p>特征向量法（常用）</p>
+</li>
+<li>
+<p>原始数据指标归一化</p>
+</li>
+<li>
+<p>计算加权得分，作出决策</p>
+</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/08/11/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B-1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/">http://example.com/2023/08/11/数据科学/【数学建模】评价模型-1-层次分析法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/12/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B-2-%E7%86%B5%E6%9D%83%E6%B3%95/" title="熵权法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">熵权法</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/10/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B-4-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB/" title="神经网络分类"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">神经网络分类</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/08/01/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-1-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="线性规划模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="title">线性规划模型</div></div></a></div><div><a href="/2023/08/02/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-2-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92(%E7%BA%BF%E6%80%A7)/" title="整数规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-02</div><div class="title">整数规划</div></div></a></div><div><a href="/2023/08/03/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-3-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="非线性规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-03</div><div class="title">非线性规划</div></div></a></div><div><a href="/2023/08/04/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-4-0-1%E8%A7%84%E5%88%92/" title="0-1规划"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-04</div><div class="title">0-1规划</div></div></a></div><div><a href="/2023/08/05/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-5-%E5%9B%BA%E5%AE%9A%E8%B4%B9%E7%94%A8%E9%97%AE%E9%A2%98/" title="固定费用问题(未更新)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-05</div><div class="title">固定费用问题(未更新)</div></div></a></div><div><a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-6-%E5%9B%BE%E8%AE%BA%E4%BB%A5%E5%8F%8A%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" title="图论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-06</div><div class="title">图论</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">层次分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">引例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-number">1.2.</span> <span class="toc-text">层次分析法的基本框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-number">1.2.1.</span> <span class="toc-text">层次分析法的基本三要素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.</span> <span class="toc-text">层次分析法步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%8C%87%E6%A0%87%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">1.3.1.</span> <span class="toc-text">确定指标的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E5%BE%85%E9%80%89%E6%96%B9%E6%A1%88%E5%9C%A8%E6%9F%90%E4%B8%80%E6%8C%87%E6%A0%87%E4%B8%8B%E7%9A%84%E5%BE%97%E5%88%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">确定待选方案在某一指标下的得分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88%E7%94%A8%E4%BA%8E%E6%A3%80%E9%AA%8C%E8%AF%84%E4%BB%B7%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E7%9F%9B%E7%9B%BE%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">层次分析法矩阵的一致性（用于检验评价矩阵是否矛盾）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E7%9F%A9%E9%98%B5%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">一致矩阵的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E7%9F%A9%E9%98%B5%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">一致矩阵的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">一致性检验方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.4.</span> <span class="toc-text">权重的计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E7%9F%A9%E9%98%B5%E6%B1%82%E6%9D%83%E9%87%8D"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">一致性矩阵求权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E4%B8%80%E8%87%B4%E6%80%A7%E7%9F%A9%E9%98%B5%E6%B1%82%E6%9D%83%E9%87%8D"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">非一致性矩阵求权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%9C%80%E7%BB%88%E5%90%84%E4%B8%AA%E6%96%B9%E6%A1%88%E7%9A%84%E6%9D%83%E9%87%8D%E5%BE%97%E5%88%86"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">确定最终各个方案的权重得分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E6%80%BB%E6%8E%92%E5%BA%8F%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">层次总排序的一致性检验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">层次分析法总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7"><span class="toc-number">1.5.</span> <span class="toc-text">相关画图工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E7%90%86"><span class="toc-number">1.6.</span> <span class="toc-text">整理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

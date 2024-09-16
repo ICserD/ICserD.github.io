@@ -1,0 +1,633 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>需求分析 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="软件需求 重要性：软件需求是决定软件开发是否成功的关键因素 定义：（1997年，IEEE工程标准）  用户解决问题或系统目标所需要的条件 为满足一个协约、标准、规格或其他正式制定的文档，系统或系统构件所需要满足和具有的条件或能力 对上述条件文档化的描述  需求分析的任务 需求分析任务  确定对系统的综合要求：  功能需求：系统必须提供的服务功能 性能需求：系统必须满足的约束条件 可靠性和可用性需求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="需求分析">
+<meta property="og:url" content="http://example.com/2024/06/16/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%913.%20%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="软件需求 重要性：软件需求是决定软件开发是否成功的关键因素 定义：（1997年，IEEE工程标准）  用户解决问题或系统目标所需要的条件 为满足一个协约、标准、规格或其他正式制定的文档，系统或系统构件所需要满足和具有的条件或能力 对上述条件文档化的描述  需求分析的任务 需求分析任务  确定对系统的综合要求：  功能需求：系统必须提供的服务功能 性能需求：系统必须满足的约束条件 可靠性和可用性需求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2024-06-15T23:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T00:50:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="课程学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2024/06/16/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%913.%20%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '需求分析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-16 08:50:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">需求分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-15T23:00:00.000Z" title="发表于 2024-06-16 07:00:00">2024-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-16T00:50:00.000Z" title="更新于 2024-06-16 08:50:00">2024-06-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="需求分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>软件需求</h1>
+<p><strong>重要性</strong>：软件需求是决定软件开发是否成功的关键因素<br>
+<strong>定义</strong>：（1997年，IEEE工程标准）</p>
+<ol>
+<li>用户解决问题或系统目标所需要的<strong>条件</strong></li>
+<li>为满足一个协约、标准、规格或其他正式制定的文档，系统或系统构件所需要满足和具有的<strong>条件或能力</strong></li>
+<li>对上述条件文档化的描述</li>
+</ol>
+<h2 id="需求分析的任务">需求分析的任务</h2>
+<h3 id="需求分析任务">需求分析任务</h3>
+<ol>
+<li>确定对系统的综合要求：
+<ul>
+<li>功能需求：系统必须提供的服务功能</li>
+<li>性能需求：系统必须满足的约束条件</li>
+<li>可靠性和可用性需求：可靠性定量、可用性量化</li>
+<li>出错处理需求：错误响应机制</li>
+<li>接口需求：应用系统与环境通信格式常用的用户接口需求、硬件接口需求、软件接口需求、通信接口需求</li>
+<li>约束：用户或环境强加的限制条件（工具、语言等）</li>
+<li>逆向需求：系统不应该做什么</li>
+<li>将来可能提出的要求：将来可能要实现的需求</li>
+</ul>
+</li>
+<li>分析系统的数据要求</li>
+<li>导出系统的逻辑模型</li>
+<li>修正系统开发计划</li>
+</ol>
+<h3 id="基本任务（结构化需求分析法）">基本任务（结构化需求分析法）</h3>
+<p>准确定义系统的目标，回答“系统必须做什么？”<br>
+（任务承担者：需求分析小组或系统分析员。）</p>
+<h3 id="结构化需求分析的三种模型">结构化需求分析的三种模型</h3>
+<p><strong>模型</strong>：是指为了理解事物而对事物做出的一种抽象，是对事物的一种无歧义的书面描述。</p>
+<ul>
+<li>数据模型：描述问题信息域，描述数据对象以及数据对象之间的关系 —— 实体-联系图</li>
+<li>功能模型：定义软件功能，描述数据在系统中流动时被处理的逻辑过程，指明系统具有的变换数据的功能 —— 数据流图</li>
+<li>行为模型：描述软件行为，描绘系统各种行为模式在不同状态之间的转换模式 —— 状态转换图</li>
+</ul>
+<h3 id="需求分析的三个阶段">需求分析的三个阶段</h3>
+<ol>
+<li>需求获取阶段（问题+分析）</li>
+<li>需求规约/规格说明阶段（需求描述）</li>
+<li>需求验证阶段（需求评审）</li>
+</ol>
+<h4 id="需求获取阶段">需求获取阶段</h4>
+<ol>
+<li>任务：<br>
+通过多种方式（与用户交流、实践等）清晰地理解所需要解决的问题，完整获取用户的需求。</li>
+<li>方法：
+<ul>
+<li>对用户需求进行<strong>建模</strong></li>
+<li>分析用户的要求和期望</li>
+</ul>
+</li>
+<li>作用：
+<ul>
+<li>建模可以从多个不同的视角、不同抽象层次上对问题及目标软件系统进行可视化，以便于用户和系统分析人员对软件功能达成一致；</li>
+<li>帮助需求分析人员分析和发现用户需求中的不一致性，分析其中的不合理部分，挖掘潜在的用户需求；</li>
+<li>有助于形成需求规格说明书；</li>
+</ul>
+</li>
+</ol>
+<h4 id="需求规约阶段">需求规约阶段</h4>
+<ol>
+<li>任务：以需求分析模型为基础，考虑到问题的软件可解性，生成软件的需求规格说明书和初步的用户手册</li>
+<li>原则：
+<ul>
+<li>确保需求规格说明书对用户需求描述的完整性、一致性和准确性（满足需求的质量属性）</li>
+<li>鼓励用户参与需求规格说明书以及用户手册的制定</li>
+</ul>
+</li>
+</ol>
+<h4 id="需求验证阶段——需求评审">需求验证阶段——需求评审</h4>
+<ol>
+<li>任务：让用户和设计人员对需求规格说明以及用户手册的理解达成一致</li>
+<li>原则：
+<ul>
+<li>确保需求规格说明书和用户手册是一致的、完全和准确的（需要满足需求文档的质量属性）</li>
+<li>各方（用户、需求分析人员、设计人员）参与评审工作</li>
+</ul>
+</li>
+</ol>
+<h2 id="需求工程">需求工程</h2>
+<h3 id="需求的分类">需求的分类</h3>
+<p>用户对软件的要求可以分为功能要求和非功能要求两大类；通常一开始是产品的功能需求取胜，时间长了之后，产品的非功能需求取胜。</p>
+<ol>
+<li>功能需求：描述系统应该提供的功能或服务，通常涉及用户或外部系统与该系统之间的交互，一般不考虑系统实现细节<br>
+比如：在转盘界面上显示学生姓名和学号</li>
+<li>非功能需求（用户体验）：从各个角度对系统的约束和限制，反映了应用对软件系统质量和特性的额外要求，例如响应时间、数据精度、可靠性、开发过程的标准等<br>
+例子：
+<ul>
+<li>系统5秒内响应声控请求（性能要求）</li>
+<li>对于一个没有经验的用户，经过2小时培训可以上手使用系统所有功能（可用性要求）</li>
+</ul>
+</li>
+</ol>
+<h4 id="非功能需求——可用性相关概念">非功能需求——可用性相关概念</h4>
+<p>非功能需求主要分为两大类，性能要求以及可用性要求，这里重点关注一下可用性要求。<br>
+可用性相关概念：</p>
+<ul>
+<li>程序错误：系统没有按程序员意图工作</li>
+<li>功能需求遗漏：系统无法执行某一项任务</li>
+<li>可用性问题：系统既无程序错误，又功能需求遗漏，但是用户仍然不知道如何使用系统执行任务或者不喜欢使用系统执行任务<br>
+描述可用性的例子（在文档中写需求分析的可用性部分时可以这样写）：</li>
+</ul>
+<ol>
+<li>可以使用键盘完成所有操作</li>
+<li>将显示内容分为两部分（基本和高级），基本部分默认显示，高级部分只有用户需要才显示</li>
+</ol>
+<h2 id="需求获取的方法">需求获取的方法</h2>
+<h3 id="需求获取中存在的问题">需求获取中存在的问题</h3>
+<p>需求获取中用户、系统分析员、程序员等各方都存在各自的问题，导致需求获取不准确，浪费人力物力资源。</p>
+<ol>
+<li>用户存在的问题：<strong>“拍脑袋”</strong>，想起一出是一出，不知道或者不能明确表达自己的需求</li>
+<li>系统分析员存在的问题：<strong>“拍脑袋”</strong>，认为自己比用户更明白用户的问题；<strong>“拍胸脯”</strong>，认为自己能实现用户提出的所有问题<br>
+主要原因：背景差异，不能有效沟通</li>
+</ol>
+<h3 id="需求获取的过程">需求获取的过程</h3>
+<p>需求获取的<strong>关键在于通过与用户的有效沟通与交流</strong>，收集和理解用户的各项要求。<br>
+需求获取的过程如下图：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240612155946.png" alt="Pasted image 20240612155946"></p>
+<h3 id="与用户沟通的方法">与用户沟通的方法</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">1[&quot;与</span><br><span class="line">用</span><br><span class="line">户</span><br><span class="line">沟</span><br><span class="line">通</span><br><span class="line">的</span><br><span class="line">方</span><br><span class="line">法&quot;] --&gt; 文档研究 &amp; 用户调研 &amp; 头脑风暴 &amp; 问卷调查 &amp; 2[&quot;观察现有产品、环境以及工作流程&quot;] &amp; 原型方法 &amp; 使用用例 &amp; 逆向沟通</span><br></pre></td></tr></table></figure>
+<h4 id="文档研究">文档研究</h4>
+<p>内容：收集和分析文档（比如收集工作手册、行业手册、报表、旧系统设计文档…），根据目前的文档资料分析用户的业务过程，为下一步工作储备必须的背景知识<br>
+需要注意的问题：</p>
+<ol>
+<li>文档资料重复</li>
+<li>文档资料冲突</li>
+<li>有些资料是被废弃的</li>
+</ol>
+<p>好处：</p>
+<ol>
+<li>根据目前的文档资料分析用户的业务过程，为下一步工作储备必要的<strong>背景知识</strong></li>
+<li>和用户的沟通建立在相同的背景知识上，沟通才是有效的</li>
+</ol>
+<h4 id="需求调研">需求调研</h4>
+<p>需求调研是一种理解商业功能和商业规则的最有效的方法；<br>
+个人理解：就是通过访谈等形式，和相关方进行直接沟通，经过充分沟通后获取相关方需求</p>
+<h5 id="需求调研的过程">需求调研的过程</h5>
+<p><strong>调研之前</strong>（认真的计划和准备）：</p>
+<ol>
+<li>查阅有关文档和资料，对业务有一个基本的理解</li>
+<li>建立调研提纲（列出 要调研的问题和要点）</li>
+<li>建立调研计划（什么时间、什么地点），调研提纲需要提前提交给用户，使用户有所准备</li>
+<li>通知所有参加者有关调研的目的、时间和地点</li>
+<li>调研用户的顺序最好是：管理人员 ——&gt; 业务人员<br>
+<strong>调研过程中</strong>：（有效地听取）</li>
+<li>善于诱导用户把问题描述完整</li>
+<li>深入调查细节</li>
+<li>有完整的详细记录</li>
+<li>对未明确、有歧义的问题应该特殊标记<br>
+<strong>调研完成后</strong>：</li>
+<li>复查记录的准确性、完整性和可理解性</li>
+<li>把收集的信息转化为适当的模型和文档</li>
+<li>确定需要进一步澄清的问题域</li>
+<li>会议记录发送给参加会议的每一个人员（不同人背景不同。尽量处于统一背景进行有效沟通）</li>
+</ol>
+<h5 id="需求调研的提问方法">需求调研的提问方法</h5>
+<p><strong>5W1H</strong>：</p>
+<ol>
+<li>WHO，用户角色</li>
+<li>WHAT，完成什么功能</li>
+<li>WHERE</li>
+<li>WHEN</li>
+<li>WHY，这些功能要达到什么目的，或为什么有这些功能</li>
+<li>HOW</li>
+<li>Competitors，竞争对手的功能是什么样的？相比优点和缺点如何？</li>
+</ol>
+<p><strong>与用户有效沟通的方法还有：头脑风暴、问卷调查、现场观察、逆向沟通等方法，可以看PPT了解一下，感觉不是重点，就不整理了，PPT的42-45页</strong></p>
+<h2 id="分析建模与需求规格说明书">分析建模与需求规格说明书</h2>
+<h3 id="需求分析和建模">需求分析和建模</h3>
+<p>需求分析的目的：<br>
+分解需求、提炼需求，并且在这个过程中消除出现的矛盾，和客户需求达成一致；</p>
+<p>提炼需求：</p>
+<ol>
+<li>分解过程中出现需求相互重叠的情况，需要提炼需求，抽取共性</li>
+<li>分解过程中可能出现相互矛盾的情况，这时需要平衡</li>
+</ol>
+<h3 id="需求建模">需求建模</h3>
+<p>需求分析的主要方法和手段——需求建模<br>
+需求建模目的：帮助需求分析人员理清楚思路，帮助和客户达成一致</p>
+<p><strong>建模的工具和方法论</strong>（个人觉得重点概念）</p>
+<ol>
+<li>结构化方法（Structrue Analysis）</li>
+<li>面向对象方法<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240614002425.png" alt="Pasted image 20240614002425"></li>
+</ol>
+<h3 id="需求分析方法——结构化方法">需求分析方法——结构化方法</h3>
+<p>面相数据流进行需求分析，适合于数据处理类型的软件的需求分析</p>
+<h4 id="需求分析基本目标">需求分析基本目标</h4>
+<ol>
+<li>描述用户对软件系统的需求</li>
+<li>为软件设计奠定一个良好的基础</li>
+<li>定义一组需求，并且可以作为软件产品验收的标准</li>
+</ol>
+<h4 id="需求分析模型的内容">需求分析模型的内容</h4>
+<ol>
+<li>数据字典</li>
+<li>数据模型（用实体联系图表达）</li>
+<li>功能模型（用数据流图表达）</li>
+<li>行为模型（状态转换图表达）<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240614001627.png" alt="Pasted image 20240614001627"></li>
+</ol>
+<h4 id="功能建模——数据流图的绘制（多层次数据流图）">功能建模——数据流图的绘制（多层次数据流图）</h4>
+<p>数据流图的定义：<br>
+描述<strong>数据处理过程</strong>的工具，通过图形的方法，从<strong>数据传输和数据处理</strong>的角度，刻画数据流从输入到输出的移动变换过程。</p>
+<p>核心思想是自顶向下的分析方法，先抽象再具体，逐层分解！</p>
+<p>绘制思路方法：<br>
+<strong>注意一个原则：分解前后的外部输入输出的数据流一致</strong><br>
+一、画顶层（只有一个处理，即一个圆框）：</p>
+<ol>
+<li>画出系统的输入和输出——确定起点和最终输出终点，一般起点和最终输出终点都是数据流之外的元素，比如考试管理系统的考生、考试中心；这部分识别出来的体用方框表示<br>
+二、画中间层（可以有多层）：</li>
+<li>在第上一层的基础上进行分解<br>
+三、画底层：</li>
+<li>底层图由一些不能再分解的加工组成，这些加工已经足够简单，称为<strong>基本加工</strong></li>
+</ol>
+<p>绘制数据流图技巧个人经验：</p>
+<ol>
+<li>先抽象出顶层，一个处理，然后确定输入输出</li>
+<li>对处理进行分解，主要抓住动词、动作，作为数据处理部分</li>
+<li>根据抓住的数据处理部分，分析需要什么数据流输入输出</li>
+<li>时刻记得子图与父图的平衡</li>
+</ol>
+<p>绘制数据流图的原则：</p>
+<ol>
+<li>数据流的命名一定都是名词（数据应该都是名词，比如学号、申请单等等）</li>
+<li>每一个加工都是一个动作</li>
+<li>每一个加工都必须至少有一个输入流和一个输出流</li>
+<li>数据不能从外部直接流入数据存储，即数据存储的直接输入输出对象都必须是加工</li>
+<li>数据流要保持守恒，加工输出的数据要有对应的数据来源</li>
+<li>保持父图与子图的平衡</li>
+<li>除了顶层数据流图，每个加工都要有标号，并且遵守标号的规则，标号不表示功能的执行顺序</li>
+<li>下层数据流图应该与上层数据流图等价</li>
+<li>一个加工的输入数据流和输出数据流不能同名（加工之后还是自己，不就是没加工）</li>
+<li>每一个文件应该至少有一个加工读它，至少有一个加工写它</li>
+<li>尽量避免数据流图的交叉</li>
+</ol>
+<p>练习题以及解答：</p>
+<iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=603176382&bvid=BV1gB4y1H7MR&cid=838366587&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:640px; height: 430px; max-width: 100%;"></iframe>
+<h4 id="数据建模-——-实体联系图（E-R图）">数据建模 —— 实体联系图（E-R图）</h4>
+<ol>
+<li>实体： 描述数据对象</li>
+<li>属性： 描述数据对象的性质</li>
+<li>联系： 描述数据对象之间的交互方式
+<ul>
+<li>1对1</li>
+<li>1对多</li>
+<li>多对多<br>
+数据库学过，这里不赘述</li>
+</ul>
+</li>
+</ol>
+<h4 id="行为建模-——-状态转换图">行为建模 —— 状态转换图</h4>
+<p><strong>定义</strong>：状态转换图是一种描述系统对内部或外部事件响应的行为模型<br>
+<strong>状态</strong>：系统的行为模式，包括初态、终态、中间状态<br>
+<strong>事件</strong>：是指在某个特定时刻发生的事情，即对系统从一个状态转换到另一个状态的事件抽象，状态转移通常由事件触发</p>
+<p>表示方式：</p>
+<ol>
+<li>初态：实心圆</li>
+<li>终态：同心圆，内为实心</li>
+<li>中间状态：圆角矩形<br>
+<strong>一张状态图中只能有一个初态，而终态可以有0个或者多个</strong><br>
+例图：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616155312.png" alt="Pasted image 20240616155312"><br>
+各个状态的表达结构：</li>
+<li>中间状态：可以用两条水平线分为上中下三部分<br>
+上部：状态名称<br>
+中部：状态变量的名字和值，可选<br>
+下部：活动表，可选</li>
+<li>中间状态的活动表的语法格式：<br>
+事件名（参数）/动作表达式<br>
+常用的3种标准事件：
+<ul>
+<li>entry，指事件指定进入该状态的动作；</li>
+<li>exit，指事件指定退出该状态的动作；</li>
+<li>do，指事件在该状态下的动作；<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616155733.png" alt="Pasted image 20240616155733"></li>
+</ul>
+</li>
+<li>事件表达式语法：<br>
+事件说明[守卫条件]/动作表达式<br>
+事件说明：事件名（参数表）<br>
+守卫条件：布尔表达式；如果同时使用事件说明和守卫条件，则当且仅当事件发生且布尔表达式为真时，状态才发生转换<br>
+动作表达式：过程表达式，当状态转换开始时执行该表达式</li>
+</ol>
+<p>例题以及答案：<br>
+假设航空订票系统的航班状态有无预定、部分预定、预定关闭和预定完成四个状态，请绘制出状态转换图。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616160819.png" alt="Pasted image 20240616160819"></p>
+<h4 id="数据字典">数据字典</h4>
+<p>数据字典是对<strong>数据流图中包含的所有元素的定义的集合</strong>，使得每一个图形元素的名字都有一个精确的、严格的定义。</p>
+<blockquote>
+<p>数据字典可以把不同的需求文档和分析模型紧紧结合在一起，如果所有开发人员在数据字典上去的一致意见，那么可以缓和集成性的问题。为了避免<strong>冗余和不一致性</strong>，应该在项目中创建一个<strong>独立的数据字典</strong></p>
+</blockquote>
+<p>数据字典的构成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">数据字典的四类条目 --&gt; 数据流 &amp; 数据存储 &amp; 数据元素 &amp; 加工处理</span><br><span class="line">数据元素 --&gt; 1[&quot;数据的最小单位&lt;/br&gt;主要内容包括编号、别名、取值范围和&lt;/br&gt;取值含义、备注&quot;]</span><br><span class="line">数据流 --&gt; 2[&quot;数据流名称、编号、别名&lt;/br&gt;数据流来源&lt;/br&gt;数据流去向&lt;/br&gt;数据流组成&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>工业上，数据字典的每一类条目都用一张表表示并编号，做成卡片，方便查询</strong></p>
+<h5 id="数据结构">数据结构</h5>
+<p>由若干个数据项或数据结构组成，把关系密切的数据组合在一起<br>
+主要内容：名称、编号、数据结构的组成<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616163502.png" alt="Pasted image 20240616163502"></p>
+<h5 id="数据元素-数据项">数据元素/数据项</h5>
+<pre><code>数据项的名称、编号、别名、取值范围和取值含义、备注
+</code></pre>
+<p>例：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616163610.png" alt="Pasted image 20240616163610"></p>
+<h5 id="数据流">数据流</h5>
+<p>数据流图中，数据以数据流为单位进行传输<br>
+主要内容：</p>
+<ul>
+<li>数据流名称、编号、别名</li>
+<li>数据流来源</li>
+<li>数据流去向</li>
+<li>数据流组成<br>
+例子：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616163828.png" alt="Pasted image 20240616163828"></li>
+</ul>
+<h5 id="数据存储">数据存储</h5>
+<p>保留或者保存数据的地方<br>
+内容：<br>
+数据存储名称、编号、数据存储的组成（包括数据项或数据结构）<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616163908.png" alt="Pasted image 20240616163908"></p>
+<h5 id="加工逻辑">加工逻辑</h5>
+<p>主要内容：<br>
+名称、编号、加工逻辑的输入和输出、加工逻辑的说明<br>
+<strong>对基本加工的逻辑要做明确的描述</strong><br>
+基本加工是指底层数据流图中，不能再拆分的加工<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616164031.png" alt="Pasted image 20240616164031"></p>
+<h6 id="判定树、判定表">判定树、判定表</h6>
+<p>在结构化分析中，对于组合条件，如果使用结构化语言进行描述（分支结构），会显得不清晰，混乱。为了解决这个问题，我们采用判定树的方法来解决组合条件问题。</p>
+<ol>
+<li>判定树是从左往右的分支判定<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902161030.png" alt="Pasted image 20240902161030"></li>
+<li>判定表结构：左上是条件，左下是所有操作，右上是是否满足某个条件，右下是是否执行某个操作<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902161132.png" alt="Pasted image 20240902161132"></li>
+</ol>
+<h5 id="数据字典常用符号">数据字典常用符号</h5>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240616164102.png" alt="Pasted image 20240616164102"></p>
+<h2 id="验证软件需求">验证软件需求</h2>
+<h3 id="需求的质量属性">需求的质量属性</h3>
+<ol>
+<li>正确性：需求规格说明对系统功能、行为、性能等的描述必须与用户期望相符合，代表了用户真正的需求；</li>
+<li>完整性：需求规格说明应该包含软件要完成的全部任务，不能遗漏任何必要的需求信息；</li>
+<li>一致性：需求规格说明对各种需求不能存在矛盾，如术语使用冲突、功能和行为特性方面的矛盾等等；</li>
+<li>无歧义性：需求规格说明中的描述对于所有人都只能有一种明确的解释；</li>
+<li>可验证性：需求规格说明中描述的需求都可以运用一些可行的手段对齐进行验证和确认；<br>
+比如：不能存在不可验证的陈述，如“用户界面友好”；描述需要可测量，比如系统将在20秒内响应所有请求；</li>
+<li>可跟踪性：每一项需求都能与其对应的来源、设计、源代码和测试用例联系起来；</li>
+</ol>
+<h3 id="需求验证的技术">需求验证的技术</h3>
+<p><strong>需求验证主要围绕需求规格说明书的质量特性展开</strong></p>
+<ul>
+<li>需求评审：由不同代表（如分析员、客户、设计人员、测试人员）组成的评审小组以会议形式对需求进行系统性分析；</li>
+<li>原型评价：客户和用户在一个可运行的系统模型上实际检验系统是否符合他们的真正需要；</li>
+<li>测试用例生成：通过设计具体的测试方法，发现需求中的许多问题；</li>
+<li>形式化分析和验证</li>
+</ul>
+<h2 id="需求规格说明书">需求规格说明书</h2>
+<p>需求规格说明书按照需求分析设计方法不同而不同，PPT上只涉及到<strong>结构化设计</strong>的需求规格说明书；<br>
+结构化需求规格设计书是按照<strong>用例</strong>组织的需求规格说明书；<br>
+<strong>例子</strong>（以后如果要写文档可能参考用得到）：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240614092729.png" alt="Pasted image 20240614092729"></p>
+<h3 id="软件需求规格说明书（SRS）">软件需求规格说明书（SRS）</h3>
+<h4 id="主要目的">主要目的</h4>
+<ul>
+<li>便于用户、分析人员和软件设计人员进行理解和交流</li>
+<li>目标软件系统的最终验收和确认的标准</li>
+</ul>
+<h4 id="组成部分">组成部分</h4>
+<ol>
+<li>总体描述部分
+<ul>
+<li>系统给谁用的？使用目的是什么？</li>
+<li>系统的使用场景是什么？整体性的流程是什么？（可用UML活动图或系统流程图来表示）</li>
+<li>使用者需求列表与说明</li>
+</ul>
+</li>
+<li>详细需求：对于每一个需求至少描述4个部分：功能、性能、设计约束和接口
+<ul>
+<li>功能的描述：<br>
+描述系统中输入域输出之间的关系（类似于数据流图中的数据处理部分），描述清楚给定什么输入产生什么输出；<br>
+描述为了得到输出而在输入数据上做的相关操作；<br>
+描述系统在异常情况下的行为，如非法输入（有多种情况出现）或者计算中的错误；<br>
+<strong>多用ER图、DFD图、IPO图等来描述功能需求</strong></li>
+</ul>
+</li>
+<li>外部接口：所有<strong>软件与人、硬件和其他软件的交互</strong>都得明确描述，包括用户操作命名、屏幕显示格式、打印格式、系统如何呈现给用户的解反馈和错误消息等；</li>
+</ol>
+<h4 id="应对需求变化（扫一眼就行）">应对需求变化（扫一眼就行）</h4>
+<p>在软件开发中唯一不变的是需求变化。<br>
+<strong>应对需求变化的措施</strong>：</p>
+<ol>
+<li>控制需求变化：
+<ul>
+<li>让变化按照严格定义好的变更流程来进行</li>
+<li>让所有人明白需求变化带来的影响</li>
+</ul>
+</li>
+<li>设计良好的软件架构以应对需求变化</li>
+</ol>
+<p>考试透露：</p>
+<ol>
+<li>类图（肯定有！）</li>
+<li>活动图<br>
+用例图（图形编辑）<br>
+用例图：用户使用功能的例子的说明图！！！</li>
+<li><strong>测试</strong>（占比较大）！！！  PPT以及讲课有涉及到<br>
+源于教材和PPT的测试用例</li>
+<li>设计案例！！！  PPT和讲课有涉及到<br>
+数据流图、XXX图</li>
+<li>项目估算（要知道有什么估算方法）：<br>
+代码行<br>
+功能点（好写）<br>
+投入人员（好写，投入多少人，做多少天）<br>
+…</li>
+<li><strong>等价分类测试</strong>，重点！占比很大！</li>
+<li>做界面，第三类的倒数第四点：参考图书管理系统和人事系统</li>
+<li>实体图、类图<br>
+实体图和类图要考虑细节一些，不要太简单</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/06/16/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%913.%20%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">http://example.com/2024/06/16/课程内学习/【软件工程】3. 需求分析/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据库事务管理</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/02/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Git%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git使用指南"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Git使用指南</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%911.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" title="操作系统概览"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-15</div><div class="title">操作系统概览</div></div></a></div><div><a href="/2024/03/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%912.%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="处理器管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-21</div><div class="title">处理器管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="内存管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">内存管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="文件系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">文件系统</div></div></a></div><div><a href="/2024/04/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="设备管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-29</div><div class="title">设备管理</div></div></a></div><div><a href="/2024/03/28/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="基本概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">基本概念</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">软件需求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">需求分析的任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.1.</span> <span class="toc-text">需求分析任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%BB%E5%8A%A1%EF%BC%88%E7%BB%93%E6%9E%84%E5%8C%96%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%B3%95%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">基本任务（结构化需求分析法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">结构化需求分析的三种模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.4.</span> <span class="toc-text">需求分析的三个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">需求获取阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%A7%84%E7%BA%A6%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">需求规约阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E2%80%94%E2%80%94%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">需求验证阶段——需求评审</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">需求工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">需求的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E2%80%94%E2%80%94%E5%8F%AF%E7%94%A8%E6%80%A7%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">非功能需求——可用性相关概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">需求获取的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">需求获取中存在的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">需求获取的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E7%94%A8%E6%88%B7%E6%B2%9F%E9%80%9A%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">与用户沟通的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E7%A0%94%E7%A9%B6"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">文档研究</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%B0%83%E7%A0%94"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">需求调研</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%B0%83%E7%A0%94%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.3.2.1.</span> <span class="toc-text">需求调研的过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%B0%83%E7%A0%94%E7%9A%84%E6%8F%90%E9%97%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.2.2.</span> <span class="toc-text">需求调研的提问方法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%BB%BA%E6%A8%A1%E4%B8%8E%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6"><span class="toc-number">1.4.</span> <span class="toc-text">分析建模与需求规格说明书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text">需求分析和建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">需求建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%BB%93%E6%9E%84%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">需求分析方法——结构化方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E7%9B%AE%E6%A0%87"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">需求分析基本目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">需求分析模型的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%E7%9A%84%E7%BB%98%E5%88%B6%EF%BC%88%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%EF%BC%89"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">功能建模——数据流图的绘制（多层次数据流图）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1-%E2%80%94%E2%80%94-%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE%EF%BC%88E-R%E5%9B%BE%EF%BC%89"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">数据建模 —— 实体联系图（E-R图）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%BB%BA%E6%A8%A1-%E2%80%94%E2%80%94-%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="toc-number">1.4.3.5.</span> <span class="toc-text">行为建模 —— 状态转换图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-number">1.4.3.6.</span> <span class="toc-text">数据字典</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.3.6.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0-%E6%95%B0%E6%8D%AE%E9%A1%B9"><span class="toc-number">1.4.3.6.2.</span> <span class="toc-text">数据元素&#x2F;数据项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">1.4.3.6.3.</span> <span class="toc-text">数据流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.3.6.4.</span> <span class="toc-text">数据存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%B7%A5%E9%80%BB%E8%BE%91"><span class="toc-number">1.4.3.6.5.</span> <span class="toc-text">加工逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E6%A0%91%E3%80%81%E5%88%A4%E5%AE%9A%E8%A1%A8"><span class="toc-number">1.4.3.6.5.1.</span> <span class="toc-text">判定树、判定表</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E5%B8%B8%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.4.3.6.6.</span> <span class="toc-text">数据字典常用符号</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82"><span class="toc-number">1.5.</span> <span class="toc-text">验证软件需求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E7%9A%84%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">需求的质量属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E9%AA%8C%E8%AF%81%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="toc-number">1.5.2.</span> <span class="toc-text">需求验证的技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6"><span class="toc-number">1.6.</span> <span class="toc-text">需求规格说明书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6%EF%BC%88SRS%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">软件需求规格说明书（SRS）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%9B%AE%E7%9A%84"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">主要目的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">组成部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E9%9C%80%E6%B1%82%E5%8F%98%E5%8C%96%EF%BC%88%E6%89%AB%E4%B8%80%E7%9C%BC%E5%B0%B1%E8%A1%8C%EF%BC%89"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">应对需求变化（扫一眼就行）</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

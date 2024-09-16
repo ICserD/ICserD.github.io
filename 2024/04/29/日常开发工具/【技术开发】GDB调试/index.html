@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GDB调试技巧 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简介 UNIX、like-UNIX调试器； gdb的使用和退出 gdb的启动    操作 意义     gdb filename(可执行程序) &#x3D;&#x3D;程序无参数&#x3D;&#x3D; gdb装载filename启动调试   gdb --args filename args &#x3D;&#x3D;程序带参数&#x3D;&#x3D; 需要调试带参数的文件时使用   gdb进入，然后set args 需要参数的文件的gdb调试第二种使用方式   gdb -p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GDB调试技巧">
+<meta property="og:url" content="http://example.com/2024/04/29/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91GDB%E8%B0%83%E8%AF%95/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="简介 UNIX、like-UNIX调试器； gdb的使用和退出 gdb的启动    操作 意义     gdb filename(可执行程序) &#x3D;&#x3D;程序无参数&#x3D;&#x3D; gdb装载filename启动调试   gdb --args filename args &#x3D;&#x3D;程序带参数&#x3D;&#x3D; 需要调试带参数的文件时使用   gdb进入，然后set args 需要参数的文件的gdb调试第二种使用方式   gdb -p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2024-04-29T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-29T04:00:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="技术分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2024/04/29/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91GDB%E8%B0%83%E8%AF%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GDB调试技巧',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-29 12:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GDB调试技巧</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-29T04:00:00.000Z" title="发表于 2024-04-29 12:00:00">2024-04-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-29T04:00:00.000Z" title="更新于 2024-04-29 12:00:00">2024-04-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">898</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GDB调试技巧"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="简介">简介</h2>
+<p>UNIX、like-UNIX调试器；</p>
+<h2 id="gdb的使用和退出">gdb的使用和退出</h2>
+<h3 id="gdb的启动">gdb的启动</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gdb filename(可执行程序) ==程序无参数==</td>
+<td>gdb装载filename启动调试</td>
+</tr>
+<tr>
+<td>gdb --args filename args ==程序带参数==</td>
+<td>需要调试带参数的文件时使用</td>
+</tr>
+<tr>
+<td>gdb进入，然后set args</td>
+<td>需要参数的文件的gdb调试第二种使用方式</td>
+</tr>
+<tr>
+<td>gdb -p PID</td>
+<td>gdb进入已经在运行的系统中的程序 （一旦连上正在运行的程序，就会把先把该程序停止）</td>
+</tr>
+<tr>
+<td>quit</td>
+<td>退出当前gdb调试</td>
+</tr>
+</tbody>
+</table>
+<h3 id="断点">断点</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b main</td>
+<td>在main函数打断点</td>
+</tr>
+<tr>
+<td>b function</td>
+<td>在某个函数打个断点（==C++程序要在fucntion前面加上类域==）</td>
+</tr>
+<tr>
+<td>b file_Path:13</td>
+<td>在file_Path(文件有效路径)文件的13行打断点</td>
+</tr>
+<tr>
+<td>l/list</td>
+<td>终端展示当前断点前后部分代码</td>
+</tr>
+<tr>
+<td>l/list n/-n</td>
+<td>终端展示当前断点后n行/前n行代码（多次按list会继续往下展示） 如：list -3、list 3</td>
+</tr>
+<tr>
+<td>info breakpoint</td>
+<td>查看断点位置</td>
+</tr>
+<tr>
+<td>delete n</td>
+<td>删除指定断点（要先info查看一下编号） 比如 delete 3</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除全部断点（会有确认删除提示）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="运行-单步执行-跳跃执行">运行/单步执行/跳跃执行</h3>
+<p>record可以反向调试，但是每一步都会被压入堆栈，有时候会浪费堆栈空间；所以一般不用了要赶紧stop掉，否则调试可能会非常慢；</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>run/r ==tips: run &lt; data.txt==</td>
+<td>运行程序，也可以输入文件debug，超好用</td>
+</tr>
+<tr>
+<td>n</td>
+<td>next的意思，不进入函数的单步执行</td>
+</tr>
+<tr>
+<td>ni</td>
+<td>按机器指令单步执行（不进入函数） （有时候对于自己代码的优劣也可以看执行单个语句机器指令用了多少次）</td>
+</tr>
+<tr>
+<td>s</td>
+<td>step的意思，单步执行，会进入函数debug</td>
+</tr>
+<tr>
+<td>si</td>
+<td>机器指令单步执行（进入函数）</td>
+</tr>
+<tr>
+<td>c</td>
+<td>continue的意思，继续执行</td>
+</tr>
+<tr>
+<td>==record==</td>
+<td>在当前执行完位置开始标记，便于后续一步一步回来 （但是对于堆栈较大等情况用不了）==record允许我们逆向调试==</td>
+</tr>
+<tr>
+<td>==record stop==</td>
+<td>停止标记</td>
+</tr>
+<tr>
+<td>==reverse-next==</td>
+<td>与record联合使用，返回上一步</td>
+</tr>
+<tr>
+<td>==reverse-任何命令(任何正向调试命令，比如list、ni、s)==</td>
+<td>反向的效果，回到离当前最近的之前那个操作</td>
+</tr>
+<tr>
+<td>set exec-direction reverse</td>
+<td>设置程序方向、告诉gdb，下面都是反向执行 于是后面n代表reverse-n</td>
+</tr>
+<tr>
+<td>finish</td>
+<td>进入一个函数之后，看完部分内容想跳出去继续调试 finish会执行完当前堆栈剩余部分并达到跳出函数的效果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="堆栈">堆栈</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bt</td>
+<td>查看堆栈</td>
+</tr>
+<tr>
+<td>f n</td>
+<td>f 1表示跳到第1个堆栈，这样可以跳到对应的堆栈</td>
+</tr>
+</tbody>
+</table>
+<h3 id="变量">变量</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p varname</td>
+<td>打印当前堆栈中变量名为varname的值 打印结果：地址 + 值</td>
+</tr>
+<tr>
+<td>info locals</td>
+<td>打印本地变量（当前堆栈）</td>
+</tr>
+<tr>
+<td>info variables</td>
+<td>查看全局变量</td>
+</tr>
+<tr>
+<td>watch var</td>
+<td>监视变量，如果该变量改变了会通知</td>
+</tr>
+<tr>
+<td>x &amp;varname</td>
+<td>查看某个变量的内存地址（16进制显示）</td>
+</tr>
+<tr>
+<td>info watchpoints</td>
+<td>查看当前正在监视的变量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="进阶使用">进阶使用</h2>
+<p>反向编译调试、更改系统动态库、调试系统正在运行的程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -x <span class="comment">#查看当前进程  </span></span><br><span class="line"> gdb -p PID  <span class="comment">#可链接当前运行序号为PID的程序  </span></span><br><span class="line"> •   <span class="comment">#可以sudo权限进行调试</span></span><br></pre></td></tr></table></figure>
+<p></p>
+<p>==函数退出的时候先退出gdb，否则无法退出==</p>
+<p>多线程调试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread apply all bt <span class="comment">#查看多线程的堆栈（会打印当前进程的所有线程的堆栈打印出来）</span></span><br></pre></td></tr></table></figure>
+<p></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/04/29/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91GDB%E8%B0%83%E8%AF%95/">http://example.com/2024/04/29/日常开发工具/【技术开发】GDB调试/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="设备管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">设备管理</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%914.%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%92%8CE-R%E6%A8%A1%E5%9E%8B/" title="数据库设计和E-R模型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据库设计和E-R模型</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/02/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Git%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git使用指南"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-02</div><div class="title">Git使用指南</div></div></a></div><div><a href="/2023/10/18/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" title="Hexo初步搭建个人博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-18</div><div class="title">Hexo初步搭建个人博客</div></div></a></div><div><a href="/2023/10/18/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Ubuntu22.04%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8%E4%BB%98%E8%B4%B9%E7%89%88typora/" title="Ubuntu下使用Typora"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-18</div><div class="title">Ubuntu下使用Typora</div></div></a></div><div><a href="/2023/10/18/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Ubuntu22%E7%8E%AF%E5%A2%83%E4%B8%8Barduino+vscode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Ubuntu下搭建arduino+vscode开发环境"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-18</div><div class="title">Ubuntu下搭建arduino+vscode开发环境</div></div></a></div><div><a href="/2024/04/01/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Vim%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Vim的使用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">Vim的使用</div></div></a></div><div><a href="/2023/10/18/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91markdown%E8%BF%85%E9%80%9F%E5%85%A5%E9%97%A8/" title="markdown快速入门指南"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-18</div><div class="title">markdown快速入门指南</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gdb%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E9%80%80%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">gdb的使用和退出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gdb%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="toc-number">2.1.</span> <span class="toc-text">gdb的启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-%E5%8D%95%E6%AD%A5%E6%89%A7%E8%A1%8C-%E8%B7%B3%E8%B7%83%E6%89%A7%E8%A1%8C"><span class="toc-number">2.3.</span> <span class="toc-text">运行&#x2F;单步执行&#x2F;跳跃执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%A0%88"><span class="toc-number">2.4.</span> <span class="toc-text">堆栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.5.</span> <span class="toc-text">变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">进阶使用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-14 21:35:51'
+  postUpdate: '2024-09-16 16:47:15'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -150,234 +150,374 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">nullptr</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/10/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B-4-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB/" title="神经网络分类">神经网络分类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-09T16:00:00.000Z" title="发表于 2023-08-10 00:00:00">2023-08-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">神经网络分类
-背景
-分类也有不同的种类，在机器学习中，有监督学习的分类和无监督学习的分类就是不同的两类分类方法。
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">nullptr</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%910.%20%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/" title="机器学习概述">机器学习概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T07:00:00.000Z" title="发表于 2023-10-16 15:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></span></div><div class="content">机器学习概述
+概述
+机器学习（ML），专门研究计算机怎样模拟实现人类的学习行为，以获取新知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
+机器学习是人工智能的核心，是使得计算机具有智能的根本途径，其应用遍及人工智能的各个领域，主要使用归纳、综合而不是演绎。
+机器学习场景
 
+模式识别
+机器学习
+深度学习：其主要研究建立、模拟人脑进行分析学习的神经网络，模仿人脑的机制来解释数据，例如图像、声音和文本。
 
-有监督学习：样本数据已经给出了正确的分类，通过对正确分类的样本数据进行学习，从中总结规律、获取知识、付诸应用。
-监督学习的样本数据提供了特征值和目标值，通过回归、分类学习特征值和目标值之间的关系。
+应用举例：
 
+搜索引擎： 根据你的搜索点击，优化你下次的搜索结果,是机器学习来帮助搜索引擎判断哪个结果更适合你（也判断哪个广告更适合你）。
+垃圾邮件：会自动的过滤垃圾广告邮件到垃圾箱内。
+超市优惠卷：在构面小孩尿布的时候，售货员会送你一份优惠卷买啤酒
+邮局邮寄：手写软件自动识别寄送贺卡的地址
+申请贷款：通过最近的金融活动信息进行综合评价，决定你是否合格
 
-无监督学习：样本数据没有提供确定的分类属性，样本数据中只有特征值没有目标值，只能通过样本数据本身的特性进行摸索和学习，通过聚类方法来寻找和认识对象的相似性。
+机器学习组成
+主要任务
+回归和分类都是机器学习的算法，一个问题用机器学习的方式解决，需要采用回归还是分类，取决于目标变量需要的是连续的数据还是离散的数据。一般回归算法用于X到Y的映射这样的关系（连续），分类算法一般用于离散的标记 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/16/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9119-MPU6050%E4%BC%A0%E6%84%9F%E5%99%A8/" title="MPU6050传感器">MPU6050传感器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T04:00:00.000Z" title="发表于 2023-10-16 12:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">MPU6050传感器
+姿态检测
+抽象来说，姿态就是“载体坐标系”和“地理坐标系”之间的转换关系。
 
+坐标系
+常用的坐标系
 
-所以分类和聚类是有差别的。
-聚类分析
-聚类的分类
-聚类是从数据分析的角度，对大量的、多维度的、无标记的样本数据集，按照样本数据自身的相似性对数据集进行分类。
 
-大量：数据数量大
-多维：样本特征值多
-无标记：样本数据对于每个样本没有指定的类别属性
+地球坐标系
 
-对于聚类的分类，是针对研究对象的不同来说的。把样本的行作为对象，考察样本的相似度，将样本集分成若干类，称为Q型聚类分析，属于样本分类。
-把样本集的列作为对象，考察各个特征变量之间的关联程度，按照变量的相关性聚合为若干类，称为R型聚类分析，属于因子分析。
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/09/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B-3-%E6%A8%A1%E7%B3%8A%E8%81%9A%E7%B1%BB/" title="模糊聚类(Fuzzy C-Means)">模糊聚类(Fuzzy C-Means)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T16:00:00.000Z" title="发表于 2023-08-09 00:00:00">2023-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">模糊聚类(Fuzzy C-Means)
-学术性原理
-模糊聚类是将模糊理论与聚类理论结合的一种聚类方法，对于分类边界不清晰的情况较为灵活和适用。
-这里介绍模糊C均值聚类(Fuzzy C-Means)方法，通过隶属度表示样本属于某一类的概率，很多情况下多个类别之间的界限并不是绝对的明确。
-显然相比于K-Means的硬聚类，模糊C均值聚类得到的聚类结果更加灵活。
-模糊C均值聚类通过最小化目标函数得到聚类中心：
 
-其中，m&gt;1为模糊系数(fuzzy coefficient)，N为样本数，C为聚类中心数，Cj表示第j个聚类中心，和样本特征维数相同，xix_ixi​表示第i个样本，uiju_{ij}uij​表示样本xix_ixi​对聚类中心cjc_jcj​的隶属度(通俗地说就是xix_ixi​属于cjc_jcj​的概率)，显然满足：
 
-||∗|| 可以是任意度量数据相似性(距离)的范数，最常见的就是欧几里得范数（又称欧氏范数，L2范数，欧氏距离）：
+地理坐标系
 
-模糊c均值聚类通过更新UijU_{ij}Uij​和CjC_{j}Cj​来迭代地优化目标函数Eq.(1):
 
-迭代的终止条件为 $max_{ij ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/08/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B-2-%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB/" title="层次聚类">层次聚类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-07T16:00:00.000Z" title="发表于 2023-08-08 00:00:00">2023-08-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">层次聚类
-背景
-聚类属于机器学习的无监督学习，聚类的方法有很多，比如K-means聚类、层次聚类。K-means聚类需要在聚类前确定簇数，这会因为个人的主观判断而导致分析结果的偏差。层次聚类通过对原始数据划分层次聚类，最终得出簇数，聚类结果较为客观。
-基本原理
-每个数据点都是一簇，然后找到相似性最高的两个点进行聚类（看成新的一个簇参与聚类），不断迭代。
-具体算法
-一般计算相似性的方法是计算距离。
-具体层次聚类步骤
+载体坐标系
+以运载体的质心为原点，一般根据运载体自身结构方向构成坐标系，如Z轴上由原点指向载体顶部，Y轴指向载体头部，X轴沿载体两侧方向。上面说基于飞机建立的坐标系就是一种载体坐标系，可类比到汽车、船舰、人体、动物或手机等各种物体。
+重要的几个角
+这几个角涉及到坐标转换
 
 
-创建领近矩阵
 
-矩阵对角元素都为0，点与自身距离为0
-使用欧几里得距离计算非对角元素的距离
 
+MPU6050传感器
+采用MEMS（微机系统）结合机械系统的方式，可以求出实时的偏航角、俯仰角、横滚角的角速度，然后通过对时间的积分可以求出偏离的角度从而确定物体的姿态。
+误差分析
+累计误差
 
+减少误差、克服缺陷的方案
 
-执行层次聚类
+加速度传感器（无法测算出偏航角的误差、不区分重力加速度和外力加速度，当受到外部冲击时会有很大的精度误差）
+磁场检测传感器（电子罗盘，在磁场环境不稳定的区域会有误差）
+GPS检测（只适用于大范围移动）
 
+姿态融合，滤波算法（多传感器采样，利用不同传感器在不同情况的优点使用一定的算法提高某种传感器采样数据的权重，来提高姿态检测的精确性）
+姿 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/16/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9118-IIC/" title="I2C">I2C</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T03:00:00.000Z" title="发表于 2023-10-16 11:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">I2C
+I2C通信协议简介
+I2C简单介绍
+另外，CubeMx上面也有类I2C协议，SMBus-Alert-mode，这是一种类I2C协议
 
-将所有的点视为单个簇
+I2C物理层特点
 
+它是一个支持多设备的总线。“总线”指的是多个设备共用的信号线。在一个I2C通讯总线中，可连接多个I2C通讯设备，支持多个通讯主机以及多个通讯从机。
+一个I2C总线只使用两条总线线路，一条双向串行数据线(SDA)，一条串行时钟线(SCL).数据线即用来表示数据，时钟线用于数据收发同步。
+每个连接到总线的设备都有一个独立的地址，主机可以利用这个地址进行不同设备之间的访问。
 
-找到领近矩阵中最小距离的点并且将这两个点合并
-（即将这两个点视为一个簇，代替原来的两个簇）
 
+了解I2C物理层的电路设计
 
-新的簇的值可以是两个点中的最大值、最小值或者平均值或其他
+I2C的协议层
+I2C的协议定义了通讯的起始和停止信号、数据有效性、响应、仲裁、时钟同步和地址广播等环节。
+我们的目的是了解协议的核心内容，然后学会通过STM32配置出合适的协议来实现具体的功能。
 
 
-重复2、3，直到只剩下一个簇
+I2C的基本读写过程
+主机写数据到从机
+注意结合下图来理解这个过程，图中阴影位表示主机发送的数据，无阴影位是从机相应的数据
 
 
+首先传输一个起始信号S，然后在其实信号后面紧接着传输从机地址的信号SLAVE_ADDRESS，确定通讯 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/16/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9117-ADC/" title="ADC">ADC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T02:00:00.000Z" title="发表于 2023-10-16 10:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">ADC章节
+ADC简介
+嵌入式闭环控制系统框图
 
+数字量（D）与模拟量（A），在其中起着连接计算机系统和外部世界的桥梁作用。
+模拟信号的采集和处理过程
 
-选择聚类数
-在层次聚类的过程中，每迭代一次，类别就少一层。我们应该选择多少簇的层次呢？
-我们可以通过树状图方便地选出聚类的簇数。
-当我们合并两个簇时，树状图会相应地记录这些簇之间的距离并以图形形式表示。下面这个是树状图的原始状态，横坐标记录 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/07/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B-1-K-means%E8%81%9A%E7%B1%BB/" title="K-means聚类">K-means聚类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-06T16:00:00.000Z" title="发表于 2023-08-07 00:00:00">2023-08-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">K-means聚类
-简介
-K-Means算法是最热门最广泛的聚类算法之一，属于无监督算法，即无明确类别、label，我们把相似的东西分到一个组寻找其中的规律。
-优点：
+传感器采集数据，经过运放放大…（主要是模拟信号的采集、AD转换、数字信号处理三部分组成）
+ADC原理
+ADC的转换主要是两个过程：采样保持、量化编码
+采样保持，因为采集到数据之后需要给单片机一点时间来进行转换。
+量化编码，也有许多算法。STM32均采用逐次比较型算法。
+ADC主要参数
 
-速度快
-原理简单
-对大数据有较好的伸缩性
 
-缺点：
+分辨率
+比如说，一个n位的AD转换器的分辨率就是n；
+一般我们使用的stm32单片机都是12位的。
+具体理解：假设最大输入电压是5v，那么stm32AD转换器所能分辨的最小电压量是
+5/212v5/2^{12}v
+5/212v
+ADC位数越多，所能分辨的最小电压越小，但是ADC的测量结果是经过放大的。
 
-需要指定聚类数量k
-对异常值敏感
-对初始值敏感
 
-聚类的应用：
+相对精度
+AD转换器实际输出直与理论值之差
 
-市场分割
-社交网络
-组织计算集群
-天文数据分析
 
-算法原理
-初始给定K个簇中心，按照邻近原则把待分类的点分到各个簇。然后按照平均法重新计算各个簇的质心，确定新的簇新。一直迭代直到簇心的移动距离小于某个阈值。
-实现步骤
+转换速度
+stm32一般是微秒级别
 
-为待聚类的点随机寻找聚类中心
-计算每个点到聚类中心的距离，将各个点归类到离该点最近的聚类中去
-计算每个聚类中所有点的坐标的平均值，并将这个平均值作为新的聚类中心
-重复2、3步骤，直到聚类中心不再大范围移动或者聚类次数达到要求为止
 
-Python代码实现
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/06/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-6-%E5%9B%BE%E8%AE%BA%E4%BB%A5%E5%8F%8A%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" title="图论">图论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-05T16:00:00.000Z" title="发表于 2023-08-06 00:00:00">2023-08-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">图论
-图论基本概念
-图论以图为研究对象，是离散数学的重要内容。图论不仅与拓扑学、计算机数据结构和算法密切相关，而且正在成为机器学习的关键技术。
-图论中的图，不是指图形图像或者地图，而是指由定点和连接定点的边所构成的关系结构。
-图提供了一种处理关系和交互等抽象概念的更好方法，它还提供了直观的视觉方式来思考这些概念。
-Python的NetworkX工具包
-NetworkX是基于Python语言的图论与复杂网络的工具包，用于创建、操作和研究复杂网络的结构、动力学和功能。
-NetworkX可以以标准和非标准的数据格式描述图与网络，生成图与网络，分析网络结构、构建网络模型，设计网络算法，绘制网络图形。
-NetworkX提供了图形的类、对象、图形生成器、网络生成器、绘图工具、内置了常用的图论的网络分析算法，可以进行图和网络的建模、分析和仿真。
-NetworkX的功能非常强大和庞杂，所涉及的内容远远超出了数学建模的范畴，但可以结合数学建模谈谈如何利用这个工具包解决一些基本问题，了解其中的经典算法。
+采样间隔时间
+数值上转换速率等于转换速率
 
-NetworkX的官网和文档
 
-官方网址：https://networkx.org/
-官方文档：ht ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/05/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-5-%E5%9B%BA%E5%AE%9A%E8%B4%B9%E7%94%A8%E9%97%AE%E9%A2%98/" title="固定费用问题(未更新)">固定费用问题(未更新)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-04T16:00:00.000Z" title="发表于 2023-08-05 00:00:00">2023-08-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content"></div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/04/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-4-0-1%E8%A7%84%E5%88%92/" title="0-1规划">0-1规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-03T16:00:00.000Z" title="发表于 2023-08-04 00:00:00">2023-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">0-1规划
-基本介绍
-0-1整数规划是一类特殊的整数规划，变量的取值只能是0或者1。
-0-1变量的描述开关、取舍、有无等逻辑关系、顺序关系，可以处理背包问题、指派问题、选址问题、计划安排、线路设计、人员安排等各种决策规划问题。进而，任何整数都可以用二进制表达，整数变量就可以表示为多个0-1变量的组合，因此任何整数规划都可以转化为0-1规划问题来处理。0-1规划问题与运筹学中的很多经典问题也有紧密联系。
-在数学建模学习中，0-1规划主要用于求解互斥的决策问题、互斥的条件约束问题、固定费用问题和分派问题。0-1规划是数模竞赛的常见题型，国赛B题经常有0-1规划问题或可以转化为0-1规划问题。
-0-1规划算法都比较复杂，大规模问题一般没有精确解法。本文任然使用PuLP库进行0-1规划问题的求解。该工具包的使用都比较简单。
-0-1规划的分类以及建模方法
-规划问题的数学模型包括决策变量、约束条件和目标函数，围绕着这三个要素都可能存在互斥的情况，从而导出不同类型的0-1规划模型，其他建模方法也有差别。
-互斥的决策问题
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/03/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-3-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="非线性规划">非线性规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-02T16:00:00.000Z" title="发表于 2023-08-03 00:00:00">2023-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">非线性规划
-基本概念
-当线性问题的三要素：目标函数、限制条件、决策变量，任意一个被破坏成非线性的时候，此时线性的问题就变成了非线性的问题。
-概括来说，目标函数和约束条件包含非线性函数，就是非线性规划。
-非线性规划没有统一的通用方法、算法来解决，各种方法有特定的应用范围和适用条件。另一方面，非线性规划问题在实践中不能获得全局的最优解，只能得到局部最优解或者近似最优解。
-数学基础
+采样电压范围
 
 
-多元非线性函数求极值
+值得注意的是，我们的最小采样时间应该大于转换时间，这是为了让采集的数据保持到转换完成。
+注意，采 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/16/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9116-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E5%99%A8%E4%BB%8B%E7%BB%8D/" title="常见的存储器介绍">常见的存储器介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-15T16:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">常见的存储器介绍
+常见存储器分类
 
 
-有等式约束的多元非线性函数求极值——拉格朗日乘子法
+易失性存储器
+RAM
 
 
-有不等式约束的多远非线性函数求极值
+非易失性
+ROM、FLASH、光盘、软盘、机械硬盘
 
 
-法一：引入松弛变量将不等式约束转换为等式约束；
-拉格朗日乘子法；
 
+易失性存储器
+一般把他当成RAM了
+分类
 
-法二：KKT条件法（拉格朗日+KKT的方法避免了引入松弛变量，是解决约束优化方法的通用方法）：
+SRAM/DRAM的存储单元结构
 
+SRAM/DRAM的通信方式
 
+同步和异步的主要区别是有无时钟源
+从图片我们可以看到，DRAM同步是要有时钟支持的。
+DRAM也分为DDR、DDR2（双边沿数据采集）、DDR3（和2主要区别是采样频率的变化）、SDRAM。上面的图片也有介绍到
+DDR的意思是内存，这里的意识是，内存主要都是采用SDRAM来实现的（同步DRAM，同步动态随机存储器）
+SEAM/DRAM的简单对比
 
+非易失性存储器
 
+ROM，只读存储器
+FLASH，闪存
+磁盘、光盘
 
-基本形式
+ROM
 
-二次规划的基本形式
-目标函数是一个二次函数那就是一个二次规划
-举例：
+FLASH闪存
 
-Python解非线性规划问题
-Scipy库求解非线性规划问题
-scipy库对于各种函数以及算法的详细解释和用法文档
-https://docs.scipy.org/doc/scipy/reference/generated/scipy. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/02/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-2-%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92(%E7%BA%BF%E6%80%A7)/" title="整数规划">整数规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T16:00:00.000Z" title="发表于 2023-08-02 00:00:00">2023-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">整数规划
-整数规划基本概念
-整数规划问题
-线性规划问题的最优解可能是小数或者分数。整数规划是指变量的取值只能是整数的规划。这在实际问题中很常见，例如车间人数、设备台数、行驶次数，这些变量显然必须取整数解。
-整数规划并不一定是线性规划问题的变量取整限制，对于二次规划、非线性规划问题也有变量取整限制而引出的整数规划。但在数学建模问题中所说的整数规划，通常是指整数线性规划。
-根据变量的不同情况，整数规划又分为：
+哪一个闪存支持程序的执行？
+答案是Nor Flash，因为Nor Flash的读写单元是字节，可以访问一条一条的指令，计算机就可以访问存放在FLASH的指令进行执行。
+但是NAND FLASH的读写单元是“块/扇区”，计算机进行访问时，会读取到以指令为首地址的一大块存储空间，计算机不知道该执行哪一条，所以不能执行。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9115-DMA%E9%80%9A%E4%BF%A1/" title="DMA-直接存储器访问控制器">DMA-直接存储器访问控制器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">DMA-直接存储器访问控制器
+DMA的作用
 
-完全整数规划，全部变量都要求是整数
-混合整数规划，部分变量要求是整数
-0-1整数规划，变量的取值只能是0或者1
-混合0-1规划，部分变量的取值只能是0或1
+在单片机上继续数据传输，大概有两种方式
 
-整数规划的求解方法
-分支定界法
-基本思想：把原问题（整数规划问题）转换为一个个线性规划问题来解决，并在求解这些线性规划问题的过程中不断追踪原问题的上界（最优可行解）和下界（最优线性松弛解）。
-分支界定法把全部可行解空间反复地分割为越来越小的子集，称为分支；并且对每个子集内的解集计算一个目标的上界，称为定界，每次分支后，对于超出已知可行解集目标值的那些子集不再进一步分枝，就可以删减很多子集，这称为剪枝。
-具体来说：设有最大化整数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/01/%E3%80%90%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E3%80%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-1-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="线性规划模型">线性规划模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-31T16:00:00.000Z" title="发表于 2023-08-01 00:00:00">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="content">线性规划模型
-要点
-线性规划的矩阵形式
+CPU处理数据
+DMA处理数据
 
-不等式组条件的矩阵化
-方程组条件的矩阵化
-每个变量自己的取值范围
-目标函数的向量化
+DMA实际上是一个控制器，DMA控制器的实现基于复杂的总线矩阵架构
+DMA专注于数据转移，而CPU专注于计算处理
+DMA的实现
+DMA在总线矩阵架构的位置
 
+结构图解读
 
-决策变量
-目标函数
-约束条件
+DMA是一个独立的外设，它独立于总线之外，接在总线矩阵上
+它可以通过总线矩阵，访问各种与总线相连的外设
 
-标准形式
-只要是通过程序解决线性规划问题，一定是求最小值。如果实际问题是求最大值，那么我们加个负号即可。
+DMA内部的具体实现
+DMA框图
 
-如何理解线性规划的标准形式？
+DMA内部实现解读
 
-问题是线性的最大值或者最小值
-约束条件本应该是小于等于，这是通用形式。（如果要改为等于，则要用其他方式转换）
-存在不等约束变换可以应用松弛变量
-规划问题的核心在于决策变量，目标函数和约束条件
 
-线性规划的求解的基本原理
+DMA请求，总线连接的外设发送DMA请求，高速DMA可以对它进行数据的搬运，于是DMA就会去对该外设里面的数据进行访问和操作；
 
 
-单纯形法
-基本思想：固定变量，不断变换基向量求方程组带入，看看是不是最优解，如果不适合就更新迭代现阶段的解。
-单纯形法实际上就是解方程组，特点是结果比较精确。
+通道选择，用于配置外设中的数据放在DMA的哪一个通道；
+当外设中的数据提取到相应的通道中之后，DMA就会将数据传输到数据搬运的目标地址中
 
 
-蒙特卡洛法
-在可行域范围内生成大批量的随机数据点，观测这些数据在什么点位置取得最优。
-基本思想：大量的重复性试验，以频率估计概率。
-由于生成的点事随机的，所以必须要生成大批数据进行计算，然后求出来的也只是数值的近似最优解，更多适用于解非线性问题，因为线性问题是可以得到精确的解的。
+对DMA外设要点的概括
+首先明白，通信实际上就是数据的传输
+DMA这个器件，它的功能就是建立起一个数据传输通道（不需要CPU参与这样的工作，减轻CPU的负担）
 
+如何用DMA？最贴切的应用场景（基于现有的水平）
+如果我们想要用串口接收数据，将数据放在内存里，我们可以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/14/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9114-%E4%B8%B2%E5%8F%A3%E9%80%9A%E8%AE%AF/" title="通讯">通讯</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-13T16:00:00.000Z" title="发表于 2023-10-14 00:00:00">2023-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">通讯
+通讯的基本概念
+通讯的分类概览
 
-线性规划中引入松弛变量
- ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/25/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%9117.%E5%8D%8F%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E5%B9%B6%E8%A1%8C%E6%8F%90%E9%80%9F/" title="线程、进程、协程 —— 并行提速">线程、进程、协程 —— 并行提速</a><time datetime="2023-10-25T09:05:00.000Z" title="发表于 2023-10-25 17:05:00">2023-10-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91markdown%E8%BF%85%E9%80%9F%E5%85%A5%E9%97%A8/" title="markdown快速入门指南">markdown快速入门指南</a><time datetime="2023-10-18T03:00:00.000Z" title="发表于 2023-10-18 11:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" title="Hexo初步搭建个人博客">Hexo初步搭建个人博客</a><time datetime="2023-10-18T02:00:00.000Z" title="发表于 2023-10-18 10:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Ubuntu22.04%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8%E4%BB%98%E8%B4%B9%E7%89%88typora/" title="Ubuntu下使用Typora">Ubuntu下使用Typora</a><time datetime="2023-10-18T02:00:00.000Z" title="发表于 2023-10-18 10:00:00">2023-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/18/%E3%80%90%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E3%80%91Ubuntu22%E7%8E%AF%E5%A2%83%E4%B8%8Barduino+vscode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Ubuntu下搭建arduino+vscode开发环境">Ubuntu下搭建arduino+vscode开发环境</a><time datetime="2023-10-18T02:00:00.000Z" title="发表于 2023-10-18 10:00:00">2023-10-18</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+
+串行通讯与并行通讯
+
+
+
+​			串行通讯与并行通讯的区别
+​			串行通讯的有点是节省数据线
+
+
+
+全双工、半双工及单工通讯（按通讯方向来分）
+
+
+
+同步通讯与异步通讯（根据数据的同步方式划分）
+同步通讯一般会有时钟来协调，一般用于处理实时有效速率（对时钟误差要求高）
+异步通讯要先约定好速率，有效数据位减少，异步通信双方的时钟允许误差较大
+
+
+
+通讯速率
+每秒钟传输的二进制位数
+
+
+
+一个通信方式，可以是上面三种通信方式的集合
+USART-通用同步异步收发器
+它是STM32上的一个外设
+USART概览
+
+协议信号主要包括物理层面这些线如何接线等等信息。
+STM32和PC通信模型
+tx是发线，rx是收线
+
+STM32和PC通过RS-232标准通信
+即RS-232是他们之间通信的一个协议
+有了这个协议，它才能确定具体的物理层器件，比如接口，以及数据的交互方式；具体接线图如下。
+
+RS-232标准介绍
+
+RS-232协议电平标准对比
+
+RS-232标准的物理接口规定及接口标号
+
+RS-232标准下接口标号的作用
+
+我们目前用得到的，常用的就只有三条 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/13/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9113-%E9%A9%B1%E5%8A%A8%E8%9C%82%E9%B8%A3%E5%99%A8%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90/" title="驱动蜂鸣器播放音乐">驱动蜂鸣器播放音乐</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-12T16:00:00.000Z" title="发表于 2023-10-13 00:00:00">2023-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">驱动蜂鸣器播放音乐
+原理
+利用定时器+PWM控制输出的电压频率，控制蜂鸣器的发声。
+乐理知识
+必须知道的三个参数：音符，音调，节拍
+一般以C调音符为主
+音调
+C调音符与频率对照表
+
+节拍
+节拍决定了音符的时间长短
+节拍的简谱图
+
+
+编程思路原理
+采用定时器+PWM的方式，解放主循环，让程序可以做更多的事。
+定时器用于把握节拍
+PWM控制音调和音符
+PWM的周期(Hz) = 主频(Hz) / (重装载值 + 1) / (分频系数 + 1)
+每次转换音符时，动态修改重装载值即可实现PWM输出频率的变化，进而控制无源蜂鸣器的发声。定时器进行ms中断，判断节拍时间是否达到。
+电路原理
+无源蜂鸣器需要输入方波驱动发声；
+应注意在IO口要一个下拉电阻(使得蜂鸣器IO口不工作时保持低电平)，避免不通电时IO口处于浮空状态导致意外发声；
+
+疑问
+关于hal库的函数
+如何找到相应的函数？只是看csdn不是治本之策。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/12/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9112-Debug%E5%8A%9F%E8%83%BD/" title="Debug功能及其方法简述">Debug功能及其方法简述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-11T16:00:00.000Z" title="发表于 2023-10-12 00:00:00">2023-10-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">Debug功能及其方法简述
+常见的调试方法
+
+常见的Debug工具
+
+MDK-Keil的DEBUG使用
+硬件层面的准备
+
+用仿真器连接电脑与开发板
+
+软件层面的准备
+
+
+魔法棒的output选项中勾选这些(否则将无法看到现象)
+
+
+
+Debug选项设置，重点关注右侧
+
+
+
+打开setting进行配置，配置好接口，其他不用管。
+
+
+
+然后打开FlashDownload
+
+进行相应配置
+
+
+若不小心做了失误改动，按照如下图片复原、或者重新安装
+
+
+
+Debug的具体使用
+
+
+Run按钮，点击它程序就会运行。
+
+
+stop就会停止，代码也停止在相应的地方。
+
+
+
+第一个step是步入，进入函数执行；
+第二个是step over步过(它还是会执行，只不过不跟踪其代码而已)；
+第三个是步出step out，即离开当前子函数，回到上一级函数；
+第四个是运行到当前行
+
+蓝色箭头：光标所处位置；    黄色箭头：程序运行到的位置
+
+
+回到当前程序停止位置（黄色箭头）
+
+
+
+断点：
+
+
+断点只能设置再小黑快里，因为在小黑块里才有实际的语句执行。
+
+
+
+点击断点后，程序运行到断点处便会停下，但斌没有执行断 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/11/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9111-HAL%E5%BA%93%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" title="HAL库的驱动框架">HAL库的驱动框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-10T16:00:00.000Z" title="发表于 2023-10-11 00:00:00">2023-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">HAL库驱动框架
+外设初始化
+对外设的封装
+xx_HandleTypeDef (xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等)
+
+Instance成员(xx_TypeDef类型)，一般是指向外设的基地址，访问相关外设的资源
+Init成员(xx_InitTypeDef类型)，用于初始化外设，配置外设如何去工作
+Hdma*成员(DMA_HandleTypeDef类型，可能一个句柄结构有多个)
+其他资源
+
+LOCK锁(HAL_LockTypeDef类型)    用于防止资源竞争，保护外设工作过程
+STATUS状态(HAL_xx_StateTypeDef类型)    指示句柄结构体状态，可以用这个检查一下外设状态
+…
+
+
+
+对外设初始化使用方法
+
+
+HAL_xx_Init,  参数一般为xx外设的句柄结构体
+对句柄结构体下的init成员的相关参数配置到寄存器之前，它会先调用hal_xx_mspinit函数，将相关底层资源初始化完成，比如时钟、使用到的引脚、中断的使能等等。
+
+
+HAL_xx_MspInit, 参数一般为xx外设的句柄结构体 (再HAL库中，这个函数是一个回调 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
-            
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">技术分享</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><span class="card-category-list-name">数学建模</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"><span class="card-category-list-name">数据挖掘</span><span class="card-category-list-count">7</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/markdown/" style="font-size: 1.16em; color: #999b9e">markdown</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.44em; color: #99a7ba">数学建模</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.27em; color: #99a0a9">爬虫设计</a> <a href="/tags/vscode/" style="font-size: 1.1em; color: #999">vscode</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.21em; color: #999ea4">爬虫设计 - 计算机网络基础</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.33em; color: #99a2af">Python基础</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.16em; color: #999b9e">Python基础 - 爬虫设计</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.39em; color: #99a4b4">单片机</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">Python基础 - 正则表达式</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.16em; color: #999b9e">人工智能 - 机器学习</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80-python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">Python基础 - python数据库</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.27em; color: #99a0a9">技术分享</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">24</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">16</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">7</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">73</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-12-14T13:35:51.119Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">5</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"><span class="card-category-list-name">数据挖掘</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><span class="card-category-list-name">数学建模</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">技术分享</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><span class="card-category-list-name">数学建模</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"><span class="card-category-list-name">数据挖掘</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" style="font-size: 1.14em; color: #999a9c">论文写作</a> <a href="/tags/python%E3%80%81GUI/" style="font-size: 1.1em; color: #999">python、GUI</a> <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" style="font-size: 1.43em; color: #99a6b8">课程学习</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.46em; color: #99a8bc">数学建模</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.25em; color: #999fa7">人工智能</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.21em; color: #999da3">机器学习</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.17em; color: #999ca0">计算机网络基础</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.32em; color: #99a2ae">爬虫设计</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.28em; color: #99a0aa">技术分享</a> <a href="/tags/vscode/" style="font-size: 1.1em; color: #999">vscode</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.17em; color: #999ca0">深度学习</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.35em; color: #99a3b1">Python基础</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/markdown/" style="font-size: 1.14em; color: #999a9c">markdown</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.39em; color: #99a5b5">单片机</a> <a href="/tags/python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">python数据库</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">107</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">223.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-09-16T08:47:14.993Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
@@ -406,7 +546,43 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy. ...</div></div></div
     document.getElementById("subtitle").textContent = "一种新技术一旦开始流行，你要么坐上压路机，要么成为铺路石。"
   }
 }
-typedJSFn.run(subtitleType)</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+typedJSFn.run(subtitleType)</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 POWERMODE.mobile = true;
 document.body.addEventListener('input', POWERMODE);

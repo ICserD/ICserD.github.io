@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>结构化设计方法 | nullptr</title><meta name="author" content="Icserm"><meta name="copyright" content="Icserm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="结构化设计方法 软件设计的概念以及原则 软件设计的概念  设计是一项核心的工程活动 软件设计是软件工程中的一个关键过程，指的是在开发软件时，为了实现特定的功能需求和性能目标，对软件系统的结构、组件、接口及其交互进行规划和定义的过程。  软件设计的原则  分而治之 模块独立性：  指软件系统中每个模块中只涉及软件要求的具体的子功能，而和软件系统中其他模块的接口是简单的 优点：有效的模块化使得软件便于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结构化设计方法">
+<meta property="og:url" content="http://example.com/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="nullptr">
+<meta property="og:description" content="结构化设计方法 软件设计的概念以及原则 软件设计的概念  设计是一项核心的工程活动 软件设计是软件工程中的一个关键过程，指的是在开发软件时，为了实现特定的功能需求和性能目标，对软件系统的结构、组件、接口及其交互进行规划和定义的过程。  软件设计的原则  分而治之 模块独立性：  指软件系统中每个模块中只涉及软件要求的具体的子功能，而和软件系统中其他模块的接口是简单的 优点：有效的模块化使得软件便于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2024-08-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-24T12:50:00.000Z">
+<meta property="article:author" content="Icserm">
+<meta property="article:tag" content="课程学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '结构化设计方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-24 20:50:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="nullptr"><span class="site-name">nullptr</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航:</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">结构化设计方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-24T12:50:00.000Z" title="更新于 2024-08-24 20:50:00">2024-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="结构化设计方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>结构化设计方法</h1>
+<h2 id="软件设计的概念以及原则">软件设计的概念以及原则</h2>
+<h3 id="软件设计的概念">软件设计的概念</h3>
+<ul>
+<li>设计是一项核心的工程活动</li>
+<li>软件设计是软件工程中的一个关键过程，指的是在开发软件时，为了实现特定的功能需求和性能目标，对软件系统的结构、组件、接口及其交互进行规划和定义的过程。</li>
+</ul>
+<h3 id="软件设计的原则">软件设计的原则</h3>
+<ol>
+<li>分而治之</li>
+<li>模块独立性：
+<ul>
+<li>指软件系统中每个模块中只涉及软件要求的具体的子功能，而和软件系统中其他模块的接口是简单的</li>
+<li>优点：有效的模块化使得软件便于分工协作开发；独立的模块比较容易测试和维护</li>
+<li>衡量准则：
+<ol>
+<li>耦合：模块之间的相互连接的紧密程度的度量</li>
+<li>内聚：一个模块内部各个元素彼此结合的紧密程度的度量</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>提高抽象层次（信息隐藏，接口设计）</li>
+<li>复用性设计（软件的重用部分称为软构件）</li>
+<li>灵活性设计：保证软件灵活性设计的关键是抽象</li>
+</ol>
+<h4 id="在设计中引入灵活性设计的方法">在设计中引入灵活性设计的方法</h4>
+<ol>
+<li>降低耦合并提高内聚（易于提高替换能力）</li>
+<li>建立抽象（创建有多态操作的接口和父类）</li>
+<li>不要将代码写死（消除代码中的常数）</li>
+<li>抛出异常（由操作的调用者处理异常）</li>
+<li>使用并创建可复用的代码</li>
+</ol>
+<h2 id="结构化设计">结构化设计</h2>
+<h3 id="概念">概念</h3>
+<p>结构化设计是将结构化分析得到的数据流图映射成软件体系结构的一种设计方法，有模块化、自顶向下逐步求精、信息隐藏、高内聚低耦合等准则。</p>
+<h3 id="结构化设计的任务">结构化设计的任务</h3>
+<ol>
+<li>软件设计的主要任务是要解决如何做的问题，要在需求分析的基础上，建立各种设计模型，并通过对设计模型的分析和评估，来确定这些模型是否能够满足需求。</li>
+<li>软件设计是将用户需求准确地转化成为最终的软件产品的唯一途径，在需求到构造之间起到了桥梁作用。</li>
+<li>在软件设计阶段，往往存在多种设计方案，通常需要在多种设计方案之中进行决策和折中，并使用选定的方案进行后续的开发活动。</li>
+</ol>
+<h3 id="软件设计的阶段和任务">软件设计的阶段和任务</h3>
+<ul>
+<li>从工程管理的角度，可以将软件设计分为概要设计阶段和详细设计阶段</li>
+<li><strong>从技术的角度</strong>，传统的结构化方法将软件设计划分为<br>
+体系结构设计（软件的构成元素以及其之间的关系）<br>
+数据设计（根据E-R图确定数据库表结构和文件结构）<br>
+接口设计（外部接口和内部接口，实现信息隐藏）<br>
+过程设计（数据结构和算法实现）<br>
+==其中前三步是概要设计阶段，最后一步是详细设计阶段==</li>
+<li>面向对象方法则将软件设计划分为体系结构设计、类设计/数据设计、接口设计和构件级设计4部分</li>
+</ul>
+<h3 id="结构化设计和结构化分析的关系">结构化设计和结构化分析的关系</h3>
+<p>结构化分析为结构化设计提供基本的输入信息。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902080229.png" alt="Pasted image 20240902080229"></p>
+<h3 id="模块结构以及表示">模块结构以及表示</h3>
+<ul>
+<li>一般通过功能划分过程来完成软件结构设计。</li>
+<li>功能划分过程从需求分析确立的目标系统的模型出发，对整个问题进行分割，使其每一部分用一个或几个软件模块加以解决，整个问题就解决了。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/NGSJCBF/img@main/img/202406171322456.png" alt="image-20240531222854309"></p>
+<p><strong>模块</strong>：</p>
+<ul>
+<li>一个软件系统通常由很多模块组成，结构化程序设计中的函数和子程序都可称为模块，它是程序语句按逻辑关系建立起来的组合体。</li>
+<li>模块用矩形框表示，并用模块的名字标记它。</li>
+</ul>
+<h3 id="结构图">结构图</h3>
+<p>结构图（structure chart，SC）是精确表达模块结构的图形表示工具。</p>
+<ol>
+<li>模块的调用关系和接口：在结构图中，两个模块之间用单向箭头连接。</li>
+<li>模块间的信息传递：当一个模块调用另一个模块时，调用模块把数据或控制信息传送给被调用模块，以使被调用模块能够运行。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902094024.png" alt="Pasted image 20240902094024"></li>
+<li>条件调用和循环调用 ：当模块A有条件地调用另一个模块B时，在模块A的箭头尾部标以一个菱形符号；当一个模块A反复地调用模块C和模块D时，在调用箭头尾部则标以一个弧形符号。<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902094111.png" alt="Pasted image 20240902094111"></li>
+<li>结构图的形态特征。在图中，上级模块调用下级模块，它们之间存在主从关系。</li>
+</ol>
+<h2 id="体系结构设计">体系结构设计</h2>
+<h3 id="基于数据流方法的设计过程">基于数据流方法的设计过程</h3>
+<ul>
+<li>典型的数据流类型有变换型数据流和事务型数据流，数据流的类型不同，得到的系统结构也不同;</li>
+<li>通常，一个系统中的所有数据流都可以认为是变换流，但是，当遇到有明显事务特性的数据流时，建议采用事务型映射方法进行设计;</li>
+</ul>
+<h4 id="变换型系统结构图">变换型系统结构图</h4>
+<p>变换型数据处理问题的工作分为三步：</p>
+<ol>
+<li>获取数据，对应输入图</li>
+<li>变换数据，对应变换图</li>
+<li>输出数据，对应输出图<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902110853.png" alt="Pasted image 20240902110853"></li>
+</ol>
+<h5 id="变换分析方法（变换数据流图绘制）">变换分析方法（变换数据流图绘制）</h5>
+<ol>
+<li>重画数据流图。在需求分析阶段得到的数据流图侧重于描述系统如何加工数据，而重画数据流图的出发点是描述系统中的数据是如何流动的</li>
+<li>在数据流图上<strong>区分系统的逻辑输入</strong>、<strong>逻辑输出</strong>和<strong>中心变换</strong>部分</li>
+<li>具体步骤：
+<ol>
+<li>划定输入流和输出流的边界，确定变换中心</li>
+<li>进行一级分解</li>
+<li>进行二级分解</li>
+<li>精化、改进</li>
+<li>标注输入输出信息</li>
+</ol>
+</li>
+</ol>
+<p><strong>例题</strong>：<br>
+【软件工程——5-2-1-变换型数据流图的设计】 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1TY4y1A7C1/?share_source=copy_web&amp;vd_source=2ef0e81ddb4041a6e7f7c22a036d0599">https://www.bilibili.com/video/BV1TY4y1A7C1/?share_source=copy_web&amp;vd_source=2ef0e81ddb4041a6e7f7c22a036d0599</a></p>
+<h3 id="事务型系统结构图">事务型系统结构图</h3>
+<p><strong>特点</strong>：</p>
+<ol>
+<li>有明显的事务中心</li>
+<li>事务中心分析事务（即输入数据）的类型</li>
+<li>事务中心选择与该事物对应的一条活动流来执行</li>
+<li>各活动流以实物中心为起点呈辐射状流出<br>
+<strong>设计步骤</strong>：</li>
+<li>确定事务中心和个活动流的特性
+<ul>
+<li>事务中心为d，位于活动流起点</li>
+<li>活动流从该点呈辐射状流出</li>
+<li>活动流可以是变换流、也可以是事务流</li>
+</ul>
+</li>
+<li>将事务型数据流图映射成高层体系结构
+<ul>
+<li>主模块：整个系统的功能</li>
+<li>调度模块：控制下层所有活动模块</li>
+<li>接受模块（即输入）：接受输入事务数据</li>
+<li>事务模块：对应活动流、由活动流映射而成<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902135527.png" alt="Pasted image 20240902135527"></li>
+</ul>
+</li>
+</ol>
+<h3 id="软件模块结构图的改进">软件模块结构图的改进</h3>
+<ol>
+<li>模块功能的完善。一个完整的模块应该有以下部分：
+<ul>
+<li>执行规定的功能的部分</li>
+<li>出错处理部分，当模块不能完成规定功能时必须送出出错标志，向调用者报告出错信息和原因</li>
+<li>如果需要返回一系列数据给它的调用者，在完成数据加工或结束时，应当给它的调用者返回一个“结束标志”</li>
+</ul>
+</li>
+<li>消除重复功能，改善软件结构</li>
+<li>模块的作用范围应该在控制范围之内</li>
+<li>减少高扇出、高扇入结构</li>
+<li>模块大小适中</li>
+</ol>
+<h2 id="数据设计">数据设计</h2>
+<p>数据设计主要包括文件设计和数据库设计。<br>
+文件设计要根据文件特性来设计文件的组织方式：顺序文件、直接存取文件、索引顺序文件、分区文件、虚拟存储文件…<br>
+数据库设计，一般用关系型数据库，建立E-R图</p>
+<h2 id="接口设计">接口设计</h2>
+<p>接口设计主要包括三个方面：</p>
+<ul>
+<li>软件与其他软硬件系统之间的接口设计</li>
+<li>软件与人（用户）之间的交互设计</li>
+<li>模块或软件构建间的接口设计</li>
+</ul>
+<h2 id="过程设计（详细设计阶段）">过程设计（详细设计阶段）</h2>
+<h3 id="过程设计概述">过程设计概述</h3>
+<p>表达过程规格说明的工具称为过程描述工具，可以将过程描述工具分为以下三种：</p>
+<ol>
+<li>图形工具：程序流程图、NS图、PAD图、决策树等</li>
+<li>表格工具：用一张表来表达过程的细节，这张表列出了各种可能得操作以及其相应的条件</li>
+<li>语言工具：伪代码</li>
+</ol>
+<h3 id="程序流程图">程序流程图</h3>
+<p>一、程序流程图的基本符号以及基本控制结构<br>
+基本符号：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902150126.png" alt="Pasted image 20240902150126"><br>
+基本控制结构：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902150035.png" alt="Pasted image 20240902150035"></p>
+<h3 id="N-S图">N-S图</h3>
+<p>基本符号：<br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/Pasted%20image%2020240902151812.png" alt="Pasted image 20240902151812"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Icserm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">http://example.com/2024/08/24/课程内学习/【软件工程】4. 结构化设计方法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">nullptr</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">文献检索方法</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">期末考点整理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%911.%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" title="操作系统概览"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-15</div><div class="title">操作系统概览</div></div></a></div><div><a href="/2024/03/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%912.%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="处理器管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-21</div><div class="title">处理器管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="内存管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">内存管理</div></div></a></div><div><a href="/2024/04/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="文件系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-01</div><div class="title">文件系统</div></div></a></div><div><a href="/2024/04/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="设备管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-29</div><div class="title">设备管理</div></div></a></div><div><a href="/2024/03/28/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="基本概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">基本概念</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Icserm</div><div class="author-info__description">无为之心，做有为之事</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">结构化设计方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">软件设计的概念以及原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">软件设计的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">软件设计的原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%AE%BE%E8%AE%A1%E4%B8%AD%E5%BC%95%E5%85%A5%E7%81%B5%E6%B4%BB%E6%80%A7%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">在设计中引入灵活性设计的方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">结构化设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">结构化设计的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%98%B6%E6%AE%B5%E5%92%8C%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.3.</span> <span class="toc-text">软件设计的阶段和任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E5%92%8C%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.4.</span> <span class="toc-text">结构化设计和结构化分析的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84%E4%BB%A5%E5%8F%8A%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.2.5.</span> <span class="toc-text">模块结构以及表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.2.6.</span> <span class="toc-text">结构图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">体系结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">基于数据流方法的设计过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E5%9E%8B%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">变换型系统结构图</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%EF%BC%88%E5%8F%98%E6%8D%A2%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%E7%BB%98%E5%88%B6%EF%BC%89"><span class="toc-number">1.3.1.1.1.</span> <span class="toc-text">变换分析方法（变换数据流图绘制）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%9E%8B%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.2.</span> <span class="toc-text">事务型系统结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84%E5%9B%BE%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-number">1.3.3.</span> <span class="toc-text">软件模块结构图的改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">数据设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">接口设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%88%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">过程设计（详细设计阶段）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">1.6.1.</span> <span class="toc-text">过程设计概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.6.2.</span> <span class="toc-text">程序流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N-S%E5%9B%BE"><span class="toc-number">1.6.3.</span> <span class="toc-text">N-S图</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="结构化设计方法">结构化设计方法</a><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="期末考点整理">期末考点整理</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="期末复习">期末复习</a><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%916.%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="数据库事务管理">数据库事务管理</a><time datetime="2024-06-17T00:00:00.000Z" title="发表于 2024-06-17 08:00:00">2024-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Icserm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
