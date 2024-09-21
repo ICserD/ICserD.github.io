@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Ubuntu22环境下配置安卓作为扩展屏</title>
+      <link href="/2024/09/21/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E3%80%91Ubuntu22%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%AE%89%E5%8D%93%E5%B9%B3%E6%9D%BF%E4%BD%9C%E4%B8%BA%E6%89%A9%E5%B1%95%E5%B1%8F/"/>
+      <url>/2024/09/21/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E3%80%90%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E3%80%91Ubuntu22%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%AE%89%E5%8D%93%E5%B9%B3%E6%9D%BF%E4%BD%9C%E4%B8%BA%E6%89%A9%E5%B1%95%E5%B1%8F/</url>
+      
+        <content type="html"><![CDATA[<h1>Ubuntu22环境下配置安卓平板作为扩展屏</h1><h2 id="准备工作">准备工作</h2><p>卸载独立显卡驱动/禁用独立显卡，经验证，我的独显即使禁用，也会和集显交替作用，影响后续扩展屏的配置。所以我直接卸载了，确保只使用集成显卡。（只使用集显发热比较严重，但是续航非常顶！）</p><blockquote><p>下面仅介绍关键步骤，更详细的原理和介绍可以参考最下文的参考博客。</p></blockquote><h2 id="xrandr配置虚拟扩展屏">xrandr配置虚拟扩展屏</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建平板显示的分辨率信息，这里不要设置分辨率太高，否则很卡</span></span><br><span class="line">cvt 960 600</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">产生一个新的分辨率模式</span></span><br><span class="line">xrandr --newmode &quot;960x600_60.00&quot;   45.25  960 992 1088 1216  600 603 609 624 -hsync +vsync</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">向虚拟显示器添加分辨率模式</span></span><br><span class="line">xrandr --addmode VIRTUAL1  &quot;960x600_60.00&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置虚拟显示器和主显示器的相对位置</span></span><br><span class="line">xrandr --output VIRTUAL1 --mode 960x600_60.00 --left-of eDP1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">虚拟显示器内容映射到平板上</span></span><br><span class="line">x11vnc -clip 960x600-1920+0 -wait 1 -defer 1 -nowf -sb 0</span><br></pre></td></tr></table></figure><h2 id="局域网连接">局域网连接</h2><p>让平板和电脑连在同一个局域网下，然后通过vncViewer等工具进行连接即可。</p><h2 id="参考博客">参考博客</h2><p><a href="https://blog.csdn.net/u010750137/article/details/104277527?fromshare=blogdetail&amp;sharetype=blogdetail&amp;sharerId=104277527&amp;sharerefer=PC&amp;sharesource=weixin_73546177&amp;sharefrom=from_link">https://blog.csdn.net/u010750137/article/details/104277527?fromshare=blogdetail&amp;sharetype=blogdetail&amp;sharerId=104277527&amp;sharerefer=PC&amp;sharesource=weixin_73546177&amp;sharefrom=from_link</a></p><p><a href="https://blog.csdn.net/u010750137/article/details/104277527?fromshare=blogdetail&amp;sharetype=blogdetail&amp;sharerId=104277527&amp;sharerefer=PC&amp;sharesource=weixin_73546177&amp;sharefrom=from_link">https://blog.csdn.net/u010750137/article/details/104277527?fromshare=blogdetail&amp;sharetype=blogdetail&amp;sharerId=104277527&amp;sharerefer=PC&amp;sharesource=weixin_73546177&amp;sharefrom=from_link</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>文献检索方法</title>
       <link href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/"/>
       <url>/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%912.%20%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/</url>
