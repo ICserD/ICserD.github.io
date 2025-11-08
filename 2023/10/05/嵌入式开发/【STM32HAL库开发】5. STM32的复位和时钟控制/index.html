@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【STM32HAL 库开发】5. RCC—复位和时钟控制 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RCC—复位和时钟控制 RCC, Reset and clock control(是STM32的一个外设) STM32 RCC知识 STM的复位功能(三种)  系统复位  就是将系统所有寄存器都设定为默认的复位值 所有寄存器是指，除了指针控制寄存器(CSR)的复位标志和备份区域中的寄存器以外的所有寄存器   电源复位  除了备份区域中的寄存器，复位其他所有寄存器   后被域复位  只影响备份区域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【STM32HAL 库开发】5. RCC—复位和时钟控制">
+<meta property="og:url" content="http://example.com/2023/10/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%915.%20STM32%E7%9A%84%E5%A4%8D%E4%BD%8D%E5%92%8C%E6%97%B6%E9%92%9F%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="RCC—复位和时钟控制 RCC, Reset and clock control(是STM32的一个外设) STM32 RCC知识 STM的复位功能(三种)  系统复位  就是将系统所有寄存器都设定为默认的复位值 所有寄存器是指，除了指针控制寄存器(CSR)的复位标志和备份区域中的寄存器以外的所有寄存器   电源复位  除了备份区域中的寄存器，复位其他所有寄存器   后被域复位  只影响备份区域">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-10-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-04T16:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="单片机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/10/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%915.%20STM32%E7%9A%84%E5%A4%8D%E4%BD%8D%E5%92%8C%E6%97%B6%E9%92%9F%E6%8E%A7%E5%88%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【STM32HAL 库开发】5. RCC—复位和时钟控制',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-05 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【STM32HAL 库开发】5. RCC—复位和时钟控制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-04T16:00:00.000Z" title="发表于 2023-10-05 00:00:00">2023-10-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-04T16:00:00.000Z" title="更新于 2023-10-05 00:00:00">2023-10-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【STM32HAL 库开发】5. RCC—复位和时钟控制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>RCC—复位和时钟控制</h1>
+<p><code>RCC, Reset and clock control(是STM32的一个外设)</code></p>
+<h2 id="STM32-RCC知识">STM32 RCC知识</h2>
+<h3 id="STM的复位功能-三种">STM的复位功能(三种)</h3>
+<ol>
+<li>系统复位
+<ul>
+<li>就是将系统所有寄存器都设定为默认的复位值</li>
+<li>所有寄存器是指，除了指针控制寄存器(CSR)的复位标志和备份区域中的寄存器以外的所有寄存器</li>
+</ul>
+</li>
+<li>电源复位
+<ul>
+<li>除了备份区域中的寄存器，复位其他所有寄存器</li>
+</ul>
+</li>
+<li>后被域复位
+<ul>
+<li>只影响备份区域</li>
+</ul>
+</li>
+</ol>
+<p><strong>详细的功能查阅参考手册RCC章节</strong></p>
+<h3 id="时钟">时钟</h3>
+<p>对于电子器件来说，时钟就是它的心跳，STM32芯片会根据时钟的节拍来工作。</p>
+<p><code>常说的72Mhz、480Mhz，就是指STM32的主时钟(系统时钟)的频率，芯片就以这样的频率，对各种器件做着同步的工作</code></p>
+<h4 id="时钟来源">时钟来源</h4>
+<ul>
+<li>
+<p>芯片的时钟来源有很多种，这里以STM32为例</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016103625981.png" alt="image-20221016103625981"></p>
+<p><code>PLL时钟是我们常用的时钟，二级时钟源主要是给其他器件使用的。比如LSE常用于定时器的配置。需要注意的是，频率越高、运行速度更快、功耗越高</code></p>
+<p><strong>这些东西也能在参考手册找到</strong></p>
+</li>
+</ul>
+<h4 id="STM32时钟树的设计">STM32时钟树的设计</h4>
+<ul>
+<li>
+<p>方便对各种时钟进行整合以及管理，也方便用户的使用</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016103959764.png" alt="image-20221016103959764"></p>
+<p><code>时钟树大概长这样</code></p>
+</li>
+</ul>
+<h4 id="使用CubeMax配置时钟树-这里主要针对系统时钟的设置">使用CubeMax配置时钟树(这里主要针对系统时钟的设置)</h4>
+<ol>
+<li>
+<p>在Clock Confriguration中进行配置</p>
+</li>
+<li>
+<p>首先，在系统核心中配置RCC外设</p>
+<ul>
+<li>
+<p>在RCC外设里，我们就可以选择使用哪一个时钟了(<a href="#%E6%97%B6%E9%92%9F%E6%9D%A5%E6%BA%90">如图有HSE振荡器时钟和低速外部晶体</a>)</p>
+</li>
+<li>
+<p>对于高低速时钟各有的功能和作用，可以在参考手册中找到。</p>
+</li>
+<li>
+<p>我们可以根据手册来选择时钟的时钟来源：晶振/用户输入/XXX</p>
+</li>
+<li>
+<p>我们常选择的方案是使用一个晶振(Crystal Resonator)</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016105221536.png" alt="image-20221016105221536"></p>
+</li>
+<li>
+<p>低速外部时种可选可不选(因为我们已经有一个时钟在用了)</p>
+</li>
+</ul>
+<p><em>至此，配置好RCC时钟以及时钟源</em></p>
+</li>
+<li>
+<p>跳转至时钟配置栏(Clock Confriguration)</p>
+<p><code>在这里配置时钟树</code></p>
+<ul>
+<li>
+<p>设置主系统时钟，找到中间的SYSCLK</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016105556992.png" alt="image-20221016105556992"></p>
+<p><code>这里，我们可以看到我们的系统时钟是被HSI RC控制的</code></p>
+<ul>
+<li>
+<p>一般，我们会用HSE作为倍频的时钟源输入，然后通过PLL对我们的输入时钟进行倍频，来实现一个较高频率的的输出，作为系统的主时钟，这样我们就可以得到一个较高的时钟频率。</p>
+</li>
+<li>
+<p>根据上述逻辑，我们为了得到一个较高的时钟频率，将系统主时钟与PLL时钟相连，然后再调系统时钟的频率。</p>
+</li>
+<li>
+<p>那我们应该选取什么样的系统时钟频率呢？</p>
+<ol>
+<li>
+<p>参考数据手册的 <em>工作条件中的通用工作条件</em> 找到不同条件下对频率的限定范围</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016110420440.png" alt="image-20221016110420440"></p>
+<p><code>参考手册一般会配有时钟树的图</code></p>
+</li>
+<li>
+<p>先配置系统主时钟，再配置后面的分支，系统主时钟的配置，根据数据手册可以看到。(上面的工作条件图中，表明了内部AHB时钟频率的范围，以此为例调节内部HCLK的频率，然后回车，CubeMx就会有弹窗自动为你生成合适的配置方案帮你配好所有时钟)</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016110955178.png" alt="image-20221016110955178"></p>
+<p>next，这里输入72MHz，是数据手册中限制的工作频率的最大值，但是具体配置什么值，<strong>取决于我们的个人需要以及工程需要</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016111037532.png" alt="image-20221016111037532"></p>
+<p>点击ok</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016111103108.png" alt="image-20221016111103108"></p>
+<p><em>自动生成好了时钟方案，主要是由CubeMX检索方案自动生成合适的、不超过数据手册中的关于频率的限制的 <strong>分频因子</strong></em></p>
+</li>
+<li>
+<p>看一下PLL的倍频实现</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016111218033.png" alt="image-20221016111218033"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>对于大部分STM32外设来说，都是走这样一种主的系统时钟线路的</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20221016111732462.png" alt="image-20221016111732462"></p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>小结：</strong></p>
+<ul>
+<li>对于STM32上的时钟的具体配置，根据工作需求决定</li>
+<li>时钟频率越高，一般功耗越高</li>
+<li>另一方面，要考虑芯片的工作条件，根据芯片运行的工作条件选取时钟频率</li>
+<li>只要满足工作条件的频率都可以配置，有一定自由度</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%915.%20STM32%E7%9A%84%E5%A4%8D%E4%BD%8D%E5%92%8C%E6%97%B6%E9%92%9F%E6%8E%A7%E5%88%B6/">http://example.com/2023/10/05/嵌入式开发/【STM32HAL库开发】5. STM32的复位和时钟控制/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%916.%20STM32%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%96%E8%AE%BEGPIO/" title="【STM32HAL 库开发】6. STM32第一个外设GPIO"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【STM32HAL 库开发】6. STM32第一个外设GPIO</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%914.%20STM32%E7%A8%8B%E5%BA%8F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/" title="【STM32HAL库开发】4. STM32程序启动过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【STM32HAL库开发】4. STM32程序启动过程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/01/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%911.%20KEIL5%E5%9F%BA%E6%9C%AC%E4%BA%86%E8%A7%A3/" title="【STM32HAL库开发】1. KEIL5基本了解——新建工程模板"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-01</div><div class="title">【STM32HAL库开发】1. KEIL5基本了解——新建工程模板</div></div></a></div><div><a href="/2023/10/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%912.%20STM%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="【STM32HAL库开发】2. STM库的基本操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-02</div><div class="title">【STM32HAL库开发】2. STM库的基本操作</div></div></a></div><div><a href="/2023/10/03/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%913.%20%E6%9D%BF%E7%BA%A7%E6%94%AF%E6%8C%81%E5%8C%85/" title="【STM32HAL库开发】3. 板级支持包"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-03</div><div class="title">【STM32HAL库开发】3. 板级支持包</div></div></a></div><div><a href="/2023/10/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%914.%20STM32%E7%A8%8B%E5%BA%8F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/" title="【STM32HAL库开发】4. STM32程序启动过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-04</div><div class="title">【STM32HAL库开发】4. STM32程序启动过程</div></div></a></div><div><a href="/2023/10/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%916.%20STM32%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%96%E8%AE%BEGPIO/" title="【STM32HAL 库开发】6. STM32第一个外设GPIO"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-06</div><div class="title">【STM32HAL 库开发】6. STM32第一个外设GPIO</div></div></a></div><div><a href="/2023/10/07/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%917.%20STM32%E4%B8%AD%E6%96%AD%E6%A6%82%E8%BF%B0/" title="【STM32HAL库开发】7. STM32中断概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-07</div><div class="title">【STM32HAL库开发】7. STM32中断概述</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">RCC—复位和时钟控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32-RCC%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">STM32 RCC知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#STM%E7%9A%84%E5%A4%8D%E4%BD%8D%E5%8A%9F%E8%83%BD-%E4%B8%89%E7%A7%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">STM的复位功能(三种)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%92%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E6%9D%A5%E6%BA%90"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">时钟来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32%E6%97%B6%E9%92%9F%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">STM32时钟树的设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8CubeMax%E9%85%8D%E7%BD%AE%E6%97%B6%E9%92%9F%E6%A0%91-%E8%BF%99%E9%87%8C%E4%B8%BB%E8%A6%81%E9%92%88%E5%AF%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%92%9F%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">使用CubeMax配置时钟树(这里主要针对系统时钟的设置)</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/08/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91%E9%85%8D%E7%BD%AE%20python%20%E7%8E%AF%E5%A2%83/" title="0 基础配置 Python 环境">0 基础配置 Python 环境</a><time datetime="2025-11-08T07:00:00.000Z" title="发表于 2025-11-08 15:00:00">2025-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算">【深度学习】4. 深度学习计算</a><time datetime="2024-11-16T07:00:00.000Z" title="发表于 2024-11-16 15:00:00">2024-11-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）">【深度学习】5. 卷积神经网络（CNN）</a><time datetime="2024-10-18T07:00:00.000Z" title="发表于 2024-10-18 15:00:00">2024-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%913.%20%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="【深度学习】3. 多层次感知机">【深度学习】3. 多层次感知机</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%912.%20%E7%BA%BF%E6%80%A7%E7%BD%91%E7%BB%9C/" title="【深度学习】2. 线性网络">【深度学习】2. 线性网络</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

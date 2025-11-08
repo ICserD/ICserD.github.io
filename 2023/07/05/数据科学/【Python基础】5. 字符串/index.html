@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【Python基础】5. 字符串 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="字符串 转义字符 转义字符：\   必须在引号里面   规定’\&#39;不转义的字符串，要在字符串引号前加上r print(r&#39;ab\ncd&#39;)#这样的\会被当作正常的字符串输出     字符串切片（子串）&#x2F;同样时用于元组和列表 a[x:y]详解  对于字符串 a&#x3D;&quot;ABCD&quot;       a[1:2]表示左闭右开的字符串区间，代表了字符B 字符串最左边的元素序号为0，最右边的元素序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python基础】5. 字符串">
+<meta property="og:url" content="http://example.com/2023/07/05/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%915.%20%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="字符串 转义字符 转义字符：\   必须在引号里面   规定’\&#39;不转义的字符串，要在字符串引号前加上r print(r&#39;ab\ncd&#39;)#这样的\会被当作正常的字符串输出     字符串切片（子串）&#x2F;同样时用于元组和列表 a[x:y]详解  对于字符串 a&#x3D;&quot;ABCD&quot;       a[1:2]表示左闭右开的字符串区间，代表了字符B 字符串最左边的元素序号为0，最右边的元素序">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2023-07-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-20T02:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2023/07/05/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%915.%20%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【Python基础】5. 字符串',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-20 10:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Python基础】5. 字符串</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-04T16:00:00.000Z" title="发表于 2023-07-05 00:00:00">2023-07-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-20T02:00:00.000Z" title="更新于 2023-11-20 10:00:00">2023-11-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">870</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Python基础】5. 字符串"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>字符串</h1>
+<h2 id="转义字符">转义字符</h2>
+<h3 id="转义字符：">转义字符：\</h3>
+<ul>
+<li>
+<p>必须在引号里面</p>
+</li>
+<li>
+<p>规定’\'不转义的字符串，要在字符串引号前加上r</p>
+<p><code>print(r'ab\ncd')#这样的\会被当作正常的字符串输出  </code></p>
+</li>
+</ul>
+<h2 id="字符串切片（子串）-同样时用于元组和列表">字符串切片（子串）/同样时用于元组和列表</h2>
+<h3 id="a-x-y-详解">a[x:y]详解</h3>
+<ul>
+<li>对于字符串<code> a=&quot;ABCD&quot;</code>       <code>a[1:2]</code>表示<strong>左闭右开</strong>的字符串区间，代表了字符B</li>
+<li><strong>字符串最左边的元素序号为0，最右边的元素序号为-1</strong></li>
+<li><code>a[2:]</code>终点省略，表示从2一直到最后；开头省略同理；</li>
+<li>修改字符串中的子串，不能通过s[i]='x’的方式进行修改和删除</li>
+</ul>
+<h3 id="Python字符串的两种序号体系">Python字符串的两种序号体系</h3>
+<p>以字符串hello world为例：</p>
+<table>
+<thead>
+<tr>
+<th>反向序列</th>
+<th>-11</th>
+<th>-10</th>
+<th>-9</th>
+<th>-8</th>
+<th>-7</th>
+<th>-6</th>
+<th>-5</th>
+<th>-4</th>
+<th>-3</th>
+<th>-2</th>
+<th>-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>H</td>
+<td>e</td>
+<td>l</td>
+<td>l</td>
+<td>o</td>
+<td></td>
+<td>W</td>
+<td>o</td>
+<td>r</td>
+<td>l</td>
+<td>d</td>
+</tr>
+<tr>
+<td>正向序列</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-x-y-z-详解">a[x:y:z]详解</h3>
+<p>a[x:y:z]表示，从a[x]取到a[y]（a[y]不算），<strong>每z个字符取一次</strong>，最后拼起来；</p>
+<p><strong>z如果为负数，表示倒着取；</strong></p>
+<p>x，y可以省略。x，y全省略表示从头取到尾或者从尾取到头；</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416090539584.png" alt="image-20230416090539584"></p>
+<h2 id="字符串的分割">字符串的分割</h2>
+<h3 id="split函数详解">split函数详解</h3>
+<p><code>s.split(x)</code>用字符串x做分割符分割字符串s，得到分割后的列表<strong>两个相邻分割符号之间会被分隔出一个空串</strong>。</p>
+<p><strong>字符串分隔后，得到各个子串包括空串的列表。</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416090826652.png" alt="image-20230416090826652"></p>
+<h3 id="字符串高级分割">字符串高级分割</h3>
+<h4 id="用多个分隔串进行分割（引入库re）">用多个分隔串进行分割（引入库re）</h4>
+<p><strong>re是正则表达式包</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">a=<span class="string">&#x27;beautiful, is ; better*than\nugly&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.split(<span class="string">&#x27;;| |,|\*|\n&#x27;</span>,a))<span class="comment">#分隔符串用 | 分开</span></span><br><span class="line">两个相邻的分隔符串之间，会隔出一个空串</span><br></pre></td></tr></table></figure>
+<h3 id="字符串相关函数">字符串相关函数</h3>
+<ul>
+<li>
+<p>count   求子串出现次数</p>
+<p><code>s='thisAAbb AA'</code></p>
+<p><code>s.count('AA')</code>  返回2，表示AA出现2次</p>
+</li>
+<li>
+<p>len   字符串长度</p>
+<p><code>s='1234'</code></p>
+<p><code>len(s)</code>   返回4</p>
+</li>
+<li>
+<p>upper、lower函数</p>
+<p>转大写、小写</p>
+</li>
+<li>
+<p>find、rfind、index、rindex   在字符串中查找子串，返回找到的下标。找不到的话find返回-1，index引发异常</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416091854828.png" alt="image-20230416091854828"></p>
+<ol>
+<li>
+<p>find还可以指定查找的起点。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416092046109.png" alt="image-20230416092046109"></p>
+</li>
+</ol>
+</li>
+<li>
+<p>replace  替换    返回替换后的新串</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416092132781.png" alt="image-20230416092132781"></p>
+</li>
+<li>
+<p>isdigit()、islower()、isupper()，判断字符串是否是数，是否全是小写等</p>
+</li>
+<li>
+<p>startswith，endswith，判断字符串是否以某个子串开头或者结尾</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416092423228.png" alt="image-20230416092423228"></p>
+<ul>
+<li>
+<p>strip()  返回除去头尾空白字符(空格、‘\r’ ‘\t’ ‘\n’)后面的字符串</p>
+</li>
+<li>
+<p>lstrip()  返回除去头部(左端)空白字符后的字符串</p>
+</li>
+<li>
+<p>rstrip()  返回除去尾部空白字符串后的字符串</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416092729841.png" alt="image-20230416092729841"></p>
+</li>
+</ul>
+<h2 id="字符串的编码">字符串的编码</h2>
+<p>字符串在内存中的编码都是unicode，虽然写到文件的时候可能是gbk，或者utf-8</p>
+<h2 id="字符串的格式化">字符串的格式化</h2>
+<h3 id="format函数">format函数</h3>
+<p>format函数，在字符串对应的参数格式。{0}…format{“nihao”,“21” }——&gt;表示format中的第0个元素替换{0}。</p>
+<p>也可以用键值对的方式进行对应：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;name&#125;,&#123;sex&#125;&#x27;</span>.<span class="built_in">format</span>(name=<span class="string">&quot;icserm&quot;</span>,sex=<span class="string">&#x27;male&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>{序号：宽度.精度  类型}</p>
+<ul>
+<li>&lt;  右对齐</li>
+<li>&gt;   左对齐</li>
+<li>^   中对齐</li>
+<li>:b 、 :d 、 :o 、:x 分别表示二进制、十进制、八进制、十六进制输出</li>
+</ul>
+<p><strong>例如：如{0:&gt;10.4f}表示第0项是小数，以宽度至少是10个字符，右对齐（宽度不足时补充在左边），保留小数点后4位的方式输出。</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416093121081.png" alt="image-20230416093121081"></p>
+<h4 id="字符串格式化2image-20230416093653076">字符串格式化2<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/image-20230416093653076.png" alt="image-20230416093653076"></h4>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/07/05/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%915.%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">http://example.com/2023/07/05/数据科学/【Python基础】5. 字符串/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/06/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%916.%20%E5%85%83%E7%BB%84/" title="【Python基础】6. 元组"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Python基础】6. 元组</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/04/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%914.%20Python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="【Python基础】4. Python数据类型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Python基础】4. Python数据类型</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/01/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%911.%20%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97/" title="【Python基础】1. 算术运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-01</div><div class="title">【Python基础】1. 算术运算</div></div></a></div><div><a href="/2023/07/02/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%912.%20python%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/" title="【Python基础】2. python的基本程序逻辑结构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-02</div><div class="title">【Python基础】2. python的基本程序逻辑结构</div></div></a></div><div><a href="/2023/07/03/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%913.%20%E5%87%BD%E6%95%B0/" title="【Python基础】3. 函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">【Python基础】3. 函数</div></div></a></div><div><a href="/2023/07/04/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%914.%20Python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="【Python基础】4. Python数据类型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-04</div><div class="title">【Python基础】4. Python数据类型</div></div></a></div><div><a href="/2023/07/06/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%916.%20%E5%85%83%E7%BB%84/" title="【Python基础】6. 元组"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-06</div><div class="title">【Python基础】6. 元组</div></div></a></div><div><a href="/2023/07/07/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E3%80%90Python%E5%9F%BA%E7%A1%80%E3%80%917.%20%E5%88%97%E8%A1%A8/" title="【Python基础】7. 列表"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-07</div><div class="title">【Python基础】7. 列表</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">1.1.</span> <span class="toc-text">转义字符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">转义字符：\</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87%EF%BC%88%E5%AD%90%E4%B8%B2%EF%BC%89-%E5%90%8C%E6%A0%B7%E6%97%B6%E7%94%A8%E4%BA%8E%E5%85%83%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.</span> <span class="toc-text">字符串切片（子串）&#x2F;同样时用于元组和列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-x-y-%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.1.</span> <span class="toc-text">a[x:y]详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%8F%E5%8F%B7%E4%BD%93%E7%B3%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">Python字符串的两种序号体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-x-y-z-%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.3.</span> <span class="toc-text">a[x:y:z]详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%86%E5%89%B2"><span class="toc-number">1.3.</span> <span class="toc-text">字符串的分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#split%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.3.1.</span> <span class="toc-text">split函数详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%AB%98%E7%BA%A7%E5%88%86%E5%89%B2"><span class="toc-number">1.3.2.</span> <span class="toc-text">字符串高级分割</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E5%A4%9A%E4%B8%AA%E5%88%86%E9%9A%94%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%88%86%E5%89%B2%EF%BC%88%E5%BC%95%E5%85%A5%E5%BA%93re%EF%BC%89"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">用多个分隔串进行分割（引入库re）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.3.</span> <span class="toc-text">字符串相关函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%BC%96%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">字符串的编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.5.</span> <span class="toc-text">字符串的格式化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.1.</span> <span class="toc-text">format函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%962image-20230416093653076"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">字符串格式化2</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/08/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91%E9%85%8D%E7%BD%AE%20python%20%E7%8E%AF%E5%A2%83/" title="0 基础配置 Python 环境">0 基础配置 Python 环境</a><time datetime="2025-11-08T07:00:00.000Z" title="发表于 2025-11-08 15:00:00">2025-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算">【深度学习】4. 深度学习计算</a><time datetime="2024-11-16T07:00:00.000Z" title="发表于 2024-11-16 15:00:00">2024-11-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）">【深度学习】5. 卷积神经网络（CNN）</a><time datetime="2024-10-18T07:00:00.000Z" title="发表于 2024-10-18 15:00:00">2024-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%913.%20%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="【深度学习】3. 多层次感知机">【深度学习】3. 多层次感知机</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%912.%20%E7%BA%BF%E6%80%A7%E7%BD%91%E7%BB%9C/" title="【深度学习】2. 线性网络">【深度学习】2. 线性网络</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
