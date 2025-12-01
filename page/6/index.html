@@ -1,0 +1,605 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="保持好奇，持续输出">
+<meta property="og:type" content="website">
+<meta property="og:title" content="半栈日记">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="保持好奇，持续输出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:author" content="Cyrus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/page/6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '半栈日记',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-12-01 23:17:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">半栈日记</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9115.%20DMA%E9%80%9A%E4%BF%A1/" title="【STM32HAL库开发】15. DMA-直接存储器访问控制器">【STM32HAL库开发】15. DMA-直接存储器访问控制器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-14T16:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">DMA-直接存储器访问控制器
+DMA的作用
+
+在单片机上继续数据传输，大概有两种方式
+
+CPU处理数据
+DMA处理数据
+
+DMA实际上是一个控制器，DMA控制器的实现基于复杂的总线矩阵架构
+DMA专注于数据转移，而CPU专注于计算处理
+DMA的实现
+DMA在总线矩阵架构的位置
+
+结构图解读
+
+DMA是一个独立的外设，它独立于总线之外，接在总线矩阵上
+它可以通过总线矩阵，访问各种与总线相连的外设
+
+DMA内部的具体实现
+DMA框图
+
+DMA内部实现解读
+
+
+DMA请求，总线连接的外设发送DMA请求，高速DMA可以对它进行数据的搬运，于是DMA就会去对该外设里面的数据进行访问和操作；
+
+
+通道选择，用于配置外设中的数据放在DMA的哪一个通道；
+当外设中的数据提取到相应的通道中之后，DMA就会将数据传输到数据搬运的目标地址中
+
+
+对DMA外设要点的概括
+首先明白，通信实际上就是数据的传输
+DMA这个器件，它的功能就是建立起一个数据传输通道（不需要CPU参与这样的工作，减轻CPU的负担）
+
+如何用DMA？最贴切的应用场景（基于现有的水平）
+如果我们想要用串口接收数据，将数据放在内存里，我们可以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/14/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9114.%20%E4%B8%B2%E5%8F%A3%E9%80%9A%E8%AE%AF/" title="【STM32HAL库开发】14. 串口通讯">【STM32HAL库开发】14. 串口通讯</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-13T16:00:00.000Z" title="发表于 2023-10-14 00:00:00">2023-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">通讯
+通讯的基本概念
+通讯的分类概览
+
+
+串行通讯与并行通讯
+
+
+
+​			串行通讯与并行通讯的区别
+​			串行通讯的有点是节省数据线
+
+
+
+全双工、半双工及单工通讯（按通讯方向来分）
+
+
+
+同步通讯与异步通讯（根据数据的同步方式划分）
+同步通讯一般会有时钟来协调，一般用于处理实时有效速率（对时钟误差要求高）
+异步通讯要先约定好速率，有效数据位减少，异步通信双方的时钟允许误差较大
+
+
+
+通讯速率
+每秒钟传输的二进制位数
+
+
+
+一个通信方式，可以是上面三种通信方式的集合
+USART-通用同步异步收发器
+它是STM32上的一个外设
+USART概览
+
+协议信号主要包括物理层面这些线如何接线等等信息。
+STM32和PC通信模型
+tx是发线，rx是收线
+
+STM32和PC通过RS-232标准通信
+即RS-232是他们之间通信的一个协议
+有了这个协议，它才能确定具体的物理层器件，比如接口，以及数据的交互方式；具体接线图如下。
+
+RS-232标准介绍
+
+RS-232协议电平标准对比
+
+RS-232标准的物理接口规定及接口标号
+
+RS-232标准下接口标号的作用
+
+我们目前用得到的，常用的就只有三条 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/13/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9113.%20%E9%A9%B1%E5%8A%A8%E8%9C%82%E9%B8%A3%E5%99%A8%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90/" title="【STM32HAL库开发】13. 驱动蜂鸣器播放音乐">【STM32HAL库开发】13. 驱动蜂鸣器播放音乐</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-12T16:00:00.000Z" title="发表于 2023-10-13 00:00:00">2023-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">驱动蜂鸣器播放音乐
+原理
+利用定时器+PWM控制输出的电压频率，控制蜂鸣器的发声。
+乐理知识
+必须知道的三个参数：音符，音调，节拍
+一般以C调音符为主
+音调
+C调音符与频率对照表
+
+节拍
+节拍决定了音符的时间长短
+节拍的简谱图
+
+
+编程思路原理
+采用定时器+PWM的方式，解放主循环，让程序可以做更多的事。
+定时器用于把握节拍
+PWM控制音调和音符
+PWM的周期(Hz) = 主频(Hz) / (重装载值 + 1) / (分频系数 + 1)
+每次转换音符时，动态修改重装载值即可实现PWM输出频率的变化，进而控制无源蜂鸣器的发声。定时器进行ms中断，判断节拍时间是否达到。
+电路原理
+无源蜂鸣器需要输入方波驱动发声；
+应注意在IO口要一个下拉电阻(使得蜂鸣器IO口不工作时保持低电平)，避免不通电时IO口处于浮空状态导致意外发声；
+
+疑问
+关于hal库的函数
+如何找到相应的函数？只是看csdn不是治本之策。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/12/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9112.%20Debug%E5%8A%9F%E8%83%BD/" title="【STM32HAL库开发】12. Debug功能及其方法简述">【STM32HAL库开发】12. Debug功能及其方法简述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-11T16:00:00.000Z" title="发表于 2023-10-12 00:00:00">2023-10-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">Debug功能及其方法简述
+常见的调试方法
+
+常见的Debug工具
+
+MDK-Keil的DEBUG使用
+硬件层面的准备
+
+用仿真器连接电脑与开发板
+
+软件层面的准备
+
+
+魔法棒的output选项中勾选这些(否则将无法看到现象)
+
+
+
+Debug选项设置，重点关注右侧
+
+
+
+打开setting进行配置，配置好接口，其他不用管。
+
+
+
+然后打开FlashDownload
+
+进行相应配置
+
+
+若不小心做了失误改动，按照如下图片复原、或者重新安装
+
+
+
+Debug的具体使用
+
+
+Run按钮，点击它程序就会运行。
+
+
+stop就会停止，代码也停止在相应的地方。
+
+
+
+第一个step是步入，进入函数执行；
+第二个是step over步过(它还是会执行，只不过不跟踪其代码而已)；
+第三个是步出step out，即离开当前子函数，回到上一级函数；
+第四个是运行到当前行
+
+蓝色箭头：光标所处位置；    黄色箭头：程序运行到的位置
+
+
+回到当前程序停止位置（黄色箭头）
+
+
+
+断点：
+
+
+断点只能设置再小黑快里，因为在小黑块里才有实际的语句执行。
+
+
+
+点击断点后，程序运行到断点处便会停下，但斌没有执行断 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/11/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9111.%20HAL%E5%BA%93%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" title="【STM32HAL 库开发】11. HAL库的驱动框架">【STM32HAL 库开发】11. HAL库的驱动框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-10T16:00:00.000Z" title="发表于 2023-10-11 00:00:00">2023-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">HAL库驱动框架
+外设初始化
+对外设的封装
+xx_HandleTypeDef (xx外设句炳结构体，xx表示任何外设名，如GPIO、UART等等)
+
+Instance成员(xx_TypeDef类型)，一般是指向外设的基地址，访问相关外设的资源
+Init成员(xx_InitTypeDef类型)，用于初始化外设，配置外设如何去工作
+Hdma*成员(DMA_HandleTypeDef类型，可能一个句柄结构有多个)
+其他资源
+
+LOCK锁(HAL_LockTypeDef类型)    用于防止资源竞争，保护外设工作过程
+STATUS状态(HAL_xx_StateTypeDef类型)    指示句柄结构体状态，可以用这个检查一下外设状态
+…
+
+
+
+对外设初始化使用方法
+
+
+HAL_xx_Init,  参数一般为xx外设的句柄结构体
+对句柄结构体下的init成员的相关参数配置到寄存器之前，它会先调用hal_xx_mspinit函数，将相关底层资源初始化完成，比如时钟、使用到的引脚、中断的使能等等。
+
+
+HAL_xx_MspInit, 参数一般为xx外设的句柄结构体 (再HAL库中，这个函数是一个回调 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%9110.%20PWM%E4%B8%93%E9%A2%98%E7%90%86%E8%A7%A3/" title="【STM32HAL库开发】10. PWM专题理解">【STM32HAL库开发】10. PWM专题理解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T16:00:00.000Z" title="发表于 2023-10-10 00:00:00">2023-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">PWM专题理解
+PWM(Pluase Width Mudulation)
+脉冲宽度调制 
+利用微处理器的数字输出来对模拟电路进行控制的一种技术
+原理
+面积等效原理
+相关概念：
+
+脉冲：在短持续时间内突变，随后又迅速返回其初始值的物理量变化过程。(学术上的定义)
+脉冲信号：瞬间突然变化、作用时间极短的电压或电流。脉冲信号是一种离散信号，具有一定的周期性。
+脉冲宽度：高电平持续的时间。
+脉冲冲量：脉冲信号在时间上的积累量。
+周期：信号从高电平到低电平，再回到高电平所需的时间。
+频率：一秒内又多少个这样的周期。
+PWM占空比：一个脉冲周期内，高电平保持的时间。
+
+电压不同、时间不同的两组输入，如果他们的脉冲冲量(电压与时间的乘积)相等，那么他们输出的波形基本相同。
+
+如图上下两个波形钟，上下对齐且颜色相同的区域面积两两相等，所以上面的标准正弦波和下面的方波是等效的。
+
+
+至此，我们可以理解为什么PWM可以通过数字输出来对模拟电路进行控制了，它其实就是使用数字信号(比如图中的方波)，来达到模拟信号(比如图中的正弦波)的效果
+占空比与平均输出电压
+
+占空比越大，所得到的平均电压也就越大，幅度值也 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/09/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%919.%20STM32%E5%AE%9A%E6%97%B6%E5%99%A8/" title="【STM32HAL库开发】9. STM32定时器">【STM32HAL库开发】9. STM32定时器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-08T16:00:00.000Z" title="发表于 2023-10-09 00:00:00">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">定时器
+SysTick定时器介绍
+Systick定时器特性介绍
+
+
+**计数宽度：**24bit来存储数据，224=167772162^{24}=16777216224=16777216
+**向下递减：**计数器的工作模式
+计数器的工作周期： 工作周期为 1/CLKsource(时钟源)，1/72Mh z。
+**计时器工作过程：**设定一个计数宽度，则计时器开始工作后，每经过1/72Mhz的时间，计数器都会向下递减一次计数宽度值。
+**计时器的计时意义：**计时器完成一次工作过程所需的时间是固定的，若计数宽度和频率确定。
+每完成一次计时，都能触发一次中断。(详细见上面的SysTick特点图)
+
+计算公式/换算公式
+
+SysTick定时器功能
+
+SysTick定时器寄存器介绍
+
+SysTick控制及状态寄存器(CTRL)
+
+第0位是使能位，置1使能
+第1位是中断位，若置1，则即使其倒数到0时产生SysTick异常请求，置0时误动作。
+第2位是时钟源选择位
+
+置1    AHB  处理器时钟
+置0   外部时钟
+
+第3到16位是计数标志位，功能描述如图。
+重装载数值寄存器(LOAD)
+当倒 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%918.%20STM32%E4%B8%AD%E6%96%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B7%A5%E7%A8%8B/" title="【STM32HAL库开发】8. STM32中断的使用工程">【STM32HAL库开发】8. STM32中断的使用工程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-07T16:00:00.000Z" title="发表于 2023-10-08 00:00:00">2023-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">STM32中断的使用(工程讲解)
+使用EXTI外部中断的工程实例
+CubeMax配置
+
+
+配置时钟
+
+
+配置SYS的debug，选择Serial Wire
+
+
+若不勾选，程序只能下载一遍
+
+
+若未勾选然后已经下载了程序
+
+
+
+
+
+配置GPIO引脚
+
+任意引脚，选择GPIO_EXTI
+
+
+图中的GPIO_EXTI2对应着GPIO2线的外部中断，可以在数据手册中的External interrupt/even line mapping中找到相关描述
+
+
+
+配置GPIO模式，可选择上升沿触发或者下降沿触发或上下边沿都检测(rising/falling edge trigger detection)
+可选择事件模式(event)或者中断模式(external interrupt)
+事件模式：只产生事件
+中断模式：既产生事件又产生中断
+
+
+
+
+配置NVIC(向量中断控制器)
+
+如图，如果设置了GPIO_EXTI2，那么我们要使能向量中断控制器去操纵这个引脚，所以需要在NVIC勾选相应的中断。
+
+
+
+
+然后在此界面设置优先级分组(详细请看中断概述中的NVIC章节)
+
+样例中勾选了Sort by . ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/07/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%917.%20STM32%E4%B8%AD%E6%96%AD%E6%A6%82%E8%BF%B0/" title="【STM32HAL库开发】7. STM32中断概述">【STM32HAL库开发】7. STM32中断概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-06T16:00:00.000Z" title="发表于 2023-10-07 00:00:00">2023-10-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">中断概述
+中断
+中断的概念
+
+感性的理解：当你执行A任务时，出现了B任务，B任务更重要，所以你停止做A，先做完B再做A，这个过程称为中断
+中断和异常
+中断和异常的概念相近，异常可以说是 内核活动 产生(比如说执行指令出错)；
+而中断一般是由连接到内核的外部器件(外设)产生(比如外设产生中断，提示数据传输完成)；
+它们的触发原理或者处理方式相同，在使用中并不严格区分异常和中断
+外部中断
+外部中断，目前可以理解为外设中断，英文是 External Interrupte 
+不同开发板的中断以及中断类型各不相同，因此对不不同开发板的中断使用应该具体情况具体分析，查看中断的内容，我们可以打开工程，阅读startup文件，找到其中的 External Interrupts
+优先级
+中断优先级
+
+优先级有两种：可编程、不可编程
+中断的优先级决定着内核优先相应谁的中断请求
+小值优先原则，优先级值越小，中断会被优先相应
+中断优先级按照 优先级分组 配置
+
+中断的优先级分组
+
+
+以F103为例，STM32上使用的M3内核支持8bit优先级中的高4位bit。也就是说STM32F103支持242^424个优先 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E3%80%90STM32HAL%E5%BA%93%E5%BC%80%E5%8F%91%E3%80%916.%20STM32%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%96%E8%AE%BEGPIO/" title="【STM32HAL 库开发】6. STM32第一个外设GPIO">【STM32HAL 库开发】6. STM32第一个外设GPIO</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-05T16:00:00.000Z" title="发表于 2023-10-06 00:00:00">2023-10-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">GPIO
+GPIO的输入和输出
+GPIO输出模式(四种)
+推腕输出
+
+特点：驱动能力强（因为MOS管电阻很小，VCC经过的电流大，驱动能力强）
+是最常用的输出模式
+开漏输出
+
+只能输出低电平
+输出高电平时，可以外接一个电阻和电压（上拉电阻），电压可以根据自己的需要选择，这样IO口就可以输出你想要的电平（高于5.5v）
+&quot;开漏输出&quot;具有”线与“的功能，一个为低全部为低，多用于I2C或者SMBUS总线;(个人理解：就是在开漏输出的IO连接的线上，如果驱动电压是开漏输出的IO口，那么这条线上只要有一处是低电平，意味着全部都是低电平)
+
+复用推腕输出和复用推腕输出
+
+一般用于特殊的功能
+GPIO输入模式(四种)
+上拉输入
+
+外接独立按键可以使用这个，可以有效防止其他因素的干扰
+下拉输入
+
+
+浮空输入和模拟输入
+
+注意：芯片复位上电后默认为浮空输入模式。
+输出速度
+
+GPIO初始化顺序
+
+选定具体的GPIO
+配置GPIO工作模式（CRL和CRH寄存器）
+控制GPIO输出高低电平（ODR、BSRR、BRR）
+
+写自己的函数
+
+操作寄存器点亮LED
+C语言技巧
+
+
+给寄存器相应的 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/7/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/08/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91%E9%85%8D%E7%BD%AE%20python%20%E7%8E%AF%E5%A2%83/" title="0 基础配置 Python 环境">0 基础配置 Python 环境</a><time datetime="2025-11-08T07:00:00.000Z" title="发表于 2025-11-08 15:00:00">2025-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算">【深度学习】4. 深度学习计算</a><time datetime="2024-11-16T07:00:00.000Z" title="发表于 2024-11-16 15:00:00">2024-11-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）">【深度学习】5. 卷积神经网络（CNN）</a><time datetime="2024-10-18T07:00:00.000Z" title="发表于 2024-10-18 15:00:00">2024-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%912.%20%E7%BA%BF%E6%80%A7%E7%BD%91%E7%BB%9C/" title="【深度学习】2. 线性网络">【深度学习】2. 线性网络</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%913.%20%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="【深度学习】3. 多层次感知机">【深度学习】3. 多层次感知机</a><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">工具分享</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="card-category-list-name">数据科学</span><span class="card-category-list-count">43</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">19</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/gdb/" style="font-size: 1.1em; color: #999">gdb</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.33em; color: #99a2af">人工智能</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/python%E3%80%81GUI/" style="font-size: 1.1em; color: #999">python、GUI</a> <a href="/tags/python/" style="font-size: 1.1em; color: #999">python</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.27em; color: #99a0a9">机器学习</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.39em; color: #99a4b4">数学建模</a> <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" style="font-size: 1.16em; color: #999b9e">论文写作</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/markdown/" style="font-size: 1.16em; color: #999b9e">markdown</a> <a href="/tags/arduino/" style="font-size: 1.1em; color: #999">arduino</a> <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" style="font-size: 1.44em; color: #99a7ba">课程学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.21em; color: #999ea4">深度学习</a> <a href="/tags/python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">python数据库</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.33em; color: #99a2af">爬虫设计</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.39em; color: #99a4b4">Python基础</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.21em; color: #999ea4">计算机网络基础</a> <a href="/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.39em; color: #99a4b4">单片机</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">9</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">105</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">232.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-12-01T15:17:35.670Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["Build、Break and Become Better","保持好奇、持续输出"])
+  } else {
+    document.getElementById("subtitle").textContent = "Build、Break and Become Better"
+  }
+}
+typedJSFn.run(subtitleType)</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
