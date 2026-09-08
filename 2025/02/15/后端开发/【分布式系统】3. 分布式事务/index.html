@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【分布式系统】3. 分布式事务 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、分布式事务概述 （一）为什么有分布式事务？ 分布式事务是随着分布式系统的诞生而诞生的，分布式系统的设计往往涉及到系统拆分，而系统拆分有常常涉及到服务拆分和存储拆分，正是服务和存储的拆分，催生了分布式事务的出现。 分布式系统下，系统的服务被拆成多个不同的服务，各个不同的服务又有不同的持久化层，有时完成一个请求需要经过多个服务的状态变更，业务上常常要求多个服务的状态变更保证业务逻辑一致性，这时候就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【分布式系统】3. 分布式事务">
+<meta property="og:url" content="http://example.com/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="一、分布式事务概述 （一）为什么有分布式事务？ 分布式事务是随着分布式系统的诞生而诞生的，分布式系统的设计往往涉及到系统拆分，而系统拆分有常常涉及到服务拆分和存储拆分，正是服务和存储的拆分，催生了分布式事务的出现。 分布式系统下，系统的服务被拆成多个不同的服务，各个不同的服务又有不同的持久化层，有时完成一个请求需要经过多个服务的状态变更，业务上常常要求多个服务的状态变更保证业务逻辑一致性，这时候就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2025-02-15T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-16T03:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="分布式事务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【分布式系统】3. 分布式事务',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-16 11:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【分布式系统】3. 分布式事务</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-15T15:00:00.000Z" title="发表于 2025-02-15 23:00:00">2025-02-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-16T03:00:00.000Z" title="更新于 2025-02-16 11:00:00">2025-02-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【分布式系统】3. 分布式事务"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>一、分布式事务概述</h1>
+<h2 id="（一）为什么有分布式事务？">（一）为什么有分布式事务？</h2>
+<p>分布式事务是随着分布式系统的诞生而诞生的，分布式系统的设计往往涉及到系统拆分，而系统拆分有常常涉及到服务拆分和存储拆分，正是服务和存储的拆分，催生了分布式事务的出现。</p>
+<p>分布式系统下，系统的服务被拆成多个不同的服务，各个不同的服务又有不同的持久化层，有时完成一个请求需要经过多个服务的状态变更，业务上常常要求多个服务的状态变更保证业务逻辑一致性，这时候就需要分布式事务了。</p>
+<p>拿电商系统的下单场景举例，涉及到的系统包括订单服务、库存服务、会员服务、支付服务等；用户的下单操作同时依赖这几个服务，如果有一个服务失败，下单也就必须是失败，否则就出大问题了。</p>
+<h2 id="（二）什么是事务？">（二）什么是事务？</h2>
+<p><strong>事务的本质是将对一组数据的操作进行逻辑封装，使其作为一个整体执行</strong>，<strong>并满足 ACID 特性</strong>。</p>
+<ul>
+<li>A，Atomicity：原子性，一组操作要么都完成、要么都回滚</li>
+<li>C，Consistence：一致性，事务执行前后必须保证数据逻辑约束，比如 A 转给 B 必须是 A 余额减少和 B 余额增加，并且金额相等</li>
+<li>I，Isolation：隔离性，不同事务之间互不影响</li>
+<li>D，Durability：持久性，事务提交后，数据不会因为崩溃丢失</li>
+</ul>
+<h2 id="（三）本地事务-vs-分布式事务">（三）本地事务 vs 分布式事务</h2>
+<p>本地事务、分布式事务，本质区别在于是否跨越多个<strong>独立资源管理器</strong></p>
+<blockquote>
+<p>注意，独立资源管理器并不等同于机器资源，比如 MySQL 其实分为 server 层和 engine 层，也需要用分布式事务保证 server 层的 binlog 和 engine 层的 redo log 的事务特性。</p>
+</blockquote>
+<ul>
+<li>
+<p>本地事务：所有数据操作都由同一个资源管理器控制，并在该资源内部保证 ACID 特性</p>
+</li>
+<li>
+<p>分布式事务：事务中的操作分散在多个独立的资源，需要通过协调机制（2PC、3PC、TCC 等）来保证整体一致性</p>
+<blockquote>
+<p>分布式事务中，ACID 是目标追求，但通常完全实现 ACID 成本较高，如果不是业务需要，一般采用最终一致性或补偿机制代替强一致性的分布式事务</p>
+</blockquote>
+</li>
+</ul>
+<h1>二、常见的分布式事务解决方案</h1>
+<p>分布式事务的解决方案，常见的有两阶段提交（2PC）、三阶段提交（3PC）、TCC 分段提交以及基于消息队列的最终一致性设计。</p>
+<p>2PC 是经典的分布式事务解决方案，适用于强一致的场景。3PC 是基于 2PC 的优化，核心是超时自抉择机制，但是也存在超时时间难以确定和不确定性的安全问题，因此很少在工程实践中使用。TCC 适用于高可用、不追求强一致的事务场景。</p>
+<p>在工程实践中，一般来说：</p>
+<ul>
+<li>强一致需求：2PC + 日志/恢复/TM 高可用（共识机制保证 TM 集群一致性，又保证高可用）来实现</li>
+<li>高可用需求：TCC 或基于消息队列的最终一致性方案</li>
+</ul>
+<p>这些都需要进行掌握，下面进行逐一介绍。</p>
+<h2 id="（一）核心思想">（一）核心思想</h2>
+<p>分布式事务主要解决的是多个节点的事务问题，如果我们把整个事务分治到每一个节点，那么其实就是需要保证各个节点的事务要么都提交、要么都回滚。</p>
+<blockquote>
+<p>这也是蚂蚁金服开源分布式事务组件 Seata，也就是 Fescar 的核心思想。</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260216153332611.png" alt="image-20260216153332611"></p>
+<p>但是这种做法存在一个问题，节点不知道其他节点的状态，无法决定是提交还是回滚。此时可以引入一个协调者，协调各个节点的统一行动，这有点像拜占庭问题中各个小国得到一个信任的领头国。</p>
+<p>协调者在此处的作用是，每个节点可以从协调者这里知道其他节点是否都已经可以提交，明确都可以提交后才提交。</p>
+<h2 id="（二）两阶段提交（2PC）">（二）两阶段提交（2PC）</h2>
+<p>两阶段提交就是分布式事务的一个经典实现方式，核心思想就是通过一个协调者协调各个节点，使得分布在不同节点的操作具备逻辑一致性。</p>
+<p>两阶段提交可以总结为两种角色、两个阶段。角色通俗来说就是协调者节点和参与者节点， 两个阶段分别为提交请求阶段、提交阶段。</p>
+<p><strong>两种角色</strong></p>
+<p>工程实践中，将角色抽象成事务管理者（Transaction Manager）和资源管理者（Resources Manager），其实分别就对应着协调者和参与者。</p>
+<p><strong>两个阶段</strong></p>
+<p>分别为准备阶段和提交阶段，核心思想是确认所有节点都准备好之后才能提交，否则全部回滚。下面详细介绍两阶段的过程。</p>
+<h3 id="1-准备阶段（prepare）">1. 准备阶段（prepare）</h3>
+<ul>
+<li>收到客户端请求后，TM 向所有 RM 发送 prepare 请求</li>
+<li>RM 开启本地事务、锁资源、执行所有操作、写日志，不提交，执行完后，返回 yes/no</li>
+<li>TM 一旦收到 no，返回给客户端处理失败；否则 TM 收到所有 yes 后进入 commit 阶段</li>
+</ul>
+<h3 id="2-提交阶段（commit）">2. 提交阶段（commit）</h3>
+<p>只有当 TM 收到所有 RM 的  yes 才进入这个阶段。</p>
+<ul>
+<li>TM 向所有 RM 节点发送 commit 请求</li>
+<li>RM 节点本地提交事务，返回 ack</li>
+<li>TM 收到所有 RM 节点的 ack 后，返回给客户端处理成功</li>
+</ul>
+<h4 id="2-1-为什么提交阶段不存在-RM-节点返回-no-的分类讨论？">2.1 <strong>为什么提交阶段不存在 RM 节点返回 no 的分类讨论？</strong></h4>
+<ul>
+<li>进入提交阶段后，各个 RM 已经在本地执行了事务并写入日志，这些操作已经成为系统事实，commit 只是决定是否对外可见，不存在真正的提交失败问题</li>
+<li>可能的提交失败情况，其实是网络分区的影响导致有些节点等不到是否可以可以提交的通知，但是这些操作也不会丢失，只要有通知，就能提交成功</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">		autonumber</span><br><span class="line">		participant A as Client</span><br><span class="line">    participant C as Coordinator（TM）</span><br><span class="line">    participant P as Participant (RM)</span><br><span class="line">    </span><br><span class="line">    A-&gt;&gt;+C: client transaction request</span><br><span class="line"></span><br><span class="line">    %% -------- Phase 1 --------</span><br><span class="line">    Note over C,P: Phase 1 - Prepare</span><br><span class="line">    C-&gt;&gt;+P: prepare(tx)</span><br><span class="line">    P-&gt;&gt;P: execute + write log (not commit)</span><br><span class="line">    P--&gt;&gt;-C: vote-yes / vote-no</span><br><span class="line"></span><br><span class="line">    %% -------- Phase 2 --------</span><br><span class="line">    alt vote-no</span><br><span class="line">        Note over C,P: Phase 2 - Rollback</span><br><span class="line">        C-&gt;&gt;+P: rollback(tx)</span><br><span class="line">        P--&gt;&gt;-C: ack</span><br><span class="line">        C--&gt;&gt;A: system response: fail</span><br><span class="line">    else vote-yes</span><br><span class="line">        Note over C,P: Phase 2 - Commit</span><br><span class="line">        C-&gt;&gt;+P: commit(tx)</span><br><span class="line">        P--&gt;&gt;-C: ack</span><br><span class="line">        C--&gt;&gt;-A: system response: success</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<h3 id="3-两阶段提交存在的问题">3. 两阶段提交存在的问题</h3>
+<p>两阶段提交存在明显的问题，下面逐一介绍。</p>
+<h4 id="3-1-资源被同步阻塞（被锁住）">3.1 资源被同步阻塞（被锁住）</h4>
+<p>在准备阶段中，所有参与者执行事务的时候需要锁住资源，避免并发问题，会阻塞住所有第三方的相同资源的访问。</p>
+<h4 id="3-2-TM-存在单点故障问题（致命阻塞）">3.2 TM 存在单点故障问题（致命阻塞）</h4>
+<p>事务管理者/协调者作为协调各个节点的组织者在系统中起着至关重要的作用，所有节点都依赖于 TM 而正常工作，一旦 TM 宕机，系统事务失效（不可用）。</p>
+<p>分析一下 TM 在不同时期宕机产生的影响：</p>
+<ol>
+<li>接收客户端请求后、发送 prepare 通知前：此时 RM 没执行事务，不锁资源，TM 宕机后仅影响客户端，客户端会长时间收不到响应</li>
+<li>发送 prepare 通知后：有些 RM （prepare 阶段）或者所有 RM （commit 阶段）已经执行事务，锁住了资源，等待 TM 通知提交；此时 TM 宕机不仅影响客户端，还会导致部分 RM 阻塞等待</li>
+</ol>
+<h3 id="4-总结">4. 总结</h3>
+<p>两阶段提交在理论上是可以实现强一致性的事务的，但是存在严重的问题，后面 3PC 是基于 2PC 的优化，解决了 2PC 的部分问题，但大体思想基本一致。</p>
+<h2 id="（三）三阶段提交（3PC）">（三）三阶段提交（3PC）</h2>
+<p>2PC 存在和核心问题是<strong>RM 在 prepare 后如果拿不到 TM 的最终决策，会一直阻塞（锁资源、无法提交或无法回滚）</strong>。</p>
+<p>3PC 的改进思路是：</p>
+<ul>
+<li>
+<p>在“是否可以提交”之前引入一个新阶段，基于超时机制校验一下 RM 是否具备进入 prepare 状态的条件（不进入 prepare 状态、不开启事务、不执行）</p>
+</li>
+<li>
+<p>如果所有 RM 都具备，才进入正常的 prepare 阶段，大大降低 TM 宕机的影响</p>
+<blockquote>
+<p>前面分析过，TM 如果在 RM 进入 prepare 后宕机，就会阻塞至少部分 RM，产生较大的影响</p>
+</blockquote>
+</li>
+</ul>
+<p>3PC 是基于 2PC 的改良方案，角色和 2PC 一样，阶段分为三个阶段。下面进行介绍。</p>
+<h3 id="1-canCommit-阶段（询问是否可以提交）">1. canCommit 阶段（询问是否可以提交）</h3>
+<ul>
+<li>
+<p>客户端发起事务请求，TM 向所有节点发送 canCommit 请求</p>
+</li>
+<li>
+<p>RM 检查自己是否有 commit 的条件，比如资源是否充足、是否满足事务的约束条件等，然后 RM 返回 yes/no</p>
+<blockquote>
+<p>RM 在这一阶段，不会开启事务、不会执行事务、不会锁资源，仅做检查，因此即使 TM 挂了对系统也没太大影响</p>
+</blockquote>
+</li>
+<li>
+<p>一旦 TM 收到任意一个 no，直接响应客户端处理失败；否则 TM 收到所有 yes，进入 preCommit 阶段</p>
+</li>
+</ul>
+<h3 id="2-preCommit-阶段（预提交：RM-进入提交状态）">2. preCommit 阶段（预提交：RM 进入提交状态）</h3>
+<p>只有当所有 RM 返回 yes，才进入该阶段。</p>
+<ul>
+<li>TM 向所有 RM 发送 preCommit 请求</li>
+<li>RM 开启事务、锁资源、执行事务、不提交；执行完后返回 yes/no</li>
+<li>TM 收到任意一个 no，响应客户端处理失败；否则 TM 收到所有 yes，进入 commit 阶段</li>
+</ul>
+<h3 id="3-commit-阶段（最终提交）">3. commit 阶段（最终提交）</h3>
+<p>只有当所有 RM 返回 yes，才进入该阶段。</p>
+<ul>
+<li>TM 向所有 RM 发送 commit 请求</li>
+<li>RM 在本地进行事务的提交，返回 ack</li>
+<li>TM 收到所有 ack 后，返回客户端处理成功</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    autonumber</span><br><span class="line">    participant A as Client</span><br><span class="line">    participant C as Coordinator (TM)</span><br><span class="line">    participant P as Participant (RM)</span><br><span class="line"></span><br><span class="line">		A-&gt;&gt;+C: client transaction request</span><br><span class="line"></span><br><span class="line">    Note over C,P: Phase 1 - CanCommit</span><br><span class="line">    C-&gt;&gt;P: canCommit?(tx)</span><br><span class="line">    P--&gt;&gt;C: yes / no</span><br><span class="line"></span><br><span class="line">    alt any no</span><br><span class="line">        Note over C,P: Abort</span><br><span class="line">        C-&gt;&gt;P: abort(tx)</span><br><span class="line">        P--&gt;&gt;C: ack</span><br><span class="line">        C--&gt;&gt;A: system response: fail</span><br><span class="line">    else all yes</span><br><span class="line">        Note over C,P: Phase 2 - PreCommit</span><br><span class="line">        C-&gt;&gt;P: preCommit(tx)</span><br><span class="line">        P-&gt;&gt;P: execute + write log + lock (not commit)</span><br><span class="line">        P--&gt;&gt;C: ack</span><br><span class="line"></span><br><span class="line">        Note over C,P: Phase 3 - DoCommit</span><br><span class="line">        C-&gt;&gt;P: doCommit(tx)</span><br><span class="line">        P-&gt;&gt;P: commit + unlock</span><br><span class="line">        P--&gt;&gt;C: ack</span><br><span class="line">        C--&gt;&gt;-A: system response: success</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<h3 id="4-3PC-的优化点">4. 3PC 的优化点</h3>
+<p>3PC 相较于 2PC，最大的优化就是降低了阻塞的概率，以及使得阻塞能够在有限时间内结束。</p>
+<h4 id="4-1-基于超时机制的自抉择规则">4.1 基于超时机制的自抉择规则</h4>
+<p>这是 3PC 的核心优化。3PC 为了减少阻塞的影响，采用超时自抉择规则，使得阻塞能在有限时间内结束。</p>
+<ul>
+<li>
+<p>如果 RM 在 canCommit 之后超时没等到 TM，直接 abort，本地回滚</p>
+</li>
+<li>
+<p>如果 RM 在 preCommit 之后超时没等到 TM，倾向于 commit，本地自己提交</p>
+<blockquote>
+<p>这也是 3PC 的争议点，自提交的规则使得系统存在不确定的安全问题</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="4-2-新增-canCommit-阶段降低-rollback-的可能">4.2 新增 canCommit 阶段降低 rollback 的可能</h4>
+<p>在 preCommit 前新增 canCommit 阶段，也就是在 RM 开启事务前先确认是否有条件进行 commit，降低了开启事务后再 rollback 的可能。</p>
+<h3 id="5-3PC-存在的问题">5. 3PC 存在的问题</h3>
+<p>3PC 相较于 2PC 最大的优化就是减少阻塞的概率和降低阻塞的影响，但这是基于“超时自抉择”机制完成的。</p>
+<p>这种做法存在极大的缺陷：</p>
+<ol>
+<li>强依赖网络延迟有上限这一假设，难以设计出满足业务需求的超时时间</li>
+<li>自提交机制带来不确定性的不一致影响</li>
+</ol>
+<h2 id="（四）TCC，Try、Confirm-Cancel">（四）TCC，Try、Confirm/Cancel</h2>
+<p>2PC 为代表的分布式事务解决方案是跨库跨表的大粒度事务，遇到复杂、长链业务的事务需求时，可能会导致长时间阻塞，性能很低，无法满足业务需求。</p>
+<p>TCC 提出一种新的事务模型，基于业务层面的事务定义，锁粒度完全由业务控制，目的是解决复杂的分布式事务中，跨库跨表的大粒度资源锁定导致的性能低的问题。</p>
+<p>TCC 把事务运行过程分为 Try、Confirm/Cancel 两个阶段，每个阶段的事务逻辑由业务代码控制，避免了长事务，可以获得更高、更可控的性能，本质上是 <strong>TCC 的思想与 2PC 类似，都分阶段决定事务是否最终提交，但 TCC 是在业务层实现的补偿型分布式事务方案</strong>。</p>
+<p>下面先介绍 TCC 的思路、流程，最后通过一个例子体会 TCC 的实现方式，最后总结归纳 TCC 的优势和存在的问题。</p>
+<h3 id="1-TCC-的核心思想">1. TCC 的核心思想</h3>
+<p>TCC 的核心思想是将跨服务的状态变更拆分为“<strong>资源预占（Try）</strong>”、“最终提交（Confirm）”和“补偿回滚（Cancel）”三个部分，通过业务层状态控制实现分布式事务的一致性。</p>
+<p>其中最核心的就是资源预占，通过资源预占对实际资源进行实际的占用或冻结，使得资源在最终决策前不会被其他事务使用，保证 confirm 阶段尽量不会失败。</p>
+<h3 id="2-TCC-流程-——-两阶段">2. TCC 流程 —— 两阶段</h3>
+<p>TCC 是一种基于业务补偿的分布式事务方案，其思想类似 2PC，都是分阶段决定事务是否最终提交，分为 Try、Confirm/Cancel 阶段。</p>
+<p><strong>Try 阶段（资源预留）</strong></p>
+<ul>
+<li>
+<p>客户端发起事务请求，服务端执行逻辑、调用各个其他服务的 Try 接口</p>
+</li>
+<li>
+<p>其他服务收到 Try 请求后：</p>
+<ul>
+<li>进行业务检查（请求是否合理、资源是否充足、是否满足业务约束等）</li>
+<li>进行事务预处理，冻结需要操作的资源（比如先记录下来要扣多少库存、要减少多少余额等，冻结库存、冻结余额）</li>
+</ul>
+</li>
+<li>
+<p>最后返回 yes/no</p>
+</li>
+<li>
+<p>如果有响应 no 的节点，Try 阶段直接失败，进入 Cancel 流程</p>
+<blockquote>
+<p>为什么这里不进行重试？</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>Confirm/Cancel 阶段（正式提交/补偿回滚）</strong></p>
+<p>如果 Try 阶段失败或事务主动 Cancel，进入 Cancel 的流程：</p>
+<ul>
+<li>服务端调用各服务的 Cancel 接口</li>
+<li>释放冻结的资源，回滚预处理逻辑</li>
+<li>响应客户端</li>
+<li>如果执行过程中出错，则进行重试，如果重试失败则触发告警，人工干预兜底</li>
+</ul>
+<p>如果 Try 阶段成功，进入 Confirm 的流程：</p>
+<ul>
+<li>服务器调用 Confirm 接口</li>
+<li>基于冻结资源进行操作，比如库存正式扣减、余额正式扣减</li>
+<li>释放冻结资源标记</li>
+<li>响应客户端</li>
+<li>如果执行过程中出错，则进行重试，如果重试失败则触发告警，人工干预兜底</li>
+</ul>
+<p><strong>由于 Confirm/Cancel 阶段通过重试来处理失败的情况，因此要保证 Confirm/Cancel 接口的幂等性。</strong></p>
+<blockquote>
+<p>这里其实涉及到幂等性设计了，再进一步思考，其实分布式系统下几乎所有的非幂等接口（POST/PUT/DEL 等）都需要保证幂等性，因为分布式系统下各个系统之间的交互是基于网络的，由于网络的不稳定性，同一接口的多次请求是几乎不可避免的。</p>
+<p>而对于需要重试兜底的接口，更加需要保证幂等性。</p>
+</blockquote>
+<h3 id="3-真实业务场景分析-TCC">3. 真实业务场景分析 TCC</h3>
+<p>以电商场景的支付业务演示 TCC 如何实现，在电商支付场景中，用户在支付之后，一般伴随着订单状态更新、账户余额扣件、库存扣减和账户积分增加。</p>
+<h4 id="3-1-业务逻辑拆解">3.1 业务逻辑拆解</h4>
+<p>我们把订单业务拆解成下面几个步骤：</p>
+<ol>
+<li>更新订单状态</li>
+<li>账户余额扣减</li>
+<li>库存扣减</li>
+<li>账户积分增加</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">用户支付 --&gt; 更新订单状态 &amp; 扣除账户余额 &amp; 扣除库存 &amp; 增加账户积分</span><br><span class="line">更新订单状态 --&gt; 订单服务</span><br><span class="line">扣除账户余额 --&gt; 账户服务</span><br><span class="line">扣除库存 --&gt; 库存服务</span><br><span class="line">增加账户积分 --&gt; 账户服务</span><br></pre></td></tr></table></figure>
+<p>显然，如果上面四个步骤不满足事务约束，出现不一致，可能会出现已经下单了但是没发货、超卖、积分没增加等问题，这个在业务上是不能接受的，会出现大量的客诉以及难以估量的经济损失。</p>
+<h4 id="3-2-业务系统-TCC-改造">3.2 业务系统 TCC 改造</h4>
+<p>应用 TCC 实现事务，需要对业务系统进行侵入性改造，每一个步骤都需要抽象 Try、Confirm、Cancel 阶段。</p>
+<p><strong>Try 操作</strong></p>
+<p>try 操作的核心是冻结资源，而不是直接扣减资源。下面分别分析各个服务针对 try 如何冻结资源：</p>
+<ul>
+<li>订单服务：订单状态更新为 updating，如果当前订单状态不是 toPay 则 Try 失败</li>
+<li>账户服务：假设要扣除数量为 toDeduct，引入冻结字段 frozenAmount，availableAmount = balance - frozenAmount；当 availableAmount &gt;= toDeduct 时，执行 frozenAmount += toDeduct，否则 Try 失败</li>
+<li>库存服务：加入要扣除数量为 toDeduct，引入冻结字段 frozenStock，availableStock = balance - frozenStock；当 availableAmount &gt;= toDeduct，执行 frozenAmount += toDeduct，否则 Try 失败</li>
+</ul>
+<p><strong>Confirm 操作</strong></p>
+<p>当所有服务的 Try 都成功后，系统进入 Confirm 阶段。Confirm 操作基于冻结资源进行最终提交：</p>
+<ul>
+<li>
+<p>订单服务中，订单状态更新为 paid</p>
+</li>
+<li>
+<p>账户服务中，balance -= toDeduct、frozenAmount -= toDeduct</p>
+</li>
+<li>
+<p>库存服务中，balance -= toDeduct、frozenAmount -= toDeduct</p>
+</li>
+</ul>
+<p><strong>Cancel 操作</strong></p>
+<p>当 try 阶段任意服务失败，或事务需要主动终止时，进入 Cancel 阶段。</p>
+<blockquote>
+<p>其实 Cancel 阶段就类似于在业务层面设计了一个等价于回滚的补偿机制。</p>
+</blockquote>
+<p>Cancel 操作主要是在 try 失败后，释放冻结资源：</p>
+<ul>
+<li>订单服务：订单状态恢复为 toPay</li>
+<li>库存服务：frozenAmount -= toDeduct</li>
+<li>账户服务：frozenAmount -= toDeduct</li>
+</ul>
+<p><strong>约束</strong></p>
+<p>Confirm/Cancel 操作一旦执行，不允许回滚，因此必须保证：</p>
+<ul>
+<li>失败时持续重试</li>
+<li>接口幂等</li>
+<li>必要时人工干预</li>
+</ul>
+<h3 id="4-TCC-的优缺点分析">4. TCC 的优缺点分析</h3>
+<ul>
+<li>
+<p>TCC 在业务执行的时候，<strong>只操作预留的资源，几乎不会涉及到锁和资源的争用，具有很高的性能潜力</strong></p>
+</li>
+<li>
+<p>但是 TCC 的业务侵入性较高，在使用上有较大的弊端，需要投入较大的编码成本，以及涉及到一些技术可控性约束</p>
+<blockquote>
+<p>如何理解这里的技术可控性约束？比如要实现 TCC 可能要修改银行收银系统，但是没有权限操作，对方也不会开放权限和数据给你。</p>
+</blockquote>
+</li>
+<li>
+<p>在实际业务中，一般不完全依靠裸编码实现 TCC，而是基于某些分布式事务中间件完成，比如 Seata</p>
+</li>
+</ul>
+<h1>三、XA 规范 —— 以 MySQL 为例</h1>
+<h2 id="（一）XA-规范简介">（一）XA 规范简介</h2>
+<p>XA 是由 X/Open 组织提出的分布式事务规范，XA 规范主要定义了事务协调者（TM）和资源管理器（RM）之间的接口；XA 事务是基于两阶段提交的。</p>
+<ul>
+<li>TM：事务管理者，也就是协调者，管理事务的生命周期，在 prepare 阶段协调 RM 执行事务但不提交；在 commit 阶段协调 RM 提交或回滚事务</li>
+<li>RM：资源管理者，也就是参与者，负责接受 TM 的信号做出资源操作</li>
+</ul>
+<p><strong>XA 规范定义的是 TM 和 RM 的接口，也就是 TM 和 RM 的交互规范</strong>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260218082657145.png" alt="image-20260218082657145"></p>
+<h2 id="（二）XA-事务的执行流程">（二）XA 事务的执行流程</h2>
+<p>XA 事务的流程就是两阶段提交的流程，分为 prepare 阶段和 commit 阶段。</p>
+<p>详细参见<a href="##%EF%BC%88%E4%BA%8C%EF%BC%89%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%882PC%EF%BC%89">2PC</a></p>
+<h2 id="（三）MySQL-如何实现-XA？">（三）MySQL 如何实现 XA？</h2>
+<p>MySQL 中的 XA 事务有两种情况：内部 XA 和外部 XA；区别在于事务发生在单机服务器上还是发生在多个服务节点上。</p>
+<h3 id="1-外部-XA">1. 外部 XA</h3>
+<p>MySQL 的外部 XA，其实就是典型的 2PC，解决分布式系统下各个节点的事务一致性问题，只不过这些节点变成了 MySQL 服务。</p>
+<p>MySQL 提供了实现 XA 事务的命令，支持<code>XA START/END/PREPARE/COMMIT</code>这些 SQL 语句，通过这些命令可以完成分布式 XA 事务。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/xa-statements.html">MySQL 官方提供的 XA 命令用法</a></p>
+</blockquote>
+<p>外部 XA 应用场景一般是跨多个 MySQL 实例的分布式事务，需要应用层作为协调者（TM），比如我们写业务代码，在代码中决定提交还是回滚，并且在崩溃时进行恢复。</p>
+<h3 id="2-内部-XA">2. 内部 XA</h3>
+<p>一般为了 MySQL 的高可用，会采用多机部署的方式部署 MySQL 服务，这就涉及到了主从同步。主从同步一般的做法是从库订阅主库的 binlog 日志。</p>
+<p>MySQL 服务分为 Server 层和 Engine 层，Server 层有 binlog 日志，主要用于主从复制，记录对数据库的状态变更操作，比如写数据、变更表结构等。Engine 层有 redo log 和 undo log，undo log 主要用于事务回滚，记录状态变更前的旧值和变更的操作、redo log 用于崩溃恢复，记录对数据库状态的变更操作、记录对脏页的修改。</p>
+<p>不难看出 Server 层的 bin log 和 Engine 层的 redo log 其实都是记录对数据库的变更操作，区别在于 bin log 记录的是全量日志，主要用于主从同步；redo log 记录的是增量日志，只记录对脏页的修改，如果脏页落盘则日志可以被擦除。但逻辑上 bin log 和 redo log 要保持一致。</p>
+<p>在 XA 事务出现以前，bin log 和 redo log 并不是原子的，bin log 在 server 层、redo log 在 engine 层，不难保证其原子性，因此可能出现数据不一致。</p>
+<ul>
+<li>对于主节点来说，假设 bin log 写了，redo log 没写，然后主节点宕机，将导致主节点本地恢复后丢失一些状态变更，而从节点提供 bin log 却保留了这些状态，造成数据不一致</li>
+<li>假设 bin log 没写，redo log 写了，主节点宕机，那么主节点恢复后，本地能找回状态但是从节点丢失状态变更</li>
+</ul>
+<h4 id="2-1-内部-XA-如何实现">2.1 内部 XA 如何实现</h4>
+<p>内部 XA 也是 2PC 的思想，分为准备阶段（prepare）和提交阶段（commit），用于保证 InnoDB 的 redo log 与 Server 层的 bin log 在崩溃场景下的一致性。我们可以把 Server 层看成 TM，Engine 层看成 RM。</p>
+<h5 id="2-1-1-准备阶段（prepare）">2.1.1 <strong>准备阶段（prepare）</strong></h5>
+<p>客户端请求到来后，Server 层先生成一个 XID 唯一标识该事务，然后作为参数调用 InnoDB 层的 prepare 接口执行操作：</p>
+<ul>
+<li>修改数据页</li>
+<li>写 undo log、写 redo log</li>
+<li>在 redo log 中写入包含 XID 的 prepare 记录，将事务标记为 prepared 状态</li>
+</ul>
+<p>若上述操作都成功，则 prepare 接口返回成功；否则返回失败，Server 将终止事务并执行回滚，不写 bin log</p>
+<h5 id="2-1-2-提交阶段（commit）">2.1.2 <strong>提交阶段（commit）</strong></h5>
+<p>如果 InnoDB 返回成功，进入提交阶段：</p>
+<ul>
+<li>Server 层根据事务变更生成 bin log，将对应的 XID 写入 bin log，持久化到磁盘</li>
+<li>bin log 写入成功后，Server 层调用 InnoDB 的 commit 接口，XID 作为参数</li>
+<li>InnoDB 在 redo log 对应的日志下写入 commit 标记，事务正式提交</li>
+</ul>
+<h5 id="2-1-3-崩溃恢复过程">2.1.3 崩溃恢复过程</h5>
+<p>如果 InnoDB 的 redo log 还没刷盘就崩溃了，对系统无影响，此时 bin log 也没写。</p>
+<p>如果 InnoDB 的 redo log 刷盘后、bin log 刷盘前崩溃，恢复后 InnoDB 重新扫描 redo log 发现有 prepare 的日志未提交，根据其 XID 去查找 Server 层的 bin log 中是否存在该 XID，如果存在则说明该事务也写入 bin log 了，执行 commit；否则说明事务未完成，没写入 bin log，通过 undo log 进行回滚。</p>
+<p><strong>通过 XID，redo log 和 bin log 可以建立映射关系，保持一致性。</strong></p>
+<h1>参考文档</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%9845%E8%AE%B2-%E5%AE%8C/08%20%E5%AF%B9%E6%AF%94%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%8C%E4%B8%89%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%E6%9C%89%E5%93%AA%E4%BA%9B%E6%94%B9%E8%BF%9B%EF%BC%9F.md">对比两阶段提交、三阶段提交有哪些改进？</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%9845%E8%AE%B2-%E5%AE%8C/10%20%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E4%BD%93%E7%8E%B0%20TCC%20%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%9E%8B%EF%BC%9F.md">如何在业务中体现 TCC 事务？</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%91%A8%E5%BF%97%E6%98%8E%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AF%BE/15%20_%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%B9%8BTCC%E4%B8%8ESAGA.md">分布式事务之TCC与SAGA</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%9845%E8%AE%B2-%E5%AE%8C/09%20MySQL%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%20XA%20%E8%A7%84%E8%8C%83%EF%BC%9F.md">MySQL 如何实现 XA 规范？</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">http://example.com/2025/02/15/后端开发/【分布式系统】3. 分布式事务/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">分布式事务</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/02/18/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" title="【分布式系统】4. 分布式服务的组织"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【分布式系统】4. 分布式服务的组织</div></div></a></div><div class="next-post pull-right"><a href="/2025/02/11/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90Java%20%E8%AF%AD%E8%A8%80%E3%80%911.%20JVM/" title="【Java 语言】1. JVM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Java 语言】1. JVM</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA/" title="【分布式系统】1. 分布式理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">【分布式系统】1. 分布式理论</div></div></a></div><div><a href="/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/" title="【分布式系统】2. 共识理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-06</div><div class="title">【分布式系统】2. 共识理论</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/" title="【分布式系统】5. 分布式存储（上）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】5. 分布式存储（上）</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 分布式存储（下）</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="【分布式系统】6. 消息队列"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 消息队列</div></div></a></div><div><a href="/2025/02/18/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" title="【分布式系统】4. 分布式服务的组织"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-18</div><div class="title">【分布式系统】4. 分布式服务的组织</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">一、分布式事务概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">（一）为什么有分布式事务？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E5%8A%A1%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">（二）什么是事务？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E6%9C%AC%E5%9C%B0%E4%BA%8B%E5%8A%A1-vs-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">（三）本地事务 vs 分布式事务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">二、常见的分布式事务解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">2.1.</span> <span class="toc-text">（一）核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%882PC%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">（二）两阶段提交（2PC）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5%EF%BC%88prepare%EF%BC%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. 准备阶段（prepare）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5%EF%BC%88commit%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. 提交阶段（commit）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5%E4%B8%8D%E5%AD%98%E5%9C%A8-RM-%E8%8A%82%E7%82%B9%E8%BF%94%E5%9B%9E-no-%E7%9A%84%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA%EF%BC%9F"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">2.1 为什么提交阶段不存在 RM 节点返回 no 的分类讨论？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 两阶段提交存在的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E8%B5%84%E6%BA%90%E8%A2%AB%E5%90%8C%E6%AD%A5%E9%98%BB%E5%A1%9E%EF%BC%88%E8%A2%AB%E9%94%81%E4%BD%8F%EF%BC%89"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">3.1 资源被同步阻塞（被锁住）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-TM-%E5%AD%98%E5%9C%A8%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C%E9%97%AE%E9%A2%98%EF%BC%88%E8%87%B4%E5%91%BD%E9%98%BB%E5%A1%9E%EF%BC%89"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">3.2 TM 存在单点故障问题（致命阻塞）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%883PC%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">（三）三阶段提交（3PC）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-canCommit-%E9%98%B6%E6%AE%B5%EF%BC%88%E8%AF%A2%E9%97%AE%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. canCommit 阶段（询问是否可以提交）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-preCommit-%E9%98%B6%E6%AE%B5%EF%BC%88%E9%A2%84%E6%8F%90%E4%BA%A4%EF%BC%9ARM-%E8%BF%9B%E5%85%A5%E6%8F%90%E4%BA%A4%E7%8A%B6%E6%80%81%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">2. preCommit 阶段（预提交：RM 进入提交状态）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-commit-%E9%98%B6%E6%AE%B5%EF%BC%88%E6%9C%80%E7%BB%88%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="toc-number">2.3.3.</span> <span class="toc-text">3. commit 阶段（最终提交）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3PC-%E7%9A%84%E4%BC%98%E5%8C%96%E7%82%B9"><span class="toc-number">2.3.4.</span> <span class="toc-text">4. 3PC 的优化点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%9F%BA%E4%BA%8E%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6%E7%9A%84%E8%87%AA%E6%8A%89%E6%8B%A9%E8%A7%84%E5%88%99"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">4.1 基于超时机制的自抉择规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%96%B0%E5%A2%9E-canCommit-%E9%98%B6%E6%AE%B5%E9%99%8D%E4%BD%8E-rollback-%E7%9A%84%E5%8F%AF%E8%83%BD"><span class="toc-number">2.3.4.2.</span> <span class="toc-text">4.2 新增 canCommit 阶段降低 rollback 的可能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3PC-%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.5.</span> <span class="toc-text">5. 3PC 存在的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89TCC%EF%BC%8CTry%E3%80%81Confirm-Cancel"><span class="toc-number">2.4.</span> <span class="toc-text">（四）TCC，Try、Confirm&#x2F;Cancel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-TCC-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">2.4.1.</span> <span class="toc-text">1. TCC 的核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-TCC-%E6%B5%81%E7%A8%8B-%E2%80%94%E2%80%94-%E4%B8%A4%E9%98%B6%E6%AE%B5"><span class="toc-number">2.4.2.</span> <span class="toc-text">2. TCC 流程 —— 两阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%9C%9F%E5%AE%9E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90-TCC"><span class="toc-number">2.4.3.</span> <span class="toc-text">3. 真实业务场景分析 TCC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%8B%86%E8%A7%A3"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">3.1 业务逻辑拆解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-TCC-%E6%94%B9%E9%80%A0"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">3.2 业务系统 TCC 改造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-TCC-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-number">2.4.4.</span> <span class="toc-text">4. TCC 的优缺点分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">三、XA 规范 —— 以 MySQL 为例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89XA-%E8%A7%84%E8%8C%83%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">（一）XA 规范简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89XA-%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">（二）XA 事务的执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89MySQL-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-XA%EF%BC%9F"><span class="toc-number">3.3.</span> <span class="toc-text">（三）MySQL 如何实现 XA？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%96%E9%83%A8-XA"><span class="toc-number">3.3.1.</span> <span class="toc-text">1. 外部 XA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%85%E9%83%A8-XA"><span class="toc-number">3.3.2.</span> <span class="toc-text">2. 内部 XA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%86%85%E9%83%A8-XA-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">2.1 内部 XA 如何实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5%EF%BC%88prepare%EF%BC%89"><span class="toc-number">3.3.2.1.1.</span> <span class="toc-text">2.1.1 准备阶段（prepare）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2-%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5%EF%BC%88commit%EF%BC%89"><span class="toc-number">3.3.2.1.2.</span> <span class="toc-text">2.1.2 提交阶段（commit）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-3-%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">3.3.2.1.3.</span> <span class="toc-text">2.1.3 崩溃恢复过程</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

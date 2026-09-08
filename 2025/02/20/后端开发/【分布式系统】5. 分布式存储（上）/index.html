@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【分布式系统】5. 分布式存储（上） | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、分布式存储概述 分布式系统是软件和硬件都分布在不同的网络节点上，各个节点相互协调和通信，对外提供统一的服务的系统。 分布式系统集中体现了“分治”的思想，包括服务的拆分、计算的拆分和存储的拆分。前面我们主要介绍了服务的拆分，接下来我们介绍存储的拆分，也就是分布式存储。 分布式存储涉及到的技术非常广泛，本文仅抓住一些重点、热点进行梳理，包括读写分离、分库分表，以及分库分表带来的问题如何解决。 二、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【分布式系统】5. 分布式存储（上）">
+<meta property="og:url" content="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="一、分布式存储概述 分布式系统是软件和硬件都分布在不同的网络节点上，各个节点相互协调和通信，对外提供统一的服务的系统。 分布式系统集中体现了“分治”的思想，包括服务的拆分、计算的拆分和存储的拆分。前面我们主要介绍了服务的拆分，接下来我们介绍存储的拆分，也就是分布式存储。 分布式存储涉及到的技术非常广泛，本文仅抓住一些重点、热点进行梳理，包括读写分离、分库分表，以及分库分表带来的问题如何解决。 二、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2025-02-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T03:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="分布式存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【分布式系统】5. 分布式存储（上）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-21 11:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【分布式系统】5. 分布式存储（上）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-20T15:00:00.000Z" title="发表于 2025-02-20 23:00:00">2025-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-21T03:00:00.000Z" title="更新于 2025-02-21 11:00:00">2025-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【分布式系统】5. 分布式存储（上）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>一、分布式存储概述</h1>
+<p>分布式系统是软件和硬件都分布在不同的网络节点上，各个节点相互协调和通信，对外提供统一的服务的系统。</p>
+<p>分布式系统集中体现了“分治”的思想，包括服务的拆分、计算的拆分和存储的拆分。前面我们主要介绍了服务的拆分，接下来我们介绍存储的拆分，也就是分布式存储。</p>
+<p>分布式存储涉及到的技术非常广泛，本文仅抓住一些重点、热点进行梳理，包括读写分离、分库分表，以及分库分表带来的问题如何解决。</p>
+<h1>二、读写分离</h1>
+<h2 id="（一）什么是读写分离？">（一）什么是读写分离？</h2>
+<p>在很多业务场景中，对数据库的读请求远远多于写请求，如果读写请求都打到同一个数据库，那么会出现一些问题：</p>
+<ol>
+<li>写请求会锁表或锁行，阻塞部分读请求</li>
+<li>大量请求打到同一个库，性能降低</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">  C([&quot;Client&quot;])</span><br><span class="line">  DB[(&quot;Database&quot;)]</span><br><span class="line">  </span><br><span class="line">  C -. &quot;read/write&quot; .-&gt; DB</span><br></pre></td></tr></table></figure>
+<p>此时我们可以采取读写分离的策略，数据库采用主从复制架构，主库处理写请求、从库处理读请求，达到分散读请求、提高并发读性能的效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">	subgraph Master-Slave</span><br><span class="line">		direction LR</span><br><span class="line">		DB1[(&quot;Master&quot;)]</span><br><span class="line">		DB2[(&quot;Slave1&quot;)]</span><br><span class="line">		DB3[(&quot;Slave2&quot;)]</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	C([Client])</span><br><span class="line">	</span><br><span class="line">	C -.&quot;read&quot;.-&gt; DB2 &amp; DB3</span><br><span class="line">	C -.&quot;write&quot;.-&gt; DB1</span><br><span class="line">	</span><br><span class="line">	DB1 -. &quot;sync&quot; .-&gt; DB2 &amp; DB3</span><br></pre></td></tr></table></figure>
+<h2 id="（二）主从复制技术">（二）主从复制技术</h2>
+<p>读写分离依赖数据库的主从复制架构，下面介绍 MySQL 的主从复制技术。</p>
+<p>MySQL 中的 Server 层有一类日志为 bin log，记录着全量的对数据库的写操作，也就是数据库状态变更的历史，通过 bin log 日志可以备份出一个完全相同的数据库。</p>
+<h3 id="1-bin-log-日志格式">1. bin log 日志格式</h3>
+<p>bin log 有三种日志格式：</p>
+<ul>
+<li>statement 格式，记录 SQL 语句，其他 DB 通过在本地回放该类型的 bin log 即可完成备份
+<ul>
+<li>优点：日志数量少</li>
+<li>缺点：备份过程慢；存在动态函数问题，比如 random、uuid 的生成</li>
+</ul>
+</li>
+<li>Row 格式，记录每一行的修改操作
+<ul>
+<li>优点：不存在动态函数问题，备份过程快</li>
+<li>缺点：每一处修改都会被记录，日志数量多、占用空间大</li>
+</ul>
+</li>
+<li>混合模式，包含 statement 和 row 的格式</li>
+</ul>
+<h3 id="2-主从复制过程">2. 主从复制过程</h3>
+<p>bin log 日志一般用于数据库备份，主从复制其实就是从库实时备份主库的过程。主从复制过程如下：</p>
+<ul>
+<li>主库将数据库的变更写入 bin log 日志，从库连接主库之后，主库创建一个 log dump 线程，用于发送 bin log 内容</li>
+<li>从库开启主从复制后，创建一个 IO 线程连接主库，请求主库的 bin log，IO 线程接收到主库 log dump 线程发来的更新后，将读到的内容写入本地 relay 日志文件中</li>
+<li>同时，从库会有一个 SQL 线程负责读取 relay 日志内容，解析并回放 relay 日志以备份主库数据</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221140617563.png" alt="image-20260221140617563"></p>
+<h3 id="3-读写分离带来的问题">3. 读写分离带来的问题</h3>
+<h4 id="3-1-主从延迟">3.1 主从延迟</h4>
+<p>写主库后，主库同步到从库往往需要一定的时间，这一段时间存在主从不一致，这一段窗口期也就称为主从延迟。</p>
+<p>一般根据业务需求不同，主从延迟的解决方案也就不同。</p>
+<p><strong>强一致性业务 —— 绕过延迟、强制读主库</strong></p>
+<p>对于强一致性业务，比如下单之后，主库已经写了用户状态是已支付，从库却是未支付，用户刷新一下发现自己还没支付，通常在业务中不可接受。</p>
+<p>此时可以采取写后强制读主库来解决。</p>
+<p><strong>非强一致业务 —— 忽略延迟或减少延迟</strong></p>
+<p>对于一些商品列表展示等不追求强一致的业务，可以忽略对主从延迟的处理，业务上一般可以接受主从延迟的影响。</p>
+<p>可以记录并分析主从延迟的时间，TP99 下的时延大概是多少，看看业务上是否能接受，不能接受的话就考虑将延迟降低到可以接受的范围即可。</p>
+<h1>三、分库分表</h1>
+<h2 id="（一）什么是分库分表？">（一）什么是分库分表？</h2>
+<p>分库分表是<strong>数据库高可用</strong>的另一大杀手锏，主要应对海量的数据存储与处理。</p>
+<p>当单个数据库/数据表的数据量/请求量特别庞大时，单库/单表的性能大大下降时，就需要考虑将数据分开存储在多个不同的数据库或数据表中，这就是分库分表。</p>
+<blockquote>
+<p>为什么分库分表是必要的呢？这其实是单机存储的瓶颈决定的。单机存储下：</p>
+<ul>
+<li>连接有限</li>
+<li>存储容量有限</li>
+<li>处理性能有限</li>
+</ul>
+<p>导致了存储拆分的必然，通过拆分的方式突破单机瓶颈。</p>
+</blockquote>
+<h2 id="（二）如何分库分表？">（二）如何分库分表？</h2>
+<h3 id="1-什么时候分库？什么时候分表？">1. 什么时候分库？什么时候分表？</h3>
+<blockquote>
+<p>《阿里巴巴 Java 开发手册》的 MySQL 数据库建表规约中推荐如下：</p>
+<ul>
+<li>“【推荐】单表行数超过500万行或者单表容量超过2GB，才推荐进行分库分表。<br>
+说明：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。”</li>
+</ul>
+</blockquote>
+<p>分库和分表是两个独立的概念，总的来说，分库和分表的应用场景不太一样：</p>
+<ul>
+<li>
+<p><strong>分库</strong>：并发量大时必须分库，分表无法增加并发量；在微服务拆分的场景下，一般也会分库，不同服务的表放在不同库</p>
+<blockquote>
+<p>MySQL 有命令查看最大连接数，一般来说最大连接数在 100 ～ 150</p>
+</blockquote>
+</li>
+<li>
+<p><strong>分表</strong>：数据存储量大时进行分表，避免单表查询瓶颈</p>
+</li>
+</ul>
+<h3 id="2-分库分表的常见思路">2. 分库分表的常见思路</h3>
+<p>分库分表的核心思想其实就是“分治、分片”，对于分片，最常见的有两种划分方式 —— 水平划分、垂直划分。</p>
+<h4 id="2-1-垂直划分">2.1 垂直划分</h4>
+<p>垂直划分的核心思想是<strong>基于分片规则</strong>将一个大的数据集划分为异构的小数据集。</p>
+<p>在分库分表中，垂直划分分为垂直分表和垂直分库。</p>
+<ul>
+<li>
+<p><strong>垂直分库</strong>：在微服务拆分中最为常见，根据业务边界将不同服务的数据放在同一个库，做到专库专用，比如订单服务用订单库</p>
+</li>
+<li>
+<p><strong>垂直分表</strong>：一般用于一个表字段耦合的场景，当一个表有很多字段并且不同业务基于这些字段耦合在一起，可以考虑垂直分表</p>
+<blockquote>
+<p>比如有一个商品表 goods(id, name, img, price, stock, describe)，发现其实商品描述 describe 字段的访问频率不高，但空间占用大，此时就可以进行垂直分表，将描述字段单独拆分出来作为一张扩展表，主表和扩展表之间提供 goods_id 关联：</p>
+<ul>
+<li>主表：goods_master(id, name, img, price, stock)</li>
+<li>扩展表：goods_describe(id, goods_id, describe)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-水平划分">2.2 水平划分</h4>
+<p>水平分片的核心思想是<strong>基于分片规则</strong>将一个大的数据集分为同构的小数据集。</p>
+<p>在分库分表中，水平分片分为水平分库和水平分表。</p>
+<ul>
+<li><strong>水平分库</strong>：按照一定的规则将单表的数据子集划分到不同的数据库上，每个数据库都有相同的表，只是存储的数据集不同</li>
+<li><strong>水平分表</strong>：按照一定的规则将单表的数据子集划分到同一个数据库的不同子表中，每个子表的结构完全相同（表名不同），存储的数据集不同</li>
+</ul>
+<h2 id="（三）分片算法">（三）分片算法</h2>
+<p>前面我们讲到了在分库分表中的划分思想，大方向上看就是水平划分和垂直划分。</p>
+<p>水平划分和垂直划分是划分的方向，划分的核心则是<strong>划分规则，也就是划分算法</strong>，决定着一条数据会去到哪一个库、哪一张表。</p>
+<p>一般来说，有三种划分算法：范围分片、哈希分片、查表分片。</p>
+<h3 id="1-范围分片">1. 范围分片</h3>
+<p>选择一个维度进行范围划分。一般这个维度可以是时间、地域、大小。</p>
+<ul>
+<li>时间维度：比如订单表按照订单时间划分</li>
+<li>地域维度：如果业务涉及到的地域比较广，比如全国性的，可以按照地域划分，比如按照省份划分</li>
+<li>大小维度：比如 0 ～ 500w 的 id 放在 table_1、501w ~ 1000w 的 id 放在 table_2…</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>水平扩展方便，直接新增一个库、一个表即可，无需进行数据迁移</li>
+<li>单表数量可控，也就是一段时间、一个省份或一个 id 范围</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>存在热点数据问题，也就是可能有些库表的数据访问量特别大，有些特别小</li>
+</ul>
+<h3 id="2-哈希分片">2. 哈希分片</h3>
+<h4 id="2-1-普通哈希">2.1 普通哈希</h4>
+<p>哈希分片是一种常见的分片方式，对关键字段取模即可，除数是分片个数。</p>
+<p>比如订单表要分成 3 个库或者 3 个表，则可以用 id % 3 来决定一条数据去哪个库或哪个表。</p>
+<ul>
+<li><strong>优点</strong>：数据比较均匀，出现热点数据的概率较小</li>
+<li><strong>缺点</strong>：水平扩容复杂，集群伸缩性较差；由于哈希算法依赖于提前约定好要分多个个片，如果需要改动分片个数或者某些分片不可用，则需要所有数据重新进行哈希，成本较大</li>
+</ul>
+<h4 id="2-2-一致性哈希">2.2 一致性哈希</h4>
+<h5 id="2-2-1-一致性哈希算法原理">2.2.1 一致性哈希算法原理</h5>
+<p>一致性哈希是普通哈希的改进算法，主要是为了优化普通哈希在伸缩性上的局限性，可以更好地处理分片数量的变化。</p>
+<p>一致性哈希中，取模的除数是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，无论新增还是减少分盘，都不改变这个基数，以此降低分片变化的影响；也就是说，无论分片数怎么变化，都直接将数据分散到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个点上；我们把这 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个点看成一个环，这个环被称为<strong>哈希环</strong>。</p>
+<p>一致性哈希的过程，实际上就是在哈希环上找分片的过程，一般分为两步：</p>
+<ol>
+<li>分片的哈希，如果一个分片是一个机器，那么可以用这个机器的 IP 对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 取模，得到该分片在哈希环上的位置</li>
+<li>数据的哈希，用数据的对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 取模，得到这个数据在哈希环上的位置</li>
+</ol>
+<p>数据如何知道要放在哪个分片？数据和分片的哈希值并不一定相同，可能分布在环上的不同位置，因此当数据进行哈希后，顺时针寻找分片，找到的第一个分片就是该数据存储的分片。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221165957264.png" alt="image-20260221165957264"></p>
+<h5 id="2-2-2-一致性哈希好在哪？">2.2.2 一致性哈希好在哪？</h5>
+<p>一致性哈希的主要优势是在分片伸缩性上，分片的增加或减少仅影响部分分片，也就是部分分片需要进行数据迁移，而对于普通哈希来说，分片的增加或减少可能会影响所有分片。</p>
+<p>为了便于理解，通过模拟的方式说明一致性哈希的核心优势 —— 分片伸缩性强。</p>
+<p><strong>假设新增分片</strong></p>
+<p>下图中节点 D 是新增的分片，那么所有哈希值范围在节点 A 到节点 D 这一段的数据，都需要从分片 B 迁移到分片 D，其他不需要变动，也就是仅影响节点 B。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221171321743.png" alt="image-20260221171321743"></p>
+<p><strong>假设减少分片</strong></p>
+<p>下图中删除分片 A，那么所有哈希值范围在分片 C 到分片 A 的数据，都需要从分片 A 迁移到分片 B，也就是仅影响分片 A 和分片 B。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221171554136.png" alt="image-20260221171554136"></p>
+<h5 id="2-2-3-一致性哈希的缺点">2.2.3 一致性哈希的缺点</h5>
+<p>一致性哈希表不能保证分片在哈希环上的均匀分布，这可能导致数据热点问题，也就是数据分配不均。</p>
+<p>数据分配不均将导致连锁问题，比如大量请求集中在某几个分片、雪崩式扩容等。</p>
+<p>比如下图中，大量请求集中打到分片 A；大量数据哈希分片后存储在分片 A，如果分片 A 宕机，大量数据需要从分片 A 迁移到分片 B，如果超过了分片 B 的承受能力可能导致分片 B 也宕机，那么分片 A 和分片 B 的数据都需要迁移到分片 C，引起雪崩式反应。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221172505931.png" alt="image-20260221172505931"></p>
+<h5 id="2-2-4-通过虚拟分片增加均衡度">2.2.4 通过虚拟分片增加均衡度</h5>
+<p>一致性哈希带来的问题，本质上其实是分片在哈希环上分配不均导致的。因此解决方案是增加分片分布的均衡度。增加节点分布的均匀度，最简单的方式就是增加节点数量，因此通过增加虚分片的方式增加均衡度：</p>
+<ul>
+<li>
+<p>比如设置每个真实分片对应多少虚拟分片</p>
+<blockquote>
+<p>nginx 中的一致性哈希算法，一个权重为 1 的节点一般含有 160 个虚节点</p>
+</blockquote>
+</li>
+<li>
+<p>不再将真实的分片映射到哈希环上，而是将虚拟分片映射到哈希环</p>
+</li>
+<li>
+<p>然后再将虚拟分片映射到真实分片上</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221173021607.png" alt="image-20260221173021607"></p>
+<h5 id="2-2-5-虚拟分片的方法好在哪？">2.2.5 虚拟分片的方法好在哪？</h5>
+<p>主要有两点好处：</p>
+<ol>
+<li>增加分片均衡度，避免热点数据带来的问题</li>
+<li>分散迁移压力，当节点变化时，会有不同的节点共同分散系统的变化，稳定性更高</li>
+</ol>
+<h3 id="3-查表分片">3. 查表分片</h3>
+<p>查表分片是通过预先构建映射关系表来决定数据流向哪一个分片。每次查询数据时，先查分片映射表，看看这个数据在哪个分片，再去对应的分片查真实的数据。</p>
+<p>具体怎么建立映射表完全人为定义，灵活性极大。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260221174453900.png" alt="image-20260221174453900"></p>
+<p><strong>优点</strong>：灵活性高，规则非常灵活</p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>对数据量有一定的限制，分片映射表本身就不能太多数据，否则映射表本身就可能成为系统瓶颈</li>
+<li>每次查询需要经过至少两次请求，可能会影响性能</li>
+</ul>
+<h2 id="（四）分库分表实践">（四）分库分表实践</h2>
+<p>分库分表在业务实现上一般有两种主流模式：代理模式和客户端模式</p>
+<p>两种方式的核心区别在于分片逻辑是由应用自己控制，还是由中间件统一控制。</p>
+<h3 id="1-客户端模式">1. 客户端模式</h3>
+<p>分库分表的逻辑在系统内部实现。</p>
+<p>在 Java 开发中，通常以 jar 包的方式提供服务，常见的组件有：</p>
+<ul>
+<li>ShardingSphere-JDBC</li>
+<li>阿里的 TDDL</li>
+<li>美团的 MTDDL</li>
+<li>自研框架</li>
+</ul>
+<h3 id="2-代理模式">2. 代理模式</h3>
+<p>在系统和数据库中间引入一个分库分表中间件，分库分表逻辑由这个中间件统一管理；应用只需要连接代理服务，无需关系数据如何分片。</p>
+<p>常见的组件有：</p>
+<ul>
+<li>阿里的 MyCAT</li>
+<li>美团的 Meituan Altas</li>
+<li>ShardingSphere-Proxy</li>
+</ul>
+<h1>参考文档</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%9845%E8%AE%B2-%E5%AE%8C/23%20%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%9F.md">读写分离如何在业务中落地</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%9845%E8%AE%B2-%E5%AE%8C/24%20%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%EF%BC%9F.md">为什么需要分库分表、如何实现？</a></li>
+<li><a target="_blank" rel="noopener" href="https://alibaba.github.io/p3c/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%BB%BA%E8%A1%A8%E8%A7%84%E7%BA%A6.html">阿里巴巴 Java 开发手册</a></li>
+<li><a target="_blank" rel="noopener" href="https://xiaolincoding.com/os/8_network_system/hash.html#%E4%BD%BF%E7%94%A8%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">什么是一致性哈希？</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/">http://example.com/2025/02/20/后端开发/【分布式系统】5. 分布式存储（上）/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/">分布式存储</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/04/04/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%911.%20%E5%8F%8C%E6%8C%87%E9%92%88/" title="【算法】1. 双指针"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【算法】1. 双指针</div></div></a></div><div class="next-post pull-right"><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【分布式系统】6. 分布式存储（下）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 分布式存储（下）</div></div></a></div><div><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA/" title="【分布式系统】1. 分布式理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">【分布式系统】1. 分布式理论</div></div></a></div><div><a href="/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/" title="【分布式系统】2. 共识理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-06</div><div class="title">【分布式系统】2. 共识理论</div></div></a></div><div><a href="/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" title="【分布式系统】3. 分布式事务"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="title">【分布式系统】3. 分布式事务</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="【分布式系统】6. 消息队列"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 消息队列</div></div></a></div><div><a href="/2025/02/18/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" title="【分布式系统】4. 分布式服务的组织"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-18</div><div class="title">【分布式系统】4. 分布式服务的组织</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">一、分布式存储概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">二、读写分离</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">（一）什么是读写分离？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">（二）主从复制技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-bin-log-%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. bin log 日志格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. 主从复制过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 读写分离带来的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E4%B8%BB%E4%BB%8E%E5%BB%B6%E8%BF%9F"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">3.1 主从延迟</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">三、分库分表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">（一）什么是分库分表？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A6%82%E4%BD%95%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">（二）如何分库分表？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%88%86%E5%BA%93%EF%BC%9F%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%88%86%E8%A1%A8%EF%BC%9F"><span class="toc-number">3.2.1.</span> <span class="toc-text">1. 什么时候分库？什么时候分表？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%9A%84%E5%B8%B8%E8%A7%81%E6%80%9D%E8%B7%AF"><span class="toc-number">3.2.2.</span> <span class="toc-text">2. 分库分表的常见思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%9E%82%E7%9B%B4%E5%88%92%E5%88%86"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">2.1 垂直划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%B0%B4%E5%B9%B3%E5%88%92%E5%88%86"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">2.2 水平划分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%86%E7%89%87%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">（三）分片算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%8C%83%E5%9B%B4%E5%88%86%E7%89%87"><span class="toc-number">3.3.1.</span> <span class="toc-text">1. 范围分片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%93%88%E5%B8%8C%E5%88%86%E7%89%87"><span class="toc-number">3.3.2.</span> <span class="toc-text">2. 哈希分片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%99%AE%E9%80%9A%E5%93%88%E5%B8%8C"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">2.1 普通哈希</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C"><span class="toc-number">3.3.2.2.</span> <span class="toc-text">2.2 一致性哈希</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">3.3.2.2.1.</span> <span class="toc-text">2.2.1 一致性哈希算法原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E5%A5%BD%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-number">3.3.2.2.2.</span> <span class="toc-text">2.2.2 一致性哈希好在哪？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">3.3.2.2.3.</span> <span class="toc-text">2.2.3 一致性哈希的缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-4-%E9%80%9A%E8%BF%87%E8%99%9A%E6%8B%9F%E5%88%86%E7%89%87%E5%A2%9E%E5%8A%A0%E5%9D%87%E8%A1%A1%E5%BA%A6"><span class="toc-number">3.3.2.2.4.</span> <span class="toc-text">2.2.4 通过虚拟分片增加均衡度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-5-%E8%99%9A%E6%8B%9F%E5%88%86%E7%89%87%E7%9A%84%E6%96%B9%E6%B3%95%E5%A5%BD%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-number">3.3.2.2.5.</span> <span class="toc-text">2.2.5 虚拟分片的方法好在哪？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9F%A5%E8%A1%A8%E5%88%86%E7%89%87"><span class="toc-number">3.3.3.</span> <span class="toc-text">3. 查表分片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.4.</span> <span class="toc-text">（四）分库分表实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.4.1.</span> <span class="toc-text">1. 客户端模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.4.2.</span> <span class="toc-text">2. 代理模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

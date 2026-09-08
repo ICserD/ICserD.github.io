@@ -1,0 +1,705 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【分布式系统】2. 共识理论 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文首先以一个分布式的订单系统为例，介绍共识算法为什么出现，解决什么问题。 然后介绍分布式的经典共识算法 PAXOS，最后介绍共识算法在工程领域的具体应用，比如工程化共识算法 Raft、为 ZooKeeper 组件量身定制的共识算法 Zab。 一、共识算法解决什么问题？ （一）基本概念  一致性：分布式系统中，各个节点在执行一系列操作后，通过遵循某些协议，确保它们对外部呈现的数据和状态一致 共识：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【分布式系统】2. 共识理论">
+<meta property="og:url" content="http://example.com/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="本文首先以一个分布式的订单系统为例，介绍共识算法为什么出现，解决什么问题。 然后介绍分布式的经典共识算法 PAXOS，最后介绍共识算法在工程领域的具体应用，比如工程化共识算法 Raft、为 ZooKeeper 组件量身定制的共识算法 Zab。 一、共识算法解决什么问题？ （一）基本概念  一致性：分布式系统中，各个节点在执行一系列操作后，通过遵循某些协议，确保它们对外部呈现的数据和状态一致 共识：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2025-02-06T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-15T03:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="分布式理论基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【分布式系统】2. 共识理论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-15 11:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【分布式系统】2. 共识理论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-06T03:00:00.000Z" title="发表于 2025-02-06 11:00:00">2025-02-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-15T03:00:00.000Z" title="更新于 2025-02-15 11:00:00">2025-02-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【分布式系统】2. 共识理论"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本文首先以一个分布式的订单系统为例，介绍共识算法为什么出现，解决什么问题。</p>
+<p>然后介绍分布式的经典共识算法 PAXOS，最后介绍共识算法在工程领域的具体应用，比如工程化共识算法 Raft、为 ZooKeeper 组件量身定制的共识算法 Zab。</p>
+<h1>一、共识算法解决什么问题？</h1>
+<h2 id="（一）基本概念">（一）基本概念</h2>
+<ul>
+<li>一致性：分布式系统中，各个节点在执行一系列操作后，通过遵循某些协议，确保它们对外部呈现的数据和状态一致</li>
+<li>共识：在多个节点的分布式系统中，就某个状态或决策达成一致的过程</li>
+</ul>
+<p>一致性强调的是最终状态是否一致，共识强调的是实现一致性的手段。</p>
+<h2 id="（二）例子引入">（二）例子引入</h2>
+<p>假设有一个分布式架构的订单服务，对外提供下单服务，各个服务有相同的数据副本，物品 A 的库存为 2。</p>
+<p>现在来了三个并发请求，都是对物品 A 下单 1 件，然后服务 i 收到了下单请求 i，在没有共识机制的情况下，各个服务在本地副本中执行对物品 A 库存扣减 1 的操作，最终结果是三个请求都下单成功，三个实例各自副本的物品 A 库存为 1，发生了超卖现象。</p>
+<p>这个问题产生的本质是分布式系统中各个节点对<strong>系统状态的变更</strong>没有形成一致的认识，导致出现节点间的不一致，进而导致一系列问题。</p>
+<blockquote>
+<p>这里重点需要理解<strong>系统状态</strong>的概念，分布式系统的状态可以理解为<strong>被系统承认的对系统操作的历史的作用结果</strong>。</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260206191813998.png" alt="image-20260206191813998"></p>
+<h2 id="（三）如何解决这个问题？">（三）如何解决这个问题？</h2>
+<p>前面提到，这种分布式下节点不一致的问题本质上是因为没形成对系统状态变更的共识，就已经执行了对系统的状态变更，最终各个节点做不同的变更，导致系统状态混乱，出现不一致。</p>
+<p>那么我们转变思路，既然直接在各个节点上改状态不稳妥，那么如果我们能够先<strong>保证各个节点都存储对系统的状态变更的操作元数据，包括操作顺序、操作内容都一致，那么最后各个节点本地回放操作，最终就能使系统达成一致！</strong></p>
+<p>一般，对系统状态有影响的操作就是写操作（增、删、改），对于一切写操作，我们都可以分为两步走：</p>
+<ol>
+<li>协商：协商状态操作，达成共识</li>
+<li>回放：各自本地回放，实现最终一致</li>
+</ol>
+<p><strong>协商</strong></p>
+<p>这一步是进行状态变更的前提，如果一个写操作能够被其他节点都同步到，才能够进行真正的写。</p>
+<p><strong>回放</strong></p>
+<p>各个节点基于同步到的写操作信息，进行操作的回放，达成系统状态的迁移。</p>
+<p>最终分布式下所有节点状态一致。</p>
+<blockquote>
+<p>值得注意的是，不仅要保证写操作的内容同步，还需要保证写操作的顺序一致。</p>
+</blockquote>
+<p>这样还不够，如果在同步过程中因为节点宕机、网络不可用等原因，无法同步到写操作元数据，那就出现了写操作丢失，系统状态又是不一致的。因此还需要保证<strong>写操作不丢失</strong>。</p>
+<h2 id="（四）抽象出解决方案">（四）抽象出解决方案</h2>
+<p>这里可以抽象出分布式系统下，各个节点保持一致性的方法。</p>
+<p>各个节点之间需要维持状态变更的元信息，保证<strong>状态变更的操作不丢失、顺序一致</strong>，那么最终就能维持系统的一致性。</p>
+<p>而 Paxos、Raft、Zab 这些共识算法，都可以说是具体的解决方案，但最终都离不开上面两点要求。</p>
+<h1>二、共识算法介绍</h1>
+<p>本节先介绍最理论基础的 Paxos 算法，然后再介绍工程化的共识算法 raft，最后介绍 zookeeper 组件的共识算法 Zab。</p>
+<p>不用深究，主要了解一下算法流程，以及理解这三种算法是如何解决分布式系统下各个节点的写操作不丢失、顺序一致这两个问题的。</p>
+<h2 id="（一）Paxos">（一）Paxos</h2>
+<p>Paxos 算法是 1990 年由 Leslie Lamport 提出的一种继续消息传递的共识算法，几乎是所有共识算法的基础，理论意义远大于工程意义。</p>
+<h3 id="1-Paxos-角色">1. Paxos 角色</h3>
+<p>Paxos 算法中，每个节点可以承担 3 种角色：</p>
+<ul>
+<li>Proposer：提案者，提出一个对系统状态的变更操作，比如“将商品 A 的库存减 1”，提案者可以同时存在多个</li>
+<li>Acceptor：选民，决定是否接受 Proposer 的提案，<em>为了保证操作不丢失</em>，Proposer 的提案必须超过半数同意，才算通过</li>
+<li>Learner：学习者，不参与共识，仅同步已经达成的共识</li>
+</ul>
+<h3 id="2-Paxos-算法流程">2. Paxos 算法流程</h3>
+<p>Paxos 算法描述的就是在多个 Proposer 和多个 Acceptor 构成的系统中，Acceptor 针对 Proposer 的提案形成一致的过程，而 Learner 学习协商的结果。</p>
+<p>Paxos 算法流程分为两个阶段和四个过程，下面进行介绍。</p>
+<h4 id="2-1-准备阶段">2.1 准备阶段</h4>
+<ul>
+<li>
+<p>Proposer：Proposer 首先生成全局唯一的递增的 ProposalId 作为提案的唯一标识（一般是节点 ID 拼接自增 ID），然后发给所有 Acceptor 进行授权，先不携带提案值</p>
+</li>
+<li>
+<p>Acceptor：Acceptor 本地会持久化已经通过的最大提案编号 max_idx，以及对应的提案值 val</p>
+<ul>
+<li>
+<p>若 max_idx 不存在，则通过 proposalId 提案，将其持久化在本地 max_idx = proposalId，val 为 null，将 (max_idx, val) 响应给 Proposer 通过提案</p>
+</li>
+<li>
+<p>若 proposalId &gt; max_idx，则通过 proposalId 提案，将 max_idx 更新为 proposalId，将 (max_idx, val) 响应给 Proposer</p>
+</li>
+<li>
+<p>若 proposalId &lt; max_idx，则拒绝提案，不响应或返回 Error</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-接受阶段">2.2 接受阶段</h4>
+<p>接受阶段分为三个过程，分别是 Proposer 发送 Accept、Acceptor 应答 Accept、Proposer 统计投票。</p>
+<h5 id="2-2-1-Proposer-发送-Accept">2.2.1 Proposer 发送 Accept</h5>
+<p>准备阶段是 Proposer 发送 Propose，Acceptors 审批 Propose。准备阶段过后，每个 Proposer 都收到了一些来自 Acceptor 的响应。</p>
+<p>也就是对于每个 Proposer，都会收到一个元素为 (proposalId, val) 的集合 results。</p>
+<ul>
+<li>
+<p>若 result.size &gt; 一半 Acceptor 的数量，则代表此时该 Proposer 的提案已经被大多数节点持久化了，然后进行<strong>提案值</strong>的协商同步，发送 Accept 请求 (proposalId, val) 给所有 Acceptor</p>
+<blockquote>
+<p>注意，虽然 val 的值需要分情况讨论，但是 Accept 阶段的 proposalId 就是此 proposer 准备阶段的 propossalId</p>
+</blockquote>
+<ul>
+<li>若 result 里面所有 val 都为 null，则自己指定提案值</li>
+<li>否则选择 result 里面 proposalId 最大的对应的 val 作为提案值</li>
+</ul>
+</li>
+<li>
+<p>否则表示此 proposer 的提案并没有被持久化到多数节点上，存在“写丢失”的风险，此次发起的提案失败，于是<strong>生成下一个提案编号 new_proposalId 再次提案，转到准备阶段执行</strong></p>
+</li>
+</ul>
+<h5 id="2-2-2-Acceptor-响应-Accept">2.2.2 Acceptor 响应 Accept</h5>
+<p>Acceptor 收到 Accept(proposalId, val) 后：</p>
+<ul>
+<li>若 proposalId &gt;= max_idx，则持久化 max_idx = proposalId，local_val = val，响应提交成功</li>
+<li>否则不回复或响应提交失败</li>
+</ul>
+<h5 id="2-2-3-Proposer-统计投票">2.2.3 Proposer 统计投票</h5>
+<p>经过一段时间，每个 Proposer 会收到 Acceptor 的响应，记为 result2：</p>
+<ul>
+<li>
+<p>若 result2.size &gt; 一半 Acceptor 的数量，证明该 Proposer 的提案已经被大多数节点持久化并提交了 value，<strong>此时共识已经达成</strong>。然后 Proposer 广播给所有的 Proposer、Learner，通知他们已经 commit 的 value</p>
+<blockquote>
+<p>为什么说此时共识已经达成？</p>
+<ul>
+<li>因为此时系统中多数派节点已经持久化了对系统的状态操作的顺序以及内容，也就是 proposalId 和 value</li>
+<li>那么意味着对系统的状态变更都一致地持久化在了多数派的节点中，此时满足三个条件：
+<ul>
+<li>对状态的修改不丢失</li>
+<li>对状态的修改的顺序一致</li>
+<li>对状态的修改的动作一致</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>否则生成下一个提案编号 new_proposalId，转到准备阶段执行</p>
+</li>
+</ul>
+<h3 id="3-Paxos-怎么解决一致性问题">3. Paxos 怎么解决一致性问题</h3>
+<p>解决一致性问题，在这里我们已经可以转化为各个节点维护一个对系统状态操作的序列即可，而要完成这一点，就必须做到两点要求：</p>
+<ul>
+<li>写不丢失</li>
+<li>写顺序一致</li>
+</ul>
+<p>那么 Paxos 是如何做到这两点的呢？下面逐一进行分析。</p>
+<h4 id="3-1-保证写不丢失">3.1 保证写不丢失</h4>
+<h5 id="3-1-1-例子引入">3.1.1 例子引入</h5>
+<p>为什么会发生写丢失？继续以库存扣减为例子。</p>
+<p>假设节点 1 收到库存扣减请求，在没有共识机制下，在本地执行了库存扣件，返回成功，即系统已经对外表现状态改变了。</p>
+<p>然后节点 1 要同步操作给其他节点，此时节点 1 宕机了，那么由于此时系统中只有节点 1 有库存扣减动作，而它挂机了，<strong>那么这一次的库存扣减已经被系统历史性地遗忘了</strong>，就像没发生过。</p>
+<h5 id="3-1-2-Quorum-机制">3.1.2 Quorum 机制</h5>
+<p>Quorum 机制是分布式系统中的选举算法，其数学思想来源于抽屉原理。简单来说，在 N 个副本中，如果一次成功更新的有 M 个，那么在读取数据的时候从大于  N - M 个里面读，那么一定能读取到最新值。</p>
+<p>Quorum 机制广泛用于分布式系统中的选举/投票算法，Paxos 的选举机制就是借鉴这种思想。</p>
+<p>Paxos 中，无论是 Propose 还是 Accept 请求，都必须通过系统中超过半数的节点的持久化，即需要超过半数的节点更新，才能认为这个操作称为系统历史事实。<strong>这样可以确保系统中即使某些节点宕机了，也不会丢失已经被系统承认的操作！</strong></p>
+<p>继续以库存扣减为例，假设商品 A 的一次库存扣减操作记为 manipulate1。</p>
+<ul>
+<li>请求首先到达节点 1，节点 1 并不会立即执行库存扣减，而是向集群中其他节点发起提议：“是否同意将 manipulate1 作为下一次状态变更操作”。</li>
+<li>其他节点在收到提议后，会将“已接受 manipulate1 这一提议”的事实持久化，并返回响应。</li>
+<li>当节点 1 收到超过半数节点的接受响应后，即可认为 manipulate1 已被系统承认，成为不可撤销的系统历史事实。</li>
+<li>此时，即使仍有少数节点尚未响应，或者节点 1 随后发生宕机，系统中仍然至少存在一个存活节点记录了 manipulate1 被接受的事实，<strong>后续节点通过再次达成多数共识，仍然能够恢复并继续执行该操作，从而避免写丢失问题。</strong></li>
+</ul>
+<h4 id="3-2-保证写顺序">3.2 保证写顺序</h4>
+<p>Paxos 算法不保证顺序性，只保证对一次操作形成共识。因此如果要实际应用上 Paxos 实现分布式系统的一致性，还需要有额外的机制先对每一个操作的顺序分配一个 Paxos 过程，以此确保操作的顺序性。</p>
+<h3 id="4-Paxos-算法常见的问题">4. Paxos 算法常见的问题</h3>
+<h4 id="4-1-为什么-Acceptor-仅接收大的-proposalId？">4.1 为什么 Acceptor 仅接收大的 proposalId？</h4>
+<p>避免网络延迟或节点恢复后旧的提议破坏已经形成的共识，因此只接收大的 proposalID</p>
+<h4 id="4-2-为什么即使接受大的-proposalId，如果已经有-val-则返回-val？">4.2 为什么即使接受大的 proposalId，如果已经有 val 则返回 val？</h4>
+<p>如果一个 acceptor 已经持久化了 val，证明这个提议已经被多数派持久化了，这个 val 已经是系统事实。新提议不能修改已经存在的事实，只能延续已有的事实，否则难以达成一致的 val。</p>
+<h3 id="5-Paxos-算法存在的问题">5. Paxos 算法存在的问题</h3>
+<ul>
+<li>
+<p>Paxos 算法虽然理论上能够解决分布式的共识问题，但是过于复杂、难以理解，工程实现复杂度也比较高，因此工程实践上应用几乎没有。</p>
+</li>
+<li>
+<p>Paxos 算法本身不解决写顺序的问题，只保证写不丢失，没有像 ZooKeeper 那样的 Leader 节点保证写顺序。</p>
+</li>
+<li>
+<p>Paxos 算法允许多个 Proposer 并发发 proposal，可能存在 Acceptor 不断接收大的 proposalId 的情况，导致一致无法有一个 Proposer 能够收到超过半数的 Acceptor 的响应，导致<strong>活锁</strong></p>
+</li>
+</ul>
+<h2 id="（二）Zab">（二）Zab</h2>
+<p>ZooKeeper 是一个分布式的、开源的分布式应用协调服务，用于维护系统的元数据和协调状态，比如节点存活信息、配置变更、Leader 选举等，是 Hadoop、Hbase 的重要组件。主要功能是为分布式应用提供一致性协调服务，包括配置服务、域名服务、分布式同步（分布式锁）等。</p>
+<blockquote>
+<p>Zookeeper 名字的由来（来自网络）：ZooKeeper 是由雅虎研究院研发的开源分布式协调服务，主要解决雅虎内部分布式系统的协调问题，由于此前很多项目都以动物命名，于是大家将这个协调服务命名为动物管理员，也就是 ZooKeeper。</p>
+</blockquote>
+<p>本质上，对于 ZooKeeper，我们可以理解为是一个高可用、强一致的元信息存储服务，维护分布式系统运行所必须的协调性元信息，比如节点状态、Leader 选举结果和关键配置等。</p>
+<blockquote>
+<p>注意，不要把 ZooKeeper 当常规数据库来理解，只能当成维护元数据的服务，存储的是元信息，通常都是比较小的数据</p>
+</blockquote>
+<p>由于 ZooKeeper 维护的是系统的元数据，一旦 ZooKeeper 出问题整个系统就变得不可预测。因此为了保证高可用、高性能，ZooKeeper 本身也采用分布式架构，并且 ZooKeeper 是 CP 模型，需要保证强一致。</p>
+<p>那么下面我们讨论分析 ZooKeeper 是如何保证强一致性的 —— Zab 协议。</p>
+<h3 id="1-Zab-协议简介">1. Zab 协议简介</h3>
+<p>Zab，ZooKeeper Atomic Broadcast，也就是 ZooKeeper 原子广播协议，是基于 Paxos 的工程化实践，专门为 ZooKeeper 设计的协议，用于保证 ZooKeeper 的数据一致性，有了 Zab 协议，ZooKeeper 才能够在分布式系统架构下以 CP 的方式可靠地存储和维护系统元数据。</p>
+<h3 id="2-Zab-节点角色">2. Zab 节点角色</h3>
+<p>Zab 中，节点分为三种，分别是 Leader、Follower、Observer：</p>
+<ul>
+<li>Leader：全局保证只有一个节点是 Leader，如果宕机则通过选举选出，一般状态为 Leading
+<ul>
+<li>处理所有读写请求</li>
+<li>同步写事务给 Follower 和 Observer</li>
+</ul>
+</li>
+<li>Follower：一定数量的节点，参与 Leader 的选举，一般状态为 Following
+<ul>
+<li>处理所有读请求，转发所有写请求给 Leader</li>
+<li>接收到 Leader 的写事务同步通知后执行已提交的写事务</li>
+</ul>
+</li>
+<li>Observer：一定数量的节点，类似 Learner，不参与选举，用于线性扩展 QPS，一般状态为 Observing
+<ul>
+<li>处理所有读请求，转发所有写请求给 Leader</li>
+<li>接收到 Leader 的写事务同步通知后执行已提交的写事务</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Zxid">3. Zxid</h3>
+<p>在 Zab 中，Zxid 是比较重要的概念，可以类比 Paxos 的提案编号，可以理解为写事务的索引，表示这个写事务是哪个任期的 Leader 提出的第几个写事务。</p>
+<p>Zxid 由 64 位二进制数构成，高 32 位表示 epoch，任期，低 32 位表示 trxCnt，事务计数器。</p>
+<ul>
+<li>比较规则：先比较 epoch 再比较 trxCnt</li>
+<li>更新规则：
+<ul>
+<li>当重新选举出 Leader 时，epoch + 1 且 trxCnt 置 0</li>
+<li>Leader 不变，提出新的 proposal 时，trxCnt + 1</li>
+</ul>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260208204414344.png" alt="image-20260208204414344"></p>
+<h3 id="4-Zab-算法流程">4. Zab 算法流程</h3>
+<p>Zab 的具体流程可以分为三个部份：消息广播、崩溃恢复、数据同步。</p>
+<p>消息广播就是无崩溃情况下的正常通信过程，崩溃恢复是 Leader 节点宕机或其他问题出现时重新选出合适的 Leader 节点的过程，数据同步是崩溃恢复后进行落后数据恢复的过程。</p>
+<h4 id="4-1-消息广播">4.1 消息广播</h4>
+<ul>
+<li>Leader 节点接收到客户端的写事务请求，生成一个 Zxid，将写事务和 Zxid 封装成 proposal，先本地持久化，然后广播给所有 Follower，为了提高吞吐量和性能，Leader 通过为每一个 Follower 维护一个队列进行解耦，将 proposal 丢进队列</li>
+<li>Follower 节点收到 proposal 之后，本地持久化 proposal，完成之后返回响应 ACK</li>
+<li>Leader 收到超过半数节点的 ACK 后，确认大多数节点已经持久化了该写事务，于是本地 commit 该写事务，同时广播该事务的 commit，然后响应客户端。Follower 节点收到 commit 之后，完成各自的本地事务提交，<em>无需响应</em></li>
+</ul>
+<h4 id="4-2-崩溃恢复">4.2 崩溃恢复</h4>
+<p>Follower 节点崩溃后，一般不影响系统，除非大多数节点都崩溃了，那此时整个系统也崩溃了。</p>
+<p>但是此时如果因为某些原因 Leader 暂时不存在了，需要重新选举 Leader 以维持 ZooKeeper 系统的正常运行，选举流程如下：</p>
+<blockquote>
+<p>Leader 不存在的情况有三：</p>
+<ul>
+<li>
+<p>系统刚启动，还没选出 Leader</p>
+</li>
+<li>
+<p>Leader 崩溃</p>
+</li>
+<li>
+<p>Leader 与系统中超过半数的节点断连</p>
+</li>
+</ul>
+</blockquote>
+<ol>
+<li>
+<p>所有 Follower 节点状态变为 Looking，此时系统中不存在 Leader 节点，Observer 节点不参与选举</p>
+</li>
+<li>
+<p>所有 Follower 节点进行“投票”，向其他所有节点广播自己认为的 Leader，其实就是给自己投一票，把自己的“投票信息”广播给其他节点裁决，其他节点<strong>根据“任期最新、历史最新、节点编号最大”的原则</strong>进行裁决是否赞同，如果赞同则返回 ACK</p>
+<blockquote>
+<p>“投票”具体化到数据，其实就是二元组 (Zxid, myId)，投票规则其实也很简单：</p>
+<ul>
+<li>先比较 epoch（Zxid 的高 32 位），谁大选哪个</li>
+<li>如果相同，再比较 trxCnt（Zxid 的低 32 位）</li>
+<li>如果还是相同，则选 myId 大的</li>
+</ul>
+<p><strong>myId 是每个节点的唯一标识，ZooKeeper 以此来保证不会选举出两个 Leader</strong></p>
+</blockquote>
+</li>
+<li>
+<p>所有 Follower 统计处理投票信息，如果某个 Follower 收到半数以上的响应，则成为新的 Leader；如果没有新 Leader 产生，则重新进入第一步</p>
+</li>
+</ol>
+<h4 id="4-3-数据同步">4.3 数据同步</h4>
+<p>在崩溃恢复选出新 Leader 之后，重新进入消息广播之前，需要进行新 Leader 与 Follower 节点的数据同步，主要目的是对齐系统状态，对系统“已经发生的事务历史”形成共识，统一各个节点的历史状态。</p>
+<p>数据同步的具体措施是确保所有 Follower 节点<strong>补齐已提交的事务</strong>、<strong>回滚未提交的事务</strong>，并在过程中<strong>对齐事务顺序</strong>。具体流程如下：</p>
+<ol>
+<li>Leader 将 Zxid 的 epoch 部份 + 1，广播所有节点，宣布新的 epoch，Follower 接收后进入同步阶段</li>
+<li>Follower 上报事务进度，各个 Follower 向 Leader 上报自己本地最大已提交的 Zxid</li>
+<li>Leader 根据自身最大的 Zxid（epoch + 1 前的 Zxid）与收到的 Zxid 的差异，要求 Follower 回滚未提交的事务、向 Follower 补齐已提交的事务，必要时发送快照进行全量恢复，Follower 完成同步后返回响应</li>
+<li>Leader 收到超过半数的 Follower 的响应后，数据同步过程结束，系统进入消息广播阶段</li>
+</ol>
+<h3 id="5-Zab-算法存在的问题">5. Zab 算法存在的问题</h3>
+<p>Zab 为 ZooKeeper 提供了强一致性的原子广播能力，但其设计目标也带来了一些局限：</p>
+<ul>
+<li>
+<p>与 ZooKeeper 强绑定：Zab 并非通用的一致性算法，协议设计与 ZooKeeper 的数据模型和场景深度绑定，难以在其他系统复用</p>
+</li>
+<li>
+<p>协议结构比较复杂：Zab 协议过程包括消息广播、崩溃恢复、数据同步三个过程，状态转换和边界条件比较多</p>
+</li>
+<li>
+<p>一致性语义不一致：对读的强一致性<strong>需要通过 sync 等使用方式保证</strong></p>
+<blockquote>
+<p>怎么理解这个一致性语义不一致？</p>
+<p>Zab 其实只保证写一致，commit 之后不需要等待超过半数节点的确认即可返回成功。若此时客户端立即再读数据，仍然可能不一致。</p>
+<p>这时要通过配置来决定，如果用户配置读强一致性，那么就会在读 Follower 的时候强制与 Leader 进行一次 sync，确保完成最新 Zxid 的写事务的 commit 才返回。这也带来了性能问题。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="（三）Raft">（三）Raft</h2>
+<p>raft 算法是一种基于日志复制的分布式共识算法，由于 raft 易于理解和实践，在提出后获得广泛的关注并成为分布式系统中实际应用最广的共识算法之一。</p>
+<blockquote>
+<p>raft 算法的典型应用：etcd、nacos、consul、kubernetes(etcd) 等</p>
+</blockquote>
+<h3 id="1-raft-角色">1. raft 角色</h3>
+<p>raft 算法中，节点一共有三种角色：leader、follower、candidate</p>
+<ul>
+<li>
+<p>leader：处理客户端请求，管理同步和日志，定期向 follower 发送心跳保活</p>
+</li>
+<li>
+<p>follower：被动响应 leader 的同步请求，响应 candidate 发起的日志邀票请求，转发客户端的请求到 leader</p>
+</li>
+<li>
+<p>candidate：在集群刚刚启动或 leader 宕机或 leader 保活失效时，follower 节点可以转化为 candidate 进行选举</p>
+<blockquote>
+<p>leader 保活失效：leader 会不断给 follower 发送心跳进行保活，如果当一个 follower 超过一定时间没收到 leader 的心跳信号则认为 leader 失效，转化为 candidate 进行并发起选举</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-raft-算法核心数据结构">2. raft 算法核心数据结构</h3>
+<p>raft 的目标是复制状态机，实现方式是把所有日志状态变更写成日志（log entry），并用“任期 + 多数派提交”确保所有节点按照相同的顺序执行相同的日志，以此确保一致性。</p>
+<p>为了做到这一点，每个节点都维护三类数据：</p>
+<ul>
+<li>持久化状态：宕机重启不丢失</li>
+<li>易失状态：重启可恢复</li>
+<li>leader 专属状态：只在 leader 上存在，用于驱动复制</li>
+</ul>
+<p>raft 节点之间通过 rpc 通信，rpc 消息格式也是重要的数据结构之一，主要有两类：</p>
+<ul>
+<li>requestVote，投票请求</li>
+<li>appendEntries，日志追加/心跳请求</li>
+</ul>
+<h4 id="2-1-持久化状态">2.1 持久化状态</h4>
+<p>持久化状态是必须落盘的数据，否则重启会破坏安全性。</p>
+<p><strong>currentTerm（当前任期）</strong></p>
+<ul>
+<li>
+<p>含义：节点所知道的最新任期编号</p>
+</li>
+<li>
+<p>作用：防止旧 leader 继续发放指令、比较新旧任期</p>
+</li>
+<li>
+<p>规则：单调递增，leader 如果收到比自己更大的 term 则更新自己的 currentTerm 并立即回退成 follower</p>
+</li>
+</ul>
+<p><strong>votedFor（本任期投给谁）</strong></p>
+<ul>
+<li>
+<p>含义：在 currentTerm 这一个任期内，投过票给谁（没投的话为 null）</p>
+</li>
+<li>
+<p>作用：保证任期内，一个节点最多投票给一个节点，避免双主</p>
+</li>
+<li>
+<p>规则：votedFor 为 null 才能投票</p>
+</li>
+</ul>
+<p><strong>log[] （日志）</strong></p>
+<p>日志是 raft 核心数据结构，每条日志至少是 (index, term, command) 三元组数据。</p>
+<p>其中 index 表示日志序列号、term 是当前任期、command 是操作指令（比如库存减 1）。</p>
+<ul>
+<li>
+<p>含义：系统状态变更的历史记录</p>
+</li>
+<li>
+<p>作用：所有节点按照 index 顺序执行 command，term 用于解决冲突/回滚</p>
+</li>
+<li>
+<p>关键性质：</p>
+<ul>
+<li>log matching property：如果两个节点在同一个 index 的 term 和 command 都相同，则该 index 之前的所有日志都完全相同</li>
+<li>冲突处理：follower 若发现日志不匹配，会删除冲突点以后的日志，接受 leader 的日志覆盖</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-易失状态">2.2 易失状态</h4>
+<p>这些数据在 follower 节点可以不落盘，重启后通过同步恢复。</p>
+<p><strong>commitIndex（已提交的最大日志 index）</strong></p>
+<ul>
+<li>含义：已经被多数派确认的最大日志位置</li>
+<li>语义：index &lt;= commitIndex 的日志已经对外生效</li>
+</ul>
+<p><strong>lastApplied（已应用到状态机的最大 index）</strong></p>
+<ul>
+<li>含义：本节点已经执行的最大日志 index</li>
+<li>规则：单调递增，永远满足 lastApplied &lt;= commitIndex</li>
+</ul>
+<h4 id="2-3-leader-专属状态">2.3 leader 专属状态</h4>
+<p>leader 需要维护与各个 follower 的同步元信息，比如数据同步到哪个日志了之类的。</p>
+<p><strong>nextIndex[server]</strong></p>
+<ul>
+<li>含义：leader 下一次要发给 server 的日志索引，语义是从哪里开始补日志</li>
+</ul>
+<p><strong>matchIndex[server]</strong></p>
+<ul>
+<li>
+<p>含义：leader 确认的与 server 已经同步的日志的最大 index</p>
+</li>
+<li>
+<p>更新：follower 响应某次日志追加/心跳则更新 matchIndex</p>
+</li>
+</ul>
+<h4 id="2-4-RPC-请求-——-requestVote">2.4 RPC 请求 —— requestVote</h4>
+<p>投票请求主要是 candidate 发给其他节点的请求，请求响应结构如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">requestVoteArgs <span class="punctuation">&#123;</span></span><br><span class="line">  term<span class="punctuation">,</span></span><br><span class="line">  candidateId<span class="punctuation">,</span></span><br><span class="line">  lastLogIndex<span class="punctuation">,</span></span><br><span class="line">  lastLogTerm</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">requestVoteReply <span class="punctuation">&#123;</span></span><br><span class="line">  term<span class="punctuation">,</span></span><br><span class="line">  voteGranted</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-5-RPC-请求-——-appendLogEntries">2.5 RPC 请求 —— appendLogEntries</h4>
+<p>日志追加/心跳请求是 leader 与 follower 节点之间的通信，请求响应结构如下：</p>
+<ul>
+<li>prevLogInedx 和 prevLogTerm 是 raft 的对齐锚点，follower 必须确认自己在 prevLogIndex 处的 term 与 leader 一致，否则响应失败，触发 leader 回退 nextIndex</li>
+<li>leaderCommit 用于推进 follower 的 commitIndex</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">appendEntriesArgs <span class="punctuation">&#123;</span></span><br><span class="line">  term<span class="punctuation">,</span></span><br><span class="line">  leaderId<span class="punctuation">,</span></span><br><span class="line">  prevLogIndex<span class="punctuation">,</span></span><br><span class="line">  prevLogTerm<span class="punctuation">,</span></span><br><span class="line">  entries<span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span>  <span class="comment">// 空即为心跳</span></span><br><span class="line">	leaderCommit</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">appendEntriesReply <span class="punctuation">&#123;</span></span><br><span class="line">  term<span class="punctuation">,</span></span><br><span class="line">  success<span class="punctuation">,</span></span><br><span class="line">  conflictIndex<span class="punctuation">,</span></span><br><span class="line">  conflictTerm</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-raft-算法流程">3. raft 算法流程</h3>
+<p>raft 算法流程主要分为三个部分：选主、日志复制、日志提交与应用</p>
+<h4 id="3-1-leader-选举">3.1 leader 选举</h4>
+<p>当 raft 集群中没有 leader 时（集群刚刚启动、leader 宕机、leader 保活失效），触发 raft 选举流程，此时 follower 节点转为 candidate。</p>
+<ul>
+<li>
+<p>每个节点都在本地将 currentTerm + 1，随机等待一段时间，然后发起投票，向所有节点发送 requestVote 请求，节点收到请求后，比较请求中的 (term, index) 进行投票：</p>
+<blockquote>
+<p>每个节点随机等待一段时间是为了避免同时出现多个节点发起投票，减少平票的概率，尽可能错开节点的邀票时间</p>
+</blockquote>
+<ul>
+<li>
+<p>若 candidate 的 term 小于当前 term，拒绝</p>
+<blockquote>
+<p>拒绝比自己旧的邀票，如果日志比自己旧的节点当选 leader，同步过程中就会丢弃其他节点已经持久化的日志记录，造成数据丢失</p>
+</blockquote>
+</li>
+<li>
+<p>若 candidate 的 term 大于或等于当前 term 并且当前节点未进行投票（votedFor 为 null），则更新当前 term 并投票给该 candidate</p>
+</li>
+<li>
+<p>若 candidate 的 term 等于当前 term 且当前节点已经进行投票，拒绝</p>
+<blockquote>
+<p>确保每个节点在<strong>一个任期内</strong>只投票一次，不能改票。因为改票相当于一个节点投了两票，使得多数派的判断出现前提错误。</p>
+<p>假设改票，会导致脑裂问题，比如三节点 A、B、C 的 raft 集群，term 一致，indexC &gt; indexA：</p>
+<ul>
+<li>A 节点自投一票</li>
+<li>B 节点投给 A</li>
+<li>C 节点网络不佳</li>
+</ul>
+<p>那么 A 节点收到 2 票，成为 leader，此时 C 节点恢复通信：</p>
+<ul>
+<li>C 节点自投一票</li>
+<li>B 节点收到 C 的邀票，判断 C 的 index 更大，然后改票投给 C</li>
+</ul>
+<p>此时 C 获得多数派，也成为 leader，发生脑裂问题。</p>
+</blockquote>
+</li>
+<li>
+<p>若 candidate 的 term 大于当前 term 且当前节点已经进行投票，改票，更新当前 term 并投票给该 candidate</p>
+<blockquote>
+<p>对于任期比已经投出去的节点大的 candidate 的邀票，需要改投，用于淘汰旧任期节点。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>candidate 收到大多数投票（一半以上节点的同意）之后，成为 leader</p>
+</li>
+</ul>
+<h4 id="3-2-日志复制">3.2 日志复制</h4>
+<p>日志复制是 raft 算法的重要阶段，是保证集群状态一致性的核心，目的是将客户端的指令（写指令）复制到每一个节点的日志中，确保所有节点状态一致。</p>
+<h5 id="3-2-1-日志数据结构和状态">3.2.1 日志数据结构和状态</h5>
+<p>前面核心数据结构提到，日志其实可以看成一个三元组数据 (index, term, command)，主要有三种状态 appended、committed 和 applied。</p>
+<ul>
+<li>
+<p>Appended：如果一个日志已经存储在节点中，但是还没被大多数节点确认，此时处于 Appended 状态，该日志不能对外生效</p>
+</li>
+<li>
+<p>Committed：如果一个日志被复制到大多数节点（也就是大多数节点都持久化了），则该日志处于 committed 状态，该日志此时已经成为系统历史的一部分，但未真正执行</p>
+</li>
+<li>
+<p>Applied：在一个节点中，如果一个日志被执行，那么状态改为 applied，只能执行 committed 的日志，该日志已经被应用执行</p>
+</li>
+</ul>
+<h5 id="3-2-2-日志复制过程">3.2.2 日志复制过程</h5>
+<ul>
+<li>
+<p>leader 节点收到客户端请求后，封装成日志 (index, term, command) 然后追加到本地日志，此时该日志状态为 appended，然后 leader 广播 (appendRequest) 该日志给所有 follower</p>
+<blockquote>
+<p>前面数据结构的章节有提到 appendRequest 的结构，leader 会携带 prevLogIndex 和 prevLogTerm，这一步主要是为了确保 follower 和 leader 的日志一致性，也就是确保<strong>当前要同步的日志的前一个日志必须是已经完全同步的</strong>，每一次同步都保证这个原则</p>
+</blockquote>
+</li>
+<li>
+<p>follower 节点收到请求后，找到自己本地日志 index, term 与 prevLogIndex, prevLogTerm 完全一致的日志，从该日志往后 appended 新日志，返回 success；如果找不到则拒绝同步该日志，leader 回退 nextIndex 再试</p>
+</li>
+<li>
+<p>leader 收到大多数节点同步完成的响应后，代表新日志已经成为系统历史的一部分，可以进行日志的 commit 和 apply 了</p>
+</li>
+</ul>
+<h4 id="3-3-日志提交和应用">3.3 日志提交和应用</h4>
+<ul>
+<li>leader 收到多数派节点的同步完成响应，提交该日志（更新本地 commitIndex）并在本地进行应用；同时通知所有 follower 节点该日志已经 commit，可以更新 commitIndex，然后响应结果给客户端</li>
+<li>各个 follower 节点收到通知后，更新自己的 commitIndex，然后按顺序 apply 已提交的日志</li>
+</ul>
+<h3 id="4-raft-算法的优缺点">4. raft 算法的优缺点</h3>
+<p>raft 算法提供了通用的一致性共识组件，相比于 zab 模型更加简化、更加易于理解和使用。</p>
+<p>同时 raft 算法也是单 leader 模型，系统性能受限于 leader 节点。</p>
+<h2 id="三、总结">三、总结</h2>
+<p>本文我们首先深入分析了共识算法解决什么问题，解决这些问题可以尝试采用什么方法，以此来明确共识理论的问题背景。</p>
+<p>然后我们介绍了共识算法的基础算法 Paxos，并从中总结了解决共识问题的一些原理性方法。最后我们介绍了工程实践中应用广泛的共识算法 Zab 和 Raft。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/">http://example.com/2025/02/06/后端开发/【分布式系统】2. 共识理论/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">分布式理论基础</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/02/09/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90Java%20%E8%AF%AD%E8%A8%80%E3%80%910.%20Java%20%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" title="【Java 语言】0. Java 语言基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Java 语言】0. Java 语言基础</div></div></a></div><div class="next-post pull-right"><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA/" title="【分布式系统】1. 分布式理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【分布式系统】1. 分布式理论</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA/" title="【分布式系统】1. 分布式理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">【分布式系统】1. 分布式理论</div></div></a></div><div><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%910.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" title="【分布式系统】0. 分布式系统概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">【分布式系统】0. 分布式系统概述</div></div></a></div><div><a href="/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" title="【分布式系统】3. 分布式事务"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="title">【分布式系统】3. 分布式事务</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/" title="【分布式系统】5. 分布式存储（上）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】5. 分布式存储（上）</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 分布式存储（下）</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="【分布式系统】6. 消息队列"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 消息队列</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">一、共识算法解决什么问题？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">（一）基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BE%8B%E5%AD%90%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">（二）例子引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">（三）如何解决这个问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E6%8A%BD%E8%B1%A1%E5%87%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.</span> <span class="toc-text">（四）抽象出解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">二、共识算法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89Paxos"><span class="toc-number">2.1.</span> <span class="toc-text">（一）Paxos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Paxos-%E8%A7%92%E8%89%B2"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. Paxos 角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Paxos-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">2. Paxos 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">2.1 准备阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%8E%A5%E5%8F%97%E9%98%B6%E6%AE%B5"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">2.2 接受阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-Proposer-%E5%8F%91%E9%80%81-Accept"><span class="toc-number">2.1.2.2.1.</span> <span class="toc-text">2.2.1 Proposer 发送 Accept</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-Acceptor-%E5%93%8D%E5%BA%94-Accept"><span class="toc-number">2.1.2.2.2.</span> <span class="toc-text">2.2.2 Acceptor 响应 Accept</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-Proposer-%E7%BB%9F%E8%AE%A1%E6%8A%95%E7%A5%A8"><span class="toc-number">2.1.2.2.3.</span> <span class="toc-text">2.2.3 Proposer 统计投票</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Paxos-%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.3.</span> <span class="toc-text">3. Paxos 怎么解决一致性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E4%BF%9D%E8%AF%81%E5%86%99%E4%B8%8D%E4%B8%A2%E5%A4%B1"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">3.1 保证写不丢失</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-%E4%BE%8B%E5%AD%90%E5%BC%95%E5%85%A5"><span class="toc-number">2.1.3.1.1.</span> <span class="toc-text">3.1.1 例子引入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-2-Quorum-%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.3.1.2.</span> <span class="toc-text">3.1.2 Quorum 机制</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E4%BF%9D%E8%AF%81%E5%86%99%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">3.2 保证写顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Paxos-%E7%AE%97%E6%B3%95%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.4.</span> <span class="toc-text">4. Paxos 算法常见的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E4%B8%BA%E4%BB%80%E4%B9%88-Acceptor-%E4%BB%85%E6%8E%A5%E6%94%B6%E5%A4%A7%E7%9A%84-proposalId%EF%BC%9F"><span class="toc-number">2.1.4.1.</span> <span class="toc-text">4.1 为什么 Acceptor 仅接收大的 proposalId？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%B3%E4%BD%BF%E6%8E%A5%E5%8F%97%E5%A4%A7%E7%9A%84-proposalId%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%BB%8F%E6%9C%89-val-%E5%88%99%E8%BF%94%E5%9B%9E-val%EF%BC%9F"><span class="toc-number">2.1.4.2.</span> <span class="toc-text">4.2 为什么即使接受大的 proposalId，如果已经有 val 则返回 val？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Paxos-%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.5.</span> <span class="toc-text">5. Paxos 算法存在的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89Zab"><span class="toc-number">2.2.</span> <span class="toc-text">（二）Zab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Zab-%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. Zab 协议简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Zab-%E8%8A%82%E7%82%B9%E8%A7%92%E8%89%B2"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. Zab 节点角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Zxid"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. Zxid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Zab-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. Zab 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E6%B6%88%E6%81%AF%E5%B9%BF%E6%92%AD"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">4.1 消息广播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%B4%A9%E6%BA%83%E6%81%A2%E5%A4%8D"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">4.2 崩溃恢复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="toc-number">2.2.4.3.</span> <span class="toc-text">4.3 数据同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Zab-%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.5.</span> <span class="toc-text">5. Zab 算法存在的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89Raft"><span class="toc-number">2.3.</span> <span class="toc-text">（三）Raft</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-raft-%E8%A7%92%E8%89%B2"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. raft 角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-raft-%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.2.</span> <span class="toc-text">2. raft 算法核心数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%8C%81%E4%B9%85%E5%8C%96%E7%8A%B6%E6%80%81"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">2.1 持久化状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%98%93%E5%A4%B1%E7%8A%B6%E6%80%81"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">2.2 易失状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-leader-%E4%B8%93%E5%B1%9E%E7%8A%B6%E6%80%81"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">2.3 leader 专属状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-RPC-%E8%AF%B7%E6%B1%82-%E2%80%94%E2%80%94-requestVote"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">2.4 RPC 请求 —— requestVote</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-RPC-%E8%AF%B7%E6%B1%82-%E2%80%94%E2%80%94-appendLogEntries"><span class="toc-number">2.3.2.5.</span> <span class="toc-text">2.5 RPC 请求 —— appendLogEntries</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-raft-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-number">2.3.3.</span> <span class="toc-text">3. raft 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-leader-%E9%80%89%E4%B8%BE"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">3.1 leader 选举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">3.2 日志复制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-%E6%97%A5%E5%BF%97%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%8A%B6%E6%80%81"><span class="toc-number">2.3.3.2.1.</span> <span class="toc-text">3.2.1 日志数据结构和状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-2-%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.3.2.2.</span> <span class="toc-text">3.2.2 日志复制过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%97%A5%E5%BF%97%E6%8F%90%E4%BA%A4%E5%92%8C%E5%BA%94%E7%94%A8"><span class="toc-number">2.3.3.3.</span> <span class="toc-text">3.3 日志提交和应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-raft-%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">2.3.4.</span> <span class="toc-text">4. raft 算法的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">三、总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

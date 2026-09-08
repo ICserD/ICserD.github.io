@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【面试】1. 面试题单 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面向大厂面试的后端八股题纲  本题单围绕你的简历经历、项目实践和常见大厂面试重点展开。每个模块不仅覆盖基础知识，还列出面试常问的难点、追问点和场景题，帮助你有针对性地准备，串联起各个知识点。你可以用它作为每次面试前的复习清单，也可以按专题系统地查漏补缺。题目数量不做限制，强调覆盖度和深度。  1 Java 基础与集合框架 1.1 集合原理与数据结构  HashMap 的底层结构是什么？数组、链表、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【面试】1. 面试题单">
+<meta property="og:url" content="http://example.com/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="面向大厂面试的后端八股题纲  本题单围绕你的简历经历、项目实践和常见大厂面试重点展开。每个模块不仅覆盖基础知识，还列出面试常问的难点、追问点和场景题，帮助你有针对性地准备，串联起各个知识点。你可以用它作为每次面试前的复习清单，也可以按专题系统地查漏补缺。题目数量不做限制，强调覆盖度和深度。  1 Java 基础与集合框架 1.1 集合原理与数据结构  HashMap 的底层结构是什么？数组、链表、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2026-02-26T14:54:08.000Z">
+<meta property="article:modified_time" content="2026-02-26T14:54:08.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="后端开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【面试】1. 面试题单',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-26 22:54:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【面试】1. 面试题单</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-26T14:54:08.000Z" title="更新于 2026-02-26 22:54:08">2026-02-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【面试】1. 面试题单"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1><strong>面向大厂面试的后端八股题纲</strong></h1>
+<blockquote>
+<p>本题单围绕你的简历经历、项目实践和常见大厂面试重点展开。每个模块不仅覆盖基础知识，还列出面试常问的难点、追问点和场景题，帮助你有针对性地准备，串联起各个知识点。你可以用它作为每次面试前的复习清单，也可以按专题系统地查漏补缺。题目数量不做限制，强调覆盖度和深度。</p>
+</blockquote>
+<h2 id="1-Java-基础与集合框架"><strong>1 Java 基础与集合框架</strong></h2>
+<h3 id="1-1-集合原理与数据结构"><strong>1.1 集合原理与数据结构</strong></h3>
+<ul>
+<li>HashMap 的底层结构是什么？数组、链表、红黑树如何演化？为什么负载因子默认是 0.75？</li>
+<li>HashMap 在 JDK 1.7 与 1.8 的核心差异是什么？链表和红黑树转换的阈值是多少？</li>
+<li>HashMap 为什么线程不安全？并发环境下会发生哪两种典型问题（数据丢失、链表形成环）？</li>
+<li>ConcurrentHashMap 的底层实现是什么？JDK 1.7 分段锁与 1.8 CAS+链表/红黑树的区别？</li>
+<li>LinkedHashMap 如何维持访问顺序？怎么用它实现 LRU 缓存？</li>
+<li>TreeMap 采用哪种树结构？插入和删除的时间复杂度是多少？为什么红黑树适合做索引？</li>
+<li>迭代器的 fail‑fast 机制是如何实现的？有哪些容器支持 fail‑safe？</li>
+<li>ArrayList 和 LinkedList 的插入、删除、随机访问时间复杂度？在实际项目中如何选择？</li>
+<li>CopyOnWriteArrayList 是如何实现线程安全的？适用于什么场景？</li>
+<li>Java 中的队列有哪些？PriorityQueue 的底层实现如何支持优先级？</li>
+<li>对于自定义类作为 Map 的 key，有哪些注意事项？hashCode/equals 的规范是什么？</li>
+</ul>
+<h3 id="1-2-Java-语法与基础"><strong>1.2 Java 语法与基础</strong></h3>
+<ul>
+<li>JDK 与 JRE 的区别？JDK 版本升级如 8→11→17 的主要新特性是什么？</li>
+<li>自动装箱/拆箱的底层实现是什么？什么时候会触发 NullPointerException？</li>
+<li>反射的原理是什么？通过反射创建对象和直接 new 对象有什么差别？</li>
+<li>强引用、软引用、弱引用、虚引用的定义和使用场景？</li>
+<li>序列化的机制有哪些？transient 关键字的作用是什么？</li>
+<li>泛型的本质是什么？为什么会出现类型擦除？如何使用泛型通配符？</li>
+<li>深拷贝与浅拷贝的区别？如何优雅地实现一个对象的深拷贝？</li>
+<li>装饰器模式、代理模式在 Java 中有哪些经典应用？Spring AOP 底层是如何基于代理模式实现的？</li>
+</ul>
+<h2 id="2-并发编程"><strong>2 并发编程</strong></h2>
+<h3 id="2-1-线程模型与基础"><strong>2.1 线程模型与基础</strong></h3>
+<ul>
+<li>Java 中创建线程的三种方式？实现 Runnable 与实现 Callable 有何区别？</li>
+<li>守护线程和用户线程的区别是什么？finally 中使用 System.exit() 会发生什么？</li>
+<li>线程的生命周期有哪些状态？blocked 与 waiting 的区别？</li>
+<li>线程上下文切换的成本由哪些因素构成？</li>
+<li>ThreadLocal 的原理是什么？如何防止内存泄漏？项目中哪些场景适合使用 ThreadLocal？</li>
+<li>Java 内存模型（JMM）的三大特性是什么？可见性、有序性、原子性如何保障？</li>
+<li>synchronized 关键字的底层实现是什么？锁膨胀过程（偏向锁→轻量级锁→重量级锁）是如何实现的？</li>
+<li>volatile 关键字能否保证线程安全？它解决了什么问题？在你的项目中有哪些地方会考虑使用 volatile？</li>
+</ul>
+<h3 id="2-2-原子操作与锁"><strong>2.2 原子操作与锁</strong></h3>
+<ul>
+<li>CAS 算法的原理是什么？CAS 失败后怎么处理？ABA 问题是什么，怎么解决？</li>
+<li>AQS（AbstractQueuedSynchronizer）框架的核心设计是什么？基于 AQS 的常见同步器有哪些（如 ReentrantLock、Semaphore、CountDownLatch、CyclicBarrier）？</li>
+<li>公平锁和非公平锁的区别是什么？在实际业务中如何选择？</li>
+<li>可重入锁与可重入读写锁的实现原理和应用场景？读写锁适合什么样的业务？</li>
+<li>自旋锁是什么？什么情况下适合自旋？CAS + 自旋会导致什么问题？</li>
+<li>乐观锁与悲观锁的概念及实际场景对比？如何利用版本号实现乐观锁？</li>
+</ul>
+<h3 id="2-3-线程池与任务调度"><strong>2.3 线程池与任务调度</strong></h3>
+<ul>
+<li>Java 线程池的核心参数有哪些？核心线程数、最大线程数、队列大小、拒绝策略分别有什么作用？</li>
+<li>工作队列的不同实现（ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue）适用于什么场景？</li>
+<li>如何正确关闭线程池？shutdown 与 shutdownNow 的差别是什么？</li>
+<li>自定义线程池时如何设置合理的线程数？如何防止任务堆积和 OOM？</li>
+<li>项目中的导出任务/计算任务如何利用线程池二级队列进行调度？你在 AIA 实习中如何调整线程池参数？</li>
+<li>定时任务调度框架（如 Java Timer、ScheduledExecutorService、Quartz、xxl-job）的特点与区别？在中国电信项目中如何实现高精度、高负载任务调度？</li>
+</ul>
+<h3 id="2-4-并发容器与场景实践"><strong>2.4 并发容器与场景实践</strong></h3>
+<ul>
+<li>ConcurrentHashMap 为什么不需要加锁即可实现线程安全？如何在高并发情况下使用 putIfAbsent 构建本地缓存？</li>
+<li>CopyOnWriteArrayList 和 ConcurrentLinkedQueue 的使用场景是什么？写多读少的情况下如何选择？</li>
+<li>ArrayBlockingQueue 与 LinkedBlockingQueue 的实现区别？为什么前者能够控制队列长度？</li>
+<li>在导出报表 OOM 问题的解决方案中，如何利用单机互斥锁 + 缓存预热提升整体吞吐？</li>
+<li>多实例并行计算时如何保证任务分片的均衡性？如何利用线程池隔离不同类型的计算任务？</li>
+<li>在微服务架构下如何避免雪崩效应？熔断限流隔离的实现原理是什么？</li>
+</ul>
+<h2 id="3-JVM-原理与性能调优"><strong>3 JVM 原理与性能调优</strong></h2>
+<h3 id="3-1-内存结构与对象模型"><strong>3.1 内存结构与对象模型</strong></h3>
+<ul>
+<li>JVM 的运行时数据区有哪些部分？各区域的作用是什么？</li>
+<li>Java 对象在堆内存中的布局是什么？对象头包含哪些信息？为什么会有 Mark Word？</li>
+<li>线程栈中有哪些基本结构？什么是栈帧？方法调用时如何压栈和弹栈？</li>
+<li>逃逸分析的作用是什么？哪些情况下对象会被分配到栈上？</li>
+<li>TLAB（Thread Local Allocation Buffer）的作用是什么？对于频繁创建小对象有何影响？</li>
+</ul>
+<h3 id="3-2-垃圾回收机制"><strong>3.2 垃圾回收机制</strong></h3>
+<ul>
+<li>常见的垃圾回收算法有哪些？标记‑清除、标记‑整理、复制算法的优缺点？</li>
+<li>新生代和老年代的分代回收策略是什么？Minor GC 和 Full GC 的触发条件？</li>
+<li>CMS、G1、ZGC 等收集器的原理与适用场景？CMS 为什么会产生浮动垃圾？G1 如何通过 region 和预测模型实现停顿控制？</li>
+<li>如何通过 JVM 参数配置垃圾回收器？-XX:+PrintGCDetails 输出如何分析？</li>
+<li>元空间（Metaspace）的作用和调优策略是什么？元空间溢出会导致什么异常？</li>
+<li>类加载机制的双亲委派模型是什么？如何自定义类加载器？</li>
+</ul>
+<h3 id="3-3-性能诊断与调优"><strong>3.3 性能诊断与调优</strong></h3>
+<ul>
+<li>常见的 JVM 性能监控工具有哪些？jps、jstack、jmap、jstat 和 VisualVM 分别做什么？</li>
+<li>如何通过 jstack 排查线程死锁？如何分析热点方法？</li>
+<li>OOM 常见类型有哪些？java.lang.OutOfMemoryError: Java heap space、Metaspace、GC overhead limit exceeded 分别代表什么问题？</li>
+<li>GC 日志中 “Full GC”“Promotion Failed”“to-space overflow” 代表什么？</li>
+<li>在导出任务 OOM 时，你是如何定位内存泄露问题的？如何对流式处理做内存压力测试？</li>
+<li>JIT 编译和解释执行有什么区别？如何查看 JIT 生成的机器码？</li>
+</ul>
+<h2 id="4-Spring-体系与微服务"><strong>4 Spring 体系与微服务</strong></h2>
+<h3 id="4-1-Spring-IOC-AOP-Bean-生命周期"><strong>4.1 Spring IOC / AOP / Bean 生命周期</strong></h3>
+<ul>
+<li>IOC 容器启动流程是什么？BeanDefinition、BeanFactory、ApplicationContext 之间的关系？</li>
+<li>Bean 的生命周期是什么？@PostConstruct 和 InitializingBean 的触发顺序？</li>
+<li>AOP 的底层实现有哪些方式（JDK 动态代理、CGLIB）？Spring 如何自动选择代理策略？</li>
+<li>@Transactional 的实现原理是什么？Spring 是如何在方法调用时实现事务嵌套的？</li>
+<li>如何自定义注解与切面？在你的项目中有什么 AOP 应用场景？</li>
+<li>Spring 事件发布订阅机制如何实现？在项目中如何进行解耦？</li>
+</ul>
+<h3 id="4-2-Spring-Boot-自动装配"><strong>4.2 Spring Boot 自动装配</strong></h3>
+<ul>
+<li>Spring Boot 自动装配原理是什么？@EnableAutoConfiguration、spring.factories 文件如何工作？</li>
+<li>条件装配（@ConditionalOnMissingBean 等）如何避免 Bean 重复定义？</li>
+<li>如何优雅地扩展一个 starter？</li>
+<li>项目启动失败，如何快速定位是哪一个自动配置类引起的问题？</li>
+</ul>
+<h3 id="4-3-微服务治理与-Spring-Cloud"><strong>4.3 微服务治理与 Spring Cloud</strong></h3>
+<ul>
+<li>Spring Cloud Gateway 的工作流程是什么？在项目中如何实现统一鉴权与限流？</li>
+<li>Nacos 作为注册中心/配置中心的原理是什么？它如何实现服务健康检查？</li>
+<li>OpenFeign 调用流程是什么？如何避免链路上出现的重试雪崩问题？</li>
+<li>如何实现灰度发布？Nacos + Gateway 可以怎样配合？</li>
+<li>分布式事务的常见模式有哪些（两阶段提交、TCC、Saga）？微服务中如何在保证最终一致性的前提下处理跨服务事务？</li>
+<li>微服务调用超时或异常时如何降级？熔断器如 Hystrix、Sentinel 的原理是什么？</li>
+<li>如何设计一个多服务的网关聚合接口？你的项目中用门面模式聚合搜索结果是如何实现的？</li>
+</ul>
+<h3 id="4-4-服务性能与可观测性"><strong>4.4 服务性能与可观测性</strong></h3>
+<ul>
+<li>如何在微服务中使用链路追踪？Zipkin、Sleuth、OpenTelemetry 等有哪些差异？</li>
+<li>日志采集的最佳实践是什么？如何通过结构化日志快速定位问题？</li>
+<li>如何在 Gateway 层实现限流？计数器、漏桶、令牌桶算法的区别？</li>
+<li>项目中如何结合 Prometheus + Grafana 做性能监控？哪些关键指标必须监控（QPS、响应时间、CPU、内存、线程池状态）？</li>
+</ul>
+<h2 id="5-MySQL-数据库"><strong>5 MySQL 数据库</strong></h2>
+<h3 id="5-1-存储引擎与索引"><strong>5.1 存储引擎与索引</strong></h3>
+<ul>
+<li>InnoDB 和 MyISAM 的主要区别是什么？为什么默认采用 InnoDB？</li>
+<li>B+ 树索引的结构和查找过程是什么？为什么采用 B+ 树而不是红黑树或哈希表？</li>
+<li>聚簇索引和非聚簇索引的区别？主键索引和二级索引查询逻辑是怎样的？</li>
+<li>联合索引中为什么推荐把选择性高的字段放在最左？最左前缀原则是什么？</li>
+<li>覆盖索引的概念是什么？如何通过减少回表提高查询性能？</li>
+<li>在什么情况下索引会失效？like ‘%xxx%’、OR 条件如何优化？</li>
+<li>统计信息 (statistics) 对执行计划有什么影响？执行计划中的 type、rows 字段如何解读？</li>
+<li>自定义索引在你的搜索模块中如何实践？如何选择合适的字段作为索引？</li>
+</ul>
+<h3 id="5-2-事务与锁机制"><strong>5.2 事务与锁机制</strong></h3>
+<ul>
+<li>事务的 ACID 特性分别是什么？</li>
+<li>InnoDB 的 MVCC 是如何实现的？Undo Log 和 Read View 的关系是什么？</li>
+<li>隔离级别有哪些？读未提交、读已提交、可重复读、串行化分别会解决/出现哪些并发问题？</li>
+<li>行锁、表锁、意向锁的区别？Gap 锁、Next-Key 锁的作用是什么？</li>
+<li>死锁产生的必要条件有哪些？如何使用 show engine innodb status 发现死锁并定位源头？</li>
+<li>InnoDB 的三种日志分别是什么：redo log、undo log、binlog？它们在崩溃恢复和主从复制中的作用是什么？</li>
+<li>二阶段提交协议（prepare/commit）在 MySQL 中如何实现？如何保证事务与 binlog 的一致性？</li>
+</ul>
+<h3 id="5-3-高可用与性能优化"><strong>5.3 高可用与性能优化</strong></h3>
+<ul>
+<li>主从复制的原理是什么？binlog + relay log 如何保证数据同步？</li>
+<li>半同步复制与异步复制、半同步复制的区别？GTID 在主从切换中的作用？</li>
+<li>分库分表常见策略有哪些？水平拆分后如何保证唯一 ID？如何在应用层实现分布式事务？</li>
+<li>数据库连接池的工作原理是什么？连接池如何应对突发流量？</li>
+<li>如何通过慢查询日志和 EXPLAIN 优化 SQL？在你实践中改写过什么慢 SQL？</li>
+<li>读写分离后如何避免从库延迟带来的脏读问题？</li>
+<li>结合 ElasticSearch 联合查询时，如何确保搜索结果与 MySQL 数据一致？采用哪些策略来应对数据延时？</li>
+</ul>
+<h3 id="5-4-数据库在项目中的应用场景"><strong>5.4 数据库在项目中的应用场景</strong></h3>
+<ul>
+<li>在 AIA 项目中，如何通过分批查询 + 流式写入解决大报表内存爆炸问题？为什么能杜绝 OOM？</li>
+<li>调度平台如何利用 MySQL + Redis 作为二级存储实现冷/热分区？冷热数据分离的原理是什么？</li>
+<li>在 VoyaPlan 项目中，如何设计 MySQL 与 ElasticSearch 的同步机制？数据写入时如何保证 ES 索引及时更新？</li>
+</ul>
+<h2 id="6-Redis-与缓存"><strong>6 Redis 与缓存</strong></h2>
+<h3 id="6-1-Redis-数据结构与应用"><strong>6.1 Redis 数据结构与应用</strong></h3>
+<ul>
+<li>Redis 支持哪些基本数据结构？String、List、Hash、Set、ZSet 的底层实现与应用场景？</li>
+<li>HyperLogLog、Bitmap、Geo 的应用原理与典型场景？</li>
+<li>Redis 的大对象拆分策略是什么？为什么批量操作要使用 pipelining？</li>
+<li>redis-cli --bigkeys 如何分析热 Key？出现大 key/热 key 会对集群造成什么影响？</li>
+<li>缓存预热和双写一致性如何保证？你的报表预生成功能中如何利用缓存提高命中率？</li>
+<li>缓存穿透、击穿、雪崩的定义和解决方案？布隆过滤器、互斥锁、异步更新在哪些场景使用？</li>
+<li>Redis 分布式锁的常见实现方案有哪些？单机锁与 Redlock 算法有何不同？锁失效后如何避免重复执行？</li>
+<li>Sentinel 与 Cluster 模式的差别？主从复制、故障切换过程如何保证数据一致性？</li>
+<li>Redis 持久化 RDB 与 AOF 的工作机制？混合持久化如何权衡性能与可靠性？</li>
+<li>如何实现秒杀系统中的库存扣减？利用 Redis 原子操作结合乐观锁如何防止超卖？</li>
+</ul>
+<h3 id="6-2-缓存策略与项目实践"><strong>6.2 缓存策略与项目实践</strong></h3>
+<ul>
+<li>缓存淘汰策略有哪些？LRU、LFU、随机淘汰的适用场景？</li>
+<li>如何设计合理的缓存层级？本地缓存（如 Caffeine）+ 分布式缓存 + 数据库读写，如何解决一致性问题？</li>
+<li>在 AIA 项目中，为何采用互斥控制限制并发导出？如何设计计数器和缓存占用阈值？</li>
+<li>在调度平台项目中，如何利用 Redis ZSet 管理秒级精度任务？ZSet 的按 score 排序原理是什么？</li>
+<li>如何处理 Redis 宕机后缓存雪崩？微服务如何快速降级？</li>
+</ul>
+<h2 id="7-消息队列"><strong>7 消息队列</strong></h2>
+<blockquote>
+<p>根据你简历中涉及到的任务调度、报表导出和异步化场景，以下题目主要聚焦 Kafka/ RocketMQ。</p>
+</blockquote>
+<ul>
+<li>消息队列适用的业务场景有哪些？异步解耦、削峰填谷、流量削尖、分布式事务、订阅通知等。</li>
+<li>常见 MQ（Kafka、RocketMQ、RabbitMQ）比较：底层存储模型、消息顺序性、事务支持与使用场景？</li>
+<li>Kafka 的整体架构是怎样的？Broker、Topic、Partition、Replica、Producer、Consumer 之间如何协作？</li>
+<li>Kafka 如何保证消息不丢失？ack 机制、ISR 副本机制、分区 Leader 选举原理？</li>
+<li>如何保证消息顺序？为什么要给同一业务 key 分配同一分区？有序与并行如何权衡？</li>
+<li>生产者如何保证消息的幂等写入？idempotence 与事务消息 API 的区别？</li>
+<li>消息重复消费怎么办？如何实现幂等消费？消费侧可以用哪些唯一标识记录 offset？</li>
+<li>长时间积压的消息如何处理？消费端的线程池如何设置？</li>
+<li>如何实现延时队列？利用时间轮或结合存储层的方案？</li>
+<li>对于任务调度平台，为什么选择二级存储（MySQL+Redis）而不是直接用 MQ？MQ 适合用在哪些调度场景？</li>
+<li>如何设计死信队列？重试策略如何避免对系统造成二次压力？</li>
+</ul>
+<h2 id="8-搜索引擎与-Elasticsearch"><strong>8 搜索引擎与 Elasticsearch</strong></h2>
+<h3 id="8-1-核心原理与架构"><strong>8.1 核心原理与架构</strong></h3>
+<ul>
+<li>Elasticsearch 的核心组件有哪些？Node、Cluster、Index、Shard、Replica 各自的作用是什么？</li>
+<li>ES 与传统数据库的主要差异是什么？为什么 ES 适合全文搜索但不适合事务型写入？</li>
+<li>倒排索引的结构是什么？Segment、Doc ID 与倒排链表是如何管理的？</li>
+<li>索引写入过程：文档如何分片？什么时候会触发 flush 和 merge？</li>
+<li>ES 的近实时特性意味着什么？索引刷新（refresh）的间隔如何调整？</li>
+<li>Query DSL 常用查询：term、match、bool、range、aggregation 等分别如何工作？</li>
+<li>分片数量和副本数量该如何设置？在线变更分片数量会产生什么风险？</li>
+<li>ES 如何实现副本选举？当分片丢失如何自动恢复？</li>
+<li>如何在查询时控制分页深度？from + size 与 Scroll/Point‑in‑Time 的区别？</li>
+</ul>
+<h3 id="8-2-索引建模与性能优化"><strong>8.2 索引建模与性能优化</strong></h3>
+<ul>
+<li>如何设计 Mapping 和 Analyzer 以支持不同语言的分词？为什么中文分词需要 IK/Synonym 等插件？</li>
+<li>轻量字段 (keyword) 与 全文字段 (text) 的区别？keyword 用于聚合时有什么优势？</li>
+<li>复杂查询组合（should/must/must_not/filter）如何影响评分与性能？</li>
+<li>在 VoyaPlan 项目中，如何设计联合查询 MySQL + ES？如何保证 ES 与数据库的同步一致？</li>
+<li>聚合搜索如何做到毫秒级响应？搜索接口 TP99 从 500 ms 优化到 19 ms 的关键点是什么？</li>
+<li>如何利用 ES pipeline 聚合或使用 painless 脚本实现复杂计算？</li>
+<li>如何设计索引迁移与蓝绿发布机制？Reindex API 的作用是什么？</li>
+<li>单节点故障会影响哪些查询？如何配置多副本避免单点故障？</li>
+</ul>
+<h3 id="8-3-搜索架构与设计模式"><strong>8.3 搜索架构与设计模式</strong></h3>
+<ul>
+<li>门面模式如何在搜索聚合中简化前端调用？具体如何封装不同数据源的查询？</li>
+<li>注册器模式是如何管理多个数据源或策略对象？减少 if/else 的设计原则是什么？</li>
+<li>适配器模式如何解耦底层搜索引擎的差异？举例说明你在聚合搜索中的应用。</li>
+<li>搜索建议 (autocomplete) 、相关度排序、自定义评分 (script score) 如何实现？</li>
+<li>在集群部署环境下，如何处理搜索缓存更新？为什么建议使用 ElasticSearch 的事务日志监听或消息中间件同步？</li>
+</ul>
+<h2 id="9-设计模式与代码可维护性"><strong>9 设计模式与代码可维护性</strong></h2>
+<ul>
+<li>单例模式有哪些实现方式？双重检查锁与枚举实现有何区别？</li>
+<li>工厂模式、简单工厂模式、抽象工厂模式分别适合什么场景？在简历项目中是否存在“工厂”的应用？</li>
+<li>策略模式和模板方法模式的区别是什么？在你的导出/计算模块中，如何用策略模式支持不同导出格式？</li>
+<li>门面模式 (Facade) 如何降低客户端与子系统之间的耦合？你在聚合搜索中是如何封装多个搜索源的？</li>
+<li>适配器模式与装饰器模式的区别？在对接第三方 API 或兼容旧系统时如何选择？</li>
+<li>注册器 (Registry) 模式与观察者 (Observer) 模式在业务扩展场景如何应用？</li>
+<li>建造者模式在创建复杂对象（如行程规划、请求上下文）时如何提高代码可读性？</li>
+<li>在 VoyaPlan 项目中，如何使用设计模式降低圈复杂度？具体举例。</li>
+</ul>
+<h2 id="10-数据结构与算法"><strong>10 数据结构与算法</strong></h2>
+<ul>
+<li>面试常考数据结构：链表反转、环形链表、二叉树遍历、堆排序、快速排序等，需要熟练手写并分析时间复杂度和空间复杂度。</li>
+<li>常用算法思想：双指针、滑动窗口、分治、贪心、动态规划、回溯等。需要结合 LeetCode 热题 100 进行练习。重点掌握链表合并/排序、二叉树最大路径和、最长子串、不含重复字符的最长子串、数组中的第 K 大元素、LRU 缓存实现等。</li>
+<li>算法题的拓展追问：如何优化空间复杂度？能否进一步降低时间复杂度？边界条件和输入规模如何影响程序？</li>
+<li>在调度平台项目中，如何将任务队列模型抽象为数据结构问题？可以将任务按时间区间划分优先级队列吗？</li>
+<li>结合 AI 规划项目，如何将路径规划抽象为最短路径问题？A* 算法、Dijkstra 算法的实现及时间复杂度？</li>
+</ul>
+<h2 id="11-计算机网络"><strong>11 计算机网络</strong></h2>
+<ul>
+<li>TCP 三次握手的具体流程是什么？为什么不是两次或四次？四次挥手为什么要等待两倍 MSL？</li>
+<li>TCP 与 UDP 的主要区别是什么？为什么实时视频常用 UDP？</li>
+<li>HTTP 与 HTTPS 的差别是什么？SSL/TLS 握手过程有哪些阶段？如何保证证书的安全性？</li>
+<li>常见的 HTTP 状态码含义：301/302 重定向、401/403/404、500 等。GET、POST、PUT、DELETE 的区别？</li>
+<li>keep-alive 机制是如何工作的？长连接对服务器有哪些影响？</li>
+<li>HTTP1.1、HTTP2、HTTP3 之间的差异是什么？HTTP2 为什么能实现多路复用？</li>
+<li>Nginx 的反向代理和负载均衡原理？常用的负载均衡算法有哪些？为什么需要在 API Gateway 前再部署 Nginx？</li>
+<li>CDN 的作用和原理是什么？DNS 解析流程及 DNS 缓存策略？</li>
+<li>Websocket 与长轮询的区别？如何在后端实现消息推送？</li>
+<li>在导出或搜索场景下如何进行请求幂等设计？如何通过幂等 token 和乐观锁避免重复提交？</li>
+</ul>
+<h2 id="12-操作系统"><strong>12 操作系统</strong></h2>
+<ul>
+<li>进程与线程的区别和联系？切换过程发生了哪些操作？为什么线程切换比进程切换更轻量？</li>
+<li>程序运行时的地址空间布局是什么？代码段、数据段、堆、栈分别做什么？</li>
+<li>虚拟内存的概念是什么？页表、多级页表如何映射虚拟地址到物理地址？</li>
+<li>缺页中断（page fault）与 page cache 的区别？操作系统如何利用 page cache 减少磁盘访问？你为什么在项目里不需要专门管理 page cache？</li>
+<li>进程通信方式有哪些？管道、共享内存、消息队列、信号量等如何选择？</li>
+<li>Linux IO 模型有哪些？阻塞/非阻塞、同步/异步、IO 多路复用、信号驱动等。epoll 与 select 的区别？</li>
+<li>死锁产生的四个必要条件是什么？如何避免死锁？有什么经典算法检测死锁？</li>
+<li>调度算法如时间片轮转、优先级调度、短作业优先的优缺点？</li>
+<li>COW（写时复制）的应用场景？fork 后子进程共享哪些数据？</li>
+</ul>
+<h2 id="13-系统设计与场景题"><strong>13 系统设计与场景题</strong></h2>
+<blockquote>
+<p>本节列出与简历经历相关的高并发场景设计题目，这些问题能够检验你对分布式系统整体把控能力。回答此类问题时要覆盖到需求分析、总体架构、分层设计、核心数据结构、状态管理、扩展性与容错等方面。</p>
+</blockquote>
+<h3 id="13-1-报表导出与大文件处理"><strong>13.1 报表导出与大文件处理</strong></h3>
+<ul>
+<li>如何设计一个支持千万级数据导出的大报表系统？从数据查询、缓存、分批写入、并行处理到文件合并的链路该如何设计？</li>
+<li>单机内存有限，如何避免在导出时发生 OOM？流式处理和分批加载的代码框架如何组织？</li>
+<li>多机部署下如何避免并发导出争抢资源？单机互斥锁、分布式锁的方案如何选择？</li>
+<li>如何预生成报表缓存文件？缓存的生命周期如何管理？缓存失效/更新策略是什么？</li>
+<li>大文件导出时如何保证多线程写文件的顺序？如何处理异常重试？</li>
+</ul>
+<h3 id="13-2-任务调度与时间轮"><strong>13.2 任务调度与时间轮</strong></h3>
+<ul>
+<li>设计一个支持秒级精度、高并发触发的任务调度系统，如何在存储层分为冷数据（MySQL）与热数据（Redis）？</li>
+<li>调度系统的时间轮 / 延时队列模型如何实现？任务分片与分布式协调如何做？</li>
+<li>高峰时段如何避免调度中心成为瓶颈？如何扩展为多调度实例，保证任务不重复执行又不漏执行？</li>
+<li>如何实现任务的失败重试和幂等性？任务重试队列和死信队列如何设计？</li>
+</ul>
+<h3 id="13-3-聚合搜索与推荐系统"><strong>13.3 聚合搜索与推荐系统</strong></h3>
+<ul>
+<li>如何设计一个聚合搜索框架，支持多种数据源（MySQL、ES、爬虫等）并返回统一格式？</li>
+<li>高并发搜索如何优化性能？缓存策略、降级策略分别怎么做？</li>
+<li>如果某个数据源挂了，聚合接口如何快速容错并返回部分结果？</li>
+<li>如何为搜索结果构建权重模型？利用 ES 的 score 与人工权重融合的方式有哪些？</li>
+<li>如何接入向量检索（RAG）提升搜索结果的相关性？当向量检索结果与关键字检索冲突时，如何做综合排序？</li>
+</ul>
+<h3 id="13-4-AI-智能规划与-RAG"><strong>13.4 AI 智能规划与 RAG</strong></h3>
+<ul>
+<li>设计一个 AI 行程规划系统，用户输入城市和偏好，系统输出可执行的行程计划。你的系统应包括哪些模块？</li>
+<li>RAG（Retrieval-Augmented Generation）的流程是什么？文档向量化、向量存储、向量检索、结果归一化、模型生成分别如何实现？</li>
+<li>如何选择合适的向量数据库（pgvector、Qdrant 等），考虑性能和成本？</li>
+<li>如何设计 Prompt 模板，使得模型输出结构化 JSON？如何避免幻觉并提供引用源？</li>
+<li>向量检索的召回与重排序如何做？在计算预算有限时，如何平衡召回率和吞吐量？</li>
+<li>AI 规划服务如何与行程 CRUD 服务解耦？如何保证生成的草稿版本在用户确认前不污染主表数据？</li>
+<li>如何控制 AI 调用的并发量和成本？限流、缓存与异步任务如何配合？</li>
+</ul>
+<h3 id="13-5-高并发服务与限流降级"><strong>13.5 高并发服务与限流降级</strong></h3>
+<ul>
+<li>设计一个电商秒杀系统，需要考虑哪些方面（库存扣减、超卖控制、抢购排队、限流与熔断、消息通知）？</li>
+<li>如何设计一个短链接服务？如何保证生成链接的唯一性、短链接的高并发访问和落库性能？</li>
+<li>如何设计一个大规模点赞/收藏系统？数据模型如何设计，如何解决热点 Key 问题？</li>
+<li>微服务链路如何实现全局幂等？幂等 token、业务主键、唯一索引、重试策略如何组合使用？</li>
+<li>如何设计一个自适应限流系统，既能保护核心服务，又能让更多低优先级请求降级？</li>
+</ul>
+<h2 id="14-AI-与-RAG-专题（可作为简历亮点）"><strong>14 AI 与 RAG 专题（可作为简历亮点）</strong></h2>
+<ul>
+<li>LLM 基础：大模型的输入/输出是什么结构？Token 的概念是什么？为什么中文分词困难？</li>
+<li>Embedding（向量化）原理：如何将文本转换为向量？常用的文本向量模型有哪些？向量维度会影响什么？</li>
+<li>向量数据库的索引结构：HNSW、IVF、PQ 等索引结构的原理和适用场景？</li>
+<li>RAG Pipeline：数据准备 → 文档分块 → 向量化 → 检索 → 构建 Prompt → LLM 调用 → 回答整合 → 引用来源。每一步你都做了什么？</li>
+<li>如何做知识库的实时更新？文档上传后如何同步向量库？如何异步处理向量化避免影响用户体验？</li>
+<li>Function Calling / Tool Calling 机制是什么？你在行程规划中定义了哪些工具函数？如何确保模型按照 schema 返回结构化结果？</li>
+<li>Prompt 工程：如何写好 System Prompt、User Prompt、Function Prompt？如何在 prompt 中加入约束，要求模型输出行程 JSON？</li>
+<li>评估指标：如何评估智能行程规划的效果？基于规则的可行性检查（时间、距离、预算）、用户反馈循环如何闭环？</li>
+<li>多模态融合：未来如何将地图/图片/评论/天气等多源数据融入 RAG？</li>
+</ul>
+<h2 id="使用建议"><strong>使用建议</strong></h2>
+<ol>
+<li><strong>按主题刷题</strong>：每天针对 1～2 个模块进行输出练习。先尝试自己讲解，再查阅资料弥补薄弱点。</li>
+<li><strong>结合项目场景</strong>：在回答八股时结合自己的项目经历，例如报表导出、调度平台、旅游规划系统等，展示落地实践和优化思路。</li>
+<li><strong>模拟面试</strong>：选取场景题进行系统设计演练，关注需求分析、核心数据结构、数据一致性、容错方案以及上线演练等。</li>
+<li><strong>动态维护</strong>：随着学习和面试经历持续补充题目和知识点，形成自己的知识体系。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/">http://example.com/2026/02/26/后端开发/【面试】1. 面试题单/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a><a class="post-meta__tags" href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【线上故障排查】线上故障排查经验</div></div></a></div><div class="next-post pull-right"><a href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【设计模式】0. 设计模式概述</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%911.%20%E4%BB%A3%E4%BB%B7%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="【机器学习】1. 代价损失函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-16</div><div class="title">【机器学习】1. 代价损失函数</div></div></a></div><div><a href="/2023/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%910.%20%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/" title="【机器学习】0. 机器学习概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-16</div><div class="title">【机器学习】0. 机器学习概述</div></div></a></div><div><a href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%912.%20%E7%BA%BF%E6%80%A7%E7%BD%91%E7%BB%9C/" title="【深度学习】2. 线性网络"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-16</div><div class="title">【深度学习】2. 线性网络</div></div></a></div><div><a href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%913.%20%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="【深度学习】3. 多层次感知机"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-16</div><div class="title">【深度学习】3. 多层次感知机</div></div></a></div><div><a href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-18</div><div class="title">【深度学习】5. 卷积神经网络（CNN）</div></div></a></div><div><a href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-16</div><div class="title">【深度学习】4. 深度学习计算</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">面向大厂面试的后端八股题纲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Java-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1 Java 基础与集合框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%9B%86%E5%90%88%E5%8E%9F%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 集合原理与数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Java-%E8%AF%AD%E6%B3%95%E4%B8%8E%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 Java 语法与基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">2 并发编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 线程模型与基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E4%B8%8E%E9%94%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 原子操作与锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 线程池与任务调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%9C%BA%E6%99%AF%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 并发容器与场景实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JVM-%E5%8E%9F%E7%90%86%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="toc-number">1.3.</span> <span class="toc-text">3 JVM 原理与性能调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 内存结构与对象模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 垃圾回收机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E4%B8%8E%E8%B0%83%E4%BC%98"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 性能诊断与调优</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Spring-%E4%BD%93%E7%B3%BB%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.4.</span> <span class="toc-text">4 Spring 体系与微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Spring-IOC-AOP-Bean-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 Spring IOC &#x2F; AOP &#x2F; Bean 生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Spring-Boot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 Spring Boot 自动装配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E4%B8%8E-Spring-Cloud"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 微服务治理与 Spring Cloud</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%9C%8D%E5%8A%A1%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 服务性能与可观测性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">5 MySQL 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8E%E7%B4%A2%E5%BC%95"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 存储引擎与索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E9%94%81%E6%9C%BA%E5%88%B6"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 事务与锁机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E9%AB%98%E5%8F%AF%E7%94%A8%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 高可用与性能优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4 数据库在项目中的应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Redis-%E4%B8%8E%E7%BC%93%E5%AD%98"><span class="toc-number">1.6.</span> <span class="toc-text">6 Redis 与缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Redis-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 Redis 数据结构与应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 缓存策略与项目实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.7.</span> <span class="toc-text">7 消息队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E-Elasticsearch"><span class="toc-number">1.8.</span> <span class="toc-text">8 搜索引擎与 Elasticsearch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9E%B6%E6%9E%84"><span class="toc-number">1.8.1.</span> <span class="toc-text">8.1 核心原理与架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E7%B4%A2%E5%BC%95%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.8.2.</span> <span class="toc-text">8.2 索引建模与性能优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E6%90%9C%E7%B4%A2%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.8.3.</span> <span class="toc-text">8.3 搜索架构与设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7"><span class="toc-number">1.9.</span> <span class="toc-text">9 设计模式与代码可维护性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">1.10.</span> <span class="toc-text">10 数据结构与算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">1.11.</span> <span class="toc-text">11 计算机网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.12.</span> <span class="toc-text">12 操作系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%9C%BA%E6%99%AF%E9%A2%98"><span class="toc-number">1.13.</span> <span class="toc-text">13 系统设计与场景题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-%E6%8A%A5%E8%A1%A8%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%A4%A7%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-number">1.13.1.</span> <span class="toc-text">13.1 报表导出与大文件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%97%B6%E9%97%B4%E8%BD%AE"><span class="toc-number">1.13.2.</span> <span class="toc-text">13.2 任务调度与时间轮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.13.3.</span> <span class="toc-text">13.3 聚合搜索与推荐系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-AI-%E6%99%BA%E8%83%BD%E8%A7%84%E5%88%92%E4%B8%8E-RAG"><span class="toc-number">1.13.4.</span> <span class="toc-text">13.4 AI 智能规划与 RAG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-5-%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E4%B8%8E%E9%99%90%E6%B5%81%E9%99%8D%E7%BA%A7"><span class="toc-number">1.13.5.</span> <span class="toc-text">13.5 高并发服务与限流降级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-AI-%E4%B8%8E-RAG-%E4%B8%93%E9%A2%98%EF%BC%88%E5%8F%AF%E4%BD%9C%E4%B8%BA%E7%AE%80%E5%8E%86%E4%BA%AE%E7%82%B9%EF%BC%89"><span class="toc-number">1.14.</span> <span class="toc-text">14 AI 与 RAG 专题（可作为简历亮点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.15.</span> <span class="toc-text">使用建议</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

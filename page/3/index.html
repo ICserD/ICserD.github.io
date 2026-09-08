@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-12-06 14:22:25'
+  postUpdate: '2026-09-08 23:39:03'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -150,379 +150,254 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">半栈日记</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/29/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91GDB%E8%B0%83%E8%AF%95/" title="GDB调试技巧">GDB调试技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-29T04:00:00.000Z" title="发表于 2024-04-29 12:00:00">2024-04-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/">工具分享</a></span></div><div class="content">简介
-UNIX、like-UNIX调试器；
-gdb的使用和退出
-gdb的启动
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/self_img/beach.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">半栈日记</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/01/03/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E3%80%910.%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="【大模型应用开发】0. 基础概念">【大模型应用开发】0. 基础概念</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-01-03T03:00:00.000Z" title="发表于 2025-01-03 11:00:00">2025-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">大模型应用开发</a></span></div><div class="content">一、Token
+（一）什么是 token？
+在大语言模型中，token 是处理文本的最小离散单位。对模型的输入文本会经过 tokenier 被分割成一个个 token，再进行后续的计算。
+具体而言，一个 token 可以是：
 
+一个字
+一个词
+词的一部份（subword）
+标点、空格、特殊符号
 
+（二）为什么需要 token？
+主要原因有 2 点，分别如下：
 
-操作
-意义
 
+离散化输入：将无限的文本表达映射到有限的 token 集合
 
 
+降低模型理解负担：学习语言的时候，我们并不是一个词一个词的学习的，而是一个 token 一个 token 的学习，使得这些 token 有了上下文语义
 
-gdb filename(可执行程序) ==程序无参数==
-gdb装载filename启动调试
+类比我们自己学习语言，“今天天气很好”，我们底层的理解应该是将其分为 3 部分：
 
+今天
+天气
+很好
 
-gdb --args filename args ==程序带参数==
-需要调试带参数的文件时使用
+而不是分成 6 个字。这样可以使我们更好地记忆和表达我们的意思。
 
 
-gdb进入，然后set args
-需要参数的文件的gdb调试第二种使用方式
 
+统一建模语言：将 token 映射成数字编号（token ID），有利于后续的算法研究和模型训练
 
-gdb -p PID
-gdb进入已经在运行的系统中的程序 （一旦连上正在运行的程序，就会把先把该程序停止）
 
+（三）什么是 tokenier？
+Tokenier 就是将输入文本转化为 token ID 序列的确定性函数。
+通常需要做两件事：
 
-quit
-退出当前gdb调试
+文本 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算">【深度学习】4. 深度学习计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-16T07:00:00.000Z" title="发表于 2024-11-16 15:00:00">2024-11-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">深度学习计算
 
+本章学习利用深度学习组件构建模型、参数访问与初始化、设计自定义层和块、将模型读写到磁盘，利用GPU实现显著的加速。
 
+构建模型
 
-断点
+要求掌握基本的模型的概念并能构建自定义的基础的块/模型
 
+基础概念
+层
 
+接受一组输入
+生成一组输出
+具有一组相关的参数
 
-操作
-意义
+块
 
+由1个或多个层构成的“层组”
 
 
+这里我对“模型”有了更抽象的理解，模型可以是一层，比如神经网络的全连接层，也可以是多个层的组合，也就是块，这是一个嵌套的概念。
+模型、层、块是相对的，同一个体系中：模型&gt;块&gt;层
 
-b main
-在main函数打断点
+构建块
 
+补充知识：
+torch中的nn.linear是全连接层网络，实现y=wTX+by = w^TX + by=wTX+b的线性变换，其中w是权重参数，b是偏置项，y是输出张量。
+通常pytorch会自动初始化权重和偏置参数，我们只需要传递X即可，注意维度要匹配。
+维度匹配问题：
 
-b function
-在某个函数打个断点（==C++程序要在fucntion前面加上类域==）
+self.out = nn.linear(20, 256)表示接受20维的向量，输出1*256维的向量
+所以self.out(X)，其中X的维度必须是20，若X.shpe是(5, 20)，表示有5个向量，每个向 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）">【深度学习】5. 卷积神经网络（CNN）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-18T07:00:00.000Z" title="发表于 2024-10-18 15:00:00">2024-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">卷积神经网络（CNN）
+前言和背景
+CNN基本介绍
+卷积神经网络（convolutional neural network, cnn）是一类强大的、为处理图像数据而设计的神经网络。
+卷积神经网络需要的参数少于全连接架构的网络，并且十分容易使用GPU进行并行计算，具有高效率和高精确的优点。
+同时，卷积的思想在序列结构任务、图结构数据和推荐系统中也发挥作用。
+CNN的设计背景思想
+假设我们的任务是图像实体识别，那么在图像中，实体应该与其在图像中的位置无关。
+我们在图像中寻找实体时，是在局部进行识别，而较少地考虑全局。
+CNN设计神经网络架构的思想：
 
+平移不变性（translation invariance）：不管检测对象出现在图像中的哪个位置，神经网络的前面基层应该对相同的图像区域具有相似的反应——卷积核就是识别器
+局部性（locality）：神经网络的前面几层应该只探索输入图像中的局部区域，而不是过度在意图像中相隔较远的区域的关系——利用卷积核计算只计算图片的局部数据
 
-b file_Path:13
-在file_Path(文件有效路径)文件的13行打断点
+卷积本质上就是利用了数据空间结构的全连接
+传统全连接操作
+回顾传统全连接层的计算：
 
+Y是输出张量
+W是权重矩阵
+X ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%912.%20%E7%BA%BF%E6%80%A7%E7%BD%91%E7%BB%9C/" title="【深度学习】2. 线性网络">【深度学习】2. 线性网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">线性网络
+机器学习基本要素
+机器学习模型中的关键要素：
 
-l/list
-终端展示当前断点前后部分代码
+训练数据
+损失函数，最基础的是均方误差
+优化算法，最常用且有效的是梯度下降
+模型本身，最简单的模型是线性模型
 
+梯度下降
+梯度下降几乎可以优化所有深度学习模型，通过不断地在损失函数递减方向上更新参数来降低误差。
+梯度下降最简单的用法是计算损失函数（数据集中样本的损失均值）关于模型参数的导数，这就是梯度，但是在实际执行过程中会非常慢：因为每一次更新参数之前，我们会遍历整个数据集，因此我们会在每次需要计算更新的时候抽取一小批样本来更新参数。这种变体的方法叫做：随机梯度下降
+在每次迭代中，我们首先随机抽样一个小批量B\mathcal{B}B，它是由固定数量的训练样本组成的。然后，我们计算小批量的平均损失关于模型参数的导数（也可以称为梯度）。最后，我们将梯度乘以一个预先确定的正数η\etaη（学习率），并从当前参数的值中减掉。
+我们用下面的数学公式来表示这一更新过程（∂\partial∂表示偏导数）：
+(w,b)←(w,b)−η∣B∣∑i∈B∂(w,b)l(i)(w,b).(\mathbf{w},b) \leftarrow (\math ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/10/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%913.%20%E5%A4%9A%E5%B1%82%E6%AC%A1%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="【深度学习】3. 多层次感知机">【深度学习】3. 多层次感知机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-16T07:00:00.000Z" title="发表于 2024-10-16 15:00:00">2024-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">多层次感知机
+激活函数
+在多层网络中，我们除了要对每一层的输入进行仿射变换，还需要对每个隐藏单元应用非线性激活函数σ\sigmaσ，激活函数的输出值称为活性值。
+ReLU函数
 
-l/list n/-n
-终端展示当前断点后n行/前n行代码（多次按list会继续往下展示） 如：list -3、list 3
+ReLU函数目前应用广泛而基础，得益于其简单的原理和出色的表现
+ReLU，即非正线性单元（Rectified linear uint）
 
+ReLU提供了一种非常简单的线性变换，给定元素x，ReLU函数如下：
 
-info breakpoi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" title="【操作系统】5. 设备管理">【操作系统】5. 设备管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-29T04:00:00.000Z" title="发表于 2024-04-29 12:00:00">2024-04-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">IO设备基本概念
-12flowchart LRIO设备 --&gt; 机械部件 &amp; 1[&quot;电子部件(IO控制器、设备控制器)&quot;]
-IO设备的机械部件主要是用来执行具体的IO操作，比如鼠标、键盘的按钮，显示器的LED屏等等；
-IO设备的电子部件主要是一块插入主板充槽的印刷版电路：CPU无法直接控制IO设备的机械部件，因此设备还需要有一个电子部件作为CPU和IO设备机械部件之间的“中介”，又称设备控制器。CPU可以控制IO控制器，IO控制器来控制机械部件；
-IO控制器的功能
-12345678910flowchart LRIO控制器的功能 --&gt; 1[&quot;接受和识别CPU发出的指令&quot;] &amp; 2[&quot;向CPU报告设备状态&quot;] &amp; 3[&quot;数据交换&quot;] &amp; 4[&quot;地址识别&quot;]1 --&gt; 5[&quot;控制寄存器存放&lt;/br&gt;相应指令的命令和参数&quot;]2 --&gt; 6[&quot;状态寄存器来记录IO设备当前状态&quot;]3 --& ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%92%8CE-R%E6%A8%A1%E5%9E%8B/" title="【数据库系统】4. 数据库设计和E-R模型">【数据库系统】4. 数据库设计和E-R模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-29T04:00:00.000Z" title="发表于 2024-04-29 12:00:00">2024-04-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a></span></div><div class="content">E-R模型的基本元素
-三种基本元素
+ReLU要么求需要输入神经元的数据x求导表现好，要么现在消失让参数通过
 
-实体
-客观存在并可以与其它相区分的某一物体；
-例如：特定的（一个）人、公司、事件、植物
-属性
+ReLU(x)=max(x,0)ReLU(x) = max(x,0)
+ReLU(x)=max(x,0)
+模型选择、欠拟合、过拟合
+训练误差和泛化误差
 
-实体具有属性；
-实体集中每个实体都拥有的，起描述作用的性质；
-例如，一个人作为实体具有这些性质：名字、年龄和地址。这些都是人的属性
-域：属性肯呢个取值的集合；
+训练误差：模型在训练集上计算得到的误差
+如果不能降低训练误差，意味着模型表达能力不足，无法捕获试图学习的模式，也称为欠拟合
+泛化误差：模型应用在同样从原始样本的分布中抽取的无限多数据样本时，模型误差的期望
+如果训练误差明显小于验证误差，这时可能出现了过拟合问题
 
-
-联系
-
-其他相关元素
-
-参与
-角色
-映射基数
-码
-
-E-R图的表示
-ER图是不包含外部码的，因为ER图反映联系，外部码也是反映联系；所以外部码隐含在ER图的联系中；
-所以ER图中的实体是不可能有两个实体的主码的；
-图的画法
-属性
-
-矩形表示实体集
-椭圆代表属性
-直线把实体集和他们的属性联系起来
-双线椭圆表示多值属性
-虚线椭圆表示派生属性
-下划线表示主码属性
-
-
-联系
-
-菱形表示联系集
-同样用用直线把联系集和它们的属性椭圆连起来
-
-
-参与
-
-实体集E和联系集R间的一条连线表示E参与了R一次
-实体集E和联系集R间的两条连线表示E参与了R两次
-
-
-
-角色
-
-如果某实体集和某联系集间有多于一条的连线，这些连线必须用角色标注
-如果某实体集和某联系集间只有一条连线，那么建议不标注角色
-
-
-映射基数
-
-从联 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/" title="【数据库系统】5. 关系数据理论">【数据库系统】5. 关系数据理论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-29T04:00:00.000Z" title="发表于 2024-04-29 12:00:00">2024-04-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a></span></div><div class="content">为什么要学习关系数据理论
-“坏”的关系模式的问题
-
-冗余
-三种异常（增删改）
-
-插入异常
-更新异常
-删除异常
-不良的数据依赖导致“坏”的关系模式
-
-
-
-函数依赖
-设R(U)是一个属性集U上的关系模式，X和Y是U的子集，若对于R(U)的任意一个可能的关系r，r中不可能存在两个元组在X上的属性值相等，而在Y上的属性值不等，则称“X函数确定Y”或“Y函数依赖于X”，记作X→YX \to YX→Y
-若Y不函数依赖于X，则记为X→YX \to YX→Y
-注意：函数依赖不是指关系模式R的某个或者某些关系实例r满足的约束条件，而是指R的所有关系实例r均要满足的约束条件；函数依赖是指关系模式R在任何时刻的关系实例均要满足的约束条件
-平凡函数依赖与非平凡函数依赖
-非平凡函数依赖
-概念：若X→YX \to YX→Y，且Y⊈XY \nsubseteq XY⊈X，则称X→YX \to YX→Y是非平凡的函数依赖
-平凡函数依赖
-概念：若X→YX \to YX→Y，且Y⊆XY \subseteq XY⊆X，则称X→YX \to YX→Y是平凡的函数依赖
-例如：
-SC(Sno,Cno,Grade)中，
-非平凡的函数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%916.%20CLIP%E6%A8%A1%E5%9E%8B/" title="【深度学习】6. CLIP模型">【深度学习】6. CLIP模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:00:00.000Z" title="发表于 2024-04-01 12:00:00">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">CLIP模型
-Contrastive Language-Image Pre-Training（利用文本的监督信号训练一个迁移能力强的视觉模型）
-模型训练方法
-数据类型
-图文对：每个图片有对应的文本
-
-图像
-对应文本
-
-训练模型
-特征提取(Encoder)
-
-图像特征提取（CNN、ResNet…）
-把图像转化成向量，这个向量就是这个图像的对应的特征（特征个数一般与像素点个数相关吧？）
-文本特征提取（Transformer等）——&gt; 词向量维度：50-300维
-词向量的每一维度是有空间意义的，但是难以解释每一个维度的意义，只是相当于计算机可识别的编码。
-以个人的理解来看：
-
-我们需要识别一段文本，我们虽然不知道他的具体特征是什么，但是我们可以设置这段文本是用多少维特征编码唯一识别。每一个维度上的值共同决定了该文本的唯一性，该唯一性由计算机来识别，所以我们并不需要知道每一个维度是什么。
-所以文本的向量化也可以说是文本的编码化，而由于文本的上下文性质，文本的编码有位置上的相关关系，所以可以通过空间相似的思维（KNN）来计算文本匹配概率，从而达到泛化的效果。
-我们基于文本编码的模型，可以以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91Vim%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Vim的使用">Vim的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:00:00.000Z" title="发表于 2024-04-01 12:00:00">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/">工具分享</a></span></div><div class="content">Vim的模式
-概览
-vim有四种模式：
-
-
-普通模式
-
-
-插入模式
-
-
-可视模式
-
-
-命令模式
-
-
-各种模式之间的转换
-Vim的基本操作
-光标的移动
-普通模式下
-
-
-
-命令
-作用
-
-
-
-
-h-j-k-l
-上下左右
-
-
-w
-跳到下一个单词开头
-
-
-b
-跳到本单词或上一个单词开头
-
-
-e
-跳到本单词或下一个单词结尾
-
-
-ge
-跳到上一个单词结尾
-
-
-0
-跳到行首
-
-
-^
-跳到从行首开始的第一个非空字符
-
-
-$
-跳到行尾
-
-
-gg
-跳到第一行
-
-
-G
-跳到最后一行
-
-
-f{char}
-光标跳到下一个{char}位置
-
-
-F{char}
-反向移动到上一个{char}位置
-
-
-t{char}
-光标跳到下一个{char}的位置
-
-
-T{char}
-光标反向移动到上一个{char}的最后一个字符的位置
-
-
-;
-重复上次的字符查找操作
-
-
-,
-反向查找上次的查找操作
-
-
-
-动作 motion
-
-
-i(inner)和a(around)的区别
-一个是选中当符号里面的单词，一个是选中包括符号的整个单词；
-
-
-
-操作
-操作符
-操作符
-操作
-
-
-
-
-i&quot;
-“foo”
-“foo”
-a&quot;
-
-
-i ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="【操作系统】4. 文件系统">【操作系统】4. 文件系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:00:00.000Z" title="发表于 2024-04-01 12:00:00">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">文件系统
-概览
-12flowchart LR操作系统为文件管理提供的基本功能 --&gt; 1[&quot;创建文件（create系统调用）&quot;] &amp; 2[&quot;删除文件（delete系统调用）&quot;] &amp; 3[&quot;读文件（read系统调用）&quot;] &amp; 4[&quot;写文件（write系统调用）&quot;] &amp; 5[&quot;打开文件（open系统调用）&quot;] &amp; 6[&quot;关闭文件（close系统调用）&quot;]
-文件的逻辑结构
-12flowchart LR文件的逻辑结构 --&gt; 1[&quot;无结构文件&quot;] &amp; 2[&quot;有结构文件&quot;]
-有结构文件
-由一组组相似的记录组成，又称“记录式”文件。每条记录又由若干个数据项组成，比如数据库表文件。
-逻辑结构
-
-顺序文件
-
-链式存储（不可随机存取，链式结构要遍历查找）
-顺序存储（可变长记录无法随机存取，定长记录可随机存取）
-
-
-索引文件
-
-每个文件都有一个索引，然后建立一张索引表（定长记录的随机文件） ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="【操作系统】3. 内存管理">【操作系统】3. 内存管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:00:00.000Z" title="发表于 2024-04-01 12:00:00">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">内存的基本概念
-
-存储单元：存储数据的基本单元。要看内存是如何编址的，如果是按字节，则为1B=8Bit，如果是按字的话，就要看具体PC的字长是多少。
-
-指令的工作原理
-区分逻辑地址和物理地址！
-程序经过编译、链接后生成的指令中指明的是逻辑地址（相对地址），即：相对于进程的起始地址而言的地址；
-观察下面的例子，第一条指令是往地址79号存储单元写入10，但是由于系统给他分配的物理地址是从100开始的，如果写入前面的79，则很有可能会写入其他进程的内存空间。这是很危险的行为。
-而实际上，指令中的地址是逻辑地址，相对于进程的起始地址100偏移79个的存储单元写入10，所以会在物理地址179号寄存器写入数据。
-
-如何将指令中的逻辑地址转换为物理地址
-绝对装入
-在编译时，如果知道程序将放入内存中的哪个位置，编译程序将产生绝对地址的目标代码。装入程序按照装入模块中的地址，将程序和数据装入内存。
-就如前面的例子，如果在可执行文件装入内存中之前，就知道该可执行程序装入内存的地址为100，则在装入之前就可以把逻辑地址转换为绝对地址装入。
-绝对装入只适用于单道程序
-可重定位装入
-又称可重定位装入。编译、链接 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/01/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%913.%20SQL%E8%AF%AD%E8%A8%80/" title="【数据库系统】3. SQL语言">【数据库系统】3. SQL语言</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-01T04:00:00.000Z" title="发表于 2024-04-01 12:00:00">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a></span></div><div class="content">SQL语言概览
-SQL语言有以下几部分：
-
-DDL（Data-definition language）数据定义语言
-DML（Data-mainpulation Language）数据操作语言
-DCL（Data-control Language）数据控制语言
-
-基本类型
-char (n)      ：长度固定为n的字符串
-varchar (n)：长度可变，最大长度为n的字符串，
-int：整数
-smallint：短整数
-numeric (p, q)：总共不多于p位，小数点右边不多于q位的定点数
-real：浮点数
-float(n)：精度至少为n位的浮点数
-date：日期 (年, 月, 日)
-time：时间 (小时, 分, 秒)
-timetamp：日期+时间
-null：每种类型都可以包含一个特殊值，即空值。可以申明属性值不为空，即禁止加入空值
-SQL语法
-SQL语法框架
-12345flowchart LRSQL功能和语句 --&gt; 数据定义功能 &amp; 数据查询功能 &amp; 数据修改功能 &amp; 数据控制功能数据定义功能 --&gt; Create &amp; Alter &a ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/03/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%914.%20%E8%AF%AD%E8%A8%80%E5%92%8C%E6%96%87%E6%B3%95%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%AE%9A%E4%B9%89/" title="【编译原理】4. 语言和文法的形式定义">【编译原理】4. 语言和文法的形式定义</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-29T04:00:00.000Z" title="发表于 2024-03-29 12:00:00">2024-03-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a></span></div><div class="content">语言的描述/定义
-铺垫
-句子分析过程
-
-推导：用“⇒\Rightarrow⇒”符号表示
-即：用某条规则的右部替换该规则的左部
-规约：推导的反过程
-
-基本概念
-
-非终结符号集VN：规则中用尖括号括起来的那些符号
-例如：
-VN = {&lt;句子&gt;，&lt;主语&gt;，&lt;谓语&gt;，&lt;宾语&gt;，&lt;动词&gt;，&lt;名词&gt;，&lt;冠词&gt;}
-终结符号集VT：规则中的英文单词符号，是组成句子的最基本符号
-例如：
-VT={The，student，reads，a，book}
-开始符号或识别符号：语言中的句子只能从它开始推导。如&lt;句子&gt;
-规则（产生式）：用来产生句子的组成描述
-每一条规则都是用符号&quot;→\to→&quot;链接起来的有序对(α,β):α→β(\alpha, \beta): \alpha \to \beta(α,β):α→β
-α\alphaα是一个由终结符号和非终结符号所组成的符号串且至少包含一个非终结符号
-β\betaβ是一个由终结符号和（或）非终结符号所组成的符号串
-通常被描述为α∈V+\alpha \in V^+ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">107</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/06/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/%E3%80%90%E5%91%A8%E6%9C%AB%E5%A4%87%E9%A4%90%E2%80%94%E5%81%A5%E8%BA%AB%E7%89%88%E3%80%910.%202025%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%91%A8/" title="周末备餐规划-第一周">周末备餐规划-第一周</a><time datetime="2025-12-06T03:00:00.000Z" title="发表于 2025-12-06 11:00:00">2025-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/06/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/%E3%80%90%E6%97%A5%E5%B8%B8%E8%BF%90%E5%8A%A8%E2%80%94%E5%81%A5%E8%BA%AB%E7%89%88%E3%80%910.%202025%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%91%A8/" title="周末备餐规划-第一周">周末备餐规划-第一周</a><time datetime="2025-12-06T03:00:00.000Z" title="发表于 2025-12-06 11:00:00">2025-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/08/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91%E9%85%8D%E7%BD%AE%20python%20%E7%8E%AF%E5%A2%83/" title="0 基础配置 Python 环境">0 基础配置 Python 环境</a><time datetime="2025-11-08T07:00:00.000Z" title="发表于 2025-11-08 15:00:00">2025-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/16/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%914.%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/" title="【深度学习】4. 深度学习计算">【深度学习】4. 深度学习计算</a><time datetime="2024-11-16T07:00:00.000Z" title="发表于 2024-11-16 15:00:00">2024-11-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/18/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%915.%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="【深度学习】5. 卷积神经网络（CNN）">【深度学习】5. 卷积神经网络（CNN）</a><time datetime="2024-10-18T07:00:00.000Z" title="发表于 2024-10-18 15:00:00">2024-10-18</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+《动手学深度学习》中，监督学习部分的前提假设：训练数据和测试数据都是从相同分布中独立提取出来的，即独立同分布假设。
+几个可 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/09/21/%E6%9D%82%E8%B0%88/%E3%80%90%E6%9D%82%E8%B0%88%E3%80%91Ubuntu22%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%AE%89%E5%8D%93%E5%B9%B3%E6%9D%BF%E4%BD%9C%E4%B8%BA%E6%89%A9%E5%B1%95%E5%B1%8F/" title="Ubuntu22环境下配置安卓作为扩展屏">Ubuntu22环境下配置安卓作为扩展屏</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-21T03:08:59.000Z" title="发表于 2024-09-21 11:08:59">2024-09-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">Ubuntu22环境下配置安卓平板作为扩展屏
+准备工作
+卸载独立显卡驱动/禁用独立显卡，经验证，我的独显即使禁用，也会和集显交替作用，影响后续扩展屏的配置。所以我直接卸载了，确保只使用集成显卡。（只使用集显发热比较严重，但是续航非常顶！）
+
+下面仅介绍关键步骤，更详细的原理和介绍可以参考最下文的参考博客。
+
+xrandr配置虚拟扩展屏
+1234567891011121314# 创建平板显示的分辨率信息，这里不要设置分辨率太高，否则很卡cvt 960 600# 产生一个新的分辨率模式xrandr --newmode &quot;960x600_60.00&quot;   45.25  960 992 1088 1216  600 603 609 624 -hsync +vsync# 向虚拟显示器添加分辨率模式xrandr --addmode VIRTUAL1  &quot;960x600_60.00&quot;# 设置虚拟显示器和主显示器的相对位置xrandr --output VIRTUAL1 --mode 960x600_60.00 --left-of eDP1# 虚拟显示器内容映射 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/09/09/%E7%A7%91%E7%A0%94%E8%AE%BA%E6%96%87/%E3%80%90%E7%A7%91%E6%8A%80%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%8E%E5%86%99%E4%BD%9C%E3%80%91%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2/" title="文献检索方法">文献检索方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-08T16:00:00.000Z" title="发表于 2024-09-09 00:00:00">2024-09-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/">论文写作</a></span></div><div class="content">文献检索方法
+文献引擎
+
+google scholar
+web of science
+数据库
+NSFC  自然科学基金，面向本科生开放
+
+判断论文质量
+
+ccf list（大学、研究生毕业条件）
+ccf list只认T1：计算机学报、软件学报、计算机研究院与发展
+中国人工智能学会，国际学术会议A类、B类
+IEEE，必须要有 transection on xxxx 才比较顶级
+ESI，被引次数
+
+看论文的哪些方面
+研究生、博士阶段：看导师
+本科：看学校
+author、institute、content
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/08/24/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E3%80%914.%20%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="【软件工程】4. 结构化设计方法">【软件工程】4. 结构化设计方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-23T16:00:00.000Z" title="发表于 2024-08-24 00:00:00">2024-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></span></div><div class="content">结构化设计方法
+软件设计的概念以及原则
+软件设计的概念
+
+设计是一项核心的工程活动
+软件设计是软件工程中的一个关键过程，指的是在开发软件时，为了实现特定的功能需求和性能目标，对软件系统的结构、组件、接口及其交互进行规划和定义的过程。
+
+软件设计的原则
+
+分而治之
+模块独立性：
+
+指软件系统中每个模块中只涉及软件要求的具体的子功能，而和软件系统中其他模块的接口是简单的
+优点：有效的模块化使得软件便于分工协作开发；独立的模块比较容易测试和维护
+衡量准则：
+
+耦合：模块之间的相互连接的紧密程度的度量
+内聚：一个模块内部各个元素彼此结合的紧密程度的度量
+
+
+
+
+提高抽象层次（信息隐藏，接口设计）
+复用性设计（软件的重用部分称为软构件）
+灵活性设计：保证软件灵活性设计的关键是抽象
+
+在设计中引入灵活性设计的方法
+
+降低耦合并提高内聚（易于提高替换能力）
+建立抽象（创建有多态操作的接口和父类）
+不要将代码写死（消除代码中的常数）
+抛出异常（由操作的调用者处理异常）
+使用并创建可复用的代码
+
+结构化设计
+概念
+结构化设计是将结构化分析得到的数据流图映射成软件体系结构的一种设计方法，有模块化、自顶向下 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%9C%9F%E6%9C%AB%E8%80%83%E7%82%B9%E6%95%B4%E7%90%86/" title="【数据库系统】7. 期末考点整理">【数据库系统】7. 期末考点整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a></span></div><div class="content">第一章——数据库系统概述
+1、四个概念：什么是数据?  什么是数据库? 什么是数据库管理系统（DBMS）？什么是数据库系统(DBS)？
+数据：用以描述事务性质的符号
+数据库：一个相互联合的数据的集合
+数据的重要特点：数据是相互联系的
+数据库管理系统：
+
+广义的数据库管理系统包括：相互联系的数据集合以及存取和管理这些数据的一套程序，即数据库和数据库管理系统软件
+一般的数据库管理系统：仅指数据库管理系统软件
+数据库系统：是指以数据库为核心的整个计算机系统。其目的是向用户提供方便、高效、可靠的存取数据的功能。
+
+DBMS的功能：
+
+数据组织定义
+数据操作与查询优化
+数据管理以及维护
+事务管理和运行控制
+对外提供多种接口（实用工具）
+
+2、熟记数据库系统的组成。
+数据库系统的组成：
+
+数据库
+硬件：CPU、内存…
+软件：DBMS，操作系统，数据库应用程序…
+人员：数据库管理人员DBA，应用程序员，用户
+
+3、理解DBA是对数据库进行集中控制和管理的最重要人员。
+数据库管理员（DBA）是整个数据库系统进行集中控制和管理的人员，是系统中最重要的人员。
+数据库管理员的具体职责：
+
+数据库设计：决定数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/06/29/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AD%A6%E4%B9%A0/%E3%80%90%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%918.%20%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="【编译原理】8. 期末复习">【编译原理】8. 期末复习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-29T00:00:00.000Z" title="发表于 2024-06-29 08:00:00">2024-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/">课程学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></span></div><div class="content">期末复习
+第一章
+程序语言的分类
+程序语言分为两种，高级语言和低级语言。
+其中低级语言可以直接控制硬件，如汇编语言、机器语言
+高级语言接近人类自热语言，如C++、Python、Java
+程序翻译的方式有哪些？有何不同？
+程序翻译的方式有两种，分别是编译程序、解释程序。
+编译程序借助编译器生成目标程序，目标程序收到输入数据和运行库后执行得到结果，优势是效率高，劣势是不跨平台
+解释程序直接将输入的数据和源程序进行解释并执行得到结果，优势是跨平台，劣势是暴露源码
+编译程序包含多少个阶段、各阶段的功能是什么？
+程序编译的过程包含6个阶段，分别是：扫描程序、语法分析程序、语义分析程序、源代码优化程序、代码生成器、目标代码优化程序。
+
+扫描程序：功能是词法分析，将源程序进行分词
+语法分析程序：功能是定义程序的符号元素以及元素之间的关系
+语义分析程序：功能是理解程序的意思，并进行声明和类型检查
+源代码优化程序：对代码进行改进或优化
+代码生成器：得到中间代码（逆波兰、三元组、四元组），并将其生成目标代码
+目标代码优化程序：与机器有关的优化，利用机器指令的特征对目标代码进行优化
+
+第二章（重点）——词法 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#content-inner">13</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/"><span class="card-category-list-name">健康生活</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/%E8%BF%90%E5%8A%A8%E8%A7%84%E5%88%92/"><span class="card-category-list-name">运动规划</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/%E9%A5%AE%E9%A3%9F%E8%A7%84%E5%88%92/"><span class="card-category-list-name">饮食规划</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.39em; color: #99a4b4">Python基础</a> <a href="/tags/%E5%81%A5%E8%BA%AB/" style="font-size: 1.16em; color: #999b9e">健身</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a> <a href="/tags/python%E3%80%81GUI/" style="font-size: 1.1em; color: #999">python、GUI</a> <a href="/tags/python/" style="font-size: 1.1em; color: #999">python</a> <a href="/tags/gdb/" style="font-size: 1.1em; color: #999">gdb</a> <a href="/tags/arduino/" style="font-size: 1.1em; color: #999">arduino</a> <a href="/tags/markdown/" style="font-size: 1.16em; color: #999b9e">markdown</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.33em; color: #99a2af">爬虫设计</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.39em; color: #99a4b4">单片机</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">python数据库</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" style="font-size: 1.44em; color: #99a7ba">课程学习</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.21em; color: #999ea4">计算机网络基础</a> <a href="/tags/%E9%A5%AE%E9%A3%9F%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">饮食规划</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E5%81%A5%E5%BA%B7%E7%94%9F%E6%B4%BB/" style="font-size: 1.16em; color: #999b9e">健康生活</a> <a href="/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" style="font-size: 1.16em; color: #999b9e">论文写作</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.33em; color: #99a2af">人工智能</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.27em; color: #99a0a9">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.21em; color: #999ea4">深度学习</a> <a href="/tags/%E8%BF%90%E5%8A%A8%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">运动规划</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.39em; color: #99a4b4">数学建模</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">107</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">233.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-12-06T06:22:24.961Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="card-category-list-name">人工智能</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"><span class="card-category-list-name">单片机</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">后端开发</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF%E7%BB%84%E4%BB%B6/"><span class="card-category-list-name">后端组件</span><span class="card-category-list-count">3</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF%E7%BB%84%E4%BB%B6/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%84%E4%BB%B6/"><span class="card-category-list-name">数据库组件</span><span class="card-category-list-count">3</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">大模型应用开发</span><span class="card-category-list-count">1</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">笔记</a> <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" style="font-size: 1.15em; color: #999b9e">论文写作</a> <a href="/tags/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" style="font-size: 1.3em; color: #99a1ac">爬虫设计</a> <a href="/tags/python/" style="font-size: 1.1em; color: #999">python</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1.1em; color: #999">消息队列</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" style="font-size: 1.1em; color: #999">故障排查</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 1.3em; color: #99a1ac">分布式系统</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.4em; color: #99a5b6">Python基础</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/arduino/" style="font-size: 1.1em; color: #999">arduino</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.2em; color: #999da3">深度学习</a> <a href="/tags/python%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">python数据库</a> <a href="/tags/gdb/" style="font-size: 1.1em; color: #999">gdb</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" style="font-size: 1.1em; color: #999">分布式服务的组织</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.35em; color: #99a3b1">人工智能</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" style="font-size: 1.2em; color: #999da3">分布式理论基础</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.1em; color: #999">面试</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.4em; color: #99a5b6">单片机</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/" style="font-size: 1.1em; color: #999">大模型应用</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%84%E4%BB%B6/" style="font-size: 1.2em; color: #999da3">数据库组件</a> <a href="/tags/%E5%86%85%E5%8A%9F/" style="font-size: 1.1em; color: #999">内功</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.2em; color: #999da3">计算机网络基础</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E7%BB%84%E4%BB%B6/" style="font-size: 1.2em; color: #999da3">后端组件</a> <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" style="font-size: 1.45em; color: #99a7ba">课程学习</a> <a href="/tags/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: #999b9e">语言基础</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.25em; color: #999fa7">机器学习</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.15em; color: #999b9e">数据结构与算法</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" style="font-size: 1.15em; color: #999b9e">分布式存储</a> <a href="/tags/python%E3%80%81GUI/" style="font-size: 1.1em; color: #999">python、GUI</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: #999b9e">计算机基础</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">后端开发</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 1.4em; color: #99a5b6">数学建模</a> <a href="/tags/markdown/" style="font-size: 1.15em; color: #999b9e">markdown</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/Java/" style="font-size: 1.15em; color: #999b9e">Java</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/04/"><span class="card-archive-list-date">四月 2026</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">125</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">297.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-09-08T15:39:02.815Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/beach.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,

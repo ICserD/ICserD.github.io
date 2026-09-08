@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【分布式系统】6. 消息队列 | 半栈日记</title><meta name="author" content="Cyrus"><meta name="copyright" content="Cyrus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、消息队列概述 （一）为什么有消息队列？ 在单体架构中，各个模块之间通过方法调用进行通信。当系统扩展到分布式系统后，单体项目被拆分为多个服务，各个服务之间的通信需要通过网络进行通信，此时出现了两种通信方式：RPC、HTTP 通信。 这两种通信方式都是同步调用，会存在如下弊端：  各个服务在通信是互相耦合，互相阻塞 单个服务宕机会影响其他与其通信的服务，可能会造成服务雪崩 底层一般基于 TCP 协">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【分布式系统】6. 消息队列">
+<meta property="og:url" content="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="半栈日记">
+<meta property="og:description" content="一、消息队列概述 （一）为什么有消息队列？ 在单体架构中，各个模块之间通过方法调用进行通信。当系统扩展到分布式系统后，单体项目被拆分为多个服务，各个服务之间的通信需要通过网络进行通信，此时出现了两种通信方式：RPC、HTTP 通信。 这两种通信方式都是同步调用，会存在如下弊端：  各个服务在通信是互相耦合，互相阻塞 单个服务宕机会影响其他与其通信的服务，可能会造成服务雪崩 底层一般基于 TCP 协">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/self_img/head_img.jpg">
+<meta property="article:published_time" content="2025-02-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T03:00:00.000Z">
+<meta property="article:author" content="Cyrus">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="消息队列">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/self_img/head_img.jpg"><link rel="shortcut icon" href="/self_img/bollon.png"><link rel="canonical" href="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【分布式系统】6. 消息队列',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-21 11:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="onerror=null;src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/self_img/11c.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="半栈日记"><span class="site-name">半栈日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fab fa-bandcamp"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【分布式系统】6. 消息队列</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-20T15:00:00.000Z" title="发表于 2025-02-20 23:00:00">2025-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-21T03:00:00.000Z" title="更新于 2025-02-21 11:00:00">2025-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【分布式系统】6. 消息队列"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>一、消息队列概述</h1>
+<h2 id="（一）为什么有消息队列？">（一）为什么有消息队列？</h2>
+<p>在单体架构中，各个模块之间通过方法调用进行通信。当系统扩展到分布式系统后，单体项目被拆分为多个服务，各个服务之间的通信需要通过网络进行通信，此时出现了两种通信方式：RPC、HTTP 通信。</p>
+<p>这两种通信方式都是同步调用，会存在如下弊端：</p>
+<ol>
+<li>各个服务在通信是互相耦合，互相阻塞</li>
+<li>单个服务宕机会影响其他与其通信的服务，可能会造成服务雪崩</li>
+<li>底层一般基于 TCP 协议，需要建立 socket 才能通信，仅支持点对点的全双工通信</li>
+</ol>
+<p>此时，消息队列出现了，可以理解为消息队列是一种<strong>异步的进程间通信方式</strong>，支持多对多全双工通信。消息队列并不是服务间通信方式的代替，而是一种补充，要在合适的场景下引入。</p>
+<h2 id="（二）消息队列的应用场景">（二）消息队列的应用场景</h2>
+<p>作为一种异步消息缓存与分发组件，消息队列有几种常见的用途，分别是：解耦、异步、削峰、消息分发。</p>
+<ul>
+<li>解耦：各个服务之间原本需要进行同步网络通信相互耦合，引入消息队列后，消息从消息队列中读、写，而不是直接与其他服务交互，达到一个解耦合的效果</li>
+<li>异步：对于处理时间长、或者不能立即处理的请求，可以考虑使用消息队列进行异步处理</li>
+<li>削峰：削峰其实是异步的一个应用，异步化可以增大处理的吞吐量，削峰就是在接口承载能力不足以应对高峰压力的时候采用消息队列将短期高峰流量平摊到较长的一段时间</li>
+<li>消息分发：消息队列最本质的应用就是消息分发，并且还可以通过一些手段做到消息分发的可靠性，支持一对多、多对多通信；比如基于消息补偿的分布式事务，就是用消息队列进行消息分发通知其他服务是否完成提交</li>
+</ul>
+<h1>二、Kafka</h1>
+<p>本章将梳理一个成熟的消息队列 —— Kafka，我们可以从中体会一个合格的消息队列应该如何实现，并从中汲取一些设计思想。</p>
+<p>Kafka 是一个开源的高可用、高性能的消息队列。本节我们通过梳理 Kafka 的工作流程，迅速对 Kafka 有个把握。</p>
+<p>消息队列本质上是生产者-消费者模型的实现，对于 Kafka 我们也分为三个部分来看：</p>
+<ul>
+<li>Producer，生产者，一般是其他的分布式服务，但是对于 Kafka 来说就是生产者客户端；生产者负责把消息投递到 Kafka</li>
+<li>Consumer，消费者，一般是其他的分布式服务，对于 Kafka 来说是消费者客户端；消费者负责从 Kafka 中拉取消息进行消费</li>
+<li>Broker，Kafka 服务节点，是我们需要了解的重点；负责接收消息、存储消息、分发消息
+<ul>
+<li>topic，逻辑上消息分类的标签，用于区分不同的消息</li>
+<li>partition，物理上存储消息的地方，每个 partition 都是一个有序、不可变的消息队列，一个 topic 可以有多个 partition</li>
+</ul>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260223205856121.png" alt="image-20260223205856121"></p>
+<h2 id="（一）核心存储结构">（一）核心存储结构</h2>
+<h3 id="1-Kafka-中的消息长什么样？">1. Kafka 中的消息长什么样？</h3>
+<p>在计算机网络中，我们学习过很多协议，比如 TCP、UDP、HTTP 等，其实协议就是定义如何解析数据，使得在网络上传递的二进制有意义。Kafka 作为一个消息队列中间件，与其生产者客户端、消费者客户端都通过网络进行通信，不可避免的需要设计自己的“协议”，以保证数据的传输和解析是有意义的。</p>
+<p>而对于协议，从数据结构层理解，就是帧格式，Kafka 消息的帧格式如下，我们关注几个重要的字段：</p>
+<ul>
+<li>Key：用于定位数据在哪个 partition，一个 topic 可能对应多个 partition 存储，需要通过 key 来指定消息在哪个 partition</li>
+<li>Offset：标记该数据在 partition 的位置，这是 partition 有序性的必要设计</li>
+<li>value：具体的数据，被压缩然后序列化</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260223210914291.png" alt="image-20260223210914291"></p>
+<h3 id="2-Kafka-如何存储消息？">2. Kafka 如何存储消息？</h3>
+<p>在 Kafka 中，逻辑上是用 topic 对消息进行分类，但实际上一个 topic 由多个 partition 物理存储。</p>
+<h4 id="2-1-为什么要进行分区？">2.1 为什么要进行分区？</h4>
+<p>为了可扩展的吞吐能力，Kafka 在逻辑上用 topic 分类消息，物理上用 partition 存储消息，一个 topic 对应多个 partition。</p>
+<p>这样做的优点就是给每一个 topic 的消息存储都带来了高度可扩展的吞吐能力：</p>
+<ul>
+<li>一个 topic 的不同 partition 可以在不同的 broker 上存储，提升并发读写能力</li>
+<li>单个 partition 消息有序存储，可以进行消息有序性扩展</li>
+</ul>
+<h4 id="2-2-partition-如何存储消息？">2.2 partition 如何存储消息？</h4>
+<p>partition 可以理解为一个日志文件，每一行就是一条消息，写入时直接在文件后面追加，这样做的好处是既有高性能（顺序写）又能保证有序。</p>
+<p>还有一个重要的概念 —— offset，可以理解为每个分区内，每条<strong>消息的位置编号</strong>，顺序递增，相当于消息在 partition 中的“下标”。</p>
+<blockquote>
+<p>offset 是可靠性消费的重要数据结构，后面会介绍</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@main/img/image-20260223212423677.png" alt="image-20260223212423677"></p>
+<h2 id="（二）producer-生产者">（二）producer 生产者</h2>
+<p>对于 Kafka 来说，生产者本质上就是一个客户端，可以是任意一个服务、进程，其职责就是把消息写入 Kafka 集群。</p>
+<p>具体来说，其具体的工作是：</p>
+<ol>
+<li>准备要发送的数据，将数据封装成消息</li>
+<li>对消息进行序列化，便于网络传输</li>
+<li>设计分区策略，计算分区 key，将消息路由发送到指定的 partition</li>
+</ol>
+<p>在<strong>可靠性</strong>方面，生产者可以通过配置 ACK 的策略来控制消息的确认级别，例如 acks = 0/1/all，分别对应不同的数据安全等级，同时配合重试、幂等性（enable.idempotence）等配置，可以实现“至少一次”的生产语义。</p>
+<blockquote>
+<p>Kafka 将分区选择和消息路由下放到生产者侧，减少了 broker 端的计算和转发开销，整体提升了系统的吞吐能力。生产者还可以通过缓存、批量发送、异步 IO 等机制进一步提高写入性能。</p>
+<p>可以看出，<strong>生产者端不仅是消息队列数据的入口，也是性能优化与可靠性控制的第一道关口</strong></p>
+</blockquote>
+<h2 id="（三）consumer-消费者">（三）consumer 消费者</h2>
+<p>对于 Kafka 来说，消费者本质上也是一个客户端，可以是任意一个服务、进程，负责从指定的 topic 拉取消息并进行处理。</p>
+<h3 id="1-消费者的基本工作流程">1. 消费者的基本工作流程</h3>
+<p>具体来说，消费者的具体工作是：</p>
+<ol>
+<li>向 broker 集群发送 pull 请求消息，请求某个 partition 上某个 offset 开始的消息</li>
+<li>broker 返回消息列表</li>
+<li>消费者处理后，向 broker 集群提交自己消费的最后一个消息的 offset</li>
+</ol>
+<h3 id="2-为什么要有消费者组？">2. 为什么要有消费者组？</h3>
+<p>在分布式系统中，消费者往往也是一个服务，往往一个消息由多个服务订阅消费，因此为了充分提高消费的吞吐量， Kafka 的消息消费是按照消费者组的方式消费的，也就是并发读！</p>
+<ul>
+<li>Kafka 规定一个 partition，在一个消费者组内只能被一个消费者消费，也就是消费者组中两个实例不能消费同一个 partition，保证消息消费的有序性</li>
+<li>多个 partition 可以被多个消费者并行处理，进行横向扩展</li>
+</ul>
+<h3 id="3-消费者组的管理">3. 消费者组的管理</h3>
+<p>消费者一般通过消费者组进行管理，消费者组是 Kafka 实现并行消费和负载均衡的核心机制。多个消费者实例如果配置了同一个 groupId，就会组成一个逻辑消费组，共同消费并订阅同一个 topic。</p>
+<p>Kafka 会在组内自动分配分区，每个分区在同一消费组内只能被一个消费者消费，以此保证消费的顺序性。</p>
+<p>那么就自然带来两个问题：</p>
+<ol>
+<li>consumer 怎么知道自己要消费哪一个 partition？</li>
+<li>Kafka 如何进行分区分配？</li>
+</ol>
+<h4 id="3-1-group-coordinator">3.1 group coordinator</h4>
+<p>group coordinator 是 broker 的一种身份，用于管理 consumer group 的。Kafka 通过一个特殊的内部 topic —— __consumer_offsets 来进行 coordinator 的确定。</p>
+<p>__consumer_offsets 记录的是某个 consumer group 在某个 topic 的某个 partition 上的消费进度（offset），分为多个 partition，一个 partition 对应着一个 consumer group，它是多副本存储的，不同 partition 副本存储在不同 broker 上，而 leader partition 所在的 broker 就是这个 consumer group 的 coordinator。</p>
+<blockquote>
+<p>一个 partition 其实我们可以理解为一个存储节点，多副本机制就可以理解为主从复制机制，会有一个 leader，多个 follower，通过读写分离提高吞吐性能</p>
+</blockquote>
+<h4 id="3-2-consumer-如何与-group-coordinator-交互？">3.2 consumer 如何与 group coordinator 交互？</h4>
+<p><strong>分区分配</strong></p>
+<ul>
+<li>
+<p>consumer 启动后，向 broker 集群发送 MetadataRequest 获取整个集群的元数据（包括 broker 列表、_consumer_offsets 的 partition 分布等），然后根据自己的 groupId 计算自己所在的 consumer group 应该消费  __consumer_offsets 上哪个 partition，根据请求到的集群元数据找到该 partition 的 leader partition 所在的 broker，该 broker 就是该 consumer group 的 coordinator</p>
+</li>
+<li>
+<p>consumer 发送 join group 请求给 group coordinator，group coordinator 将第一个 join 成功的 consumer 视为 leader consumer，等到所有成员加入成功或者 timeout 后无心的 join 请求后，将 consumer group 的元信息发送给 leader consumer 进行分区分配的计算</p>
+</li>
+<li>
+<p>consumer group 根据分区分配策略计算分区分配，该策略通过参数（partition.assignment.strategy）配置，然后将分区分配结果发送给 coordinator，coordinator 广播给 group 内所有 consumer，至此完成分区分配，所有 consumer 知道自己消费哪个 partition</p>
+<blockquote>
+<p>分区分配策略在消费者端通过参数进行配置，主要配置如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名字</th>
+<th style="text-align:center">分配规则</th>
+<th style="text-align:center">适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">RangeAssignor</td>
+<td style="text-align:center">按分区号范围分配，比如 0-1 分给 c1、2-4 分给 c2</td>
+<td style="text-align:center">分区号有序场景、简单、需要自定义规则</td>
+</tr>
+<tr>
+<td style="text-align:center">RoundRobinAssignor</td>
+<td style="text-align:center">轮询分配，比如 0 分给 c1、1 分给 c2…</td>
+<td style="text-align:center">尽量地均匀分配</td>
+</tr>
+<tr>
+<td style="text-align:center">StickyAssignor</td>
+<td style="text-align:center">尽量保持原分配不变的情况下分配，分配剩余的分区</td>
+<td style="text-align:center">尽可能减少 rebalance</td>
+</tr>
+<tr>
+<td style="text-align:center">CooperativeStickyAssignor</td>
+<td style="text-align:center">Sticky 的改进版，支持渐进 rebalance</td>
+<td style="text-align:center">Kafka 2.4+ 默认配置</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+</ul>
+<p><strong>再分区分配</strong></p>
+<p>当 group consumer 有成员变化的时候，会触发 rebalance，需要调整分区分配。下面介绍 rebalance 的过程：</p>
+<ul>
+<li>暂停消费：coordinator 通知所有 consumer 停止消费，提交已经消费的 offset、断开心跳，进入 rebalance 模式</li>
+<li>重新分区：
+<ul>
+<li>所有 consumer 重新发送 join group request，第一个送到 coordinator 的 consumer 被认定为 leader consumer；</li>
+<li>coordinator 将所有 consumer 的信息发给 leader consumer，由它根据策略进行重新分区分配；</li>
+<li>leader consumer 将分区计算结果发给 coordinator，coordinator 广播给其他 consumer</li>
+</ul>
+</li>
+<li>重新开始消费：consumer 得到自己的分区 partition 后，开始拉取消息进行消费</li>
+</ul>
+<h2 id="（四）broker-中转站">（四）broker 中转站</h2>
+<p>broker 可以理解为 Kafka 服务器节点，broker 就是存储 partition 的节点，并与生产者、消费者交互，对外提供读写服务。</p>
+<p>对于 broker，我们需要理解他的三种角色：coordinator、leader、follower，这些角色都随着我们看问题的视角、以及 broker 本身存储的 partition 的角色有关。</p>
+<h3 id="1-leader">1. <strong>leader</strong></h3>
+<p>partition 是多副本部署在 broker 上的，对于一个 partition 集群，只有一个 broker 存储 leader partition、其他 broker 都存储的是 follower partition，从单个 partition 的视角来看，这里出现了 broker 的第一种角色 —— leader。</p>
+<p>一个 broker 可能既是 leader、又是 follower，因为 broker 中存储着多个不同的 partition，这些 partition 可能是 leader、也可能是 follower。</p>
+<h3 id="2-coordinator">2. coordinator</h3>
+<p>broker 的另一种角色是 coordinator，管理消费者组。每个消费者组都会对应订阅 __consumer_offset 这个 topic 的一个 partition，维护 broker 和 consumer 的消费进度。</p>
+<p>coordinator 存储的是这个消费者组消费的 leader partition，负责与各个 consumer 维持心跳、维护 consumer 的元信息、与 leader consumer 配合进行 rebalance。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Cyrus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%917.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">http://example.com/2025/02/20/后端开发/【分布式系统】7. 消息队列/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">半栈日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a></div><div class="post_share"><div class="social-share" data-image="/self_img/head_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/ICserD/blog_img@master/img/wechat_pay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【分布式系统】6. 分布式存储（下）</div></div></a></div><div class="next-post pull-right"><a href="/2025/02/18/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" title="【分布式系统】4. 分布式服务的组织"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【分布式系统】4. 分布式服务的组织</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/02/05/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%911.%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA/" title="【分布式系统】1. 分布式理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">【分布式系统】1. 分布式理论</div></div></a></div><div><a href="/2025/02/06/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%912.%20%E5%85%B1%E8%AF%86%E7%90%86%E8%AE%BA/" title="【分布式系统】2. 共识理论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-06</div><div class="title">【分布式系统】2. 共识理论</div></div></a></div><div><a href="/2025/02/15/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%913.%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" title="【分布式系统】3. 分布式事务"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="title">【分布式系统】3. 分布式事务</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%915.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8A%EF%BC%89/" title="【分布式系统】5. 分布式存储（上）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】5. 分布式存储（上）</div></div></a></div><div><a href="/2025/02/20/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%916.%20%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%88%E4%B8%8B%EF%BC%89/" title="【分布式系统】6. 分布式存储（下）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">【分布式系统】6. 分布式存储（下）</div></div></a></div><div><a href="/2025/02/18/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E3%80%914.%20%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BB%84%E7%BB%87/" title="【分布式系统】4. 分布式服务的组织"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-18</div><div class="title">【分布式系统】4. 分布式服务的组织</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/loading.gif" data-original="/self_img/head_img.jpg" onerror="this.onerror=null;this.src='/self_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cyrus</div><div class="author-info__description">保持好奇，持续输出</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ICserD"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ICserD" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2862081626@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_73546177" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">一、消息队列概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">（一）为什么有消息队列？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">（二）消息队列的应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">二、Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%A0%B8%E5%BF%83%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">（一）核心存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Kafka-%E4%B8%AD%E7%9A%84%E6%B6%88%E6%81%AF%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%EF%BC%9F"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. Kafka 中的消息长什么样？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Kafka-%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%B6%88%E6%81%AF%EF%BC%9F"><span class="toc-number">2.1.2.</span> <span class="toc-text">2. Kafka 如何存储消息？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%88%86%E5%8C%BA%EF%BC%9F"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">2.1 为什么要进行分区？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-partition-%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%B6%88%E6%81%AF%EF%BC%9F"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">2.2 partition 如何存储消息？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89producer-%E7%94%9F%E4%BA%A7%E8%80%85"><span class="toc-number">2.2.</span> <span class="toc-text">（二）producer 生产者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89consumer-%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">2.3.</span> <span class="toc-text">（三）consumer 消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. 消费者的基本工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%EF%BC%9F"><span class="toc-number">2.3.2.</span> <span class="toc-text">2. 为什么要有消费者组？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">2.3.3.</span> <span class="toc-text">3. 消费者组的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-group-coordinator"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">3.1 group coordinator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-consumer-%E5%A6%82%E4%BD%95%E4%B8%8E-group-coordinator-%E4%BA%A4%E4%BA%92%EF%BC%9F"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">3.2 consumer 如何与 group coordinator 交互？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89broker-%E4%B8%AD%E8%BD%AC%E7%AB%99"><span class="toc-number">2.4.</span> <span class="toc-text">（四）broker 中转站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-leader"><span class="toc-number">2.4.1.</span> <span class="toc-text">1. leader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-coordinator"><span class="toc-number">2.4.2.</span> <span class="toc-text">2. coordinator</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%910.%20%E6%A8%A1%E6%9D%BF%E8%AE%AD%E7%BB%83/" title="【算法】0. 模板训练">【算法】0. 模板训练</a><time datetime="2026-04-28T02:39:18.000Z" title="发表于 2026-04-28 10:39:18">2026-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E6%97%85%E6%B8%B8/%E4%BA%91%E5%8D%977%E6%97%A5%E6%B8%B8/" title="无题">无题</a><time datetime="2026-04-27T12:04:18.287Z" title="发表于 2026-04-27 20:04:18">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E3%80%91%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" title="【线上故障排查】线上故障排查经验">【线上故障排查】线上故障排查经验</a><time datetime="2026-04-23T03:00:00.000Z" title="发表于 2026-04-23 11:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/26/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E9%9D%A2%E8%AF%95%E3%80%911.%20%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" title="【面试】1. 面试题单">【面试】1. 面试题单</a><time datetime="2026-02-26T14:54:08.000Z" title="发表于 2026-02-26 22:54:08">2026-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E3%80%90%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%910.%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="【设计模式】0. 设计模式概述">【设计模式】0. 设计模式概述</a><time datetime="2025-12-08T03:00:00.000Z" title="发表于 2025-12-08 11:00:00">2025-12-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/self_img/11c.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Cyrus</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
